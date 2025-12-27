@@ -9,14 +9,128 @@
       content="Contact Versed Global for Salesforce CRM implementation and trust/foundation fundraising support. Book a free initial consultation with our specialist consultancy team."
     />
     <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Sophisticated contact cards */
+      .contact-elegance {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      .contact-elegance .card {
+        background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+      .contact-elegance .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #1e3a8a, #3b82f6, #1e40af);
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+      }
+      .contact-elegance .card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      }
+      .contact-elegance .card:hover::before {
+        transform: scaleX(1);
+      }
+      .contact-elegance .icon-container {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2.2rem;
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        transition: all 0.3s ease;
+      }
+      .contact-elegance .card:hover .icon-container {
+        transform: scale(1.1) rotate(5deg);
+        background: linear-gradient(135deg, #c7d2fe, #a5b4fc);
+      }
+      .contact-elegance h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+      }
+      .contact-elegance .contact-highlight {
+        font-size: 1.2rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+        display: block;
+      }
+      .contact-elegance .contact-description {
+        color: #64748b;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+      }
+      .contact-elegance .btn {
+        padding: 0.9rem 2rem;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      @media (max-width: 768px) {
+        .contact-elegance {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Header / Nav -->
     <header class="header-bar">
       <div class="container header-inner">
-        <div class="logo-area">
-          <img src="images/logo-placeholder.png" alt="Versed Global logo" />
-          <div class="logo-text">Versed Global</div>
+        <div class="logo-area" style="align-items: center; gap: 1rem">
+          <img
+            src="images/versed-global-logo.png"
+            alt="Versed Global logo"
+            style="
+              height: 96px;
+              width: auto;
+              max-width: 100%;
+              object-fit: contain;
+              background: transparent;
+              border: none;
+              filter: brightness(1.15);
+              transition: transform 0.3s ease, filter 0.3s ease;
+            "
+            onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.25)';"
+            onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1.15)';"
+          />
+          <div
+            class="logo-text"
+            style="font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em"
+          >
+            Versed Global
+          </div>
         </div>
         <nav>
           <div class="nav-links">
@@ -45,80 +159,66 @@
       </div>
     </section>
 
-    <!-- Contact Options -->
+    <!-- Redesigned: Three ways to connect (Sophisticated version) -->
     <section class="section">
       <div class="container">
-        <h2 class="section-title">Three ways to connect</h2>
-        <div class="three-grid">
-          <div class="card contact-card">
-            <div style="font-size: 2rem; margin-bottom: 1rem">📧</div>
-            <h3>Email</h3>
-            <p
-              style="
-                font-size: 1.1rem;
-                font-weight: 600;
-                color: #1a56db;
-                margin-bottom: 0.5rem;
-              "
+        <h2
+          class="section-title"
+          style="text-align: center; margin-bottom: 1rem"
+        >
+          Three ways to connect
+        </h2>
+        <p
+          class="section-intro"
+          style="text-align: center; max-width: 600px; margin: 0 auto 4rem"
+        >
+          Choose the method that works best for your needs. We're ready to
+          discuss your Salesforce journey or fundraising ambitions.
+        </p>
+        <div class="contact-elegance">
+          <div class="card">
+            <div class="icon-container">📧</div>
+            <h3>Direct Email</h3>
+            <a href="mailto:info@versedglobal.com" class="contact-highlight"
+              >info@versedglobal.com</a
             >
-              info@versedglobal.com
+            <p class="contact-description">
+              Personal response within 24 hours for Salesforce CRM enquiries,
+              fundraising strategy or general questions.
             </p>
-            <p>
-              Direct email for Salesforce CRM enquiries, fundraising support or
-              general questions. Response within 24 hours.
-            </p>
-            <a
-              href="mailto:info@versedglobal.com"
-              class="btn btn-primary"
-              style="margin-top: 1rem"
-              >Send email</a
+            <a href="mailto:info@versedglobal.com" class="btn btn-primary"
+              >Send Message</a
             >
           </div>
-          <div class="card contact-card">
-            <div style="font-size: 2rem; margin-bottom: 1rem">💼</div>
+          <div class="card">
+            <div class="icon-container">💼</div>
             <h3>LinkedIn</h3>
-            <p
-              style="
-                font-size: 1.1rem;
-                font-weight: 600;
-                color: #1a56db;
-                margin-bottom: 0.5rem;
-              "
+            <a
+              href="https://linkedin.com/company/versed-global"
+              target="_blank"
+              class="contact-highlight"
+              >Connect Professionally</a
             >
-              Connect professionally
-            </p>
-            <p>
-              Follow for Salesforce and fundraising insights or send a direct
+            <p class="contact-description">
+              Follow our insights on Salesforce best practices and send a direct
               message to discuss your project requirements.
             </p>
             <a
               href="https://linkedin.com/company/versed-global"
               target="_blank"
               class="btn btn-secondary"
-              style="margin-top: 1rem"
-              >View LinkedIn</a
+              >View Profile</a
             >
           </div>
-          <div class="card contact-card">
-            <div style="font-size: 2rem; margin-bottom: 1rem">📅</div>
-            <h3>Discovery call</h3>
-            <p
-              style="
-                font-size: 1.1rem;
-                font-weight: 600;
-                color: #1a56db;
-                margin-bottom: 0.5rem;
-              "
-            >
-              30 minutes - Free
-            </p>
-            <p>
-              Schedule a no-obligation conversation to discuss your Salesforce
+          <div class="card">
+            <div class="icon-container">📅</div>
+            <h3>Discovery Call</h3>
+            <span class="contact-highlight">30 minutes - Free</span>
+            <p class="contact-description">
+              Schedule a no-obligation conversation to explore your Salesforce
               or fundraising challenges and next steps.
             </p>
-            <a href="#booking" class="btn btn-primary" style="margin-top: 1rem"
-              >Book call</a
-            >
+            <a href="#booking" class="btn btn-primary">Book Now</a>
           </div>
         </div>
       </div>
