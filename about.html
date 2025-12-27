@@ -14,9 +14,30 @@
     <!-- Header / Nav -->
     <header class="header-bar">
       <div class="container header-inner">
-        <div class="logo-area">
-          <img src="images/logo-placeholder.png" alt="Versed Global logo" />
-          <div class="logo-text">Versed Global</div>
+        <div class="logo-area" style="align-items: center; gap: 1rem">
+          <!-- Clean, modern logo with no white background or shadow -->
+          <img
+            src="images/versed-global-logo.png"
+            alt="Versed Global logo"
+            style="
+              height: 96px;
+              width: auto;
+              max-width: 100%;
+              object-fit: contain;
+              background: transparent;
+              border: none;
+              filter: brightness(1.15);
+              transition: transform 0.3s ease, filter 0.3s ease;
+            "
+            onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.25)';"
+            onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1.15)';"
+          />
+          <div
+            class="logo-text"
+            style="font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em"
+          >
+            Versed Global
+          </div>
         </div>
         <nav>
           <div class="nav-links">
@@ -59,20 +80,24 @@
           "
         >
           <div>
-            <!-- Placeholder for founder photo -->
+            <!-- Placeholder for founder photo (replace src with real image when ready) -->
             <div
               style="
-                background: #e2e8f0;
-                height: 300px;
-                border-radius: 12px;
+                background: radial-gradient(circle at top, #e2e8f0, #cbd5e1);
+                height: 320px;
+                border-radius: 18px;
+                overflow: hidden;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                color: #64748b;
-                font-size: 0.9rem;
+                box-shadow: 0 24px 60px rgba(15, 23, 42, 0.35);
               "
             >
-              Founder photo<br />goes here
+              <img
+                src="images/founder-placeholder.jpg"
+                alt="Founder of Versed Global"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
             </div>
           </div>
           <div>
@@ -143,48 +168,258 @@
           Every Versed engagement reflects these core principles that shape how
           we work with clients and approach every project.
         </p>
-        <div class="values-grid">
-          <div class="value">
-            <h3>Impact First</h3>
-            <p>
-              Every system and strategy must contribute to meaningful outcomes
-              for people and communities we're here to serve.
+
+        <!-- Advanced value layout -->
+        <div
+          style="
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+            gap: 2.5rem;
+            align-items: stretch;
+          "
+        >
+          <!-- Left: visual / diagram style -->
+          <div
+            style="
+              border-radius: 20px;
+              padding: 1.75rem 1.9rem;
+              background: radial-gradient(circle at top left, #312e81, #0f172a);
+              box-shadow: 0 30px 80px rgba(15, 23, 42, 0.6);
+              color: #e5e7eb;
+              position: relative;
+              overflow: hidden;
+            "
+          >
+            <p
+              style="
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 0.18em;
+                color: #a5b4fc;
+                margin-bottom: 0.9rem;
+              "
+            >
+              Our values in practice
             </p>
+            <h3
+              style="font-size: 1.5rem; margin-bottom: 1.4rem; color: #f9fafb"
+            >
+              How decisions are made at Versed
+            </h3>
+
+            <ul
+              style="
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                font-size: 0.95rem;
+              "
+            >
+              <li>
+                <span style="color: #bef264">•</span>
+                Does this improve impact for end beneficiaries?
+              </li>
+              <li>
+                <span style="color: #fbbf24">•</span>
+                Is it transparent, ethical and fair?
+              </li>
+              <li>
+                <span style="color: #38bdf8">•</span>
+                Are we enabling, not replacing, client capacity?
+              </li>
+              <li>
+                <span style="color: #f97316">•</span>
+                Are we learning and documenting as we go?
+              </li>
+            </ul>
+
+            <div
+              style="
+                position: absolute;
+                inset: auto -60px -80px auto;
+                width: 220px;
+                height: 220px;
+                background: radial-gradient(circle, #6366f1, transparent 60%);
+                opacity: 0.3;
+                pointer-events: none;
+              "
+            ></div>
           </div>
-          <div class="value">
-            <h3>Integrity Always</h3>
-            <p>
-              Honest advice, ethical fundraising practices, transparent methods
-              and respect for data privacy and governance.
-            </p>
-          </div>
-          <div class="value">
-            <h3>Equity Focus</h3>
-            <p>
-              Commitment to supporting organisations working with underserved
-              communities and addressing systemic barriers.
-            </p>
-          </div>
-          <div class="value">
-            <h3>Excellence Standard</h3>
-            <p>
-              High standards in design, writing, data quality and project
-              delivery – careful work, not superficial fixes.
-            </p>
-          </div>
-          <div class="value">
-            <h3>True Collaboration</h3>
-            <p>
-              Working alongside client teams to transfer skills and build
-              internal capacity rather than creating dependency.
-            </p>
-          </div>
-          <div class="value">
-            <h3>Continuous Learning</h3>
-            <p>
-              Staying current with technology, fundraising trends and policy
-              changes so clients benefit from best practice.
-            </p>
+
+          <!-- Right: individual value cards -->
+          <div
+            class="values-grid"
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+              gap: 1.5rem;
+            "
+          >
+            <div
+              class="value"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  rgba(16, 185, 129, 0.08),
+                  rgba(45, 212, 191, 0.08)
+                );
+                border-radius: 18px;
+                padding: 1.5rem 1.6rem;
+                border: 1px solid rgba(34, 197, 94, 0.25);
+              "
+            >
+              <h3
+                style="
+                  font-size: 1.15rem;
+                  margin-bottom: 0.5rem;
+                  color: #047857;
+                "
+              >
+                Impact First
+              </h3>
+              <p style="font-size: 0.98rem; color: #0f172a">
+                Every system and strategy must contribute to meaningful outcomes
+                for people and communities we're here to serve.
+              </p>
+            </div>
+            <div
+              class="value"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  rgba(59, 130, 246, 0.08),
+                  rgba(129, 140, 248, 0.08)
+                );
+                border-radius: 18px;
+                padding: 1.5rem 1.6rem;
+                border: 1px solid rgba(59, 130, 246, 0.25);
+              "
+            >
+              <h3
+                style="
+                  font-size: 1.15rem;
+                  margin-bottom: 0.5rem;
+                  color: #1d4ed8;
+                "
+              >
+                Integrity Always
+              </h3>
+              <p style="font-size: 0.98rem; color: #0f172a">
+                Honest advice, ethical fundraising practices and respect for
+                data privacy, governance and stakeholder expectations.
+              </p>
+            </div>
+            <div
+              class="value"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  rgba(236, 72, 153, 0.08),
+                  rgba(251, 113, 133, 0.08)
+                );
+                border-radius: 18px;
+                padding: 1.5rem 1.6rem;
+                border: 1px solid rgba(236, 72, 153, 0.25);
+              "
+            >
+              <h3
+                style="
+                  font-size: 1.15rem;
+                  margin-bottom: 0.5rem;
+                  color: #be185d;
+                "
+              >
+                Equity Focus
+              </h3>
+              <p style="font-size: 0.98rem; color: #0f172a">
+                Commitment to supporting organisations working with underserved
+                communities and tackling systemic barriers.
+              </p>
+            </div>
+            <div
+              class="value"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  rgba(79, 70, 229, 0.08),
+                  rgba(30, 64, 175, 0.08)
+                );
+                border-radius: 18px;
+                padding: 1.5rem 1.6rem;
+                border: 1px solid rgba(79, 70, 229, 0.25);
+              "
+            >
+              <h3
+                style="
+                  font-size: 1.15rem;
+                  margin-bottom: 0.5rem;
+                  color: #3730a3;
+                "
+              >
+                Excellence Standard
+              </h3>
+              <p style="font-size: 0.98rem; color: #0f172a">
+                High standards in design, writing, data quality and delivery –
+                careful work that stands up to scrutiny.
+              </p>
+            </div>
+            <div
+              class="value"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  rgba(14, 165, 233, 0.08),
+                  rgba(45, 212, 191, 0.08)
+                );
+                border-radius: 18px;
+                padding: 1.5rem 1.6rem;
+                border: 1px solid rgba(14, 165, 233, 0.25);
+              "
+            >
+              <h3
+                style="
+                  font-size: 1.15rem;
+                  margin-bottom: 0.5rem;
+                  color: #0369a1;
+                "
+              >
+                True Collaboration
+              </h3>
+              <p style="font-size: 0.98rem; color: #0f172a">
+                Working alongside client teams to transfer skills and build
+                internal capacity rather than creating dependency.
+              </p>
+            </div>
+            <div
+              class="value"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  rgba(234, 179, 8, 0.08),
+                  rgba(251, 191, 36, 0.08)
+                );
+                border-radius: 18px;
+                padding: 1.5rem 1.6rem;
+                border: 1px solid rgba(234, 179, 8, 0.25);
+              "
+            >
+              <h3
+                style="
+                  font-size: 1.15rem;
+                  margin-bottom: 0.5rem;
+                  color: #92400e;
+                "
+              >
+                Continuous Learning
+              </h3>
+              <p style="font-size: 0.98rem; color: #0f172a">
+                Staying current with technology, fundraising trends and policy
+                changes so clients benefit from evolving best practice.
+              </p>
+            </div>
           </div>
         </div>
       </div>
