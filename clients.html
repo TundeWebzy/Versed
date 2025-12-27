@@ -14,9 +14,30 @@
     <!-- Header / Nav -->
     <header class="header-bar">
       <div class="container header-inner">
-        <div class="logo-area">
-          <img src="images/logo-placeholder.png" alt="Versed Global logo" />
-          <div class="logo-text">Versed Global</div>
+        <div class="logo-area" style="align-items: center; gap: 1rem">
+          <!-- Clean, modern logo with no white background or shadow -->
+          <img
+            src="images/versed-global-logo.png"
+            alt="Versed Global logo"
+            style="
+              height: 96px;
+              width: auto;
+              max-width: 100%;
+              object-fit: contain;
+              background: transparent;
+              border: none;
+              filter: brightness(1.15);
+              transition: transform 0.3s ease, filter 0.3s ease;
+            "
+            onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.25)';"
+            onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1.15)';"
+          />
+          <div
+            class="logo-text"
+            style="font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em"
+          >
+            Versed Global
+          </div>
         </div>
         <nav>
           <div class="nav-links">
@@ -498,8 +519,112 @@
           </div>
         </div>
       </div>
-    </section>
+    <!-- Corrected Partner Organisations Slider Section -->
+<section class="section alt">
+  <div class="container" style="text-align: center">
+    <h2 class="section-title">Our Partners and Collaborations</h2>
+    <p
+      class="section-intro"
+      style="max-width: 800px; margin: 0 auto 2.5rem"
+    >
+      Versed Global has proudly partnered and collaborated with a range of
+      charitable and technology organisations that deliver lasting social
+      impact and CRM innovation.
+    </p>
+  </div>
 
+  <div
+    class="org-slider"
+    style="
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      background: #f9fafb;
+      border-top: 1px solid #e5e7eb;
+      border-bottom: 1px solid #e5e7eb;
+    "
+  >
+    <div
+      class="org-slide-track"
+      style="
+        display: flex;
+        width: calc(240px * 20);
+        animation: scroll 45s linear infinite;
+      "
+    >
+      <!-- Each clickable logo placeholder (replace text with logos later) -->
+      <a href="https://olivetreecancersupport.org.uk/" target="_blank" rel="noopener" class="org-slide">The Olive Tree Cancer Support</a>
+      <a href="https://naturalneighbours.org/" target="_blank" rel="noopener" class="org-slide">Natural Neighbours</a>
+      <a href="https://zambianrainbow.org/" target="_blank" rel="noopener" class="org-slide">Zambian Rainbow Development Foundation</a>
+      <a href="https://globalimpactfoundation.org/" target="_blank" rel="noopener" class="org-slide">Global Impact Foundation</a>
+      <a href="https://wessexcancer.org.uk/" target="_blank" rel="noopener" class="org-slide">Wessex Cancer Support</a>
+      <a href="https://opoka.org.uk/" target="_blank" rel="noopener" class="org-slide">Opoka CIO</a>
+      <a href="https://chrysalisgroup.org/" target="_blank" rel="noopener" class="org-slide">Chrysalis Group</a>
+      <a href="https://nimbuspoint.com/" target="_blank" rel="noopener" class="org-slide">NimbusPoint</a>
+      <a href="https://timetechnology.co.uk/" target="_blank" rel="noopener" class="org-slide">Time Technology</a>
+      <a href="https://xenogenix.com/" target="_blank" rel="noopener" class="org-slide">Xenogenix</a>
+      <a href="#" target="_blank" rel="noopener" class="org-slide" style="font-style: italic; color: #6b7280;">...and more</a>
+
+      <!-- Duplicate slides for continuous scrolling -->
+      <a href="https://olivetreecancersupport.org.uk/" target="_blank" rel="noopener" class="org-slide">The Olive Tree Cancer Support</a>
+      <a href="https://naturalneighbours.org/" target="_blank" rel="noopener" class="org-slide">Natural Neighbours</a>
+      <a href="https://zambianrainbow.org/" target="_blank" rel="noopener" class="org-slide">Zambian Rainbow Development Foundation</a>
+      <a href="https://globalimpactfoundation.org/" target="_blank" rel="noopener" class="org-slide">Global Impact Foundation</a>
+      <a href="https://wessexcancersupport.org.uk/" target="_blank" rel="noopener" class="org-slide">Wessex Cancer Support</a>
+      <a href="https://opoka.org.uk/" target="_blank" rel="noopener" class="org-slide">Opoka CIO</a>
+      <a href="https://chrysalisgroup.org/" target="_blank" rel="noopener" class="org-slide">Chrysalis Group</a>
+      <a href="https://nimbuspoint.com/" target="_blank" rel="noopener" class="org-slide">NimbusPoint</a>
+    </div>
+  </div>
+
+  <style>
+    .org-slide {
+      width: 240px;
+      height: 120px;
+      margin: 1rem;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-weight: 600;
+      color: #374151;
+      font-size: 0.95rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+      text-decoration: none;
+    }
+
+    .org-slide:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      color: #2563eb;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-240px * 10));
+      }
+    }
+
+    .org-slide-track:hover {
+      animation-play-state: paused;
+    }
+
+    @media (max-width: 768px) {
+      .org-slide {
+        width: 180px;
+        height: 100px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</section>
     <!-- CTA Section -->
     <section class="section alt">
       <div class="container" style="text-align: center; padding: 4rem 2rem">
