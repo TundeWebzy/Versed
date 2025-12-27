@@ -14,9 +14,30 @@
     <!-- Header / Nav -->
     <header class="header-bar">
       <div class="container header-inner">
-        <div class="logo-area">
-          <img src="images/logo-placeholder.png" alt="Versed Global logo" />
-          <div class="logo-text">Versed Global</div>
+        <div class="logo-area" style="align-items: center; gap: 1rem">
+          <!-- Clean, modern logo with no white background or shadow -->
+          <img
+            src="images/versed-global-logo.png"
+            alt="Versed Global logo"
+            style="
+              height: 96px;
+              width: auto;
+              max-width: 100%;
+              object-fit: contain;
+              background: transparent;
+              border: none;
+              filter: brightness(1.15);
+              transition: transform 0.3s ease, filter 0.3s ease;
+            "
+            onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.25)';"
+            onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1.15)';"
+          />
+          <div
+            class="logo-text"
+            style="font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em"
+          >
+            Versed Global
+          </div>
         </div>
         <nav>
           <div class="nav-links">
@@ -88,6 +109,102 @@
     <section class="section alt">
       <div class="container">
         <h2 class="section-title">Full fundraising cycle support</h2>
+
+        <!-- Simple flow-chart style strip for the cycle -->
+        <div
+          style="
+            margin: 0 auto 3rem;
+            max-width: 960px;
+            padding: 1.25rem 1.75rem;
+            border-radius: 999px;
+            background: linear-gradient(
+              135deg,
+              rgba(15, 23, 42, 0.92),
+              rgba(30, 64, 175, 0.92)
+            );
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.6);
+            color: #e5e7eb;
+            font-size: 0.9rem;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              justify-content: center;
+              gap: 0.75rem;
+              text-align: center;
+            "
+          >
+            <span
+              style="
+                padding: 0.45rem 0.9rem;
+                border-radius: 999px;
+                border: 1px solid rgba(129, 140, 248, 0.8);
+                background: rgba(15, 23, 42, 0.9);
+                min-width: 150px;
+              "
+              >1. Strategy & needs</span
+            >
+            <span style="opacity: 0.7">➝</span>
+            <span
+              style="
+                padding: 0.45rem 0.9rem;
+                border-radius: 999px;
+                border: 1px solid rgba(96, 165, 250, 0.8);
+                background: rgba(15, 23, 42, 0.9);
+                min-width: 150px;
+              "
+              >2. Prospect research</span
+            >
+            <span style="opacity: 0.7">➝</span>
+            <span
+              style="
+                padding: 0.45rem 0.9rem;
+                border-radius: 999px;
+                border: 1px solid rgba(56, 189, 248, 0.8);
+                background: rgba(15, 23, 42, 0.9);
+                min-width: 150px;
+              "
+              >3. Pipeline & planning</span
+            >
+            <span style="opacity: 0.7">➝</span>
+            <span
+              style="
+                padding: 0.45rem 0.9rem;
+                border-radius: 999px;
+                border: 1px solid rgba(52, 211, 153, 0.8);
+                background: rgba(15, 23, 42, 0.9);
+                min-width: 150px;
+              "
+              >4. Applications & bids</span
+            >
+            <span style="opacity: 0.7">➝</span>
+            <span
+              style="
+                padding: 0.45rem 0.9rem;
+                border-radius: 999px;
+                border: 1px solid rgba(251, 191, 36, 0.9);
+                background: rgba(15, 23, 42, 0.9);
+                min-width: 150px;
+              "
+              >5. Stewardship & renewals</span
+            >
+            <span style="opacity: 0.7">➝</span>
+            <span
+              style="
+                padding: 0.45rem 0.9rem;
+                border-radius: 999px;
+                border: 1px solid rgba(244, 114, 182, 0.9);
+                background: rgba(15, 23, 42, 0.9);
+                min-width: 150px;
+              "
+              >6. Learning & improvement</span
+            >
+          </div>
+        </div>
+
         <div class="three-grid">
           <div class="card">
             <h3>Relationship management</h3>
