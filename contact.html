@@ -163,7 +163,7 @@
       </div>
     </section>
 
-    <!-- Redesigned: Three ways to connect (Sophisticated version) -->
+    <!-- Redesigned: Three ways to connect -->
     <section class="section">
       <div class="container">
         <h2
@@ -303,7 +303,7 @@
       </div>
     </section>
 
-    <!-- Booking form (static for now - can add Formspree/Netlify later) -->
+    <!-- Booking form -->
     <section class="section alt" id="booking">
       <div class="container">
         <h2 class="section-title" style="text-align: center">
@@ -318,9 +318,24 @@
         </p>
         <div style="max-width: 600px; margin: 0 auto">
           <form
+            action="https://formsubmit.co/info@versedglobal.com"
+            method="POST"
             class="contact-form"
             style="background: #f8fafc; padding: 2rem; border-radius: 12px"
           >
+            <!-- HIDDEN FIELDS -->
+            <input
+              type="hidden"
+              name="_next"
+              value="https://versedglobal.com/contact.html?success"
+            />
+            <input
+              type="hidden"
+              name="_subject"
+              value="New Discovery Call Request - Versed Global"
+            />
+            <input type="hidden" name="_captcha" value="false" />
+
             <div
               style="
                 display: grid;
@@ -340,6 +355,7 @@
                 >
                 <input
                   type="text"
+                  name="first_name"
                   required
                   style="
                     width: 100%;
@@ -361,6 +377,7 @@
                 >
                 <input
                   type="text"
+                  name="last_name"
                   required
                   style="
                     width: 100%;
@@ -372,6 +389,7 @@
                 />
               </div>
             </div>
+
             <div style="margin-bottom: 1.5rem">
               <label
                 style="display: block; margin-bottom: 0.5rem; font-weight: 500"
@@ -379,6 +397,7 @@
               >
               <input
                 type="email"
+                name="email"
                 required
                 style="
                   width: 100%;
@@ -389,6 +408,7 @@
                 "
               />
             </div>
+
             <div style="margin-bottom: 1.5rem">
               <label
                 style="display: block; margin-bottom: 0.5rem; font-weight: 500"
@@ -396,6 +416,7 @@
               >
               <input
                 type="text"
+                name="organisation"
                 style="
                   width: 100%;
                   padding: 0.75rem;
@@ -405,12 +426,14 @@
                 "
               />
             </div>
+
             <div style="margin-bottom: 1.5rem">
               <label
                 style="display: block; margin-bottom: 0.5rem; font-weight: 500"
                 >What can we help with?</label
               >
               <textarea
+                name="message"
                 rows="4"
                 required
                 style="
@@ -423,6 +446,7 @@
                 "
               ></textarea>
             </div>
+
             <button
               type="submit"
               class="btn btn-primary"
@@ -431,6 +455,7 @@
               Send message & book call
             </button>
           </form>
+
           <p
             style="
               text-align: center;
