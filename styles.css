@@ -1,4 +1,81 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap");
+
+/* cyrillic-ext */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuOKfAZJhiI2B.woff2)
+    format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
+}
+
+/* cyrillic */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuOKfAZthiI2B.woff2)
+    format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/* greek-ext */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuOKfAZNhiI2B.woff2)
+    format("woff2");
+  unicode-range: U+1F00-1FFF;
+}
+
+/* greek */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuOKfAZxhiI2B.woff2)
+    format("woff2");
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1,
+    U+03A3-03FF;
+}
+
+/* vietnamese */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuOKfAZBhiI2B.woff2)
+    format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuOKfAZFhiI2B.woff2)
+    format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuOKfAZ9hiA.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 * {
   margin: 0;
@@ -6,12 +83,97 @@
   box-sizing: border-box;
 }
 
+html,
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.7;
-  color: #1e293b;
+  height: 100%;
+}
+
+body {
+  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+  line-height: 1.8;
+  font-size: 17px;
+  color: #111827;
   background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Global glassy aurora background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+      circle at 10% 20%,
+      rgba(129, 140, 248, 0.35),
+      transparent 55%
+    ),
+    radial-gradient(circle at 80% 15%, rgba(236, 72, 153, 0.3), transparent 55%),
+    radial-gradient(circle at 20% 80%, rgba(45, 212, 191, 0.3), transparent 55%),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(56, 189, 248, 0.28),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(148, 163, 184, 0.35),
+      transparent 65%
+    );
+  background-repeat: no-repeat;
+  filter: blur(0px);
+  opacity: 0.85;
+  mix-blend-mode: normal;
+  animation: vg-aurora-move 28s ease-in-out infinite alternate;
+}
+
+/* Smooth rhythmic movement */
+@keyframes vg-aurora-move {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-2%, -3%, 0) scale(1.03);
+  }
+  100% {
+    transform: translate3d(1.5%, 2.5%, 0) scale(1);
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}
+
+/* Typography enhancements */
+h1,
+h2,
+h3,
+.section-title,
+.logo-text {
+  font-family: "Playfair Display", "Times New Roman", serif;
+  letter-spacing: -0.02em;
+}
+
+/* Slightly stronger weight for headings for readability */
+h1,
+.section-title {
+  font-weight: 700;
+}
+
+h2,
+h3 {
+  font-weight: 600;
+}
+
+.section-intro,
+.card p {
+  font-weight: 300;
 }
 
 a {
@@ -65,12 +227,20 @@ a {
 
 .logo-text {
   font-weight: 800;
-  font-size: 1.3rem;
+  font-size: 1.8rem;
+  /* Updated to brand gradient colours instead of near-black */
   background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
+}
+
+/* Larger logo text on desktop */
+@media (min-width: 1024px) {
+  .logo-text {
+    font-size: 2rem;
+  }
 }
 
 .nav-links {
@@ -288,18 +458,18 @@ a {
   box-shadow: 0 20px 50px rgba(16, 185, 129, 0.6);
 }
 
+/* UPDATED: clearer secondary button */
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: #1e3a8a; /* solid deep blue for contrast */
+  color: #ffffff;
+  border: 2px solid #1e40af;
 }
 
 .btn-secondary:hover {
-  background: white;
-  color: #6366f1;
+  background: #111827; /* very dark on hover */
+  color: #ffffff;
   transform: translateY(-4px);
-  box-shadow: 0 20px 50px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.6);
 }
 
 .hero-image {
@@ -344,8 +514,8 @@ a {
 .section-intro {
   max-width: 700px;
   margin: 0 auto 3rem;
-  font-size: 1.2rem;
-  color: #475569;
+  font-size: 1.1rem;
+  color: #4b5563;
   text-align: center;
   font-weight: 400;
   line-height: 1.8;
@@ -397,9 +567,9 @@ a {
 }
 
 .card p {
-  font-size: 1.05rem;
-  color: #475569;
-  line-height: 1.7;
+  font-size: 1.02rem;
+  color: #4b5563;
+  line-height: 1.75;
 }
 
 /* Values Cards */
@@ -481,6 +651,66 @@ footer::before {
 .footer-note {
   font-size: 0.9rem;
   opacity: 0.8;
+}
+
+/* Footer site search (homepage) */
+.site-search-footer {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-search-input-footer {
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #475569;
+  font-size: 0.9rem;
+  min-width: 220px;
+  background: rgba(15, 23, 42, 0.8);
+  color: #e5e7eb;
+  transition: all 0.25s ease;
+}
+
+.site-search-input-footer::placeholder {
+  color: #94a3b8;
+}
+
+.site-search-input-footer:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+  border-color: transparent;
+}
+
+.site-search-btn-footer {
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #f9fafb;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.45);
+  transition: all 0.25s ease;
+}
+
+.site-search-btn-footer:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.55);
+}
+
+@media (max-width: 640px) {
+  .site-search-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-search-btn-footer {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* Mobile menu - Enhanced animation */
@@ -618,6 +848,7 @@ footer::before {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(135deg, #4f46e5, #7c3aed);
 }
+
 /* ========================================
    MOBILE RESPONSIVE FIXES - VERSed GLOBAL
    ======================================== */
@@ -630,7 +861,7 @@ footer::before {
   }
 
   .logo-text {
-    font-size: 1.2rem !important; /* Smaller text */
+    font-size: 1.4rem !important; /* Slightly larger but balanced text */
   }
 }
 
