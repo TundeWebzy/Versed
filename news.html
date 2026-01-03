@@ -210,9 +210,29 @@
     <!-- Header / Nav -->
     <header class="header-bar">
       <div class="container header-inner">
-        <div class="logo-area">
-          <img src="images/versed-global-logo.png" alt="Versed Global logo" />
-          <div class="logo-text">Versed Global</div>
+        <div class="logo-area" style="align-items: center; gap: 1rem">
+          <img
+            src="images/versed-global-logo.png"
+            alt="Versed Global logo"
+            style="
+              height: 96px;
+              width: auto;
+              max-width: 100%;
+              object-fit: contain;
+              background: transparent;
+              border: none;
+              filter: brightness(1.15);
+              transition: transform 0.3s ease, filter 0.3s ease;
+            "
+            onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.25)';"
+            onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1.15)';"
+          />
+          <div
+            class="logo-text"
+            style="font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em"
+          >
+            Versed Global
+          </div>
         </div>
         <nav>
           <div class="nav-links">
@@ -220,7 +240,7 @@
             <a href="services.html">Salesforce Services</a>
             <a href="fundraising.html">Fundraising Support</a>
             <a href="training.html">Training &amp; Support</a>
-            <a href="news.html" class="active">News</a>
+            <a href="news.html" class="active">News &amp; insights</a>
             <a href="about.html">About</a>
             <a href="clients.html">Clients</a>
             <a href="contact.html" class="nav-cta">Contact</a>
@@ -247,9 +267,9 @@
       <div class="container">
         <h2 class="section-title">Latest from Versed Global</h2>
         <p class="section-intro" style="margin-bottom: 2.5rem">
-          Use this page to share client stories, product updates, guidance notes
-          and upcoming events. Individual posts can link out to PDFs, videos or
-          longer articles hosted elsewhere.
+          We use this page to share client stories, product updates, guidance
+          notes and upcoming events. Individual posts can link out to PDFs,
+          videos or longer articles hosted elsewhere.
         </p>
 
         <div class="news-grid">
