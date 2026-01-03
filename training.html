@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Training &amp; Support | Versed Global</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta
+      name="description"
+      content="Flexible Salesforce and fundraising training and support from Versed Global, tailored to your roles, configuration and programmes, with remote and on-site delivery options."
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Organization / Logo Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Versed Global",
+        "url": "https://versedglobal.com/",
+        "logo": "https://versedglobal.com/images/versed-global-logo.png",
+        "description": "Versed Global designs, integrates and manages Salesforce CRM systems and delivers high-impact trust and foundation fundraising support for charities, corporates and public-sector organisations.",
+        "sameAs": ["https://www.linkedin.com/company/versed-global"],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+44 7767 711078",
+            "contactType": "customer service",
+            "areaServed": "GB",
+            "availableLanguage": ["en"]
+          }
+        ]
+      }
+    </script>
+
+    <style>
+      /* Flip cards for training types */
+      .flip-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2rem;
+        margin-top: 2.5rem;
+      }
+      .flip-card {
+        perspective: 1200px;
+      }
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 240px;
+        transform-style: preserve-3d;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+      .flip-card-face {
+        position: absolute;
+        inset: 0;
+        padding: 2rem;
+        border-radius: 24px;
+        backface-visibility: hidden;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .flip-card-face.back {
+        transform: rotateY(180deg);
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        color: #e5e7eb;
+      }
+      .flip-card-face h3 {
+        margin-bottom: 0.75rem;
+      }
+      .flip-card-face ul {
+        margin-left: 1.1rem;
+        margin-top: 0.5rem;
+        color: #475569;
+        font-size: 0.95rem;
+      }
+      .flip-card-face.back ul {
+        color: #cbd5f5;
+      }
+
+      /* Horizontal process flow (wireframe style) */
+      .process-wrapper {
+        overflow-x: auto;
+        padding-bottom: 1rem;
+      }
+      .process-track {
+        display: flex;
+        align-items: stretch;
+        gap: 1.5rem;
+        min-width: 900px; /* forces landscape feel on wider screens */
+      }
+      .process-step {
+        flex: 1;
+        min-width: 0;
+        border-radius: 18px;
+        border: 2px dashed #cbd5e1;
+        background: #f8fafc;
+        padding: 1.5rem 1.25rem;
+        position: relative;
+      }
+      .process-step::after {
+        content: "→";
+        position: absolute;
+        right: -1.1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        color: #94a3b8;
+      }
+      .process-step:last-child::after {
+        content: "";
+      }
+      .process-step h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+        color: #0f172a;
+      }
+      .process-step p {
+        font-size: 0.9rem;
+        color: #475569;
+      }
+      .process-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: #64748b;
+        margin-bottom: 0.4rem;
+      }
+
+      /* Support tiles */
+      .support-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2rem;
+      }
+
+      @media (max-width: 768px) {
+        .flip-card-face {
+          padding: 1.6rem;
+        }
+        .process-track {
+          min-width: 720px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header / Nav -->
+    <header class="header-bar">
+      <div class="container header-inner">
+        <div class="logo-area" style="align-items: center; gap: 1rem">
+          <img
+            src="images/versed-global-logo.png"
+            alt="Versed Global logo"
+            style="
+              height: 96px;
+              width: auto;
+              max-width: 100%;
+              object-fit: contain;
+              background: transparent;
+              border: none;
+              filter: brightness(1.15);
+              transition: transform 0.3s ease, filter 0.3s ease;
+            "
+            onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.25)';"
+            onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1.15)';"
+          />
+          <div
+            class="logo-text"
+            style="font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em"
+          >
+            Versed Global
+          </div>
+        </div>
+        <nav>
+          <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="services.html">Salesforce Services</a>
+            <a href="fundraising.html">Fundraising Support</a>
+            <a href="training.html" class="active">Training &amp; Support</a>
+            <a href="about.html">About</a>
+            <a href="clients.html">Clients</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
+          </div>
+          <div class="mobile-menu" id="mobileMenuToggle">☰</div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="section alt">
+      <div class="container">
+        <h1 class="section-title">Training &amp; support that stick</h1>
+        <p class="section-intro">
+          Versed Global offers flexible Salesforce and fundraising training and
+          support so your team is trained on exactly what they need, in the way
+          they work, and can sustain good practice over time.
+        </p>
+      </div>
+    </section>
+
+    <!-- Flip cards: training types -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Training tailored to each role</h2>
+        <p class="section-intro">
+          Instead of generic walkthroughs, training is customised to your
+          configuration, roles and programmes so every session is focused,
+          practical and cost‑effective.
+        </p>
+
+        <div class="flip-grid">
+          <!-- End‑user training -->
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-face">
+                <h3>Salesforce end‑user training</h3>
+                <p>
+                  For staff who live in Salesforce every day – fundraisers,
+                  programme teams, service delivery and operations.
+                </p>
+              </div>
+              <div class="flip-card-face back">
+                <h3>What this covers</h3>
+                <ul>
+                  <li>Day‑to‑day navigation and key objects</li>
+                  <li>Working with records, tasks and activities</li>
+                  <li>Using views, reports and dashboards</li>
+                  <li>
+                    Walkthroughs using your real processes and data models
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Admin / super user -->
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-face">
+                <h3>Admin &amp; “super user” training</h3>
+                <p>
+                  For the internal owners of your CRM who need confidence to
+                  handle everyday changes and guide colleagues.
+                </p>
+              </div>
+              <div class="flip-card-face back">
+                <h3>What this covers</h3>
+                <ul>
+                  <li>User management, profiles and permission sets</li>
+                  <li>Fields, page layouts and record types</li>
+                  <li>Introductory Flow and automation adjustments</li>
+                  <li>Governance, release and change control basics</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fundraising & management -->
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-face">
+                <h3>Fundraising &amp; management training</h3>
+                <p>
+                  For fundraising leads, programme heads and senior managers who
+                  rely on Salesforce for decisions and reporting.
+                </p>
+              </div>
+              <div class="flip-card-face back">
+                <h3>What this covers</h3>
+                <ul>
+                  <li>Pipeline design and opportunity stages</li>
+                  <li>KPIs and dashboards for income, grants and programmes</li>
+                  <li>Best practice stewardship workflows</li>
+                  <li>
+                    Reading and challenging Salesforce reports with confidence
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fundraising skills -->
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-face">
+                <h3>Trust &amp; foundation skills</h3>
+                <p>
+                  For teams responsible for bids and reporting who want to link
+                  fundraising practice with the data held in Salesforce.
+                </p>
+              </div>
+              <div class="flip-card-face back">
+                <h3>What this covers</h3>
+                <ul>
+                  <li>Structuring pipelines and stewardship plans</li>
+                  <li>
+                    Using Salesforce to track asks, decisions and renewals
+                  </li>
+                  <li>Evidence‑rich cases for support and reports</li>
+                  <li>
+                    Practical templates for proposals and reporting cycles
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Landscape process flow -->
+    <section class="section alt">
+      <div class="container">
+        <h2 class="section-title">Training &amp; support journey</h2>
+        <p class="section-intro">
+          A clear, wireframe‑style process shows how training and support move
+          from initial scoping through to light‑touch, ongoing partnership.
+          Scroll horizontally on smaller screens.
+        </p>
+
+        <div class="process-wrapper">
+          <div class="process-track">
+            <div class="process-step">
+              <div class="process-label">Step 1</div>
+              <h3>Discovery &amp; learning goals</h3>
+              <p>
+                Short workshops and interviews clarify your systems, roles and
+                current pain points, and define what each group should be able
+                to do confidently after training.
+              </p>
+            </div>
+            <div class="process-step">
+              <div class="process-label">Step 2</div>
+              <h3>Designing the training plan</h3>
+              <p>
+                Versed Global translates goals into a practical training plan:
+                who needs what, in what order, and which elements are live
+                workshops, reference materials or clinics.
+              </p>
+            </div>
+            <div class="process-step">
+              <div class="process-label">Step 3</div>
+              <h3>Delivering live sessions</h3>
+              <p>
+                Role‑specific sessions are delivered online or on‑site, using
+                your Salesforce configuration and fundraising processes so
+                training maps directly to everyday work.
+              </p>
+            </div>
+            <div class="process-step">
+              <div class="process-label">Step 4</div>
+              <h3>Resources &amp; reinforcement</h3>
+              <p>
+                Playbooks, short videos and checklists capture how your system
+                works. Follow‑up Q&amp;A clinics help embed new ways of working
+                and pick up issues early.
+              </p>
+            </div>
+            <div class="process-step">
+              <div class="process-label">Step 5</div>
+              <h3>Light‑touch ongoing support</h3>
+              <p>
+                Optional retained hours and quarterly health checks keep
+                Salesforce and fundraising processes aligned as your
+                organisation evolves, without locking you into heavy contracts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support models -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Support that fits your capacity</h2>
+        <p class="section-intro">
+          Whether you want ad‑hoc advice, a defined managed service or support
+          focused on a particular programme or funding stream, options can be
+          scaled up or down as needed.
+        </p>
+
+        <div class="support-grid">
+          <div class="card">
+            <h3>Ad‑hoc advisory support</h3>
+            <p>
+              Ideal when you have an internal admin or power user but sometimes
+              need a second pair of eyes. Use flexible hours for
+              troubleshooting, configuration questions or sounding‑board
+              conversations about process design.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Managed support &amp; optimisation</h3>
+            <p>
+              A lightweight managed service for organisations that want
+              predictable, regular support. Includes configuration refinements,
+              report improvements, release guidance and periodic training
+              refreshers for new staff.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Programme‑specific support</h3>
+            <p>
+              Focused support for major grant programmes, new services or growth
+              initiatives where Salesforce and fundraising are central. Keeps
+              programme reporting, stewardship and governance on track.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section alt">
+      <div class="container" style="text-align: center">
+        <h2 class="section-title">
+          Talk through your training &amp; support needs
+        </h2>
+        <p class="section-intro" style="margin: 0 auto 1.5rem">
+          Share your current Salesforce setup, fundraising plans and team
+          structure. Versed Global will recommend a training and support
+          approach that builds internal confidence rather than dependence.
+        </p>
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+          "
+        >
+          <a href="contact.html" class="btn btn-primary">
+            Request training conversation
+          </a>
+          <a href="services.html" class="btn btn-secondary">
+            Explore Salesforce services
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-inner">
+        <div class="footer-note">
+          &copy; <span id="year"></span> Versed Global Ltd | Salesforce CRM,
+          fundraising, training &amp; support.
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="fundraising.html">Fundraising</a>
+          <a href="about.html">About</a>
+          <a href="clients.html">Clients</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
