@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News & Updates | Versed Global</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta
+      name="description"
+      content="Latest news, insights and updates from Versed Global on Salesforce CRM, fundraising strategy and integrated systems for charities, corporates and public-sector organisations."
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Organization / Logo Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Versed Global",
+        "url": "https://versedglobal.com/",
+        "logo": "https://versedglobal.com/images/versed-global-logo.png",
+        "description": "Versed Global designs, integrates and manages Salesforce CRM systems and delivers high-impact trust and foundation fundraising support for charities, corporates and public-sector organisations.",
+        "sameAs": ["https://www.linkedin.com/company/versed-global"],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+44 7767 711078",
+            "contactType": "customer service",
+            "areaServed": "GB",
+            "availableLanguage": ["en"]
+          }
+        ]
+      }
+    </script>
+
+    <style>
+      /* News page specific layout */
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2rem;
+      }
+
+      .news-card {
+        background: rgba(255, 255, 255, 0.96);
+        border-radius: 20px;
+        padding: 1.75rem 1.75rem 1.5rem;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+        border: 1px solid rgba(226, 232, 240, 0.9);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+
+      .news-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+      }
+
+      .news-meta {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: #64748b;
+      }
+
+      .news-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .news-card p {
+        font-size: 0.98rem;
+        color: #475569;
+      }
+
+      .news-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        background: rgba(99, 102, 241, 0.06);
+        color: #4f46e5;
+        border: 1px solid rgba(129, 140, 248, 0.35);
+      }
+
+      .news-read-more {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        color: #4f46e5;
+        font-weight: 500;
+      }
+
+      .news-read-more span {
+        margin-left: 0.25rem;
+      }
+
+      /* Newsletter section */
+      .newsletter-wrapper {
+        max-width: 720px;
+        margin: 0 auto;
+        background: rgba(15, 23, 42, 0.96);
+        border-radius: 24px;
+        padding: 2.5rem 2.25rem;
+        box-shadow: 0 26px 70px rgba(15, 23, 42, 0.65);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .newsletter-wrapper::before {
+        content: "";
+        position: absolute;
+        inset: -40%;
+        opacity: 0.2;
+        background: radial-gradient(circle at 10% 10%, #6366f1, transparent 55%),
+          radial-gradient(circle at 80% 0%, #ec4899, transparent 55%),
+          radial-gradient(circle at 10% 85%, #22c55e, transparent 55%);
+        z-index: 0;
+      }
+
+      .newsletter-inner {
+        position: relative;
+        z-index: 1;
+      }
+
+      .newsletter-title {
+        font-size: 1.8rem;
+        color: #f9fafb;
+        margin-bottom: 0.5rem;
+      }
+
+      .newsletter-copy {
+        color: #cbd5e1;
+        font-size: 0.98rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .newsletter-benefits {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .newsletter-benefits span {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        color: #e5e7eb;
+      }
+
+      .newsletter-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .newsletter-form input[type="email"] {
+        flex: 1 1 220px;
+        min-width: 0;
+        padding: 0.85rem 1rem;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.8);
+        background: rgba(15, 23, 42, 0.85);
+        color: #f9fafb;
+        font-size: 0.95rem;
+      }
+
+      .newsletter-form input::placeholder {
+        color: #94a3b8;
+      }
+
+      .newsletter-note {
+        margin-top: 0.75rem;
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+
+      @media (max-width: 640px) {
+        .newsletter-wrapper {
+          padding: 2rem 1.6rem;
+        }
+
+        .newsletter-form {
+          flex-direction: column;
+        }
+
+        .newsletter-form button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header / Nav -->
+    <header class="header-bar">
+      <div class="container header-inner">
+        <div class="logo-area">
+          <img src="images/versed-global-logo.png" alt="Versed Global logo" />
+          <div class="logo-text">Versed Global</div>
+        </div>
+        <nav>
+          <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="services.html">Salesforce Services</a>
+            <a href="fundraising.html">Fundraising Support</a>
+            <a href="training.html">Training &amp; Support</a>
+            <a href="news.html" class="active">News</a>
+            <a href="about.html">About</a>
+            <a href="clients.html">Clients</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
+          </div>
+          <div class="mobile-menu" id="mobileMenuToggle">☰</div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero / Intro -->
+    <section class="section alt">
+      <div class="container">
+        <h1 class="section-title">News &amp; insights</h1>
+        <p class="section-intro">
+          Updates from Versed Global on Salesforce CRM, fundraising strategy and
+          the practical realities of building systems that support income,
+          programmes and reporting in one place.
+        </p>
+      </div>
+    </section>
+
+    <!-- News cards -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Latest from Versed Global</h2>
+        <p class="section-intro" style="margin-bottom: 2.5rem">
+          Use this page to share client stories, product updates, guidance notes
+          and upcoming events. Individual posts can link out to PDFs, videos or
+          longer articles hosted elsewhere.
+        </p>
+
+        <div class="news-grid">
+          <!-- Example article 1 -->
+          <article class="news-card">
+            <div class="news-meta">December 2025 · Salesforce</div>
+            <h3>Aligning Salesforce with trust and foundation fundraising</h3>
+            <p>
+              A practical overview of how Versed Global designs Salesforce
+              structures that reflect real‑world fundraising pipelines,
+              stewardship journeys and funder reporting requirements.
+            </p>
+            <div class="news-tag">Salesforce architecture</div>
+            <a href="#" class="news-read-more"> Read summary<span>→</span> </a>
+          </article>
+
+          <!-- Example article 2 -->
+          <article class="news-card">
+            <div class="news-meta">November 2025 · Fundraising</div>
+            <h3>
+              Five data points every grant‑seeking organisation should track
+            </h3>
+            <p>
+              A short guide for fundraising and programme teams on what to
+              capture in Salesforce to support stronger bids, renewals and
+              impact reports.
+            </p>
+            <div class="news-tag">Trusts &amp; foundations</div>
+            <a href="#" class="news-read-more">
+              Download guide<span>→</span>
+            </a>
+          </article>
+
+          <!-- Example article 3 -->
+          <article class="news-card">
+            <div class="news-meta">October 2025 · Events</div>
+            <h3>Online clinic: getting more value from Salesforce reports</h3>
+            <p>
+              A 45‑minute virtual session for UK‑based teams on building
+              practical reports and dashboards that decision‑makers actually
+              use.
+            </p>
+            <div class="news-tag">Events &amp; clinics</div>
+            <a href="#" class="news-read-more">
+              View session details<span>→</span>
+            </a>
+          </article>
+
+          <!-- Example article 4 -->
+          <article class="news-card">
+            <div class="news-meta">September 2025 · Versed Global</div>
+            <h3>Versed Global expands remote support for UK‑wide charities</h3>
+            <p>
+              New support options make it easier for organisations without
+              in‑house Salesforce or fundraising capacity to access targeted,
+              time‑bound help.
+            </p>
+            <div class="news-tag">Company news</div>
+            <a href="#" class="news-read-more">
+              Read announcement<span>→</span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter sign-up -->
+    <section class="section alt">
+      <div class="container">
+        <div class="newsletter-wrapper">
+          <div class="newsletter-inner">
+            <h2 class="newsletter-title">Subscribe to Versed Global news</h2>
+            <p class="newsletter-copy">
+              Receive occasional updates on Salesforce best practice,
+              fundraising guidance and new resources. Expect a concise email, a
+              few times a year, with a clear focus on practical value.
+            </p>
+
+            <div class="newsletter-benefits">
+              <span>Salesforce tips for charities</span>
+              <span>Trust &amp; foundation insights</span>
+              <span>Implementation checklists</span>
+              <span>Invitations to clinics &amp; talks</span>
+            </div>
+
+            <form
+              class="newsletter-form"
+              action="https://formsubmit.co/info@versedglobal.com"
+              method="POST"
+            >
+              <!-- HONEYPOT -->
+              <input
+                type="text"
+                name="_honey"
+                style="display: none"
+                tabindex="-1"
+                autocomplete="off"
+              />
+
+              <!-- Disable FormSubmit CAPTCHA -->
+              <input type="hidden" name="_captcha" value="false" />
+
+              <!-- Redirect after success -->
+              <input
+                type="hidden"
+                name="_next"
+                value="https://versedglobal.com/news.html?subscribed"
+              />
+
+              <!-- Email subject -->
+              <input
+                type="hidden"
+                name="_subject"
+                value="New Newsletter Subscription - Versed Global"
+              />
+
+              <!-- Tag as newsletter -->
+              <input
+                type="hidden"
+                name="source"
+                value="Versed Global website newsletter"
+              />
+
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Your email address"
+              />
+              <button type="submit" class="btn btn-primary">
+                Subscribe to newsletter
+              </button>
+            </form>
+            <p class="newsletter-note">
+              Versed Global will only use your details to send occasional
+              updates and will never share your information with third parties.
+              You can unsubscribe at any time.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-inner">
+        <div class="footer-note">
+          &copy; <span id="year"></span> Versed Global Ltd | Salesforce CRM,
+          fundraising, training &amp; support.
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="fundraising.html">Fundraising</a>
+          <a href="training.html">Training</a>
+          <a href="news.html">News</a>
+          <a href="about.html">About</a>
+          <a href="clients.html">Clients</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
