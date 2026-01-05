@@ -210,31 +210,21 @@
     <!-- Header / Nav -->
     <header class="header-bar">
       <div class="container header-inner">
-        <div class="logo-area" style="align-items: center; gap: 1rem">
-          <img
-            src="images/versed-global-logo.png"
-            alt="Versed Global logo"
-            style="
-              height: 96px;
-              width: auto;
-              max-width: 100%;
-              object-fit: contain;
-              background: transparent;
-              border: none;
-              filter: brightness(1.15);
-              transition: transform 0.3s ease, filter 0.3s ease;
-            "
-            onmouseover="this.style.transform='scale(1.05)'; this.style.filter='brightness(1.25)';"
-            onmouseout="this.style.transform='scale(1)'; this.style.filter='brightness(1.15)';"
-          />
-          <div
-            class="logo-text"
-            style="font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em"
+        <div class="logo-area">
+          <a
+            href="index.html"
+            class="logo-link"
+            aria-label="Versed Global home"
           >
-            Versed Global
-          </div>
+            <img
+              src="images/versed-global-logo.png"
+              alt="Versed Global logo"
+              class="logo-image"
+            />
+            <span class="logo-text">Versed Global</span>
+          </a>
         </div>
-        <nav>
+        <nav class="main-nav" aria-label="Primary navigation">
           <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="services.html">Salesforce Services</a>
@@ -245,7 +235,14 @@
             <a href="clients.html">Clients</a>
             <a href="contact.html" class="nav-cta">Contact</a>
           </div>
-          <div class="mobile-menu" id="mobileMenuToggle">☰</div>
+          <button
+            class="mobile-menu"
+            id="mobileMenuToggle"
+            type="button"
+            aria-label="Toggle navigation menu"
+          >
+            ☰
+          </button>
         </nav>
       </div>
     </header>
