@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap");
+/* Nimbus Sans L webfont (NimbusPoint-style) */
+@import url("https://fonts.cdnfonts.com/css/nimbus-sans-l");
 
 /* cyrillic-ext */
 @font-face {
@@ -88,9 +90,10 @@ body {
   height: 100%;
 }
 
+/* BODY FONT NOW NIMBUS SANS L EVERYWHERE */
 body {
-  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, system-ui,
-    sans-serif;
+  font-family: "Nimbus Sans L", "NimbusSanL", "Inter", -apple-system,
+    BlinkMacSystemFont, system-ui, sans-serif;
   line-height: 1.8;
   font-size: 17px;
   color: #111827;
@@ -204,31 +207,48 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 0;
+  padding: 0.8rem 0;
+  column-gap: 2.5rem; /* extra breathing room between logo + nav */
+}
+
+/* logo-link keeps logo + text on one line and clickable */
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  white-space: nowrap;
 }
 
 .logo-area {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
+  flex: 0 1 auto; /* allow logo block to shrink if needed */
+  min-width: 0;
 }
 
-.logo-area img {
-  height: 48px;
+/* Restore larger logo size similar to original design */
+.logo-image {
+  height: 96px;
   width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  background: transparent;
+  border: none;
+  filter: brightness(1.15);
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.logo-area:hover img {
+.logo-link:hover .logo-image {
   transform: scale(1.05);
+  filter: brightness(1.25);
 }
 
 .logo-text {
   font-weight: 800;
-  font-size: 1.8rem;
-  /* Updated to brand gradient colours instead of near-black */
+  font-size: 1.9rem;
   background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -239,22 +259,42 @@ a {
 /* Larger logo text on desktop */
 @media (min-width: 1024px) {
   .logo-text {
-    font-size: 2rem;
+    font-size: 2.1rem;
   }
+}
+
+/* Slightly reduce logo size at mid widths to avoid overlap */
+@media (max-width: 1200px) and (min-width: 769px) {
+  .logo-text {
+    font-size: 1.8rem;
+  }
+  .logo-image {
+    height: 86px;
+  }
+}
+
+/* main-nav uses remaining width */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  flex: 1 1 auto;
+  justify-content: flex-end;
 }
 
 .nav-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.9rem; /* tighter gaps so pills fit */
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 .nav-links a {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
   color: #475569;
-  padding: 0.75rem 1.25rem;
-  border-radius: 50px;
+  padding: 0.5rem 0.95rem; /* slightly smaller pills */
+  border-radius: 999px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -308,6 +348,8 @@ a {
   color: #6366f1;
   padding: 0.5rem;
   border-radius: 50%;
+  border: none;
+  background: transparent;
   transition: all 0.3s ease;
 }
 
@@ -460,13 +502,13 @@ a {
 
 /* UPDATED: clearer secondary button */
 .btn-secondary {
-  background: #1e3a8a; /* solid deep blue for contrast */
+  background: #1e3a8a;
   color: #ffffff;
   border: 2px solid #1e40af;
 }
 
 .btn-secondary:hover {
-  background: #111827; /* very dark on hover */
+  background: #111827;
   color: #ffffff;
   transform: translateY(-4px);
   box-shadow: 0 20px 50px rgba(15, 23, 42, 0.6);
@@ -636,6 +678,11 @@ footer::before {
   align-items: center;
 }
 
+/* align left column */
+.footer-left {
+  max-width: 520px;
+}
+
 .footer-links a {
   color: #94a3b8;
   margin-right: 1.5rem;
@@ -662,6 +709,11 @@ footer::before {
   gap: 0.5rem;
 }
 
+/* wide variant classes to make it more prominent */
+.site-search-footer-wide {
+  max-width: 100%;
+}
+
 .site-search-input-footer {
   padding: 0.55rem 0.9rem;
   border-radius: 999px;
@@ -671,6 +723,12 @@ footer::before {
   background: rgba(15, 23, 42, 0.8);
   color: #e5e7eb;
   transition: all 0.25s ease;
+}
+
+/* wide input: stretches nicely on desktop */
+.site-search-input-footer-wide {
+  flex: 1 1 260px;
+  max-width: 420px;
 }
 
 .site-search-input-footer::placeholder {
@@ -696,6 +754,11 @@ footer::before {
   transition: all 0.25s ease;
 }
 
+/* wide button keeps good size next to wider input */
+.site-search-btn-footer-wide {
+  padding-inline: 1.4rem;
+}
+
 .site-search-btn-footer:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.55);
@@ -707,8 +770,12 @@ footer::before {
     align-items: flex-start;
   }
 
-  .site-search-btn-footer {
+  .site-search-input-footer-wide,
+  .site-search-btn-footer-wide {
     width: 100%;
+  }
+
+  .site-search-btn-footer {
     text-align: center;
   }
 }
@@ -746,7 +813,7 @@ footer::before {
 
   .nav-links a {
     padding: 1.25rem 0;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     opacity: 0;
     animation: fadeInUp 0.5s ease forwards;
@@ -771,17 +838,6 @@ footer::before {
     animation-delay: 0.6s;
   }
 
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   .mobile-menu {
     display: block;
     z-index: 1002;
@@ -795,6 +851,14 @@ footer::before {
   .three-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+
+  .logo-image {
+    height: 72px;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
   }
 }
 
@@ -850,37 +914,37 @@ footer::before {
 }
 
 /* ========================================
-   MOBILE RESPONSIVE FIXES - VERSed GLOBAL
+   MOBILE RESPONSIVE FIXES - VERSED GLOBAL
    ======================================== */
 
 /* 1. PERFECT MOBILE LOGO SIZE */
 @media (max-width: 768px) {
   .logo-area img {
-    height: 60px !important; /* Smaller logo on mobile */
-    max-height: 60px !important;
+    height: 72px !important;
+    max-height: 72px !important;
   }
 
   .logo-text {
-    font-size: 1.4rem !important; /* Slightly larger but balanced text */
+    font-size: 1.5rem !important;
   }
 }
 
 /* 2. RESPONSIVE FONT SIZES */
 @media (max-width: 768px) {
   .section-title {
-    font-size: 1.8rem !important; /* Smaller headings */
+    font-size: 1.8rem !important;
     line-height: 1.3;
   }
 
   .section-intro {
-    font-size: 1rem !important; /* Readable body text */
+    font-size: 1rem !important;
     line-height: 1.6;
   }
 
   h1,
   h2,
   h3 {
-    font-size: 1.4rem !important; /* Card headings */
+    font-size: 1.4rem !important;
   }
 
   .card h3 {
@@ -957,7 +1021,7 @@ footer::before {
 /* 7. PERFECT VIEWPORT & TOUCH */
 @media (max-width: 768px) {
   body {
-    font-size: 16px !important; /* Base font prevents zoom */
+    font-size: 16px !important;
     line-height: 1.6 !important;
   }
 
