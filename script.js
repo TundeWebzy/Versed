@@ -1,6 +1,6 @@
 /* ===============================
    V E R S E D   G L O B A L
-   Advanced Site Script.js (2025)
+   Advanced Site Script.js (2026)
    =============================== */
 
 // ---------- 0. UTILITIES ----------
@@ -9,11 +9,23 @@ const qsa = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
 const throttle = (fn, delay = 100) => {
   let last = 0;
+  let queued = null;
   return (...args) => {
     const now = Date.now();
     if (now - last >= delay) {
       last = now;
       fn(...args);
+      queued = null;
+    } else {
+      queued = args;
+      window.clearTimeout(throttle._t);
+      throttle._t = window.setTimeout(() => {
+        if (queued) {
+          last = Date.now();
+          fn(...queued);
+          queued = null;
+        }
+      }, delay - (now - last));
     }
   };
 };
@@ -29,13 +41,11 @@ function initMobileNav() {
   if (!mobileMenuToggle || !navLinks) return;
 
   const toggleNav = () => {
-    navLinks.classList.toggle("mobile-open");
-    mobileMenuToggle.classList.toggle("open");
-    document.body.classList.toggle("no-scroll");
-    mobileMenuToggle.setAttribute(
-      "aria-expanded",
-      navLinks.classList.contains("mobile-open")
-    );
+    const isOpen = !navLinks.classList.contains("mobile-open");
+    navLinks.classList.toggle("mobile-open", isOpen);
+    mobileMenuToggle.classList.toggle("open", isOpen);
+    document.body.classList.toggle("no-scroll", isOpen);
+    mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
   };
 
   mobileMenuToggle.setAttribute("aria-label", "Toggle navigation");
@@ -45,9 +55,10 @@ function initMobileNav() {
 
   mobileMenuToggle.addEventListener("click", toggleNav);
 
-  // Close on nav link click
+  // Close on nav link click (mobile)
   qsa(".nav-links a").forEach((link) =>
     link.addEventListener("click", () => {
+      if (!navLinks.classList.contains("mobile-open")) return;
       navLinks.classList.remove("mobile-open");
       mobileMenuToggle.classList.remove("open");
       document.body.classList.remove("no-scroll");
@@ -64,10 +75,17 @@ function setActiveNavigation() {
 
   qsa(".nav-links a").forEach((link) => {
     const href = (link.getAttribute("href") || "").split("?")[0].split("#")[0];
-    const isActive = href === path || (path === "" && href === "index.html");
+    const isInternal = href && !href.startsWith("http");
+    const isActive =
+      isInternal && (href === path || (path === "" && href === "index.html"));
+
     link.classList.toggle("active", isActive);
     if (isActive) {
       link.setAttribute("aria-current", "page");
+      // Ensure CTA keeps CTA styles plus active styles
+      if (link.classList.contains("nav-cta")) {
+        link.classList.add("active");
+      }
     } else {
       link.removeAttribute("aria-current");
     }
@@ -76,6 +94,7 @@ function setActiveNavigation() {
 
 // ---------- 3. SMOOTH IN-PAGE SCROLLING ----------
 function initSmoothScroll() {
+  const reduce = prefersReducedMotion();
   qsa('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", (e) => {
       const id = anchor.getAttribute("href");
@@ -83,17 +102,17 @@ function initSmoothScroll() {
       if (!target) return;
       e.preventDefault();
 
-      const prefersReduce = prefersReducedMotion();
       const header = qs(".header-bar");
       const offset = header ? header.offsetHeight + 16 : 0;
       const top = target.getBoundingClientRect().top + window.scrollY - offset;
 
-      if (prefersReduce) {
+      if (reduce) {
         window.scrollTo(0, top);
       } else {
         window.scrollTo({ top, behavior: "smooth" });
       }
 
+      // Accessible focus without jump
       target.setAttribute("tabindex", "-1");
       target.focus({ preventScroll: true });
     });
@@ -126,6 +145,7 @@ function initContactForm() {
   if (!liveRegion) {
     liveRegion = document.createElement("div");
     liveRegion.id = "vg-live-region";
+    liveRegion.setAttribute("role", "status");
     liveRegion.setAttribute("aria-live", "polite");
     liveRegion.setAttribute("aria-atomic", "true");
     liveRegion.style.position = "fixed";
@@ -154,19 +174,22 @@ function initContactForm() {
       boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
       zIndex: 9999,
       opacity: "0",
-      transition: "opacity .3s ease",
+      transition: "opacity .3s ease, transform .3s ease",
       maxWidth: "320px",
       fontSize: "0.95rem",
+      transform: "translateY(10px)",
     });
     document.body.appendChild(toast);
     liveRegion.textContent = message;
 
     requestAnimationFrame(() => {
       toast.style.opacity = "1";
+      toast.style.transform = "translateY(0)";
     });
 
     setTimeout(() => {
       toast.style.opacity = "0";
+      toast.style.transform = "translateY(10px)";
       setTimeout(() => toast.remove(), 400);
     }, 4000);
   };
@@ -211,7 +234,10 @@ function initContactForm() {
     }
 
     const btn = form.querySelector('button[type="submit"]');
-    if (!btn) return;
+    if (!btn) {
+      form.submit();
+      return;
+    }
 
     const originalText = btn.textContent;
     btn.textContent = "Sending…";
@@ -236,6 +262,7 @@ function initContactForm() {
 function initRevealAnimations() {
   const elements = qsa(".card, .value, .section-title");
   if (!elements.length) return;
+
   if (prefersReducedMotion()) {
     elements.forEach((el) => el.classList.add("animate-fade-in"));
     return;
@@ -260,7 +287,8 @@ function initRevealAnimations() {
 function initScrollIndicator() {
   if (prefersReducedMotion()) return;
 
-  const bar = document.createElement("div");
+  const existing = qs("#scroll-progress");
+  const bar = existing || document.createElement("div");
   bar.id = "scroll-progress";
   Object.assign(bar.style, {
     position: "fixed",
@@ -272,7 +300,7 @@ function initScrollIndicator() {
     zIndex: "9999",
     transition: "width 0.12s ease-out",
   });
-  document.body.appendChild(bar);
+  if (!existing) document.body.appendChild(bar);
 
   const update = throttle(() => {
     const scrollTop = window.scrollY || window.pageYOffset;
@@ -292,11 +320,17 @@ function initPageTransitions() {
     const target = link.getAttribute("href");
     if (!target || target.startsWith("#") || target.startsWith("mailto"))
       return;
+    if (link.target === "_blank" || link.hasAttribute("download")) return;
+
+    const isInternal =
+      !target.startsWith("http://") &&
+      !target.startsWith("https://") &&
+      !target.startsWith("tel:");
+
+    if (!isInternal) return;
 
     link.addEventListener("click", (e) => {
-      if (link.target === "_blank" || link.hasAttribute("download")) return;
       if (!enableTransitions) return;
-
       e.preventDefault();
       document.body.classList.add("page-exit");
       setTimeout(() => {
@@ -355,20 +389,34 @@ function initFocusStyles() {
 
 // ---------- 12. DARK-MODE PREP ----------
 function initDarkModeClass() {
-  const prefersDark =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-  if (prefersDark) {
-    document.body.classList.add("dark-mode");
-  }
-  // Optional: listen to changes
-  if (window.matchMedia) {
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", (e) => {
-        document.body.classList.toggle("dark-mode", e.matches);
-      });
-  }
+  if (!window.matchMedia) return;
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+
+  const apply = (matches) => {
+    document.body.classList.toggle("dark-mode", matches);
+  };
+
+  apply(mq.matches);
+  mq.addEventListener("change", (e) => apply(e.matches));
+}
+
+// ---------- 13. ORG SLIDER PAUSE ON FOCUS ----------
+function initOrgSliderAccessibility() {
+  const track = qs(".org-slide-track");
+  if (!track) return;
+  const slides = qsa(".org-slide", track);
+
+  const pause = () => {
+    track.style.animationPlayState = "paused";
+  };
+  const resume = () => {
+    track.style.animationPlayState = "running";
+  };
+
+  slides.forEach((slide) => {
+    slide.addEventListener("focus", pause);
+    slide.addEventListener("blur", resume);
+  });
 }
 
 // ---------- INIT ALL ----------
@@ -383,6 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initEscClose();
   initFocusStyles();
   initDarkModeClass();
+  initOrgSliderAccessibility();
 
   // Only run fade-in transitions if user has not requested reduced motion
   if (!prefersReducedMotion()) {
