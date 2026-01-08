@@ -53,7 +53,7 @@
         position: relative;
         width: 100%;
         height: 100%;
-        min-height: 280px; /* increased so all copy fits comfortably */
+        min-height: 280px;
         transform-style: preserve-3d;
         transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -63,7 +63,7 @@
       .flip-card-face {
         position: absolute;
         inset: 0;
-        padding: 1.8rem; /* slightly reduced padding to give more room */
+        padding: 1.8rem;
         border-radius: 24px;
         backface-visibility: hidden;
         background: rgba(255, 255, 255, 0.96);
@@ -149,7 +149,7 @@
 
       @media (max-width: 768px) {
         .flip-card-inner {
-          min-height: 320px; /* a bit taller on small screens so text never clips */
+          min-height: 320px;
         }
         .flip-card-face {
           padding: 1.6rem;
@@ -201,258 +201,264 @@
       </div>
     </header>
 
-    <!-- Hero -->
-    <section class="section alt">
-      <div class="container">
-        <h1 class="section-title">Training &amp; support that stick</h1>
-        <p class="section-intro">
-          Versed Global offers flexible Salesforce and fundraising training and
-          support so your team is trained on exactly what they need, in the way
-          they work, and can sustain good practice over time.
-        </p>
-      </div>
-    </section>
+    <!-- MAIN APP SHELL FOR SPA -->
+    <main id="app">
+      <!-- Hero -->
+      <section class="section alt">
+        <div class="container">
+          <h1 class="section-title">Training &amp; support that stick</h1>
+          <p class="section-intro">
+            Versed Global offers flexible Salesforce and fundraising training
+            and support so your team is trained on exactly what they need, in
+            the way they work, and can sustain good practice over time.
+          </p>
+        </div>
+      </section>
 
-    <!-- Flip cards: training types -->
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Training tailored to each role</h2>
-        <p class="section-intro">
-          Instead of generic walkthroughs, training is customised to your
-          configuration, roles and programmes so every session is focused,
-          practical and cost‑effective.
-        </p>
+      <!-- Flip cards: training types -->
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Training tailored to each role</h2>
+          <p class="section-intro">
+            Instead of generic walkthroughs, training is customised to your
+            configuration, roles and programmes so every session is focused,
+            practical and cost‑effective.
+          </p>
 
-        <div class="flip-grid">
-          <!-- End‑user training -->
-          <div class="flip-card">
-            <div class="flip-card-inner">
-              <div class="flip-card-face">
-                <h3>Salesforce end‑user training</h3>
-                <p>
-                  For staff who live in Salesforce every day – fundraisers,
-                  programme teams, service delivery and operations.
-                </p>
-              </div>
-              <div class="flip-card-face back">
-                <h3>What this covers</h3>
-                <ul>
-                  <li>Day‑to‑day navigation and key objects</li>
-                  <li>Working with records, tasks and activities</li>
-                  <li>Using views, reports and dashboards</li>
-                  <li>
-                    Walkthroughs using your real processes and data models
-                  </li>
-                </ul>
+          <div class="flip-grid">
+            <!-- End‑user training -->
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-face">
+                  <h3>Salesforce end‑user training</h3>
+                  <p>
+                    For staff who live in Salesforce every day – fundraisers,
+                    programme teams, service delivery and operations.
+                  </p>
+                </div>
+                <div class="flip-card-face back">
+                  <h3>What this covers</h3>
+                  <ul>
+                    <li>Day‑to‑day navigation and key objects</li>
+                    <li>Working with records, tasks and activities</li>
+                    <li>Using views, reports and dashboards</li>
+                    <li>
+                      Walkthroughs using your real processes and data models
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Admin / super user -->
-          <div class="flip-card">
-            <div class="flip-card-inner">
-              <div class="flip-card-face">
-                <h3>Admin &amp; “super user” training</h3>
-                <p>
-                  For the internal owners of your CRM who need confidence to
-                  handle everyday changes and guide colleagues.
-                </p>
-              </div>
-              <div class="flip-card-face back">
-                <h3>What this covers</h3>
-                <ul>
-                  <li>User management, profiles and permission sets</li>
-                  <li>Fields, page layouts and record types</li>
-                  <li>Introductory Flow and automation adjustments</li>
-                  <li>Governance, release and change control basics</li>
-                </ul>
+            <!-- Admin / super user -->
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-face">
+                  <h3>Admin &amp; “super user” training</h3>
+                  <p>
+                    For the internal owners of your CRM who need confidence to
+                    handle everyday changes and guide colleagues.
+                  </p>
+                </div>
+                <div class="flip-card-face back">
+                  <h3>What this covers</h3>
+                  <ul>
+                    <li>User management, profiles and permission sets</li>
+                    <li>Fields, page layouts and record types</li>
+                    <li>Introductory Flow and automation adjustments</li>
+                    <li>Governance, release and change control basics</li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Fundraising & management -->
-          <div class="flip-card">
-            <div class="flip-card-inner">
-              <div class="flip-card-face">
-                <h3>Fundraising &amp; management training</h3>
-                <p>
-                  For fundraising leads, programme heads and senior managers who
-                  rely on Salesforce for decisions and reporting.
-                </p>
-              </div>
-              <div class="flip-card-face back">
-                <h3>What this covers</h3>
-                <ul>
-                  <li>Pipeline design and opportunity stages</li>
-                  <li>KPIs and dashboards for income, grants and programmes</li>
-                  <li>Best practice stewardship workflows</li>
-                  <li>
-                    Reading and challenging Salesforce reports with confidence
-                  </li>
-                </ul>
+            <!-- Fundraising & management -->
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-face">
+                  <h3>Fundraising &amp; management training</h3>
+                  <p>
+                    For fundraising leads, programme heads and senior managers
+                    who rely on Salesforce for decisions and reporting.
+                  </p>
+                </div>
+                <div class="flip-card-face back">
+                  <h3>What this covers</h3>
+                  <ul>
+                    <li>Pipeline design and opportunity stages</li>
+                    <li>
+                      KPIs and dashboards for income, grants and programmes
+                    </li>
+                    <li>Best practice stewardship workflows</li>
+                    <li>
+                      Reading and challenging Salesforce reports with confidence
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Fundraising skills -->
-          <div class="flip-card">
-            <div class="flip-card-inner">
-              <div class="flip-card-face">
-                <h3>Trust &amp; foundation skills</h3>
-                <p>
-                  For teams responsible for bids and reporting who want to link
-                  fundraising practice with the data held in Salesforce.
-                </p>
-              </div>
-              <div class="flip-card-face back">
-                <h3>What this covers</h3>
-                <ul>
-                  <li>Structuring pipelines and stewardship plans</li>
-                  <li>
-                    Using Salesforce to track asks, decisions and renewals
-                  </li>
-                  <li>Evidence‑rich cases for support and reports</li>
-                  <li>
-                    Practical templates for proposals and reporting cycles
-                  </li>
-                </ul>
+            <!-- Fundraising skills -->
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-face">
+                  <h3>Trust &amp; foundation skills</h3>
+                  <p>
+                    For teams responsible for bids and reporting who want to
+                    link fundraising practice with the data held in Salesforce.
+                  </p>
+                </div>
+                <div class="flip-card-face back">
+                  <h3>What this covers</h3>
+                  <ul>
+                    <li>Structuring pipelines and stewardship plans</li>
+                    <li>
+                      Using Salesforce to track asks, decisions and renewals
+                    </li>
+                    <li>Evidence‑rich cases for support and reports</li>
+                    <li>
+                      Practical templates for proposals and reporting cycles
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Landscape process flow -->
-    <section class="section alt">
-      <div class="container">
-        <h2 class="section-title">Training &amp; support journey</h2>
-        <p class="section-intro">
-          A clear, wireframe‑style process shows how training and support move
-          from initial scoping through to light‑touch, ongoing partnership.
-        </p>
+      <!-- Landscape process flow -->
+      <section class="section alt">
+        <div class="container">
+          <h2 class="section-title">Training &amp; support journey</h2>
+          <p class="section-intro">
+            A clear, wireframe‑style process shows how training and support move
+            from initial scoping through to light‑touch, ongoing partnership.
+          </p>
 
-        <div class="process-wrapper">
-          <div class="process-track">
-            <div class="process-step">
-              <div class="process-label">Step 1</div>
-              <h3>Discovery &amp; learning goals</h3>
+          <div class="process-wrapper">
+            <div class="process-track">
+              <div class="process-step">
+                <div class="process-label">Step 1</div>
+                <h3>Discovery &amp; learning goals</h3>
+                <p>
+                  Short workshops and interviews clarify your systems, roles and
+                  current pain points, and define what each group should be able
+                  to do confidently after training.
+                </p>
+              </div>
+              <div class="process-step">
+                <div class="process-label">Step 2</div>
+                <h3>Designing the training plan</h3>
+                <p>
+                  Versed Global translates goals into a practical training plan:
+                  who needs what, in what order, and which elements are live
+                  workshops, reference materials or clinics.
+                </p>
+              </div>
+              <div class="process-step">
+                <div class="process-label">Step 3</div>
+                <h3>Delivering live sessions</h3>
+                <p>
+                  Role‑specific sessions are delivered online or on‑site, using
+                  your Salesforce configuration and fundraising processes so
+                  training maps directly to everyday work.
+                </p>
+              </div>
+              <div class="process-step">
+                <div class="process-label">Step 4</div>
+                <h3>Resources &amp; reinforcement</h3>
+                <p>
+                  Playbooks, short videos and checklists capture how your system
+                  works. Follow‑up Q&amp;A clinics help embed new ways of
+                  working and pick up issues early.
+                </p>
+              </div>
+              <div class="process-step">
+                <div class="process-label">Step 5</div>
+                <h3>Light‑touch ongoing support</h3>
+                <p>
+                  Optional retained hours and quarterly health checks keep
+                  Salesforce and fundraising processes aligned as your
+                  organisation evolves, without locking you into heavy
+                  contracts.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Support models -->
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Support that fits your capacity</h2>
+          <p class="section-intro">
+            Whether you want ad‑hoc advice, a defined managed service or support
+            focused on a particular programme or funding stream, options can be
+            scaled up or down as needed.
+          </p>
+
+          <div class="support-grid">
+            <div class="card">
+              <h3>Ad‑hoc advisory support</h3>
               <p>
-                Short workshops and interviews clarify your systems, roles and
-                current pain points, and define what each group should be able
-                to do confidently after training.
+                Ideal when you have an internal admin or power user but
+                sometimes need a second pair of eyes. Use flexible hours for
+                troubleshooting, configuration questions or sounding‑board
+                conversations about process design.
               </p>
             </div>
-            <div class="process-step">
-              <div class="process-label">Step 2</div>
-              <h3>Designing the training plan</h3>
+            <div class="card">
+              <h3>Managed support &amp; optimisation</h3>
               <p>
-                Versed Global translates goals into a practical training plan:
-                who needs what, in what order, and which elements are live
-                workshops, reference materials or clinics.
+                A lightweight managed service for organisations that want
+                predictable, regular support. Includes configuration
+                refinements, report improvements, release guidance and periodic
+                training refreshers for new staff.
               </p>
             </div>
-            <div class="process-step">
-              <div class="process-label">Step 3</div>
-              <h3>Delivering live sessions</h3>
+            <div class="card">
+              <h3>Programme‑specific support</h3>
               <p>
-                Role‑specific sessions are delivered online or on‑site, using
-                your Salesforce configuration and fundraising processes so
-                training maps directly to everyday work.
-              </p>
-            </div>
-            <div class="process-step">
-              <div class="process-label">Step 4</div>
-              <h3>Resources &amp; reinforcement</h3>
-              <p>
-                Playbooks, short videos and checklists capture how your system
-                works. Follow‑up Q&amp;A clinics help embed new ways of working
-                and pick up issues early.
-              </p>
-            </div>
-            <div class="process-step">
-              <div class="process-label">Step 5</div>
-              <h3>Light‑touch ongoing support</h3>
-              <p>
-                Optional retained hours and quarterly health checks keep
-                Salesforce and fundraising processes aligned as your
-                organisation evolves, without locking you into heavy contracts.
+                Focused support for major grant programmes, new services or
+                growth initiatives where Salesforce and fundraising are central.
+                Keeps programme reporting, stewardship and governance on track.
               </p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Support models -->
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Support that fits your capacity</h2>
-        <p class="section-intro">
-          Whether you want ad‑hoc advice, a defined managed service or support
-          focused on a particular programme or funding stream, options can be
-          scaled up or down as needed.
-        </p>
-
-        <div class="support-grid">
-          <div class="card">
-            <h3>Ad‑hoc advisory support</h3>
-            <p>
-              Ideal when you have an internal admin or power user but sometimes
-              need a second pair of eyes. Use flexible hours for
-              troubleshooting, configuration questions or sounding‑board
-              conversations about process design.
-            </p>
-          </div>
-          <div class="card">
-            <h3>Managed support &amp; optimisation</h3>
-            <p>
-              A lightweight managed service for organisations that want
-              predictable, regular support. Includes configuration refinements,
-              report improvements, release guidance and periodic training
-              refreshers for new staff.
-            </p>
-          </div>
-          <div class="card">
-            <h3>Programme‑specific support</h3>
-            <p>
-              Focused support for major grant programmes, new services or growth
-              initiatives where Salesforce and fundraising are central. Keeps
-              programme reporting, stewardship and governance on track.
-            </p>
+      <!-- CTA -->
+      <section class="section alt">
+        <div class="container" style="text-align: center">
+          <h2 class="section-title">
+            Talk through your training &amp; support needs
+          </h2>
+          <p class="section-intro" style="margin: 0 auto 1.5rem">
+            Share your current Salesforce setup, fundraising plans and team
+            structure. Versed Global will recommend a training and support
+            approach that builds internal confidence rather than dependence.
+          </p>
+          <div
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              gap: 1rem;
+              justify-content: center;
+            "
+          >
+            <a href="contact.html" class="btn btn-primary">
+              Request training conversation
+            </a>
+            <a href="services.html" class="btn btn-secondary">
+              Explore Salesforce services
+            </a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section alt">
-      <div class="container" style="text-align: center">
-        <h2 class="section-title">
-          Talk through your training &amp; support needs
-        </h2>
-        <p class="section-intro" style="margin: 0 auto 1.5rem">
-          Share your current Salesforce setup, fundraising plans and team
-          structure. Versed Global will recommend a training and support
-          approach that builds internal confidence rather than dependence.
-        </p>
-        <div
-          style="
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-          "
-        >
-          <a href="contact.html" class="btn btn-primary">
-            Request training conversation
-          </a>
-          <a href="services.html" class="btn btn-secondary">
-            Explore Salesforce services
-          </a>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <!-- Footer -->
     <footer>
