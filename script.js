@@ -322,9 +322,136 @@ function initScrollIndicator() {
   window.addEventListener("scroll", update, { passive: true });
 }
 
-// ---------- 8. SMOOTH PAGE TRANSITIONS ----------
+// ---------- 8. SPA NAVIGATION (HISTORY API) ----------
+async function navigateTo(
+  url,
+  options = { replace: false, fromPopState: false }
+) {
+  const supportsHistory = !!(window.history && history.pushState);
+  if (!supportsHistory) {
+    window.location.href = url;
+    return;
+  }
+
+  const { replace, fromPopState } = options;
+
+  try {
+    // Apply page-exit transition only when navigation originates from click, not back/forward
+    if (!fromPopState && !prefersReducedMotion()) {
+      document.body.classList.add("page-exit");
+    }
+
+    // Fetch new page HTML
+    const res = await fetch(url, {
+      headers: { "X-Requested-With": "fetch" },
+    });
+    const text = await res.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, "text/html");
+
+    // Prefer a shared <main id="app">; fall back to body content
+    const newMain =
+      doc.querySelector("main#app") || doc.querySelector("main") || doc.body;
+    const currentMain =
+      document.querySelector("main#app") ||
+      document.querySelector("main") ||
+      document.body;
+
+    currentMain.innerHTML = newMain.innerHTML;
+
+    // Update document title from fetched page
+    if (doc.title) {
+      document.title = doc.title;
+    }
+
+    // Push or replace history entry, unless this came from popstate
+    if (!fromPopState) {
+      const state = { path: url };
+      if (replace) {
+        history.replaceState(state, "", url);
+      } else {
+        history.pushState(state, "", url);
+      }
+    }
+
+    // Scroll to top smoothly respecting reduced motion
+    if (prefersReducedMotion()) {
+      window.scrollTo(0, 0);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Re-run per-page initialisers on the newly injected DOM
+    setActiveNavigation();
+    initSmoothScroll();
+    initRevealAnimations();
+    initContactForm();
+    initOrgSliderAccessibility();
+
+    // Ensure header + scroll indicator work with new content height
+    initHeaderEffects();
+    initScrollIndicator();
+  } catch (err) {
+    // On failure, fall back to a hard navigation so user isn't stuck
+    console.error("SPA navigation failed, falling back to full load:", err);
+    window.location.href = url;
+  } finally {
+    if (!fromPopState) {
+      document.body.classList.remove("page-exit");
+      document.body.classList.add("page-loaded");
+    }
+  }
+}
+
+function initSpaRouting() {
+  const supportsHistory = !!(window.history && history.pushState);
+  if (!supportsHistory) return;
+
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("a");
+    if (!link) return;
+
+    const href = link.getAttribute("href");
+    if (!href) return;
+
+    // Ignore external, mailto, tel, hash-only and download/_blank
+    if (
+      href.startsWith("http://") ||
+      href.startsWith("https://") ||
+      href.startsWith("mailto:") ||
+      href.startsWith("tel:") ||
+      href.startsWith("#") ||
+      link.target === "_blank" ||
+      link.hasAttribute("download")
+    ) {
+      return;
+    }
+
+    // Normalise relative paths (e.g. "services.html")
+    e.preventDefault();
+    const url = href;
+
+    navigateTo(url, { replace: false, fromPopState: false });
+  });
+
+  // Handle browser back/forward buttons
+  window.addEventListener("popstate", () => {
+    const url =
+      window.location.pathname + window.location.search + window.location.hash;
+    navigateTo(url, { replace: true, fromPopState: true });
+  });
+}
+
+// ---------- 9. SMOOTH PAGE TRANSITIONS (kept for non-SPA / fallback) ----------
 function initPageTransitions() {
   const enableTransitions = !prefersReducedMotion();
+
+  // When SPA routing is enabled, prevent double-handling:
+  // navigateTo manages transitions; this becomes a no-op.
+  if (enableTransitions && !!(window.history && history.pushState)) {
+    return;
+  }
 
   qsa("a[href]").forEach((link) => {
     const target = link.getAttribute("href");
@@ -350,7 +477,7 @@ function initPageTransitions() {
   });
 }
 
-// ---------- 9. PAGE LOAD FADE-IN ----------
+// ---------- 10. PAGE LOAD FADE-IN ----------
 function initPageFade() {
   const style = document.createElement("style");
   style.textContent = `
@@ -366,7 +493,7 @@ function initPageFade() {
   });
 }
 
-// ---------- 10. KEYBOARD ESCAPE CLOSE ----------
+// ---------- 11. KEYBOARD ESCAPE CLOSE ----------
 function initEscClose() {
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
@@ -384,7 +511,7 @@ function initEscClose() {
   });
 }
 
-// ---------- 11. ACCESSIBILITY FOCUS STYLES ----------
+// ---------- 12. ACCESSIBILITY FOCUS STYLES ----------
 function initFocusStyles() {
   const focusStyle = document.createElement("style");
   focusStyle.textContent = `
@@ -397,7 +524,7 @@ function initFocusStyles() {
   document.head.appendChild(focusStyle);
 }
 
-// ---------- 12. DARK-MODE PREP ----------
+// ---------- 13. DARK-MODE PREP ----------
 function initDarkModeClass() {
   if (!window.matchMedia) return;
   const mq = window.matchMedia("(prefers-color-scheme: dark)");
@@ -410,7 +537,7 @@ function initDarkModeClass() {
   mq.addEventListener("change", (e) => apply(e.matches));
 }
 
-// ---------- 13. ORG SLIDER PAUSE ON FOCUS ----------
+// ---------- 14. ORG SLIDER PAUSE ON FOCUS ----------
 function initOrgSliderAccessibility() {
   const track = qs(".org-slide-track");
   if (!track) return;
@@ -431,7 +558,7 @@ function initOrgSliderAccessibility() {
   });
 }
 
-// ---------- 14. SECTION SCROLL-SPY (ADVANCED NAV HIGHLIGHT) ----------
+// ---------- 15. SECTION SCROLL-SPY (ADVANCED NAV HIGHLIGHT) ----------
 function initScrollSpy() {
   const sections = qsa("section[id]");
   const navLinks = qsa(".nav-links a[href^='#'], .nav-links a[href*='.html']");
@@ -476,12 +603,13 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactForm();
   initRevealAnimations();
   initScrollIndicator();
-  initPageTransitions();
+  initPageTransitions(); // becomes a no-op when SPA is active
   initEscClose();
   initFocusStyles();
   initDarkModeClass();
   initOrgSliderAccessibility();
   initScrollSpy();
+  initSpaRouting();
 
   // Only run fade-in transitions if user has not requested reduced motion
   if (!prefersReducedMotion()) {
