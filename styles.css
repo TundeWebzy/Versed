@@ -645,59 +645,149 @@ a {
   box-shadow: 0 20px 60px rgba(16, 185, 129, 0.15);
 }
 
-/* Footer */
+/* =======================
+   ADVANCED TECH-STYLE FOOTER
+   ======================= */
+
 footer {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: radial-gradient(
+    circle at top left,
+    #020617 0%,
+    #020617 45%,
+    #020617 100%
+  );
   color: #cbd5e1;
-  padding: 4rem 0 2rem;
+  padding: 3.5rem 0 2.5rem;
   position: relative;
   overflow: hidden;
 }
 
+/* subtle grid / glow */
 footer::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #6366f1,
-    #ec4899,
-    transparent
-  );
+  inset: 0;
+  background-image: radial-gradient(
+      circle at 0 0,
+      rgba(96, 165, 250, 0.25),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(244, 114, 182, 0.22),
+      transparent 60%
+    );
+  opacity: 0.9;
+  pointer-events: none;
 }
 
+footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(148, 163, 184, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mix-blend-mode: soft-light;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* main footer layout */
 .footer-inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 2.5rem;
   justify-content: space-between;
   align-items: center;
 }
 
-/* align left column */
+/* let pages that use .footer-left keep working */
 .footer-left {
   max-width: 520px;
 }
 
+/* base note text */
+.footer-note {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* footer link cluster */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.5rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .footer-links a {
   color: #94a3b8;
-  margin-right: 1.5rem;
   font-size: 0.95rem;
   position: relative;
+  padding-bottom: 2px;
+}
+
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 1px;
+  background: linear-gradient(90deg, #6366f1, #ec4899);
+  transition: width 0.25s ease;
 }
 
 .footer-links a:hover {
-  color: #6366f1;
-  text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+  color: #e5e7eb;
+  text-shadow: 0 0 12px rgba(129, 140, 248, 0.7);
 }
 
-.footer-note {
-  font-size: 0.9rem;
-  opacity: 0.8;
+.footer-links a:hover::after {
+  width: 100%;
+}
+
+/* optional footer meta row if needed later */
+.footer-meta {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: #64748b;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+
+/* make footer content stack nicely on tablets/phones */
+@media (max-width: 900px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  footer {
+    padding: 2.5rem 0 2rem;
+  }
+
+  .footer-note {
+    font-size: 0.85rem;
+  }
+
+  .footer-links a {
+    font-size: 0.9rem;
+  }
 }
 
 /* Footer site search (homepage) */
