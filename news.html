@@ -247,168 +247,175 @@
       </div>
     </header>
 
-    <!-- Hero / Intro -->
-    <section class="section alt">
-      <div class="container">
-        <h1 class="section-title">News &amp; insights</h1>
-        <p class="section-intro">
-          Updates from Versed Global on Salesforce CRM, fundraising strategy and
-          the practical realities of building systems that support income,
-          programmes and reporting in one place.
-        </p>
-      </div>
-    </section>
-
-    <!-- News cards -->
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Latest from Versed Global</h2>
-        <p class="section-intro" style="margin-bottom: 2.5rem">
-          We use this page to share client stories, product updates, guidance
-          notes and upcoming events. Individual posts can link out to PDFs,
-          videos or longer articles hosted elsewhere.
-        </p>
-
-        <div class="news-grid">
-          <!-- Example article 1 -->
-          <article class="news-card">
-            <div class="news-meta">December 2025 · Salesforce</div>
-            <h3>Aligning Salesforce with trust and foundation fundraising</h3>
-            <p>
-              A practical overview of how Versed Global designs Salesforce
-              structures that reflect real‑world fundraising pipelines,
-              stewardship journeys and funder reporting requirements.
-            </p>
-            <div class="news-tag">Salesforce architecture</div>
-            <a href="#" class="news-read-more"> Read summary<span>→</span> </a>
-          </article>
-
-          <!-- Example article 2 -->
-          <article class="news-card">
-            <div class="news-meta">November 2025 · Fundraising</div>
-            <h3>
-              Five data points every grant‑seeking organisation should track
-            </h3>
-            <p>
-              A short guide for fundraising and programme teams on what to
-              capture in Salesforce to support stronger bids, renewals and
-              impact reports.
-            </p>
-            <div class="news-tag">Trusts &amp; foundations</div>
-            <a href="#" class="news-read-more">
-              Download guide<span>→</span>
-            </a>
-          </article>
-
-          <!-- Example article 3 -->
-          <article class="news-card">
-            <div class="news-meta">October 2025 · Events</div>
-            <h3>Online clinic: getting more value from Salesforce reports</h3>
-            <p>
-              A 45‑minute virtual session for UK‑based teams on building
-              practical reports and dashboards that decision‑makers actually
-              use.
-            </p>
-            <div class="news-tag">Events &amp; clinics</div>
-            <a href="#" class="news-read-more">
-              View session details<span>→</span>
-            </a>
-          </article>
-
-          <!-- Example article 4 -->
-          <article class="news-card">
-            <div class="news-meta">September 2025 · Versed Global</div>
-            <h3>Versed Global expands remote support for UK‑wide charities</h3>
-            <p>
-              New support options make it easier for organisations without
-              in‑house Salesforce or fundraising capacity to access targeted,
-              time‑bound help.
-            </p>
-            <div class="news-tag">Company news</div>
-            <a href="#" class="news-read-more">
-              Read announcement<span>→</span>
-            </a>
-          </article>
+    <!-- MAIN APP SHELL FOR SPA -->
+    <main id="app">
+      <!-- Hero / Intro -->
+      <section class="section alt">
+        <div class="container">
+          <h1 class="section-title">News &amp; insights</h1>
+          <p class="section-intro">
+            Updates from Versed Global on Salesforce CRM, fundraising strategy
+            and the practical realities of building systems that support income,
+            programmes and reporting in one place.
+          </p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Newsletter sign-up -->
-    <section class="section alt">
-      <div class="container">
-        <div class="newsletter-wrapper">
-          <div class="newsletter-inner">
-            <h2 class="newsletter-title">Subscribe to Versed Global news</h2>
-            <p class="newsletter-copy">
-              Receive occasional updates on Salesforce best practice,
-              fundraising guidance and new resources. Expect a concise email, a
-              few times a year, with a clear focus on practical value.
-            </p>
+      <!-- News cards -->
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Latest from Versed Global</h2>
+          <p class="section-intro" style="margin-bottom: 2.5rem">
+            We use this page to share client stories, product updates, guidance
+            notes and upcoming events. Individual posts can link out to PDFs,
+            videos or longer articles hosted elsewhere.
+          </p>
 
-            <div class="newsletter-benefits">
-              <span>Salesforce tips for charities</span>
-              <span>Trust &amp; foundation insights</span>
-              <span>Implementation checklists</span>
-              <span>Invitations to clinics &amp; talks</span>
-            </div>
+          <div class="news-grid">
+            <!-- Example article 1 -->
+            <article class="news-card">
+              <div class="news-meta">December 2025 · Salesforce</div>
+              <h3>Aligning Salesforce with trust and foundation fundraising</h3>
+              <p>
+                A practical overview of how Versed Global designs Salesforce
+                structures that reflect real‑world fundraising pipelines,
+                stewardship journeys and funder reporting requirements.
+              </p>
+              <div class="news-tag">Salesforce architecture</div>
+              <a href="#" class="news-read-more">
+                Read summary<span>→</span>
+              </a>
+            </article>
 
-            <form
-              class="newsletter-form"
-              action="https://formsubmit.co/info@versedglobal.com"
-              method="POST"
-            >
-              <!-- HONEYPOT -->
-              <input
-                type="text"
-                name="_honey"
-                style="display: none"
-                tabindex="-1"
-                autocomplete="off"
-              />
+            <!-- Example article 2 -->
+            <article class="news-card">
+              <div class="news-meta">November 2025 · Fundraising</div>
+              <h3>
+                Five data points every grant‑seeking organisation should track
+              </h3>
+              <p>
+                A short guide for fundraising and programme teams on what to
+                capture in Salesforce to support stronger bids, renewals and
+                impact reports.
+              </p>
+              <div class="news-tag">Trusts &amp; foundations</div>
+              <a href="#" class="news-read-more">
+                Download guide<span>→</span>
+              </a>
+            </article>
 
-              <!-- Disable FormSubmit CAPTCHA -->
-              <input type="hidden" name="_captcha" value="false" />
+            <!-- Example article 3 -->
+            <article class="news-card">
+              <div class="news-meta">October 2025 · Events</div>
+              <h3>Online clinic: getting more value from Salesforce reports</h3>
+              <p>
+                A 45‑minute virtual session for UK‑based teams on building
+                practical reports and dashboards that decision‑makers actually
+                use.
+              </p>
+              <div class="news-tag">Events &amp; clinics</div>
+              <a href="#" class="news-read-more">
+                View session details<span>→</span>
+              </a>
+            </article>
 
-              <!-- Redirect after success -->
-              <input
-                type="hidden"
-                name="_next"
-                value="https://versedglobal.com/news.html?subscribed"
-              />
-
-              <!-- Email subject -->
-              <input
-                type="hidden"
-                name="_subject"
-                value="New Newsletter Subscription - Versed Global"
-              />
-
-              <!-- Tag as newsletter -->
-              <input
-                type="hidden"
-                name="source"
-                value="Versed Global website newsletter"
-              />
-
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="Your email address"
-              />
-              <button type="submit" class="btn btn-primary">
-                Subscribe to newsletter
-              </button>
-            </form>
-            <p class="newsletter-note">
-              Versed Global will only use your details to send occasional
-              updates and will never share your information with third parties.
-              You can unsubscribe at any time.
-            </p>
+            <!-- Example article 4 -->
+            <article class="news-card">
+              <div class="news-meta">September 2025 · Versed Global</div>
+              <h3>
+                Versed Global expands remote support for UK‑wide charities
+              </h3>
+              <p>
+                New support options make it easier for organisations without
+                in‑house Salesforce or fundraising capacity to access targeted,
+                time‑bound help.
+              </p>
+              <div class="news-tag">Company news</div>
+              <a href="#" class="news-read-more">
+                Read announcement<span>→</span>
+              </a>
+            </article>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- Newsletter sign-up -->
+      <section class="section alt">
+        <div class="container">
+          <div class="newsletter-wrapper">
+            <div class="newsletter-inner">
+              <h2 class="newsletter-title">Subscribe to Versed Global news</h2>
+              <p class="newsletter-copy">
+                Receive occasional updates on Salesforce best practice,
+                fundraising guidance and new resources. Expect a concise email,
+                a few times a year, with a clear focus on practical value.
+              </p>
+
+              <div class="newsletter-benefits">
+                <span>Salesforce tips for charities</span>
+                <span>Trust &amp; foundation insights</span>
+                <span>Implementation checklists</span>
+                <span>Invitations to clinics &amp; talks</span>
+              </div>
+
+              <form
+                class="newsletter-form"
+                action="https://formsubmit.co/info@versedglobal.com"
+                method="POST"
+              >
+                <!-- HONEYPOT -->
+                <input
+                  type="text"
+                  name="_honey"
+                  style="display: none"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+
+                <!-- Disable FormSubmit CAPTCHA -->
+                <input type="hidden" name="_captcha" value="false" />
+
+                <!-- Redirect after success -->
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://versedglobal.com/news.html?subscribed"
+                />
+
+                <!-- Email subject -->
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New Newsletter Subscription - Versed Global"
+                />
+
+                <!-- Tag as newsletter -->
+                <input
+                  type="hidden"
+                  name="source"
+                  value="Versed Global website newsletter"
+                />
+
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="Your email address"
+                />
+                <button type="submit" class="btn btn-primary">
+                  Subscribe to newsletter
+                </button>
+              </form>
+              <p class="newsletter-note">
+                Versed Global will only use your details to send occasional
+                updates and will never share your information with third
+                parties. You can unsubscribe at any time.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <!-- Footer -->
     <footer>
