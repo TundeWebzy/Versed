@@ -10,20 +10,26 @@ const qsa = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 const throttle = (fn, delay = 100) => {
   let last = 0;
   let queued = null;
+  let timeoutId = null;
   return (...args) => {
     const now = Date.now();
     if (now - last >= delay) {
       last = now;
       fn(...args);
       queued = null;
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+      }
     } else {
       queued = args;
-      window.clearTimeout(throttle._t);
-      throttle._t = window.setTimeout(() => {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
         if (queued) {
           last = Date.now();
           fn(...queued);
           queued = null;
+          timeoutId = null;
         }
       }, delay - (now - last));
     }
@@ -67,7 +73,7 @@ function initMobileNav() {
   );
 }
 
-// ---------- 2. ACTIVE NAVIGATION ----------
+// ---------- 2. ACTIVE NAVIGATION (URL-BASED) ----------
 function setActiveNavigation() {
   const path = (window.location.pathname.split("/").pop() || "index.html")
     .split("?")[0]
@@ -82,7 +88,6 @@ function setActiveNavigation() {
     link.classList.toggle("active", isActive);
     if (isActive) {
       link.setAttribute("aria-current", "page");
-      // Ensure CTA keeps CTA styles plus active styles
       if (link.classList.contains("nav-cta")) {
         link.classList.add("active");
       }
@@ -130,6 +135,11 @@ function initHeaderEffects() {
     header.style.background = `rgba(255,255,255,${0.85 + alpha * 0.15})`;
     header.style.boxShadow =
       y > 80 ? "0 4px 30px rgba(15,23,42,.12)" : "0 1px 8px rgba(15,23,42,.04)";
+
+    // Subtle blur intensity tweak for tech feel
+    const blurAmount = y > 40 ? 20 : 14;
+    header.style.backdropFilter = `blur(${blurAmount}px)`;
+    header.style.webkitBackdropFilter = `blur(${blurAmount}px)`;
   }, 50);
 
   window.addEventListener("scroll", onScroll, { passive: true });
@@ -416,7 +426,46 @@ function initOrgSliderAccessibility() {
   slides.forEach((slide) => {
     slide.addEventListener("focus", pause);
     slide.addEventListener("blur", resume);
+    slide.addEventListener("mouseenter", pause);
+    slide.addEventListener("mouseleave", resume);
   });
+}
+
+// ---------- 14. SECTION SCROLL-SPY (ADVANCED NAV HIGHLIGHT) ----------
+function initScrollSpy() {
+  const sections = qsa("section[id]");
+  const navLinks = qsa(".nav-links a[href^='#'], .nav-links a[href*='.html']");
+  if (!sections.length || !navLinks.length) return;
+
+  const map = new Map();
+  sections.forEach((sec) => {
+    const id = `#${sec.id}`;
+    const direct = navLinks.find((l) => l.getAttribute("href") === id);
+    if (direct) map.set(sec.id, direct);
+  });
+
+  // If no hash-based mapping, fall back to URL-based only
+  if (!map.size) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.id;
+        const link = map.get(id);
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navLinks.forEach((l) => l.classList.remove("active-section"));
+          link.classList.add("active-section");
+        }
+      });
+    },
+    {
+      threshold: 0.4,
+      rootMargin: "-64px 0px -40% 0px",
+    }
+  );
+
+  sections.forEach((sec) => observer.observe(sec));
 }
 
 // ---------- INIT ALL ----------
@@ -432,12 +481,12 @@ document.addEventListener("DOMContentLoaded", () => {
   initFocusStyles();
   initDarkModeClass();
   initOrgSliderAccessibility();
+  initScrollSpy();
 
   // Only run fade-in transitions if user has not requested reduced motion
   if (!prefersReducedMotion()) {
     initPageFade();
   } else {
-    // If reduced motion is preferred, still ensure content is visible and nav is active
     document.body.classList.add("page-loaded");
     setActiveNavigation();
   }
