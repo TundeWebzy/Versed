@@ -92,7 +92,7 @@
       }
 
       /* ============================================================
-         HEADER – FIXED STICKY POSITIONING (NO OVERLAP)
+         HEADER – STICKY WITH RESPONSIVE MOBILE MENU
          ============================================================ */
 
       .header-bar {
@@ -113,6 +113,7 @@
         max-width: 1400px;
         margin: 0 auto;
         width: 100%;
+        position: relative; /* CRITICAL: Required for mobile nav dropdown positioning */
       }
 
       .logo-area {
@@ -130,13 +131,13 @@
       }
 
       .logo-image {
-        height: 40px;
+        height: 48px; /* INCREASED: Bigger logo */
         width: auto;
         display: block;
       }
 
       .logo-text {
-        font-size: 1.25rem;
+        font-size: 1.35rem; /* INCREASED: Bigger text */
         font-weight: 700;
         letter-spacing: -0.02em;
         background: linear-gradient(135deg, #1e40af, #4f46e5, #ec4899);
@@ -222,11 +223,25 @@
          RESPONSIVE HEADER – MOBILE & TABLET
          ============================================================ */
 
+      @media (max-width: 992px) {
+        .tagline {
+          display: none;
+        }
+      }
+
       @media (max-width: 768px) {
         .header-inner {
           flex-wrap: wrap;
           padding: 0.6rem 1rem;
           gap: 0.5rem;
+        }
+
+        .logo-image {
+          height: 42px; /* Slightly smaller on mobile but still bigger than before */
+        }
+
+        .logo-text {
+          font-size: 1.2rem;
         }
 
         .tagline {
@@ -235,7 +250,7 @@
 
         .mobile-menu {
           display: block;
-          order: 3;
+          order: 2;
         }
 
         .main-nav {
@@ -255,6 +270,8 @@
           transition: max-height 0.3s ease;
           flex-direction: column;
           gap: 0;
+          z-index: 1000;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .nav-links.active {
@@ -263,7 +280,7 @@
 
         .nav-links a {
           width: 100%;
-          padding: 1rem;
+          padding: 1rem 1.5rem;
           border-radius: 0;
           border-bottom: 1px solid #e2e8f0;
           white-space: normal;
@@ -271,11 +288,26 @@
 
         .nav-links a.nav-cta {
           margin-left: 0;
+          border-radius: 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header-inner {
+          padding: 0.5rem 0.75rem;
+        }
+
+        .logo-image {
+          height: 38px;
+        }
+
+        .logo-text {
+          font-size: 1.1rem;
         }
       }
 
       /* ============================================================
-         HERO SECTION – NO OVERLAP WITH STICKY HEADER
+         HERO SECTION
          ============================================================ */
 
       .hero-shell {
@@ -283,7 +315,7 @@
         overflow: hidden;
         background: radial-gradient(circle at 0% 0%, #0b1120, #020617 55%);
         color: #f9fafb;
-        padding-top: 0; /* Natural flow after sticky header */
+        padding-top: 0;
       }
 
       .hero-bg-image {
@@ -1064,18 +1096,17 @@
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
-        padding: 0;
       }
 
       .faq-item.active .faq-answer {
-        max-height: 500px;
-        padding: 0 0 1.25rem 0;
+        max-height: 300px;
       }
 
       .faq-answer p {
+        padding: 0 0 1.25rem;
         color: #475569;
-        line-height: 1.6;
-        margin: 0;
+        line-height: 1.7;
+        font-size: 0.95rem;
       }
 
       @media (max-width: 768px) {
@@ -1086,6 +1117,10 @@
         .faq-question {
           font-size: 0.95rem;
           padding: 1rem 0;
+        }
+
+        .faq-answer p {
+          font-size: 0.9rem;
         }
       }
 
@@ -1191,7 +1226,7 @@
         width: 40px;
         height: 40px;
         background: #3b82f6;
-        color: white;
+        color: #ffffff;
         border-radius: 50%;
         text-decoration: none;
         transition: all 0.3s ease;
@@ -1247,6 +1282,12 @@
         color: #cbd5e1;
       }
 
+      .company-info {
+        font-size: 0.85rem;
+        color: #94a3b8;
+        line-height: 1.6;
+      }
+
       .trustpilot-link {
         display: inline-flex;
         align-items: center;
@@ -1261,140 +1302,121 @@
         color: #f1f5f9;
       }
 
-      .company-info {
-        font-size: 0.85rem;
-        color: #94a3b8;
-        line-height: 1.6;
-      }
-
       @media (max-width: 768px) {
+        footer {
+          padding: 2.5rem 0 1.5rem;
+          margin-top: 3rem;
+        }
+
+        .footer-container {
+          padding: 0 1.25rem;
+        }
+
         .footer-content {
           grid-template-columns: 1fr;
+          gap: 2rem;
         }
 
         .footer-bottom {
           flex-direction: column;
           text-align: center;
         }
-
-        .footer-container {
-          padding: 0 1.25rem;
-        }
       }
     </style>
   </head>
   <body>
-    <!-- Header / Nav -->
+    <!-- Header -->
     <header class="header-bar">
       <div class="header-inner">
         <div class="logo-area">
-          <a
-            href="index.html"
-            class="logo-link"
-            aria-label="Versed Global home"
-          >
+          <a href="index.html" class="logo-link">
             <img
               src="images/versed-global-logo.png"
-              alt="Versed Global logo"
+              alt="Versed Global"
               class="logo-image"
             />
-            <div>
-              <div class="logo-text">Versed Global</div>
-              <div class="tagline">
-                Salesforce CRM Implementation &amp; Digital Governance Solutions
-              </div>
-            </div>
+            <span class="logo-text">Versed Global</span>
           </a>
+          <span class="tagline">Salesforce &amp; Fundraising for Impact</span>
         </div>
-        <nav class="main-nav" aria-label="Primary navigation">
+
+        <button
+          class="mobile-menu"
+          id="mobileMenuToggle"
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+
+        <nav class="main-nav">
           <div class="nav-links" id="navLinks">
             <a href="index.html" class="active">Home</a>
             <a href="services.html">Salesforce</a>
-            <a href="about.html">About</a>
-            <a href="clients.html">Clients</a>
-            <a href="contact.html">Contact</a>
             <a href="fundraising.html">Fundraising</a>
             <a href="training.html">Training</a>
-            <a href="news.html">News</a>
+            <a href="clients.html">Clients</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
           </div>
-          <button
-            class="mobile-menu"
-            id="mobileMenuToggle"
-            type="button"
-            aria-label="Toggle navigation menu"
-          >
-            ☰
-          </button>
         </nav>
       </div>
     </header>
 
-    <!-- MAIN APP SHELL -->
-    <main id="app">
-      <!-- HERO -->
+    <main>
+      <!-- Hero Section -->
       <section class="hero-shell">
         <div class="hero-bg-image">
           <img
-            src="images/hero-consulting.jpg"
-            alt="Consulting team collaborating in a meeting room"
+            src="images/hero-bg.jpg"
+            alt=""
+            onerror="this.style.display = 'none'"
           />
         </div>
         <div class="hero-orbit"></div>
 
         <div class="hero-inner-flex">
           <div>
-            <p class="hero-eyebrow">
-              Salesforce · Fundraising · Strategy · Training
-            </p>
+            <p class="hero-eyebrow">Salesforce · Fundraising · Strategy</p>
             <h1 class="hero-title">
-              Salesforce &amp; fundraising<br />that work as one system
+              CRM design and fundraising<br />that moves your mission forward
             </h1>
             <p class="hero-kicker">
-              One partner for CRM design and trust &amp; foundation fundraising,
-              so systems and income plans support each other instead of
-              competing.
+              Versed Global brings together Salesforce CRM expertise and trust
+              and foundation fundraising so that your systems, income and
+              governance work as one.
             </p>
-
             <div class="hero-buttons">
-              <a href="services.html" class="btn btn-primary">
-                Explore Salesforce services
-              </a>
-              <a href="fundraising.html" class="btn btn-secondary">
-                View fundraising support
-              </a>
+              <a href="contact.html" class="btn btn-primary"
+                >Book a conversation</a
+              >
+              <a href="services.html" class="btn btn-secondary"
+                >Explore services</a
+              >
             </div>
 
-            <div class="hero-quick-tags" aria-label="Key themes">
-              <span>Salesforce CRM design &amp; build</span>
-              <span>Trust &amp; foundation fundraising</span>
-              <span>Programme &amp; reporting alignment</span>
-              <span>Training &amp; ongoing support</span>
+            <div class="hero-quick-tags">
+              <span>Charities</span>
+              <span>Corporate CSR</span>
+              <span>Public Sector</span>
+              <span>Social Enterprises</span>
             </div>
           </div>
 
-          <div>
-            <div class="hero-metrics">
-              <div>
-                <div class="hero-metric-label">Focus</div>
-                <div class="hero-metric-value">CRM &amp; income</div>
-                <div class="hero-metric-note">
-                  Salesforce, fundraising and governance in one place.
-                </div>
-              </div>
-              <div>
-                <div class="hero-metric-label">Clients</div>
-                <div class="hero-metric-value">Mission-led</div>
-                <div class="hero-metric-note">
-                  Charities, corporates and public-sector teams.
-                </div>
-              </div>
-              <div>
-                <div class="hero-metric-label">Approach</div>
-                <div class="hero-metric-value">Partnership</div>
-                <div class="hero-metric-note">
-                  Designing with you, not just for you.
-                </div>
-              </div>
+          <div class="hero-metrics">
+            <div>
+              <p class="hero-metric-label">CRM Experience</p>
+              <p class="hero-metric-value">7+ years</p>
+              <p class="hero-metric-note">Salesforce implementations</p>
+            </div>
+            <div>
+              <p class="hero-metric-label">Funding Supported</p>
+              <p class="hero-metric-value">£1M+</p>
+              <p class="hero-metric-note">Through better systems</p>
+            </div>
+            <div>
+              <p class="hero-metric-label">UK-based</p>
+              <p class="hero-metric-value">Remote-first</p>
+              <p class="hero-metric-note">With on-site options</p>
             </div>
           </div>
         </div>
@@ -1405,31 +1427,28 @@
         <div class="hero-strategy-inner">
           <div class="hero-strategy-copy">
             <p>
-              Versed Global designs, implements and refines Salesforce CRM
-              alongside trust and foundation fundraising so that income,
-              programmes and reporting are joined up rather than competing.
+              <strong>Systems, income and governance – aligned.</strong>
+              Versed Global works with charities, corporates and public-sector
+              teams that need Salesforce and fundraising support to pull in the
+              same direction.
             </p>
             <p>
-              The focus is on practical, sustainable change: Salesforce
-              configurations that reflect how your teams actually work,
-              fundraising strategies grounded in your data and capacity, and
-              training that helps people use the tools with confidence rather
-              than fear.
+              That means CRM configurations designed around your actual
+              workflows, trust and foundation fundraising grounded in realistic
+              pipelines, and reporting that answers the questions funders and
+              boards actually ask.
             </p>
           </div>
-          <div
-            class="hero-strategy-pills"
-            aria-label="How this works in practice"
-          >
+          <div class="hero-strategy-pills">
             <div class="hero-strategy-pill">
-              <strong>Configuration</strong>
-              Objects, fields and automation shaped around your real fundraising
-              and programme workflows.
+              <strong>Systems</strong>
+              Salesforce objects, fields and automation built around how your
+              organisation actually operates.
             </div>
             <div class="hero-strategy-pill">
-              <strong>Fundraising</strong>
-              Trust &amp; foundation pipelines that sit inside Salesforce, not
-              across disconnected spreadsheets.
+              <strong>Income</strong>
+              Trust and foundation fundraising grounded in research, realistic
+              pipelines and strong governance.
             </div>
             <div class="hero-strategy-pill">
               <strong>Reporting</strong>
