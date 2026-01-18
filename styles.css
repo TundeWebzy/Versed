@@ -928,7 +928,7 @@ footer::after {
 
 /* MOBILE RESPONSIVE FIXES - VERSED GLOBAL */
 
-/* 1. PERFECT MOBILE LOGO SIZE */
+/* 1. PERFECT MOBILE LOGO SIZE (original) */
 @media (max-width: 768px) {
   .logo-area img,
   .logo-badge img {
@@ -938,6 +938,38 @@ footer::after {
 
   .logo-text {
     font-size: 1.55rem !important;
+  }
+}
+
+/* 1b. STACK LOGO & BURGER + TIDY HEADER (new) */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.9rem;
+  }
+
+  .logo-area {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Hide tagline on small screens to keep header compact */
+  .tagline {
+    display: none;
+  }
+
+  /* Keep logo size reasonable */
+  .logo-area img,
+  .logo-badge img {
+    height: 48px !important;
+    max-height: 48px !important;
+  }
+
+  .logo-text {
+    font-size: 1.3rem !important;
   }
 }
 
@@ -968,7 +1000,7 @@ footer::after {
   }
 }
 
-/* 3. MOBILE HEADER FIX */
+/* 3. MOBILE HEADER FIX (existing text size) + SAFE HERO PADDING (new) */
 @media (max-width: 768px) {
   .nav-links a {
     font-size: 0.95rem !important;
@@ -976,6 +1008,12 @@ footer::after {
 
   .tagline {
     display: none;
+  }
+
+  /* Add safe padding so sticky header never covers hero text */
+  .hero-shell,
+  .hero {
+    padding-top: 4.5rem; /* adjust if header height changes */
   }
 }
 
