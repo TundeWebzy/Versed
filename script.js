@@ -47,20 +47,20 @@ const prefersReducedMotion = () =>
 
 // ---------- 1. MOBILE NAVIGATION ----------
 function initMobileNav() {
-  const mobileMenuToggle = qs("#mobileMenuToggle");
+  const mobileMenuToggle = qs(".mobile-menu");
   const navLinks = qs(".nav-links");
   if (!mobileMenuToggle || !navLinks) return;
 
   const closeNav = () => {
-    navLinks.classList.remove("mobile-open");
+    navLinks.classList.remove("open");
     mobileMenuToggle.classList.remove("open");
     document.body.classList.remove("no-scroll");
     mobileMenuToggle.setAttribute("aria-expanded", "false");
   };
 
   const toggleNav = () => {
-    const isOpen = !navLinks.classList.contains("mobile-open");
-    navLinks.classList.toggle("mobile-open", isOpen);
+    const isOpen = !navLinks.classList.contains("open");
+    navLinks.classList.toggle("open", isOpen);
     mobileMenuToggle.classList.toggle("open", isOpen);
     document.body.classList.toggle("no-scroll", isOpen);
     mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
@@ -77,7 +77,7 @@ function initMobileNav() {
   // Close on nav link click (mobile)
   qsa(".nav-links a").forEach((link) =>
     link.addEventListener("click", () => {
-      if (!navLinks.classList.contains("mobile-open")) return;
+      if (!navLinks.classList.contains("open")) return;
       closeNav();
     }),
   );
@@ -86,10 +86,7 @@ function initMobileNav() {
   window.addEventListener(
     "resize",
     throttle(() => {
-      if (
-        window.innerWidth >= 768 &&
-        navLinks.classList.contains("mobile-open")
-      ) {
+      if (window.innerWidth >= 768 && navLinks.classList.contains("open")) {
         closeNav();
       }
     }, 150),
@@ -98,10 +95,7 @@ function initMobileNav() {
   // Close on orientation change (iOS/Android)
   window.addEventListener("orientationchange", () => {
     setTimeout(() => {
-      if (
-        window.innerWidth >= 768 &&
-        navLinks.classList.contains("mobile-open")
-      ) {
+      if (window.innerWidth >= 768 && navLinks.classList.contains("open")) {
         closeNav();
       }
     }, 250);
@@ -139,7 +133,7 @@ function initSmoothScroll() {
   if (typeof window === "undefined") return;
 
   const reduce = prefersReducedMotion();
-  const header = qs(".header-bar");
+  const header = qs(".site-header");
 
   qsa('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener(
@@ -177,13 +171,13 @@ function initSmoothScroll() {
 // ---------- 4. STICKY HEADER + DYNAMIC BACKGROUND ----------
 function initHeaderEffects() {
   if (typeof window === "undefined") return;
-  const header = qs(".header-bar");
+  const header = qs(".site-header");
   if (!header) return;
 
   const onScroll = throttle(() => {
     const y = window.scrollY || window.pageYOffset;
     const alpha = Math.min(y / 400, 0.95);
-    header.style.background = `rgba(255,255,255,${0.85 + alpha * 0.15})`;
+    header.style.background = `rgba(248,250,252,${0.85 + alpha * 0.15})`;
     header.style.boxShadow =
       y > 80 ? "0 4px 30px rgba(15,23,42,.12)" : "0 1px 8px rgba(15,23,42,.04)";
 
@@ -439,9 +433,9 @@ function initEscClose() {
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
     const menu = qs(".nav-links");
-    const toggle = qs("#mobileMenuToggle");
-    if (menu && menu.classList.contains("mobile-open")) {
-      menu.classList.remove("mobile-open");
+    const toggle = qs(".mobile-menu");
+    if (menu && menu.classList.contains("open")) {
+      menu.classList.remove("open");
       document.body.classList.remove("no-scroll");
       if (toggle) {
         toggle.classList.remove("open");
@@ -591,9 +585,9 @@ function initResponsiveHelpers() {
       // Ensure mobile nav never stays stuck open on breakpoint changes
       if (width >= 768) {
         const navLinks = qs(".nav-links");
-        const toggle = qs("#mobileMenuToggle");
-        if (navLinks && navLinks.classList.contains("mobile-open")) {
-          navLinks.classList.remove("mobile-open");
+        const toggle = qs(".mobile-menu");
+        if (navLinks && navLinks.classList.contains("open")) {
+          navLinks.classList.remove("open");
         }
         document.body.classList.remove("no-scroll");
         if (toggle) {
