@@ -16,6 +16,20 @@
     />
     <link rel="stylesheet" href="styles.css" />
 
+    <!-- Google Fonts for professional typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <!-- Organization / Logo Schema -->
     <script type="application/ld+json">
       {
@@ -60,6 +74,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative; /* FIXED: Required for mobile nav dropdown positioning */
       }
 
       .logo-area {
@@ -161,6 +176,10 @@
           display: none;
         }
 
+        .mobile-menu {
+          display: block;
+        }
+
         .main-nav {
           width: 100%;
           order: 3;
@@ -178,6 +197,7 @@
           max-height: 0;
           overflow: hidden;
           transition: max-height 0.3s ease;
+          z-index: 1000;
         }
 
         .nav-links.active {
@@ -191,232 +211,110 @@
           border-bottom: 1px solid #e2e8f0;
         }
 
-        .mobile-menu {
-          display: block;
+        .nav-links a.nav-cta {
+          margin-left: 0;
         }
       }
 
-      /* Flow / motion patterns */
-
-      .learning-rail {
-        margin-top: 2rem;
-        overflow-x: auto;
-        padding-bottom: 1rem;
-        scroll-snap-type: x mandatory;
+      /* Section styling */
+      .section {
+        padding: 3.5rem 0;
       }
 
-      .learning-track {
-        display: flex;
-        gap: 1.5rem;
-        min-width: 900px;
+      .section.alt {
+        background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
       }
 
-      .learning-step {
-        scroll-snap-align: start;
-        min-width: 260px;
-        max-width: 320px;
-        border-radius: 18px;
-        border: 1px solid #e2e8f0;
-        padding: 1.5rem 1.25rem;
-        background: #ffffff;
-        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
-        position: relative;
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
       }
 
-      .learning-step::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background: radial-gradient(
-          circle at top left,
-          rgba(59, 130, 246, 0.1),
-          transparent 55%
-        );
-        pointer-events: none;
-      }
-
-      .learning-step-label {
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.18em;
-        color: #64748b;
-        margin-bottom: 0.3rem;
-      }
-
-      .learning-step-title {
-        font-size: 1rem;
-        font-weight: 600;
-        color: #0f172a;
-        margin-bottom: 0.4rem;
-      }
-
-      .learning-step-text {
-        font-size: 0.9rem;
-        color: #4b5563;
-      }
-
-      @media (max-width: 768px) {
-        .learning-track {
-          min-width: 720px;
-        }
-      }
-
-      /* Highlight strip with gentle motion */
-
-      .highlight-strip {
-        position: relative;
-        border-radius: 18px;
-        padding: 1.6rem 1.8rem;
-        background: radial-gradient(circle at 0% 0%, #0f172a, #1e293b);
-        color: #e5e7eb;
-        margin-top: 2.5rem;
-        overflow: hidden;
-      }
-
-      .highlight-orbit {
-        position: absolute;
-        inset: -50%;
-        background: radial-gradient(
-          circle at 0 0,
-          rgba(56, 189, 248, 0.28),
-          transparent 60%
-        );
-        animation: orbit 16s linear infinite;
-        opacity: 0.7;
-      }
-
-      @keyframes orbit {
-        0% {
-          transform: translate(0, 0);
-        }
-        50% {
-          transform: translate(30%, 10%);
-        }
-        100% {
-          transform: translate(0, 0);
-        }
-      }
-
-      .highlight-strip-content {
-        position: relative;
-        z-index: 1;
-      }
-
-      .highlight-strip-label {
-        font-size: 0.78rem;
-        text-transform: uppercase;
-        letter-spacing: 0.18em;
-        color: #a5b4fc;
-        margin-bottom: 0.5rem;
-      }
-
-      /* Expandable “read more” blocks */
-
-      .expandable {
-        position: relative;
-        overflow: hidden;
-        max-height: 190px;
-        transition: max-height 0.4s ease;
-      }
-
-      .expandable.expanded {
-        max-height: 1600px;
-      }
-
-      .expand-fade {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 3rem;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
-        pointer-events: none;
-      }
-
-      .expand-toggle {
-        margin-top: 0.75rem;
-        background: none;
-        border: none;
-        color: #2563eb;
-        font-weight: 600;
-        font-size: 0.9rem;
-        cursor: pointer;
-        padding: 0;
-      }
-
-      /* Two-column narrative */
-
-      .training-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-        gap: 3rem;
-        align-items: start;
-      }
-
-      @media (max-width: 900px) {
-        .training-layout {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      /* Floating “glance” chips */
-
-      .glance-chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        margin-top: 1rem;
-      }
-
-      .glance-chip {
-        padding: 0.4rem 0.9rem;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.6);
-        font-size: 0.8rem;
-        color: #475569;
-        background: #f9fafb;
-      }
-
-      /* Simple stats band */
-
-      .training-stats {
-        margin-top: 3rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 1.75rem;
-      }
-
-      .training-stat {
-        border-radius: 16px;
-        padding: 1.6rem 1.5rem;
-        border: 1px solid #e2e8f0;
-        background: #ffffff;
-        box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
-      }
-
-      .training-stat-number {
+      .section-title {
         font-size: 2.2rem;
         font-weight: 700;
-        color: #2563eb;
-        margin-bottom: 0.4rem;
+        color: #1e293b;
+        margin: 0 0 1rem;
+        line-height: 1.2;
       }
 
-      .training-stat-label {
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        color: #64748b;
-        margin-bottom: 0.3rem;
+      .section-intro {
+        font-size: 1.05rem;
+        color: #475569;
+        line-height: 1.8;
+        max-width: 800px;
+        margin-bottom: 2rem;
       }
 
-      .training-stat-text {
-        font-size: 0.9rem;
-        color: #4b5563;
+      .btn {
+        display: inline-block;
+        padding: 0.75rem 1.75rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 1rem;
       }
 
-      /* Footer aligned with other pages */
+      .btn-primary {
+        background: #3b82f6;
+        color: white;
+      }
 
+      .btn-primary:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #3b82f6;
+        border: 2px solid #3b82f6;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(59, 130, 246, 0.1);
+      }
+
+      /* Card grid styles */
+      .three-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .card {
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        box-shadow: 0 12px 32px rgba(59, 130, 246, 0.1);
+        border-color: #3b82f6;
+        transform: translateY(-4px);
+      }
+
+      .card h3 {
+        font-size: 1.2rem;
+        color: #1e293b;
+        margin: 0 0 0.75rem;
+        font-weight: 700;
+      }
+
+      .card p {
+        color: #475569;
+        line-height: 1.7;
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      /* Footer */
       footer {
         background: #1e293b;
         color: #e2e8f0;
@@ -603,294 +501,123 @@
     </style>
   </head>
   <body>
-    <!-- Header / Nav -->
+    <!-- Header -->
     <header class="header-bar">
       <div class="header-inner">
         <div class="logo-area">
-          <a
-            href="index.html"
-            class="logo-link"
-            aria-label="Versed Global home"
-          >
+          <a href="index.html" class="logo-link">
             <img
               src="images/versed-global-logo.png"
-              alt="Versed Global logo"
+              alt="Versed Global"
               class="logo-image"
             />
-            <div>
-              <div class="logo-text">Versed Global</div>
-              <div class="tagline">
-                Salesforce CRM Implementation & Digital Governance Solutions
-              </div>
-            </div>
+            <span class="logo-text">Versed Global</span>
           </a>
+          <span class="tagline">Salesforce &amp; Fundraising for Impact</span>
         </div>
-        <nav class="main-nav" aria-label="Primary navigation">
+
+        <button
+          class="mobile-menu"
+          id="mobileMenuToggle"
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+
+        <nav class="main-nav">
           <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="services.html">Salesforce</a>
-            <a href="about.html">About</a>
-            <a href="clients.html">Clients</a>
             <a href="fundraising.html">Fundraising</a>
             <a href="training.html" class="active">Training</a>
-            <a href="news.html">News</a>
+            <a href="clients.html">Clients</a>
+            <a href="about.html">About</a>
             <a href="contact.html" class="nav-cta">Contact</a>
           </div>
-          <button
-            class="mobile-menu"
-            id="mobileMenuToggle"
-            type="button"
-            aria-label="Toggle navigation menu"
-          >
-            ☰
-          </button>
         </nav>
       </div>
     </header>
 
-    <!-- MAIN APP SHELL FOR SPA -->
-    <main id="app">
-      <!-- Hero -->
-      <section class="section alt">
-        <div class="container">
-          <h1 class="section-title">
-            Training &amp; support that stays with you
-          </h1>
-          <p class="section-intro">
-            Versed Global designs Salesforce and fundraising training so people
-            understand not just which buttons to press, but how your CRM and
-            income model fit together in practice.
-          </p>
-        </div>
-      </section>
-
-      <!-- Narrative + highlight strip -->
+    <main>
+      <!-- Intro -->
       <section class="section">
         <div class="container">
-          <div class="training-layout">
-            <div>
-              <h2 class="section-title">Training shaped around your system</h2>
-              <div class="expandable" id="introBlock">
-                <p style="font-size: 1rem; color: #4b5563; line-height: 1.9">
-                  Training is built on your real configuration, programmes and
-                  fundraising pipelines, rather than generic demo orgs. Sessions
-                  use your page layouts, fields, reports and flows so what staff
-                  see on‑screen matches what they log into every day.
-                </p>
-                <p style="font-size: 1rem; color: #4b5563; line-height: 1.9">
-                  Different teams see different journeys. Service delivery and
-                  operations teams focus on clean data entry, safeguarding
-                  considerations and programme reporting. Fundraisers focus on
-                  pipeline design, opportunity stages, tasks and stewardship
-                  workflows. Admins and “super users” go deeper into the
-                  configuration decisions that sit behind the scenes.
-                </p>
-                <p style="font-size: 1rem; color: #4b5563; line-height: 1.9">
-                  The result is not a one‑off demonstration, but a shared way of
-                  working: consistent approaches to records, tasks and reports
-                  that make your Salesforce environment easier to sustain and
-                  easier to trust.
-                </p>
-                <div class="expand-fade" id="introFade"></div>
-              </div>
-              <button
-                class="expand-toggle"
-                type="button"
-                data-target="introBlock"
-                data-fade="introFade"
-              >
-                Read more
-              </button>
-
-              <div class="glance-chips">
-                <div class="glance-chip">Role‑specific learning paths</div>
-                <div class="glance-chip">Live system walkthroughs</div>
-                <div class="glance-chip">
-                  Salesforce &amp; fundraising links
-                </div>
-                <div class="glance-chip">Remote &amp; on‑site options</div>
-              </div>
-            </div>
-
-            <div class="highlight-strip">
-              <div class="highlight-orbit"></div>
-              <div class="highlight-strip-content">
-                <div class="highlight-strip-label">At a glance</div>
-                <p style="font-size: 0.96rem; margin: 0 0 0.8rem">
-                  Training is designed to be recorded, repeatable and easy to
-                  revisit, so new staff can be onboarded without starting from
-                  scratch.
-                </p>
-                <ul
-                  style="
-                    list-style: none;
-                    padding: 0;
-                    margin: 0;
-                    display: grid;
-                    gap: 0.45rem;
-                    font-size: 0.93rem;
-                  "
-                >
-                  <li>✓ Short, focused modules rather than all‑day lectures</li>
-                  <li>✓ Realistic scenarios drawn from your programmes</li>
-                  <li>✓ Simple playbooks documenting how your CRM is used</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <h1 class="section-title">Training &amp; support</h1>
+          <p class="section-intro">
+            Versed Global provides flexible Salesforce and fundraising training
+            and support, tailored to your roles, configuration and programmes.
+            Training can be delivered remotely or on-site, depending on your
+            needs.
+          </p>
         </div>
       </section>
 
-      <!-- Flow: learning paths rail -->
+      <!-- Services -->
       <section class="section alt">
         <div class="container">
-          <h2 class="section-title">
-            Learning paths that flow with your roles
-          </h2>
+          <h2 class="section-title">Training options</h2>
           <p class="section-intro">
-            Different people need different depth. A horizontal “rail” makes it
-            easy to see how training can roll out across your team.
+            Training is designed to build confidence and capability within your
+            team, so you're not dependent on external support for day-to-day
+            tasks.
           </p>
 
-          <div class="learning-rail">
-            <div class="learning-track">
-              <div class="learning-step">
-                <div class="learning-step-label">Path 1</div>
-                <div class="learning-step-title">
-                  End‑users &amp; delivery staff
-                </div>
-                <div class="learning-step-text">
-                  Focus on the tasks they perform most often: logging
-                  interactions, updating records, managing caseloads and
-                  producing simple reports that feed funders and management.
-                </div>
-              </div>
-              <div class="learning-step">
-                <div class="learning-step-label">Path 2</div>
-                <div class="learning-step-title">
-                  Fundraising &amp; income teams
-                </div>
-                <div class="learning-step-text">
-                  Emphasis on opportunities, pipelines, stewardship journeys and
-                  reporting that gives a clear picture of income and risk.
-                </div>
-              </div>
-              <div class="learning-step">
-                <div class="learning-step-label">Path 3</div>
-                <div class="learning-step-title">Managers &amp; SMT</div>
-                <div class="learning-step-text">
-                  Reading dashboards, asking the right questions of the data and
-                  understanding what Salesforce can and cannot yet tell you.
-                </div>
-              </div>
-              <div class="learning-step">
-                <div class="learning-step-label">Path 4</div>
-                <div class="learning-step-title">
-                  Admins &amp; “super users”
-                </div>
-                <div class="learning-step-text">
-                  Configuration basics, change control, governance and small
-                  improvements that avoid technical debt.
-                </div>
-              </div>
+          <div class="three-grid">
+            <div class="card">
+              <h3>Salesforce user training</h3>
+              <p>
+                Practical training for end users on how to navigate and use
+                Salesforce effectively – tailored to your configuration and
+                workflows.
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- Deeper detail with read-more for support models -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Support models that flex with you</h2>
-          <p class="section-intro" style="max-width: 820px">
-            Training often works best when there is ongoing space for questions
-            and iteration. Support can be light‑touch or more structured,
-            depending on your internal capacity.
-          </p>
+            <div class="card">
+              <h3>Admin training</h3>
+              <p>
+                Training for Salesforce administrators on configuration,
+                reports, dashboards and basic customisation – building internal
+                capacity.
+              </p>
+            </div>
 
-          <div class="training-layout">
-            <div>
-              <h3 style="margin-top: 0; font-size: 1.2rem; color: #0f172a">
-                Advisory hours &amp; clinics
-              </h3>
-              <div class="expandable" id="advisoryBlock">
-                <p style="font-size: 0.97rem; color: #4b5563; line-height: 1.9">
-                  A bank of hours gives your team somewhere to turn when they
-                  hit a question that goes beyond a simple “how‑to”. This might
-                  be a tricky report, a flows question, a fundraising workflow
-                  that feels clunky, or a proposed change that needs a second
-                  view.
-                </p>
-                <p style="font-size: 0.97rem; color: #4b5563; line-height: 1.9">
-                  Drop‑in clinics create regular slots for people to share
-                  issues and ideas. Together, you can refine processes, tidy
-                  fields, clarify responsibilities and identify training needs
-                  that emerge after the initial rollout.
-                </p>
-              </div>
-              <button
-                class="expand-toggle"
-                type="button"
-                data-target="advisoryBlock"
-              >
-                Read more
-              </button>
+            <div class="card">
+              <h3>Fundraising training</h3>
+              <p>
+                Training on trust and foundation fundraising – including
+                prospect research, grant writing and pipeline management.
+              </p>
             </div>
-            <div>
-              <h3 style="margin-top: 0; font-size: 1.2rem; color: #0f172a">
-                Managed support &amp; optimisation
-              </h3>
-              <div class="expandable" id="managedBlock">
-                <p style="font-size: 0.97rem; color: #4b5563; line-height: 1.9">
-                  For organisations that want a regular rhythm, a lightweight
-                  managed support arrangement can cover small configuration
-                  changes, periodic reviews of reports and dashboards, and
-                  micro‑training for new starters.
-                </p>
-                <p style="font-size: 0.97rem; color: #4b5563; line-height: 1.9">
-                  This helps you avoid the “we’ll fix it later” backlog that
-                  often builds up in Salesforce, and ensures that training
-                  materials reflect how the system actually behaves as it
-                  evolves.
-                </p>
-              </div>
-              <button
-                class="expand-toggle"
-                type="button"
-                data-target="managedBlock"
-              >
-                Read more
-              </button>
-            </div>
-          </div>
 
-          <div class="training-stats">
-            <div class="training-stat">
-              <div class="training-stat-number">
-                <span class="counter" data-target="40">0</span>+
-              </div>
-              <div class="training-stat-label">Staff trained</div>
-              <div class="training-stat-text">
-                Across fundraising, operations and leadership roles in small and
-                mid‑sized organisations.
-              </div>
+            <div class="card">
+              <h3>Refresher sessions</h3>
+              <p>
+                Short, focused sessions to refresh skills or onboard new team
+                members to existing systems and processes.
+              </p>
             </div>
-            <div class="training-stat">
-              <div class="training-stat-number">
-                <span class="counter" data-target="6">0</span>+
-              </div>
-              <div class="training-stat-label">Team types</div>
-              <div class="training-stat-text">
-                Including service delivery, grants, CSR, monitoring and
-                evaluation and admin roles.
-              </div>
+
+            <div class="card">
+              <h3>Documentation</h3>
+              <p>
+                Creation of user guides, process documentation and training
+                materials tailored to your specific setup.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Ongoing support</h3>
+              <p>
+                Flexible support packages for organisations that need regular
+                help with configuration, troubleshooting or advice.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       <!-- CTA -->
-      <section class="section alt">
+      <section class="section">
         <div class="container" style="text-align: center">
           <h2 class="section-title">
             Talk through your training &amp; support needs
@@ -900,7 +627,7 @@
             style="margin: 0 auto 1.8rem; max-width: 640px"
           >
             Share how your Salesforce org is currently used, who needs the most
-            help and what “good” would look like in 6–12 months. From there, a
+            help and what "good" would look like in 6–12 months. From there, a
             realistic training and support plan can be shaped together.
           </p>
           <div
@@ -1061,66 +788,13 @@
         });
       }
 
-      // Read-more toggles
-      document.querySelectorAll(".expand-toggle").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const targetId = btn.getAttribute("data-target");
-          const fadeId = btn.getAttribute("data-fade");
-          const block = document.getElementById(targetId);
-          const fade = fadeId ? document.getElementById(fadeId) : null;
-          if (!block) return;
-
-          block.classList.toggle("expanded");
-          if (fade) {
-            fade.style.display = block.classList.contains("expanded")
-              ? "none"
-              : "block";
-          }
-          btn.textContent = block.classList.contains("expanded")
-            ? "Show less"
-            : "Read more";
+      // Close mobile menu when link is clicked
+      const navItems = navLinks.querySelectorAll("a");
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          navLinks.classList.remove("active");
         });
       });
-
-      // Simple counter animation
-      const counters = document.querySelectorAll(".counter");
-      let statsAnimated = false;
-
-      function animateCounters() {
-        counters.forEach((counter) => {
-          const target = parseInt(counter.getAttribute("data-target"), 10);
-          const duration = 2000;
-          const increment = target / (duration / 30);
-          let current = 0;
-
-          const update = () => {
-            current += increment;
-            if (current < target) {
-              counter.textContent = Math.floor(current);
-              requestAnimationFrame(update);
-            } else {
-              counter.textContent = target;
-            }
-          };
-
-          update();
-        });
-      }
-
-      const statsSection = document.querySelector(".training-stats");
-      if (statsSection) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            if (entries[0].isIntersecting && !statsAnimated) {
-              statsAnimated = true;
-              animateCounters();
-              observer.unobserve(statsSection);
-            }
-          },
-          { threshold: 0.4 },
-        );
-        observer.observe(statsSection);
-      }
     </script>
   </body>
 </html>
