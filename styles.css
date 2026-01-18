@@ -122,6 +122,22 @@ h3,
   letter-spacing: -0.02em;
 }
 
+/* Force ampersand to use body font, not Playfair */
+h1 span.amp,
+h2 span.amp,
+h3 span.amp,
+.section-title span.amp {
+  font-family:
+    "Nimbus Sans L",
+    "NimbusSanL",
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    sans-serif;
+  letter-spacing: normal;
+}
+
 /* Slightly stronger weight for headings for readability */
 h1,
 .section-title {
@@ -263,25 +279,8 @@ a {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-links a::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(99, 102, 241, 0.2),
-    transparent
-  );
-  transition: left 0.5s;
-}
-
-.nav-links a:hover::before {
-  left: 100%;
-}
+/* REMOVE moving colour plate effect */
+/* (deleted .nav-links a::before and :hover::before styles) */
 
 /* active/hover - brand colours */
 .nav-links a:hover,
