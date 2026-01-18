@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Versed Global | Salesforce CRM &amp; Fundraising Strategy</title>
+    <title>Salesforce Services | Versed Global</title>
 
-    <!-- FAVICON -->
+    <!-- FAVICON CODE ADDED -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -15,9 +15,8 @@
 
     <meta
       name="description"
-      content="Versed Global designs, integrates and manages Salesforce CRM systems and delivers high-impact trust and foundation fundraising support for charities, corporates and public-sector organisations."
+      content="Versed Global designs, integrates, implements and optimises Salesforce-based CRM systems for charities, corporates and public-sector organisations, with a focus on impact, governance and fundraising alignment."
     />
-
     <link rel="stylesheet" href="styles.css" />
 
     <!-- Google Fonts for professional typography -->
@@ -61,8 +60,7 @@
     </script>
 
     <style>
-      /* Base / header / footer from existing file */
-
+      /* Custom header styles for sticky navigation */
       body {
         font-family:
           "Inter",
@@ -72,7 +70,6 @@
           sans-serif;
         margin: 0;
         padding: 0;
-        padding-top: env(safe-area-inset-top, 0); /* better iOS safe area */
       }
 
       .header-bar {
@@ -82,7 +79,6 @@
         background: #ffffff;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         transition: all 0.3s ease;
-        padding-top: max(0px, env(safe-area-inset-top, 0));
       }
 
       .header-inner {
@@ -186,6 +182,7 @@
         color: #1e293b;
       }
 
+      /* Mobile responsive */
       @media (max-width: 768px) {
         .nav-links {
           flex-direction: column;
@@ -218,7 +215,6 @@
 
         .header-inner {
           flex-wrap: wrap;
-          padding: 0.6rem 1rem;
         }
 
         .tagline {
@@ -231,674 +227,507 @@
         }
       }
 
-      /* HERO – LIGHTER, SIMPLER FIRST SECTION */
-
-      .hero-shell {
-        position: relative;
-        overflow: hidden;
-        background: radial-gradient(circle at 0% 0%, #0b1120, #020617 55%);
-        color: #f9fafb;
+      /* Global section styles */
+      .section {
+        padding: 3rem 0;
       }
 
-      .hero-bg-image {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        overflow: hidden;
+      .section.alt {
+        background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
       }
 
-      .hero-bg-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.22;
-        transform: scale(1.05);
-      }
-
-      .hero-orbit {
-        position: absolute;
-        inset: -40%;
-        background:
-          radial-gradient(
-            circle at 10% 10%,
-            rgba(59, 130, 246, 0.35),
-            transparent 60%
-          ),
-          radial-gradient(
-            circle at 85% 0,
-            rgba(244, 114, 182, 0.35),
-            transparent 60%
-          );
-        opacity: 0.75;
-        animation: hero-orbit 26s linear infinite;
-      }
-
-      @keyframes hero-orbit {
-        0% {
-          transform: translate(0, 0);
-        }
-        50% {
-          transform: translate(18%, 10%);
-        }
-        100% {
-          transform: translate(0, 0);
-        }
-      }
-
-      .hero-inner-flex {
-        position: relative;
-        z-index: 1;
-        max-width: 1400px;
+      .container {
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 3.25rem 1.5rem 3rem;
-        display: grid;
-        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-        gap: 2.75rem;
-        align-items: center;
+        padding: 0 1.5rem;
       }
 
-      @media (max-width: 960px) {
-        .hero-inner-flex {
-          grid-template-columns: 1fr;
-          padding-top: 2.5rem;
-          padding-bottom: 2.5rem;
-          gap: 1.8rem;
-        }
-      }
-
-      .hero-eyebrow {
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: #a5b4fc;
-        margin-bottom: 0.8rem;
-      }
-
-      .hero-title {
-        font-size: clamp(2.3rem, 4vw, 3.4rem);
-        line-height: 1.08;
-        margin-bottom: 0.9rem;
-        color: #f9fafb;
-        letter-spacing: -0.04em;
-        text-shadow: 0 14px 32px rgba(15, 23, 42, 0.6);
-      }
-
-      .hero-kicker {
-        font-size: 0.98rem;
-        line-height: 1.7;
-        max-width: 520px;
-        color: #e5e7eb;
-        margin-bottom: 1.4rem;
-      }
-
-      .hero-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.85rem;
-        align-items: center;
-      }
-
-      .hero-buttons .btn {
-        min-width: 0;
-      }
-
-      .hero-quick-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 1.6rem;
-        font-size: 0.78rem;
-        color: #cbd5f5;
-      }
-
-      .hero-quick-tags span {
-        padding: 0.2rem 0.7rem;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.6);
-        background: rgba(15, 23, 42, 0.7);
-      }
-
-      .hero-metrics {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1rem;
-        font-size: 0.86rem;
-        color: #cbd5f5;
-      }
-
-      .hero-metric-label {
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        font-size: 0.74rem;
-        color: #a5b4fc;
-        margin-bottom: 0.15rem;
-      }
-
-      .hero-metric-value {
-        font-size: 1.35rem;
+      .section-title {
+        font-size: 2.5rem;
         font-weight: 700;
-        color: #e5e7eb;
+        color: #1e293b;
+        margin: 0 0 1.5rem;
+        line-height: 1.2;
       }
 
-      .hero-metric-note {
-        font-size: 0.8rem;
-        color: #94a3b8;
-      }
-
-      @media (max-width: 768px) {
-        .hero-title {
-          font-size: clamp(2rem, 7vw, 2.4rem);
-        }
-
-        .hero-kicker {
-          max-width: none;
-          font-size: 0.94rem;
-        }
-
-        .hero-metrics {
-          margin-top: 0.75rem;
-        }
-      }
-
-      /* NEW: HERO STRATEGY STRIP – holds moved copy in a lighter component */
-
-      .hero-strategy-strip {
-        background: #0b1120;
-        color: #e5e7eb;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-      }
-
-      .hero-strategy-inner {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 1.8rem 1.5rem 2.1rem;
-        display: grid;
-        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
-        gap: 2rem;
-      }
-
-      .hero-strategy-copy p {
-        font-size: 0.96rem;
+      .section-intro {
+        font-size: 1.1rem;
+        color: #475569;
         line-height: 1.8;
-        margin: 0 0 0.85rem;
-        color: #cbd5f5;
+        max-width: 900px;
+        margin-bottom: 2rem;
       }
 
-      .hero-strategy-copy p:last-child {
-        margin-bottom: 0;
+      .btn {
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
       }
 
-      .hero-strategy-pills {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 0.85rem;
+      .btn-primary {
+        background: #3b82f6;
+        color: white;
       }
 
-      .hero-strategy-pill {
-        border-radius: 16px;
-        border: 1px solid rgba(148, 163, 184, 0.35);
-        background: radial-gradient(
-          circle at 0% 0%,
-          rgba(59, 130, 246, 0.2),
-          rgba(15, 23, 42, 0.95)
-        );
-        padding: 0.9rem 0.9rem 0.8rem;
-        font-size: 0.88rem;
-        color: #e5e7eb;
+      .btn-primary:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
       }
 
-      .hero-strategy-pill strong {
-        display: block;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        color: #bfdbfe;
-        margin-bottom: 0.15rem;
+      .btn-secondary {
+        background: transparent;
+        color: #3b82f6;
+        border: 2px solid #3b82f6;
       }
 
-      @media (max-width: 900px) {
-        .hero-strategy-inner {
-          grid-template-columns: 1fr;
-          padding-top: 1.6rem;
-          padding-bottom: 1.9rem;
-        }
+      .btn-secondary:hover {
+        background: rgba(59, 130, 246, 0.1);
       }
 
-      @media (max-width: 640px) {
-        .hero-strategy-inner {
-          padding-inline: 1.25rem;
-          gap: 1.25rem;
-        }
-
-        .hero-strategy-copy p {
-          font-size: 0.9rem;
-          line-height: 1.7;
-        }
-
-        .hero-strategy-pill {
-          padding: 0.75rem 0.8rem 0.7rem;
-          font-size: 0.84rem;
-        }
-
-        .hero-strategy-pills {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 400px) {
-        /* optional: hide one pill to reduce height on very small phones */
-        .hero-strategy-pill:nth-child(3) {
-          display: none;
-        }
-      }
-
-      /* Flowing capability rail */
-
-      .flow-section {
-        padding: 3.5rem 0 3rem;
-      }
-
-      .flow-section.alt {
-        background: radial-gradient(circle at 0% 0%, #f9fafb, #eef2ff);
-      }
-
-      .flow-section .section-title {
-        margin-bottom: 0.35rem;
-      }
-
-      .flow-section .section-intro {
-        max-width: 760px;
-      }
-
-      .capability-rail {
-        margin-top: 2.1rem;
-        overflow-x: auto;
-        padding-bottom: 1rem;
-        scroll-snap-type: x mandatory;
-      }
-
-      .capability-track {
-        display: flex;
-        gap: 1.6rem;
-        min-width: 980px;
-      }
-
-      .capability-pill {
-        scroll-snap-align: start;
-        min-width: 260px;
-        max-width: 320px;
-        border-radius: 20px;
-        border: 1px solid #e2e8f0;
-        background: #ffffff;
-        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
-        padding: 1.6rem 1.5rem 1.4rem;
+      /* Service-specific styles */
+      .service-ecosystem {
         position: relative;
+        padding: 4rem 0;
+        background: linear-gradient(
+          135deg,
+          #f9fafb 0%,
+          #f3f4f6 50%,
+          #ffffff 100%
+        );
         overflow: hidden;
       }
 
-      .capability-pill::before {
+      .ecosystem-container {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* Service cards with centered emoji and expandable content */
+      .service-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .service-card {
+        position: relative;
+        background: white;
+        border-radius: 16px;
+        padding: 2.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        border: 1px solid rgba(59, 130, 246, 0.1);
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .service-card::before {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+        height: 4px;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+        opacity: 0;
+        transition: opacity 0.4s ease;
       }
 
-      .capability-label {
-        font-size: 0.78rem;
-        text-transform: uppercase;
-        letter-spacing: 0.18em;
-        color: #64748b;
-        margin-bottom: 0.35rem;
+      .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 40px rgba(59, 130, 246, 0.15);
+        border-color: rgba(59, 130, 246, 0.3);
       }
 
-      .capability-title {
-        font-size: 1.02rem;
-        font-weight: 600;
-        color: #0f172a;
-        margin-bottom: 0.4rem;
+      .service-card:hover::before {
+        opacity: 1;
       }
 
-      .capability-text {
-        font-size: 0.9rem;
-        color: #4b5563;
-        margin-bottom: 0.45rem;
-      }
-
-      .capability-subtext {
-        font-size: 0.85rem;
-        color: #6b7280;
-      }
-
-      @media (max-width: 900px) {
-        .capability-track {
-          min-width: 760px;
-        }
-      }
-
-      @media (max-width: 768px) {
-        /* pull rail edge-to-edge so partial card looks intentional */
-        .capability-rail {
-          margin: 2rem -1.25rem 1.25rem;
-          padding: 0 1.25rem 1.25rem;
-        }
-      }
-
-      /* Who we work with rail */
-
-      .sector-rail {
-        margin-top: 2rem;
-        overflow-x: auto;
-        padding-bottom: 1rem;
-        scroll-snap-type: x mandatory;
-      }
-
-      .sector-track {
+      .service-icon {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        height: auto;
+        width: 100%;
         display: flex;
-        gap: 1.5rem;
-        min-width: 860px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
       }
 
-      .sector-pill {
-        scroll-snap-align: start;
-        min-width: 260px;
-        max-width: 320px;
-        border-radius: 18px;
-        border: 1px solid #e2e8f0;
-        padding: 1.5rem 1.4rem 1.35rem;
-        background: #ffffff;
-        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      .service-card.discovery .service-icon {
+        background: linear-gradient(135deg, #dbeafe 0%, #f0e7fe 100%);
       }
 
-      .sector-title {
-        font-size: 1.02rem;
-        font-weight: 600;
-        color: #0f172a;
-        margin-bottom: 0.4rem;
+      .service-card.build .service-icon {
+        background: linear-gradient(135deg, #e0e7ff 0%, #fce7f3 100%);
       }
 
-      .sector-text {
-        font-size: 0.9rem;
-        color: #4b5563;
+      .service-card.automation .service-icon {
+        background: linear-gradient(135deg, #ccfbf1 0%, #fca5a5 100%);
       }
 
-      @media (max-width: 900px) {
-        .sector-track {
-          min-width: 720px;
-        }
+      .service-card h3 {
+        font-size: 1.35rem;
+        color: #1e293b;
+        margin: 1.25rem 0 1rem;
+        font-weight: 700;
+        line-height: 1.4;
       }
 
-      @media (max-width: 768px) {
-        .sector-rail {
-          margin: 2rem -1.25rem 1.25rem;
-          padding: 0 1.25rem 1.25rem;
-        }
-      }
-
-      /* WHY CHOOSE VERSED GLOBAL – FLOW REDESIGN (unchanged) */
-
-      .why-flow-layout {
-        display: grid;
-        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
-        gap: 3rem;
-        align-items: start;
-      }
-
-      @media (max-width: 900px) {
-        .why-flow-layout {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .why-flow-intro {
-        max-width: 640px;
-        font-size: 1rem;
-        color: #4b5563;
-        line-height: 1.8;
-        margin-bottom: 1.6rem;
-      }
-
-      .why-flow-timeline {
-        position: relative;
-        margin-top: 0.5rem;
-        padding-left: 1.4rem;
-      }
-
-      .why-flow-timeline::before {
-        content: "";
-        position: absolute;
-        left: 0.35rem;
-        top: 0.1rem;
-        bottom: 0.1rem;
-        width: 2px;
-        background: linear-gradient(
-          to bottom,
-          #3b82f6,
-          #8b5cf6,
-          #ec4899,
-          #10b981
-        );
-        opacity: 0.5;
-      }
-
-      .why-flow-step {
-        position: relative;
-        padding-left: 1.3rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .why-flow-step:last-child {
-        margin-bottom: 0;
-      }
-
-      .why-flow-step-dot {
-        position: absolute;
-        left: -0.15rem;
-        top: 0.32rem;
-        width: 0.85rem;
-        height: 0.85rem;
-        border-radius: 999px;
-        background: #ffffff;
-        border: 2px solid #3b82f6;
-        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
-      }
-
-      .why-flow-step-label {
-        text-transform: uppercase;
-        letter-spacing: 0.18em;
-        font-size: 0.75rem;
-        color: #6b7280;
-        margin-bottom: 0.2rem;
-      }
-
-      .why-flow-step-title {
-        font-size: 1.02rem;
-        font-weight: 600;
-        color: #0f172a;
-        margin-bottom: 0.2rem;
-      }
-
-      .why-flow-step-body {
-        font-size: 0.9rem;
-        color: #4b5563;
-      }
-
-      .why-flow-pillboard {
-        position: relative;
-        border-radius: 20px;
-        padding: 1.8rem 1.7rem 1.6rem;
-        background: radial-gradient(circle at 0% 0%, #eff6ff, #fdf2ff);
-        border: 1px solid #e2e8f0;
-        box-shadow:
-          0 18px 45px rgba(15, 23, 42, 0.08),
-          0 1px 0 rgba(255, 255, 255, 0.9);
+      .service-card-preview {
+        color: #475569;
+        line-height: 1.7;
+        font-size: 0.95rem;
+        margin: 0 0 1rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2; /* standard property added */
+        -webkit-box-orient: vertical;
         overflow: hidden;
       }
 
-      .why-flow-pillboard::before {
+      .read-more-btn {
+        background: transparent;
+        color: #3b82f6;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        text-decoration: underline;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+      }
+
+      .read-more-btn:hover {
+        color: #2563eb;
+      }
+
+      .service-card-full {
+        display: none;
+        color: #475569;
+        line-height: 1.7;
+        font-size: 0.95rem;
+        margin: 1rem 0;
+        text-align: left;
+      }
+
+      .service-card.expanded .service-card-preview {
+        display: none;
+      }
+
+      .service-card.expanded .service-card-full {
+        display: block;
+      }
+
+      .service-card.expanded .read-more-btn {
+        text-decoration: none;
+      }
+
+      /* Highlighted service section */
+      .featured-section {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        color: #f1f5f9;
+        padding: 3rem 2rem;
+        border-radius: 20px;
+        margin: 3rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .featured-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(59, 130, 246, 0.15) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+
+      .featured-section::after {
+        content: "";
+        position: absolute;
+        bottom: -40%;
+        left: -5%;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(139, 92, 246, 0.1) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+
+      .featured-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .featured-content h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+      }
+
+      .featured-content p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: #cbd5e1;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Two-column layout for Data section */
+      .data-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+        margin-top: 3rem;
+      }
+
+      .data-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .data-item {
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        border-radius: 12px;
+        border-left: 4px solid #3b82f6;
+        transition: all 0.3s ease;
+      }
+
+      .data-item:hover {
+        border-left-color: #8b5cf6;
+        box-shadow: 0 8px 24px rgba(59, 130, 246, 0.08);
+        transform: translateX(4px);
+      }
+
+      .data-item h4 {
+        font-size: 1.15rem;
+        color: #1e293b;
+        margin: 0 0 0.75rem 0;
+        font-weight: 700;
+      }
+
+      .data-item p {
+        color: #475569;
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .data-visual {
+        background: linear-gradient(
+          135deg,
+          #f0f9ff 0%,
+          #f5f3ff 50%,
+          #fce7f3 100%
+        );
+        border-radius: 16px;
+        padding: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .data-visual svg {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Sector cards without emojis */
+      .sector-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .sector-card {
+        position: relative;
+        padding: 2.5rem;
+        border-radius: 16px;
+        background: white;
+        border: 2px solid transparent;
+        transition: all 0.4s ease;
+        overflow: hidden;
+        text-align: left;
+      }
+
+      .sector-card::before {
         content: "";
         position: absolute;
         inset: 0;
-        background:
-          radial-gradient(
-            circle at 10% 0%,
-            rgba(59, 130, 246, 0.17),
-            transparent 55%
-          ),
-          radial-gradient(
-            circle at 90% 100%,
-            rgba(236, 72, 153, 0.14),
-            transparent 55%
-          );
-        opacity: 0.9;
+        background: linear-gradient(
+          135deg,
+          transparent 0%,
+          transparent 50%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
         pointer-events: none;
       }
 
-      .why-pillboard-inner {
+      .sector-card.charity {
+        border-color: #3b82f6;
+        box-shadow: 0 8px 24px rgba(59, 130, 246, 0.08);
+      }
+
+      .sector-card.charity:hover {
+        box-shadow: 0 16px 48px rgba(59, 130, 246, 0.2);
+        transform: translateY(-4px);
+      }
+
+      .sector-card.charity::after {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #3b82f6, #60a5fa);
+      }
+
+      .sector-card.corporate {
+        border-color: #8b5cf6;
+        box-shadow: 0 8px 24px rgba(139, 92, 246, 0.08);
+      }
+
+      .sector-card.corporate:hover {
+        box-shadow: 0 16px 48px rgba(139, 92, 246, 0.2);
+        transform: translateY(-4px);
+      }
+
+      .sector-card.corporate::after {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+      }
+
+      .sector-card.public {
+        border-color: #ec4899;
+        box-shadow: 0 8px 24px rgba(236, 72, 153, 0.08);
+      }
+
+      .sector-card.public:hover {
+        box-shadow: 0 16px 48px rgba(236, 72, 153, 0.2);
+        transform: translateY(-4px);
+      }
+
+      .sector-card.public::after {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #ec4899, #f472b6);
+      }
+
+      .sector-card h3 {
+        font-size: 1.3rem;
+        color: #1e293b;
+        margin: 1rem 0 0.75rem;
+        font-weight: 700;
         position: relative;
         z-index: 1;
       }
 
-      .why-pillboard-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.35rem 0.75rem;
-        border-radius: 999px;
-        background: rgba(15, 23, 42, 0.72);
-        color: #e5e7eb;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        margin-bottom: 0.8rem;
+      .sector-card p {
+        color: #475569;
+        line-height: 1.7;
+        font-size: 0.95rem;
+        margin: 0;
+        position: relative;
+        z-index: 1;
       }
 
-      .why-pillboard-badge i {
-        font-size: 0.9rem;
+      /* Process timeline */
+      .approach-section {
+        margin-top: 3rem;
       }
 
-      .why-pillboard-title {
-        font-size: 1rem;
-        font-weight: 600;
-        color: #0f172a;
-        margin-bottom: 0.75rem;
-      }
-
-      .why-pillboard-grid {
+      .process-timeline {
+        position: relative;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 0.75rem 1.3rem;
-        font-size: 0.88rem;
-        color: #374151;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
       }
 
-      .why-pill-item-label {
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        color: #6b7280;
-        margin-bottom: 0.25rem;
-      }
-
-      .why-pill-item-title {
-        font-weight: 600;
-        margin-bottom: 0.1rem;
-      }
-
-      .why-pill-item-text {
-        color: #4b5563;
-      }
-
-      @media (max-width: 600px) {
-        .why-flow-timeline {
-          padding-left: 1.2rem;
-        }
-        .why-flow-timeline::before {
-          left: 0.3rem;
-        }
-        .why-flow-step {
-          padding-left: 1.25rem;
-        }
-        .why-flow-step-dot {
-          left: -0.2rem;
-        }
-      }
-
-      /* FAQ, footer etc. keep existing styles from original */
-
-      .faq-section {
-        background: #f8fafc;
-        border-radius: 12px;
+      .process-step {
+        position: relative;
         padding: 2rem;
-        margin: 2rem 0;
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
       }
 
-      .faq-item {
-        margin-bottom: 1.25rem;
-        border-bottom: 1px solid #e2e8f0;
+      .process-step:hover {
+        border-color: #3b82f6;
+        box-shadow: 0 8px 24px rgba(59, 130, 246, 0.1);
       }
 
-      .faq-item:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-      }
-
-      .faq-question {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.25rem 0;
-        cursor: pointer;
-        user-select: none;
-        font-weight: 600;
-        color: #1e293b;
-        font-size: 1rem;
-      }
-
-      .faq-question:hover {
-        color: #3b82f6;
-      }
-
-      .faq-toggle {
-        width: 24px;
-        height: 24px;
+      .step-number {
+        position: absolute;
+        top: -16px;
+        left: 2rem;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #3b82f6, #60a5fa);
+        color: white;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.25rem;
-        color: #3b82f6;
-        transition: transform 0.3s ease;
-        flex-shrink: 0;
-        margin-left: 1rem;
+        font-weight: 700;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
       }
 
-      .faq-item.active .faq-toggle {
-        transform: rotate(180deg);
+      .process-step h3 {
+        font-size: 1.15rem;
+        color: #1e293b;
+        margin: 1rem 0 0.75rem;
+        font-weight: 700;
       }
 
-      .faq-answer {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-        padding: 0 0 0 0;
-      }
-
-      .faq-item.active .faq-answer {
-        max-height: 500px;
-        padding: 0 0 1.25rem 0;
-      }
-
-      .faq-answer p {
+      .process-step p {
         color: #475569;
-        line-height: 1.6;
         margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
       }
 
-      /* Footer redesign – unchanged */
-
+      /* Social icons in footer */
       .social-links {
         display: flex;
         gap: 1.5rem;
@@ -948,6 +777,7 @@
         background: #0a66ff;
       }
 
+      /* Footer redesign */
       footer {
         background: #1e293b;
         color: #e2e8f0;
@@ -1024,7 +854,6 @@
         border-radius: 8px;
         padding: 4px;
         object-fit: contain;
-        filter: none;
       }
 
       .footer-logo span {
@@ -1053,6 +882,17 @@
         color: #cbd5e1;
       }
 
+      .trustpilot-badge {
+        display: inline-block;
+        margin-top: 1rem;
+      }
+
+      .trustpilot-badge img {
+        height: 40px;
+        width: auto;
+        filter: brightness(0) invert(1);
+      }
+
       .trustpilot-link {
         display: inline-flex;
         align-items: center;
@@ -1073,7 +913,38 @@
         line-height: 1.6;
       }
 
+      /* Responsive adjustments */
       @media (max-width: 768px) {
+        .data-section {
+          grid-template-columns: 1fr;
+        }
+
+        .service-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .sector-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .featured-section {
+          padding: 2rem 1.5rem;
+        }
+
+        .featured-section h2 {
+          font-size: 1.5rem;
+        }
+
+        .process-timeline {
+          grid-template-columns: 1fr;
+        }
+
+        .data-visual {
+          min-height: 300px;
+          padding: 2rem;
+        }
+
         .footer-content {
           grid-template-columns: 1fr;
         }
@@ -1081,6 +952,10 @@
         .footer-bottom {
           flex-direction: column;
           text-align: center;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
         }
       }
     </style>
@@ -1103,15 +978,15 @@
             <div>
               <div class="logo-text">Versed Global</div>
               <div class="tagline">
-                Salesforce CRM Implementation &amp; Digital Governance Solutions
+                Salesforce CRM Implementation & Digital Governance Solutions
               </div>
             </div>
           </a>
         </div>
         <nav class="main-nav" aria-label="Primary navigation">
           <div class="nav-links" id="navLinks">
-            <a href="index.html" class="active">Home</a>
-            <a href="services.html">Salesforce</a>
+            <a href="index.html">Home</a>
+            <a href="services.html" class="active">Salesforce</a>
             <a href="about.html">About</a>
             <a href="clients.html">Clients</a>
             <a href="contact.html">Contact</a>
@@ -1131,741 +1006,626 @@
       </div>
     </header>
 
-    <!-- MAIN APP SHELL -->
+    <!-- MAIN APP SHELL FOR SPA -->
     <main id="app">
-      <!-- HERO – lighter, header-safe -->
-      <section class="hero-shell">
-        <div class="hero-bg-image">
-          <img
-            src="images/hero-consulting.jpg"
-            alt="Consulting team collaborating in a meeting room"
-          />
-        </div>
-        <div class="hero-orbit"></div>
-
-        <div class="hero-inner-flex">
-          <div>
-            <p class="hero-eyebrow">
-              Salesforce · Fundraising · Strategy · Training
-            </p>
-            <h1 class="hero-title">
-              Salesforce &amp; fundraising<br />that work as one system
-            </h1>
-            <p class="hero-kicker">
-              One partner for CRM design and trust &amp; foundation fundraising,
-              so systems and income plans support each other instead of
-              competing.
-            </p>
-
-            <div class="hero-buttons">
-              <a href="services.html" class="btn btn-primary">
-                Explore Salesforce services
-              </a>
-              <a href="fundraising.html" class="btn btn-secondary">
-                View fundraising support
-              </a>
-            </div>
-
-            <div class="hero-quick-tags" aria-label="Key themes">
-              <span>Salesforce CRM design &amp; build</span>
-              <span>Trust &amp; foundation fundraising</span>
-              <span>Programme &amp; reporting alignment</span>
-              <span>Training &amp; ongoing support</span>
-            </div>
-          </div>
-
-          <div>
-            <div class="hero-metrics">
-              <div>
-                <div class="hero-metric-label">Focus</div>
-                <div class="hero-metric-value">CRM &amp; income</div>
-                <div class="hero-metric-note">
-                  Salesforce, fundraising and governance in one place.
-                </div>
-              </div>
-              <div>
-                <div class="hero-metric-label">Clients</div>
-                <div class="hero-metric-value">Mission-led</div>
-                <div class="hero-metric-note">
-                  Charities, corporates and public-sector teams.
-                </div>
-              </div>
-              <div>
-                <div class="hero-metric-label">Approach</div>
-                <div class="hero-metric-value">Partnership</div>
-                <div class="hero-metric-note">
-                  Designing with you, not just for you.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- NEW: Strategy strip holding the detailed hero copy -->
-      <section class="hero-strategy-strip">
-        <div class="hero-strategy-inner">
-          <div class="hero-strategy-copy">
-            <p>
-              Versed Global designs, implements and refines Salesforce CRM
-              alongside trust and foundation fundraising so that income,
-              programmes and reporting are joined up rather than competing.
-            </p>
-            <p>
-              The focus is on practical, sustainable change: Salesforce
-              configurations that reflect how your teams actually work,
-              fundraising strategies grounded in your data and capacity, and
-              training that helps people use the tools with confidence rather
-              than fear.
-            </p>
-          </div>
-          <div
-            class="hero-strategy-pills"
-            aria-label="How this works in practice"
-          >
-            <div class="hero-strategy-pill">
-              <strong>Configuration</strong>
-              Objects, fields and automation shaped around your real fundraising
-              and programme workflows.
-            </div>
-            <div class="hero-strategy-pill">
-              <strong>Fundraising</strong>
-              Trust &amp; foundation pipelines that sit inside Salesforce, not
-              across disconnected spreadsheets.
-            </div>
-            <div class="hero-strategy-pill">
-              <strong>Reporting</strong>
-              Income, delivery and learning data feeding the same set of
-              dashboards and funder reports.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- WHAT WE DO – flowing capability rail -->
-      <section class="section flow-section">
-        <div class="container">
-          <h2 class="section-title">What Versed Global does</h2>
-          <p class="section-intro">
-            Versed Global closes the gap between robust systems and sustainable
-            income by aligning Salesforce CRM with real-world fundraising,
-            programme and reporting needs.
-          </p>
-
-          <div class="capability-rail">
-            <div class="capability-track">
-              <div class="capability-pill">
-                <div class="capability-label">Capability 1</div>
-                <div class="capability-title">
-                  Salesforce CRM design &amp; build
-                </div>
-                <p class="capability-text">
-                  Analysis, architecture and configuration of Salesforce so that
-                  objects, fields and automation match how your organisation
-                  actually operates.
-                </p>
-                <p class="capability-subtext">
-                  Includes requirements gathering, NPSP or core configuration,
-                  data migration planning and role-specific training plans.
-                </p>
-              </div>
-
-              <div class="capability-pill">
-                <div class="capability-label">Capability 2</div>
-                <div class="capability-title">
-                  Trust &amp; foundation fundraising
-                </div>
-                <p class="capability-text">
-                  Strategy, pipeline creation, bid development and reporting for
-                  trusts, foundations and institutional funders.
-                </p>
-                <p class="capability-subtext">
-                  Emphasis on realistic pipelines, evidence-rich cases for
-                  support and clear governance around decision-making.
-                </p>
-              </div>
-
-              <div class="capability-pill">
-                <div class="capability-label">Capability 3</div>
-                <div class="capability-title">
-                  Integrated systems &amp; income support
-                </div>
-                <p class="capability-text">
-                  Joining up Salesforce with fundraising, delivery and finance
-                  processes, so that income, outcomes and reporting draw on the
-                  same underlying data.
-                </p>
-                <p class="capability-subtext">
-                  Mapping journeys from enquiry to reporting, identifying where
-                  data is duplicated, missed or under-used.
-                </p>
-              </div>
-
-              <div class="capability-pill">
-                <div class="capability-label">Capability 4</div>
-                <div class="capability-title">
-                  Ongoing optimisation &amp; training
-                </div>
-                <p class="capability-text">
-                  Light-touch support, refinements and team training so that
-                  your system keeps pace with changing programmes and staffing.
-                </p>
-                <p class="capability-subtext">
-                  Includes periodic health checks, mini projects and targeted
-                  sessions for new starters or new features.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- WHO WE WORK WITH – flowing rail -->
-      <section class="section flow-section alt">
-        <div class="container">
-          <h2 class="section-title">Who we work with</h2>
-          <p class="section-intro">
-            Versed Global works with mission-driven, corporate and public-sector
-            teams that need Salesforce and fundraising support to pull in the
-            same direction.
-          </p>
-
-          <div class="sector-rail">
-            <div class="sector-track">
-              <div class="sector-pill">
-                <div class="sector-title">
-                  Charities &amp; social enterprises
-                </div>
-                <p class="sector-text">
-                  Organisations that rely on trusts, foundations and
-                  institutional funders and need joined-up CRM and fundraising
-                  support that respects limited internal capacity.
-                </p>
-              </div>
-
-              <div class="sector-pill">
-                <div class="sector-title">Corporate organisations</div>
-                <p class="sector-text">
-                  Corporate teams using Salesforce for stakeholder management,
-                  CSR, ESG reporting and partnerships, who need clear,
-                  repeatable processes and visibility across regions or teams.
-                </p>
-              </div>
-
-              <div class="sector-pill">
-                <div class="sector-title">Public-sector institutions</div>
-                <p class="sector-text">
-                  Government and public-sector bodies requiring secure,
-                  well-designed Salesforce systems for programmes, grants and
-                  stakeholder engagement, with strong governance and audit
-                  trails.
-                </p>
-              </div>
-
-              <div class="sector-pill">
-                <div class="sector-title">Collaborative initiatives</div>
-                <p class="sector-text">
-                  Partnerships and consortia where multiple organisations,
-                  funders and delivery partners need a shared picture of
-                  activity, outcomes and learning.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- WHY CHOOSE VERSED GLOBAL – flow section (unchanged) -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Why choose Versed Global?</h2>
-          <div class="why-flow-layout">
-            <!-- Left: narrative + vertical flow -->
-            <div>
-              <p class="why-flow-intro">
-                Versed Global brings Salesforce implementation and fundraising
-                strategy together so that systems, income and governance move in
-                a single direction rather than pulling against each other.
-              </p>
-
-              <div class="why-flow-timeline" aria-label="Engagement flow">
-                <div class="why-flow-step">
-                  <div class="why-flow-step-dot"></div>
-                  <div class="why-flow-step-label">Step 1 · Understand</div>
-                  <div class="why-flow-step-title">
-                    Start with how your organisation really works
-                  </div>
-                  <p class="why-flow-step-body">
-                    Workshops, interviews and light-touch reviews uncover how
-                    fundraising, delivery and reporting operate today – where
-                    Salesforce helps, where it hinders and where data is being
-                    duplicated or missed.
-                  </p>
-                </div>
-
-                <div class="why-flow-step">
-                  <div class="why-flow-step-dot"></div>
-                  <div class="why-flow-step-label">Step 2 · Design</div>
-                  <div class="why-flow-step-title">
-                    Shape Salesforce around those workflows
-                  </div>
-                  <p class="why-flow-step-body">
-                    Objects, fields, automations and reports are designed to
-                    mirror real processes: prospecting, award management,
-                    delivery and reporting – not just a generic CRM template.
-                  </p>
-                </div>
-
-                <div class="why-flow-step">
-                  <div class="why-flow-step-dot"></div>
-                  <div class="why-flow-step-label">Step 3 · Integrate</div>
-                  <div class="why-flow-step-title">
-                    Join up systems and fundraising
-                  </div>
-                  <p class="why-flow-step-body">
-                    Fundraising strategy, governance and reporting are threaded
-                    through the build, so that income plans, risk registers and
-                    funder obligations are visible inside Salesforce rather than
-                    living in separate spreadsheets.
-                  </p>
-                </div>
-
-                <div class="why-flow-step">
-                  <div class="why-flow-step-dot"></div>
-                  <div class="why-flow-step-label">Step 4 · Equip</div>
-                  <div class="why-flow-step-title">
-                    Build confidence, not dependency
-                  </div>
-                  <p class="why-flow-step-body">
-                    Documentation, handover sessions and role-specific training
-                    help internal teams understand how the system works, what
-                    has been decided and how to adapt it as programmes grow.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right: compact artistic pillboard -->
-            <aside class="why-flow-pillboard">
-              <div class="why-pillboard-inner">
-                <div class="why-pillboard-badge">
-                  <i class="fas fa-route" aria-hidden="true"></i>
-                  <span>From complexity to clear flow</span>
-                </div>
-                <div class="why-pillboard-title">
-                  What this means in day-to-day work
-                </div>
-
-                <div class="why-pillboard-grid">
-                  <div>
-                    <div class="why-pill-item-label">Systems</div>
-                    <div class="why-pill-item-title">
-                      Salesforce that reflects reality
-                    </div>
-                    <p class="why-pill-item-text">
-                      Page layouts, automations and reports are built around
-                      your teams’ language, not abstract system labels.
-                    </p>
-                  </div>
-
-                  <div>
-                    <div class="why-pill-item-label">Fundraising</div>
-                    <div class="why-pill-item-title">
-                      Pipelines you can trust
-                    </div>
-                    <p class="why-pill-item-text">
-                      Prospects, bids, awards and reporting deadlines sit in one
-                      flow so everyone can see what is due, when and why.
-                    </p>
-                  </div>
-
-                  <div>
-                    <div class="why-pill-item-label">Governance</div>
-                    <div class="why-pill-item-title">
-                      Clear decisions, captured once
-                    </div>
-                    <p class="why-pill-item-text">
-                      Risks, approvals and key choices are documented in the
-                      system so new colleagues can follow the same path.
-                    </p>
-                  </div>
-
-                  <div>
-                    <div class="why-pill-item-label">People</div>
-                    <div class="why-pill-item-title">
-                      Teams that feel equipped
-                    </div>
-                    <p class="why-pill-item-text">
-                      Training and materials are written in plain language so
-                      staff can use Salesforce and fundraising tools with
-                      confidence.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <!-- How we work / Values (unchanged) -->
-      <section class="section" style="position: relative; overflow: hidden">
-        <div
-          style="
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-              135deg,
-              #3b5bdb15,
-              #14b8a615,
-              #ffffff10
-            );
-            z-index: 0;
-          "
-        ></div>
-        <div class="container" style="position: relative; z-index: 1">
-          <h2 class="section-title">How we work</h2>
-          <p class="section-intro">
-            Our work combines technical precision with fundraising expertise,
-            grounded in clear values that keep impact, ethics and equity at the
-            centre of every project.
-          </p>
-          <div
-            class="values-grid"
-            style="
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-              gap: 2rem;
-              margin-top: 2.5rem;
-            "
-          >
-            <div
-              class="value"
-              style="
-                background: linear-gradient(145deg, #f4f6fb 0%, #ffffff 100%);
-                border-radius: 18px;
-                padding: 2rem;
-                text-align: center;
-                box-shadow: 0 8px 25px rgba(59, 91, 219, 0.08);
-                transition: all 0.4s ease;
-              "
-              onmouseover="
-                this.style.transform = 'translateY(-10px)';
-                this.style.boxShadow = '0 20px 45px rgba(59,91,219,0.15)';
-              "
-              onmouseout="
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '0 8px 25px rgba(59,91,219,0.08)';
-              "
-            >
-              <h3
-                style="
-                  font-size: 1.3rem;
-                  color: #1e293b;
-                  margin-bottom: 0.6rem;
-                  font-weight: 700;
-                "
-              >
-                Impact
-              </h3>
-              <p style="color: #475569">
-                Every system, training and strategy is designed to contribute to
-                meaningful outcomes for people and communities, not just
-                internal metrics.
-              </p>
-            </div>
-
-            <div
-              class="value"
-              style="
-                background: linear-gradient(145deg, #ffffff 0%, #f9fafc 100%);
-                border-radius: 18px;
-                padding: 2rem;
-                text-align: center;
-                box-shadow: 0 8px 25px rgba(139, 92, 246, 0.1);
-                transition: all 0.4s ease;
-              "
-              onmouseover="
-                this.style.transform = 'translateY(-10px)';
-                this.style.boxShadow = '0 20px 45px rgba(139,92,246,0.2)';
-              "
-              onmouseout="
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '0 8px 25px rgba(139,92,246,0.1)';
-              "
-            >
-              <h3
-                style="
-                  font-size: 1.3rem;
-                  margin-bottom: 0.6rem;
-                  font-weight: 700;
-                "
-              >
-                Integrity
-              </h3>
-              <p style="color: #475569">
-                Honest advice, ethical fundraising and strong respect for data
-                privacy and governance shape how every engagement is delivered.
-              </p>
-            </div>
-
-            <div
-              class="value"
-              style="
-                background: linear-gradient(145deg, #fdf2f8 0%, #ffffff 100%);
-                border-radius: 18px;
-                padding: 2rem;
-                text-align: center;
-                box-shadow: 0 8px 25px rgba(236, 72, 153, 0.1);
-                transition: all 0.4s ease;
-              "
-              onmouseover="
-                this.style.transform = 'translateY(-10px)';
-                this.style.boxShadow = '0 20px 45px rgba(236,72,153,0.2)';
-              "
-              onmouseout="
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '0 8px 25px rgba(236,72,153,0.1)';
-              "
-            >
-              <h3
-                style="
-                  font-size: 1.3rem;
-                  margin-bottom: 0.6rem;
-                  font-weight: 700;
-                "
-              >
-                Equity
-              </h3>
-              <p style="color: #475569">
-                A commitment to supporting organisations working with
-                underserved communities and addressing systemic barriers is
-                built into our practice.
-              </p>
-            </div>
-
-            <div
-              class="value"
-              style="
-                background: linear-gradient(145deg, #e0f2fe 0%, #ffffff 100%);
-                border-radius: 18px;
-                padding: 2rem;
-                text-align: center;
-                box-shadow: 0 8px 25px rgba(20, 184, 166, 0.1);
-                transition: all 0.4s ease;
-              "
-              onmouseover="
-                this.style.transform = 'translateY(-10px)';
-                this.style.boxShadow = '0 20px 45px rgba(20,184,166,0.2)';
-              "
-              onmouseout="
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '0 8px 25px rgba(20,184,166,0.1)';
-              "
-            >
-              <h3
-                style="
-                  font-size: 1.3rem;
-                  margin-bottom: 0.6rem;
-                  font-weight: 700;
-                "
-              >
-                Excellence
-              </h3>
-              <p style="color: #475569">
-                High standards in solution design, data quality, writing and
-                delivery mean careful, sustainable solutions rather than quick
-                fixes.
-              </p>
-            </div>
-
-            <div
-              class="value"
-              style="
-                background: linear-gradient(145deg, #ede9fe 0%, #ffffff 100%);
-                border-radius: 18px;
-                padding: 2rem;
-                text-align: center;
-                box-shadow: 0 8px 25px rgba(79, 70, 229, 0.1);
-                transition: all 0.4s ease;
-              "
-              onmouseover="
-                this.style.transform = 'translateY(-10px)';
-                this.style.boxShadow = '0 20px 45px rgba(79,70,229,0.2)';
-              "
-              onmouseout="
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '0 8px 25px rgba(79,70,229,0.1)';
-              "
-            >
-              <h3
-                style="
-                  font-size: 1.3rem;
-                  margin-bottom: 0.6rem;
-                  font-weight: 700;
-                "
-              >
-                Collaboration
-              </h3>
-              <p style="color: #475569">
-                Working alongside client teams, transferring skills and building
-                internal capacity instead of creating dependency.
-              </p>
-            </div>
-
-            <div
-              class="value"
-              style="
-                background: linear-gradient(145deg, #f0fdfa 0%, #ffffff 100%);
-                border-radius: 18px;
-                padding: 2rem;
-                text-align: center;
-                box-shadow: 0 8px 25px rgba(16, 185, 129, 0.1);
-                transition: all 0.4s ease;
-              "
-              onmouseover="
-                this.style.transform = 'translateY(-10px)';
-                this.style.boxShadow = '0 20px 45px rgba(16,185,129,0.2)';
-              "
-              onmouseout="
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = '0 8px 25px rgba(16,185,129,0.1)';
-              "
-            >
-              <h3
-                style="
-                  font-size: 1.3rem;
-                  margin-bottom: 0.6rem;
-                  font-weight: 700;
-                "
-              >
-                Learning
-              </h3>
-              <p style="color: #475569">
-                Continuous learning in technology, fundraising practice and
-                policy ensures clients benefit from current best practice.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Frequently Asked Questions (unchanged) -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Frequently asked questions</h2>
-          <p class="section-intro">
-            Find answers to common questions about our services, process and
-            support.
-          </p>
-          <div class="faq-section">
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>What is included in a Salesforce implementation?</span>
-                <div class="faq-toggle">+</div>
-              </div>
-              <div class="faq-answer">
-                <p>
-                  Our Salesforce implementations include comprehensive needs
-                  analysis, system design, data migration, configuration, user
-                  training and ongoing support. We tailor the scope to match
-                  your organisation's specific requirements and budget.
-                </p>
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>How long does a typical Salesforce project take?</span>
-                <div class="faq-toggle">+</div>
-              </div>
-              <div class="faq-answer">
-                <p>
-                  Project timelines vary depending on complexity and scope. A
-                  basic implementation typically takes 8-12 weeks, while more
-                  complex integrations may take 12-20 weeks. We'll provide a
-                  detailed timeline during the scoping phase.
-                </p>
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Do you work with the Nonprofit Success Pack (NPSP)?</span>
-                <div class="faq-toggle">+</div>
-              </div>
-              <div class="faq-answer">
-                <p>
-                  Yes, we specialise in NPSP configuration for charities and
-                  nonprofits. We have extensive experience with accounts,
-                  contacts, donations, relationships and all NPSP functionality
-                  tailored to nonprofit fundraising requirements.
-                </p>
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>What support do you provide after implementation?</span>
-                <div class="faq-toggle">+</div>
-              </div>
-              <div class="faq-answer">
-                <p>
-                  We offer comprehensive post-launch support including user
-                  training, system optimisation, troubleshooting, and strategic
-                  advice. Support packages can be customised as ongoing
-                  retainers or project-based.
-                </p>
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span
-                  >How can fundraising strategy integrate with Salesforce?</span
-                >
-                <div class="faq-toggle">+</div>
-              </div>
-              <div class="faq-answer">
-                <p>
-                  We design your CRM to support your fundraising workflows, from
-                  prospect research and pipeline management to grant tracking
-                  and reporting. This alignment ensures your system enables, not
-                  hinders, your fundraising programme.
-                </p>
-              </div>
-            </div>
-
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Can you help migrate data from our current system?</span>
-                <div class="faq-toggle">+</div>
-              </div>
-              <div class="faq-answer">
-                <p>
-                  Yes. We handle data assessment, cleansing, mapping and
-                  migration from existing systems. We ensure data integrity
-                  throughout the process and validate all migrated records
-                  before go-live.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA (unchanged copy, kept) -->
+      <!-- Page hero -->
       <section class="section alt">
-        <div class="container" style="text-align: center">
-          <h2 class="section-title">
-            Ready to align your Salesforce and fundraising?
-          </h2>
-          <p class="section-intro" style="margin: 0 auto 1.5rem">
-            Versed Global is a UK-registered consultancy delivering
-            project-based and ongoing Salesforce and fundraising support for
-            mission-driven, corporate and public-sector organisations.
+        <div class="container">
+          <h1 class="section-title">
+            Salesforce services for mission‑driven, corporate and public‑sector
+            teams
+          </h1>
+          <p class="section-intro">
+            Versed Global designs, integrates, implements and manages
+            Salesforce-based CRM systems for charities, corporates and
+            public‑sector bodies. The focus is on clean architecture, practical
+            automation and reporting that supports fundraising, stakeholder
+            management and service delivery – not just a technically impressive
+            system.
           </p>
-          <a href="contact.html" class="btn btn-primary">Book a conversation</a>
+        </div>
+      </section>
+
+      <!-- Core service areas with visual design -->
+      <section class="section service-ecosystem">
+        <div class="ecosystem-container">
+          <h2 class="section-title">Core Salesforce service areas</h2>
+          <div class="service-grid">
+            <div class="service-card discovery">
+              <div class="service-icon">🔍</div>
+              <h3>Discovery &amp; solution design</h3>
+              <p class="service-card-preview">
+                Structured discovery to understand your programmes, fundraising,
+                reporting and governance requirements...
+              </p>
+              <p class="service-card-full">
+                Structured discovery to understand your programmes, fundraising,
+                reporting and governance requirements. This includes mapping
+                existing processes, clarifying user journeys and translating
+                them into a Salesforce design that supports your strategy rather
+                than forcing you to work around the system.
+              </p>
+              <button class="read-more-btn" onclick="toggleServiceCard(this)">
+                Read More
+              </button>
+            </div>
+            <div class="service-card build">
+              <div class="service-icon">⚙️</div>
+              <h3>Salesforce build &amp; configuration</h3>
+              <p class="service-card-preview">
+                Configuration of Salesforce (including Nonprofit Success Pack
+                where appropriate) to match your data model and workflows...
+              </p>
+              <p class="service-card-full">
+                Configuration of Salesforce (including Nonprofit Success Pack
+                where appropriate) to match your data model and workflows:
+                custom objects and fields, record types, page layouts,
+                validation rules, security and sharing, profiles and permission
+                sets – aligned with best practice for charities, corporates and
+                public‑sector institutions.
+              </p>
+              <button class="read-more-btn" onclick="toggleServiceCard(this)">
+                Read More
+              </button>
+            </div>
+            <div class="service-card automation">
+              <div class="service-icon">⚡</div>
+              <h3>Automation &amp; workflow</h3>
+              <p class="service-card-preview">
+                Design and implementation of Flows and other automation to
+                reduce manual admin...
+              </p>
+              <p class="service-card-full">
+                Design and implementation of Flows and other automation to
+                reduce manual admin: automated tasks and reminders, email
+                notifications, approvals, service pipelines, grant cycles and
+                stewardship workflows that keep work moving without
+                over‑complicating the build.
+              </p>
+              <button class="read-more-btn" onclick="toggleServiceCard(this)">
+                Read More
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured: Data & Reporting -->
+      <section class="section">
+        <div class="container">
+          <div class="featured-section">
+            <div class="featured-content">
+              <h2>Data, reporting and ongoing improvement</h2>
+              <p>
+                Strong data management and clear reporting are the backbone of a
+                CRM that delivers real value. We design data architectures,
+                migration processes and dashboards that turn Salesforce data
+                into actionable insights for leadership, fundraising teams and
+                boards – and we stay engaged to ensure your system evolves with
+                your organisation.
+              </p>
+            </div>
+          </div>
+
+          <div class="data-section">
+            <div class="data-content">
+              <div class="data-item">
+                <h4>Data migration &amp; quality</h4>
+                <p>
+                  Support with cleaning and migrating data from spreadsheets or
+                  legacy systems into Salesforce, designing imports that
+                  preserve history while improving quality. This includes clear
+                  templates, deduplication rules and practical guidance so your
+                  team can maintain good data habits long‑term.
+                </p>
+              </div>
+              <div class="data-item">
+                <h4>Reporting &amp; dashboards</h4>
+                <p>
+                  Tailored reports and dashboards for leadership, fundraising,
+                  service teams and boards: income by source, pipeline health,
+                  service volumes, outcomes and funder‑specific metrics that
+                  matter to trustees, senior management and grant‑makers.
+                </p>
+              </div>
+              <div class="data-item">
+                <h4>Support &amp; optimisation</h4>
+                <p>
+                  Light‑touch, ongoing support and iterative improvements so
+                  your CRM evolves with your organisation. This can include
+                  small enhancements, new automations, reporting tweaks and
+                  periodic reviews to ensure your Salesforce investment
+                  continues to deliver value.
+                </p>
+              </div>
+            </div>
+            <div class="data-visual">
+              <!-- Data Migration Graph -->
+              <svg
+                viewBox="0 0 350 300"
+                xmlns="http://www.w3.org/2000/svg"
+                style="max-width: 100%; height: auto"
+              >
+                <!-- Title -->
+                <text
+                  x="175"
+                  y="25"
+                  text-anchor="middle"
+                  font-size="16"
+                  font-weight="bold"
+                  fill="#1e293b"
+                >
+                  Data Flow & Quality
+                </text>
+
+                <!-- Source Data Box -->
+                <rect
+                  x="20"
+                  y="50"
+                  width="90"
+                  height="60"
+                  fill="#dbeafe"
+                  stroke="#3b82f6"
+                  stroke-width="2"
+                  rx="8"
+                />
+                <text
+                  x="65"
+                  y="75"
+                  text-anchor="middle"
+                  font-size="12"
+                  font-weight="bold"
+                  fill="#1e293b"
+                >
+                  Legacy Data
+                </text>
+                <text
+                  x="65"
+                  y="92"
+                  text-anchor="middle"
+                  font-size="11"
+                  fill="#475569"
+                >
+                  Spreadsheets
+                </text>
+                <text
+                  x="65"
+                  y="105"
+                  text-anchor="middle"
+                  font-size="11"
+                  fill="#475569"
+                >
+                  Old Systems
+                </text>
+
+                <!-- Arrow 1 -->
+                <path
+                  d="M 110 80 L 140 80"
+                  stroke="#3b82f6"
+                  stroke-width="2"
+                  fill="none"
+                  marker-end="url(#arrowhead)"
+                />
+                <text
+                  x="125"
+                  y="75"
+                  text-anchor="middle"
+                  font-size="10"
+                  fill="#3b82f6"
+                  font-weight="bold"
+                >
+                  Clean
+                </text>
+
+                <!-- Processing Box -->
+                <rect
+                  x="140"
+                  y="50"
+                  width="90"
+                  height="60"
+                  fill="#e0e7ff"
+                  stroke="#6366f1"
+                  stroke-width="2"
+                  rx="8"
+                />
+                <text
+                  x="185"
+                  y="75"
+                  text-anchor="middle"
+                  font-size="12"
+                  font-weight="bold"
+                  fill="#1e293b"
+                >
+                  Processing
+                </text>
+                <text
+                  x="185"
+                  y="92"
+                  text-anchor="middle"
+                  font-size="11"
+                  fill="#475569"
+                >
+                  Deduplication
+                </text>
+                <text
+                  x="185"
+                  y="105"
+                  text-anchor="middle"
+                  font-size="11"
+                  fill="#475569"
+                >
+                  Validation
+                </text>
+
+                <!-- Arrow 2 -->
+                <path
+                  d="M 230 80 L 260 80"
+                  stroke="#6366f1"
+                  stroke-width="2"
+                  fill="none"
+                  marker-end="url(#arrowhead2)"
+                />
+                <text
+                  x="245"
+                  y="75"
+                  text-anchor="middle"
+                  font-size="10"
+                  fill="#6366f1"
+                  font-weight="bold"
+                >
+                  Import
+                </text>
+
+                <!-- Salesforce Box -->
+                <rect
+                  x="260"
+                  y="50"
+                  width="70"
+                  height="60"
+                  fill="#cffafe"
+                  stroke="#06b6d4"
+                  stroke-width="2"
+                  rx="8"
+                />
+                <text
+                  x="295"
+                  y="75"
+                  text-anchor="middle"
+                  font-size="12"
+                  font-weight="bold"
+                  fill="#1e293b"
+                >
+                  Salesforce
+                </text>
+                <text
+                  x="295"
+                  y="92"
+                  text-anchor="middle"
+                  font-size="11"
+                  fill="#475569"
+                >
+                  Quality
+                </text>
+                <text
+                  x="295"
+                  y="105"
+                  text-anchor="middle"
+                  font-size="11"
+                  fill="#475569"
+                >
+                  Data
+                </text>
+
+                <!-- Arrow 3 Down -->
+                <path
+                  d="M 295 110 L 295 140"
+                  stroke="#06b6d4"
+                  stroke-width="2"
+                  fill="none"
+                  marker-end="url(#arrowhead3)"
+                />
+
+                <!-- Reporting Box -->
+                <rect
+                  x="245"
+                  y="140"
+                  width="100"
+                  height="60"
+                  fill="#fce7f3"
+                  stroke="#ec4899"
+                  stroke-width="2"
+                  rx="8"
+                />
+                <text
+                  x="295"
+                  y="165"
+                  text-anchor="middle"
+                  font-size="12"
+                  font-weight="bold"
+                  fill="#1e293b"
+                >
+                  Reporting
+                </text>
+                <text
+                  x="295"
+                  y="182"
+                  text-anchor="middle"
+                  font-size="11"
+                  fill="#475569"
+                >
+                  Dashboards
+                </text>
+                <text
+                  x="295"
+                  y="195"
+                  text-anchor="middle"
+                  font-size="11"
+                  fill="#475569"
+                >
+                  Insights
+                </text>
+
+                <!-- Arrow 4 Left -->
+                <path
+                  d="M 245 170 L 205 170"
+                  stroke="#ec4899"
+                  stroke-width="2"
+                  fill="none"
+                  marker-end="url(#arrowhead4)"
+                />
+
+                <!-- Support Box -->
+                <rect
+                  x="100"
+                  y="140"
+                  width="105"
+                  height="60"
+                  fill="#f0fdfa"
+                  stroke="#14b8a6"
+                  stroke-width="2"
+                  rx="8"
+                />
+                <text
+                  x="152.5"
+                  y="165"
+                  text-anchor="middle"
+                  font-size="12"
+                  font-weight="bold"
+                  fill="#1e293b"
+                >
+                  Support
+                </text>
+                <text
+                  x="152.5"
+                  y="182"
+                  text-anchor="middle"
+                  font-size="11"
+                  fill="#475569"
+                >
+                  Optimization
+                </text>
+                <text
+                  x="152.5"
+                  y="195"
+                  text-anchor="middle"
+                  font-size="11"
+                  fill="#475569"
+                >
+                  Evolution
+                </text>
+
+                <!-- Arrow 5 Up -->
+                <path
+                  d="M 152.5 140 L 152.5 110"
+                  stroke="#14b8a6"
+                  stroke-width="2"
+                  fill="none"
+                  marker-end="url(#arrowhead5)"
+                />
+
+                <!-- Bottom metrics -->
+                <rect
+                  x="20"
+                  y="230"
+                  width="310"
+                  height="60"
+                  fill="#f8fafc"
+                  stroke="#cbd5e1"
+                  stroke-width="1"
+                  rx="8"
+                />
+                <text
+                  x="35"
+                  y="255"
+                  font-size="12"
+                  font-weight="bold"
+                  fill="#1e293b"
+                >
+                  ✓ Data Integrity
+                </text>
+                <text
+                  x="180"
+                  y="255"
+                  font-size="12"
+                  font-weight="bold"
+                  fill="#1e293b"
+                >
+                  ✓ Automated Validation
+                </text>
+                <text
+                  x="35"
+                  y="275"
+                  font-size="12"
+                  font-weight="bold"
+                  fill="#1e293b"
+                >
+                  ✓ Continuous Improvement
+                </text>
+                <text
+                  x="180"
+                  y="275"
+                  font-size="12"
+                  font-weight="bold"
+                  fill="#1e293b"
+                >
+                  ✓ Actionable Insights
+                </text>
+
+                <!-- Arrow markers -->
+                <defs>
+                  <marker
+                    id="arrowhead"
+                    markerWidth="10"
+                    markerHeight="10"
+                    refX="9"
+                    refY="3"
+                    orient="auto"
+                  >
+                    <polygon points="0 0, 10 3, 0 6" fill="#3b82f6" />
+                  </marker>
+                  <marker
+                    id="arrowhead2"
+                    markerWidth="10"
+                    markerHeight="10"
+                    refX="9"
+                    refY="3"
+                    orient="auto"
+                  >
+                    <polygon points="0 0, 10 3, 0 6" fill="#6366f1" />
+                  </marker>
+                  <marker
+                    id="arrowhead3"
+                    markerWidth="10"
+                    markerHeight="10"
+                    refX="9"
+                    refY="3"
+                    orient="auto"
+                  >
+                    <polygon points="0 0, 10 3, 0 6" fill="#06b6d4" />
+                  </marker>
+                  <marker
+                    id="arrowhead4"
+                    markerWidth="10"
+                    markerHeight="10"
+                    refX="9"
+                    refY="3"
+                    orient="auto"
+                  >
+                    <polygon points="0 0, 10 3, 0 6" fill="#ec4899" />
+                  </marker>
+                  <marker
+                    id="arrowhead5"
+                    markerWidth="10"
+                    markerHeight="10"
+                    refX="9"
+                    refY="3"
+                    orient="auto"
+                  >
+                    <polygon points="0 0, 10 3, 0 6" fill="#14b8a6" />
+                  </marker>
+                </defs>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sectors with color-coded cards -->
+      <section class="section alt">
+        <div class="container">
+          <h2 class="section-title">Built for your context</h2>
+          <p class="section-intro">
+            Every sector has unique requirements. We configure Salesforce to
+            support your specific governance, compliance and operational needs.
+          </p>
+          <div class="sector-grid">
+            <div class="sector-card charity">
+              <h3>Charities &amp; social enterprises</h3>
+              <p>
+                Systems configured to support service delivery, volunteer
+                management, grant reporting, trust and foundation funding,
+                individual giving and major donor work – with governance and
+                safeguarding considerations built in from the start.
+              </p>
+            </div>
+            <div class="sector-card corporate">
+              <h3>Corporate organisations &amp; CSR teams</h3>
+              <p>
+                Salesforce builds for stakeholder management, CSR and ESG
+                programmes, partnerships and employee engagement, with reporting
+                that supports internal governance and external impact
+                communication.
+              </p>
+            </div>
+            <div class="sector-card public">
+              <h3>Public‑sector programmes</h3>
+              <p>
+                Secure, structured Salesforce environments for managing
+                programmes, grants and citizen or stakeholder engagement,
+                aligned with public‑sector expectations around data management
+                and accountability.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Approach / Process -->
+      <section class="section approach-section">
+        <div class="container">
+          <h2 class="section-title">Approach to Salesforce projects</h2>
+          <p class="section-intro">
+            Versed Global works in partnership with your team, combining
+            consultancy and hands‑on build. The aim is not to drop in a complex
+            system and leave, but to embed something your staff can understand,
+            own and develop.
+          </p>
+          <div class="process-timeline">
+            <div class="process-step">
+              <div class="step-number">1</div>
+              <h3>Collaborative design</h3>
+              <p>
+                Workshops and regular check‑ins with key users to validate the
+                design and test assumptions before major build decisions are
+                made, ensuring alignment with your fundraising and programme
+                needs.
+              </p>
+            </div>
+            <div class="process-step">
+              <div class="step-number">2</div>
+              <h3>Transparent delivery</h3>
+              <p>
+                Clear documentation, configuration logs and admin‑friendly
+                naming conventions so your internal team can understand what has
+                been built and why decisions were made.
+              </p>
+            </div>
+            <div class="process-step">
+              <div class="step-number">3</div>
+              <h3>Skills transfer</h3>
+              <p>
+                Training and handover designed to grow your internal capacity –
+                from "super user" training through to admin‑level guidance – so
+                you are not dependent on external support for basic changes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section">
+        <div class="container" style="text-align: center">
+          <h2 class="section-title">Discuss your Salesforce plans</h2>
+          <p class="section-intro" style="margin: 0 auto 1.5rem">
+            Whether you are starting from spreadsheets, re‑platforming from
+            another CRM, or need to rescue an existing Salesforce
+            implementation, Versed Global can help you create a system that
+            genuinely supports your work and funding model.
+          </p>
+          <a href="contact.html" class="btn btn-primary"
+            >Book a free initial conversation</a
+          >
         </div>
       </section>
     </main>
@@ -2026,9 +1786,9 @@
       // Update active nav link based on current page
       function updateActiveNav() {
         const currentPage = window.location.pathname;
-        const navLinksEls = document.querySelectorAll(".nav-links a");
+        const navItems = document.querySelectorAll(".nav-links a");
 
-        navLinksEls.forEach((link) => {
+        navItems.forEach((link) => {
           link.classList.remove("active");
           if (currentPage === "/" || currentPage === "/index.html") {
             if (link.getAttribute("href") === "index.html") {
@@ -2042,20 +1802,16 @@
         });
       }
 
+      // Run on page load
       updateActiveNav();
 
-      // FAQ toggle functionality
-      function toggleFAQ(element) {
-        const faqItem = element.parentElement;
-        const isActive = faqItem.classList.contains("active");
-
-        document.querySelectorAll(".faq-item").forEach((item) => {
-          item.classList.remove("active");
-        });
-
-        if (!isActive) {
-          faqItem.classList.add("active");
-        }
+      // Toggle Service Card - Read More/Less
+      function toggleServiceCard(button) {
+        const card = button.closest(".service-card");
+        card.classList.toggle("expanded");
+        button.textContent = card.classList.contains("expanded")
+          ? "Read Less"
+          : "Read More";
       }
     </script>
   </body>
