@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -25,7 +25,11 @@
         "url": "https://versedglobal.com/",
         "logo": "https://versedglobal.com/images/versed-global-logo.png",
         "description": "Versed Global designs, integrates and manages Salesforce CRM systems and delivers high-impact trust and foundation fundraising support for charities, corporates and public-sector organisations.",
-        "sameAs": ["https://www.linkedin.com/company/versed-global"],
+        "sameAs": [
+          "https://www.linkedin.com/company/versed-global",
+          "https://www.instagram.com/versedglobal",
+          "https://www.facebook.com/share/14U4YEg25nN/?mibextid=wwXIfr"
+        ],
         "contactPoint": [
           {
             "@type": "ContactPoint",
@@ -37,11 +41,613 @@
         ]
       }
     </script>
+
+    <style>
+      /* Align header with index.html layout */
+
+      .header-bar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      .header-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+      }
+
+      .logo-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+
+      .logo-image {
+        height: 40px;
+        width: auto;
+      }
+
+      .logo-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1e293b;
+        letter-spacing: -0.02em;
+      }
+
+      .tagline {
+        font-size: 0.75rem;
+        color: #64748b;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        margin-left: 0.5rem;
+        padding-left: 0.5rem;
+        border-left: 1px solid #e2e8f0;
+        line-height: 1.2;
+        max-width: 220px;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        color: #475569;
+        font-weight: 500;
+        font-size: 0.95rem;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+
+      .nav-links a:hover {
+        color: #3b82f6;
+      }
+
+      .nav-links a.active {
+        color: #3b82f6;
+      }
+
+      .nav-links .nav-cta {
+        background: #3b82f6;
+        color: #ffffff;
+        padding: 0.5rem 1.25rem;
+        border-radius: 6px;
+        margin-left: 0.5rem;
+      }
+
+      .nav-links .nav-cta:hover {
+        background: #2563eb;
+      }
+
+      .mobile-menu {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #1e293b;
+      }
+
+      @media (max-width: 768px) {
+        .header-inner {
+          flex-wrap: wrap;
+        }
+
+        .tagline {
+          display: none;
+        }
+
+        .main-nav {
+          width: 100%;
+          order: 3;
+        }
+
+        .nav-links {
+          flex-direction: column;
+          gap: 0;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: #ffffff;
+          border-top: 1px solid #e2e8f0;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+        }
+
+        .nav-links.active {
+          max-height: 500px;
+        }
+
+        .nav-links a {
+          width: 100%;
+          padding: 1rem;
+          border-radius: 0;
+          border-bottom: 1px solid #e2e8f0;
+        }
+
+        .mobile-menu {
+          display: block;
+        }
+      }
+
+      /* Flow design for full fundraising cycle */
+
+      .cycle-flow {
+        max-width: 1100px;
+        margin: 2rem auto 3rem;
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .cycle-flow-rail {
+        position: relative;
+        padding: 1.5rem 0;
+      }
+
+      .cycle-line {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #38bdf8, #22c55e, #facc15, #fb7185);
+        opacity: 0.4;
+        transform: translateY(-50%);
+      }
+
+      .cycle-steps {
+        position: relative;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 1.25rem;
+        padding-bottom: 0.5rem;
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e1 transparent;
+      }
+
+      .cycle-steps::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      .cycle-steps::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 999px;
+      }
+
+      .cycle-step {
+        min-width: 180px;
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 0.85rem 1rem;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+        position: relative;
+      }
+
+      .cycle-step::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 16px;
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        background: #22c55e;
+        box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.2);
+      }
+
+      .cycle-step-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: #64748b;
+        margin-bottom: 0.25rem;
+      }
+
+      .cycle-step-title {
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 0.2rem;
+      }
+
+      .cycle-step-text {
+        font-size: 0.85rem;
+        color: #6b7280;
+      }
+
+      .cycle-notes {
+        font-size: 0.95rem;
+        color: #475569;
+        line-height: 1.8;
+      }
+
+      .cycle-notes strong {
+        color: #111827;
+      }
+
+      @media (max-width: 900px) {
+        .cycle-flow {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Read more toggles */
+
+      .expandable {
+        position: relative;
+        overflow: hidden;
+        max-height: 180px;
+        transition: max-height 0.4s ease;
+      }
+
+      .expandable.expanded {
+        max-height: 1000px;
+      }
+
+      .expandable-fade {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 3rem;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+        pointer-events: none;
+      }
+
+      .expand-toggle {
+        margin-top: 0.75rem;
+        background: none;
+        border: none;
+        color: #2563eb;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      /* Stats strip */
+
+      .fundraising-stats {
+        margin-top: 3rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.75rem;
+      }
+
+      .fundraising-stat {
+        padding: 1.75rem 1.5rem;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      }
+
+      .fundraising-stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2563eb;
+        margin-bottom: 0.5rem;
+      }
+
+      .fundraising-stat-label {
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: #64748b;
+        margin-bottom: 0.3rem;
+      }
+
+      .fundraising-stat-text {
+        font-size: 0.9rem;
+        color: #4b5563;
+      }
+
+      /* Supported organisations slider */
+
+      .org-slider {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        background: #f9fafb;
+        border-top: 1px solid #e5e7eb;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 1.5rem 0;
+        margin-top: 2rem;
+      }
+
+      .org-slide-track {
+        display: flex;
+        width: calc(230px * 14);
+        animation: org-scroll 38s linear infinite;
+      }
+
+      .org-slide-card {
+        width: 230px;
+        height: 120px;
+        margin: 0 1rem;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        text-decoration: none;
+        padding: 0.75rem 1rem;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .org-slide-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+        border-color: #3b82f6;
+      }
+
+      .org-slide-card img {
+        max-width: 100%;
+        max-height: 60px;
+        object-fit: contain;
+        margin-bottom: 0.45rem;
+      }
+
+      .org-slide-card span {
+        font-size: 0.78rem;
+        color: #4b5563;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .org-slide-track:hover {
+        animation-play-state: paused;
+      }
+
+      @keyframes org-scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-230px * 7));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .org-slide-card {
+          width: 190px;
+          height: 110px;
+          margin: 0 0.75rem;
+        }
+
+        .org-slide-card img {
+          max-height: 50px;
+        }
+      }
+
+      /* Footer aligned with about/clients pages */
+
+      footer {
+        background: #1e293b;
+        color: #e2e8f0;
+        padding: 3rem 0 1.5rem;
+        margin-top: 4rem;
+      }
+
+      .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h4 {
+        color: #f1f5f9;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.25rem;
+        font-weight: 700;
+      }
+
+      .footer-section p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-section a {
+        color: #cbd5e1;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section a:hover {
+        color: #f1f5f9;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-logo img {
+        height: 48px;
+        width: 48px;
+        background: #ffffff;
+        border-radius: 8px;
+        padding: 4px;
+        object-fit: contain;
+      }
+
+      .footer-logo span {
+        color: #f1f5f9;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .footer-address {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .footer-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .footer-contact a {
+        display: inline-block;
+        width: fit-content;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: #3b82f6;
+        color: #ffffff;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+      }
+
+      .social-link:hover {
+        background: #2563eb;
+        transform: translateY(-3px);
+      }
+
+      .social-link.linkedin {
+        background: #0a66c2;
+      }
+
+      .social-link.linkedin:hover {
+        background: #084999;
+      }
+
+      .social-link.instagram {
+        background: #e4405f;
+      }
+
+      .social-link.instagram:hover {
+        background: #c72e5f;
+      }
+
+      .social-link.facebook {
+        background: #1877f2;
+      }
+
+      .social-link.facebook:hover {
+        background: #0a66ff;
+      }
+
+      .footer-divider {
+        border-top: 1px solid #334155;
+        padding-top: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        font-size: 0.9rem;
+        color: #94a3b8;
+      }
+
+      .footer-bottom a {
+        color: #cbd5e1;
+      }
+
+      .company-info {
+        font-size: 0.85rem;
+        color: #94a3b8;
+        line-height: 1.6;
+      }
+
+      .trustpilot-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: #cbd5e1;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+      }
+
+      .trustpilot-link:hover {
+        color: #f1f5f9;
+      }
+
+      @media (max-width: 768px) {
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Header / Nav -->
     <header class="header-bar">
-      <div class="container header-inner">
+      <div class="header-inner">
         <div class="logo-area">
           <a
             href="index.html"
@@ -53,18 +659,23 @@
               alt="Versed Global logo"
               class="logo-image"
             />
-            <span class="logo-text">Versed Global</span>
+            <div>
+              <div class="logo-text">Versed Global</div>
+              <div class="tagline">
+                Salesforce CRM Implementation & Digital Governance Solutions
+              </div>
+            </div>
           </a>
         </div>
         <nav class="main-nav" aria-label="Primary navigation">
-          <div class="nav-links">
+          <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
-            <a href="services.html">Salesforce Services</a>
-            <a href="fundraising.html" class="active">Fundraising Support</a>
-            <a href="training.html">Training &amp; Support</a>
-            <a href="news.html">News &amp; insights</a>
+            <a href="services.html">Salesforce</a>
             <a href="about.html">About</a>
             <a href="clients.html">Clients</a>
+            <a href="fundraising.html" class="active">Fundraising</a>
+            <a href="training.html">Training</a>
+            <a href="news.html">News</a>
             <a href="contact.html" class="nav-cta">Contact</a>
           </div>
           <button
@@ -88,284 +699,540 @@
             Trust &amp; foundation fundraising that delivers
           </h1>
           <p class="section-intro">
-            Versed Global provides specialist support across the full trust and
-            foundation fundraising cycle – from strategy and pipeline
-            development through to compelling grant applications and ongoing
-            stewardship. The focus is on sustainable institutional funding for
-            small to mid‑sized charities and other mission‑driven organisations,
-            aligned with your programmes and systems.
+            Versed Global supports organisations through the full fundraising
+            cycle – from strategy and prospecting to bids, reporting and
+            renewals – combining fundraising practice with the systems needed to
+            sustain it.
           </p>
         </div>
       </section>
 
-      <!-- Fundraising Services -->
+      <!-- Intro & core offer (with read more) -->
       <section class="section">
         <div class="container">
-          <h2 class="section-title">Comprehensive fundraising support</h2>
-          <div class="three-grid">
-            <div class="card">
-              <h3>Fundraising strategy &amp; planning</h3>
-              <p>
-                Development of tailored trust and foundation strategies aligned
-                with your mission, capacity and funding landscape. This includes
-                opportunity analysis, priority setting and multi‑year pipeline
-                planning to build sustainable income streams and reduce
-                short‑term, reactive fundraising.
-              </p>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+              gap: 3rem;
+              align-items: start;
+            "
+          >
+            <div>
+              <h2 class="section-title">Targeted fundraising support</h2>
+              <div class="expandable" id="introExpandable">
+                <p style="font-size: 1rem; color: #4b5563; line-height: 1.9">
+                  Support is focused on trust and foundation fundraising, CSR
+                  and institutional funding that fit your mission, scale and
+                  capacity. Work ranges from one‑off strategy and case for
+                  support development through to hands‑on bid writing, pipeline
+                  building and Salesforce‑aligned tracking.
+                </p>
+                <p style="font-size: 1rem; color: #4b5563; line-height: 1.9">
+                  The aim is to help organisations move from reactive
+                  fundraising towards a deliberate, multi‑year approach: fewer
+                  last‑minute bids, more time invested in the right funders and
+                  stronger stewardship for long‑term partners.
+                </p>
+                <p style="font-size: 1rem; color: #4b5563; line-height: 1.9">
+                  Alongside delivery, emphasis is placed on leaving behind
+                  tools, templates and processes so your team can maintain and
+                  grow institutional income without permanent external
+                  dependency.
+                </p>
+                <div class="expandable-fade" id="introFade"></div>
+              </div>
+              <button
+                class="expand-toggle"
+                type="button"
+                data-target="introExpandable"
+                data-fade="introFade"
+              >
+                Read more
+              </button>
             </div>
-            <div class="card">
-              <h3>Prospect research &amp; pipeline building</h3>
-              <p>
-                Comprehensive research to identify suitable funders (trusts,
-                foundations, CSR budgets, institutional funders) matched to your
-                work. Creation of prioritised prospect lists with tailored
-                approaches, eligibility analysis and funding histories, ready to
-                track in Salesforce or your CRM.
+
+            <div
+              style="
+                border-radius: 18px;
+                padding: 1.75rem 1.9rem;
+                background: radial-gradient(
+                  circle at top left,
+                  #312e81,
+                  #0f172a
+                );
+                color: #e5e7eb;
+                box-shadow: 0 30px 80px rgba(15, 23, 42, 0.6);
+              "
+            >
+              <p
+                style="
+                  text-transform: uppercase;
+                  letter-spacing: 0.18em;
+                  font-size: 0.76rem;
+                  color: #a5b4fc;
+                  margin-top: 0;
+                  margin-bottom: 0.75rem;
+                "
+              >
+                Where support is focused
               </p>
+              <ul
+                style="
+                  list-style: none;
+                  padding: 0;
+                  margin: 0;
+                  display: grid;
+                  gap: 0.6rem;
+                  font-size: 0.95rem;
+                "
+              >
+                <li>Trusts, foundations and institutional funders</li>
+                <li>Corporate CSR and ESG‑linked funding</li>
+                <li>Multi‑year programmes and core cost funding</li>
+                <li>Pipeline and bid tracking in Salesforce</li>
+              </ul>
             </div>
-            <div class="card">
-              <h3>Grant applications &amp; proposal writing</h3>
+          </div>
+        </div>
+      </section>
+
+      <!-- Full fundraising cycle – flow layout -->
+      <section class="section alt">
+        <div class="container">
+          <h2 class="section-title">Full fundraising cycle, end to end</h2>
+          <p class="section-intro" style="max-width: 850px">
+            Support can cover the full cycle or specific stages, depending on
+            your needs. The flow below shows how strategy, research, bids and
+            stewardship connect into a coherent fundraising system.
+          </p>
+
+          <div class="cycle-flow">
+            <div class="cycle-flow-rail">
+              <div class="cycle-line"></div>
+              <div class="cycle-steps">
+                <div class="cycle-step">
+                  <div class="cycle-step-label">Stage 1</div>
+                  <div class="cycle-step-title">Strategy &amp; needs</div>
+                  <div class="cycle-step-text">
+                    Clarifying your case for support, funding goals and the
+                    programmes you want to grow.
+                  </div>
+                </div>
+                <div class="cycle-step">
+                  <div class="cycle-step-label">Stage 2</div>
+                  <div class="cycle-step-title">Prospect research</div>
+                  <div class="cycle-step-text">
+                    Mapping funders that fit your themes, geography and scale.
+                  </div>
+                </div>
+                <div class="cycle-step">
+                  <div class="cycle-step-label">Stage 3</div>
+                  <div class="cycle-step-title">Pipeline design</div>
+                  <div class="cycle-step-text">
+                    Prioritising opportunities over 12–36 months and defining
+                    next steps.
+                  </div>
+                </div>
+                <div class="cycle-step">
+                  <div class="cycle-step-label">Stage 4</div>
+                  <div class="cycle-step-title">Bids &amp; applications</div>
+                  <div class="cycle-step-text">
+                    Developing high‑quality narratives, budgets and supporting
+                    evidence.
+                  </div>
+                </div>
+                <div class="cycle-step">
+                  <div class="cycle-step-label">Stage 5</div>
+                  <div class="cycle-step-title">Stewardship</div>
+                  <div class="cycle-step-text">
+                    Reporting, relationship management and renewal planning.
+                  </div>
+                </div>
+                <div class="cycle-step">
+                  <div class="cycle-step-label">Stage 6</div>
+                  <div class="cycle-step-title">Learning &amp; systems</div>
+                  <div class="cycle-step-text">
+                    Using data from Salesforce and funder feedback to refine
+                    your approach.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cycle-notes">
               <p>
-                High‑quality grant writing following funder requirements and
-                best practice. Outcomes‑focused narratives, cases for support,
-                budgets and evaluation plans that clearly show how your work
-                benefits people and communities and why it should be funded.
+                <strong>Every stage is documented.</strong> You receive clear
+                pipelines, templates and guidance, not just finished bids, so
+                your team understands how decisions are made and what needs to
+                happen next.
+              </p>
+              <p>
+                <strong
+                  >Salesforce is used as a live tool, not a filing
+                  cabinet.</strong
+                >
+                Stages, tasks and reporting can be configured so your pipeline
+                and stewardship are tracked in the same place as your programmes
+                and contacts.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Full Cycle Support -->
-      <section class="section alt">
+      <!-- Outcomes / what clients gain, with fewer “cards” -->
+      <section class="section">
         <div class="container">
-          <h2 class="section-title">Full fundraising cycle support</h2>
-
-          <!-- Flow strip -->
+          <h2 class="section-title">What this work delivers</h2>
           <div
             style="
-              margin: 0 auto 3rem;
-              max-width: 960px;
-              padding: 1.25rem 1.75rem;
-              border-radius: 999px;
-              background: linear-gradient(
-                135deg,
-                rgba(15, 23, 42, 0.92),
-                rgba(30, 64, 175, 0.92)
-              );
-              box-shadow: 0 18px 40px rgba(15, 23, 42, 0.6);
-              color: #e5e7eb;
-              font-size: 0.9rem;
+              display: grid;
+              grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+              gap: 2.75rem;
+              align-items: start;
+            "
+          >
+            <div>
+              <div class="expandable" id="gainExpandable">
+                <p
+                  style="
+                    font-size: 1rem;
+                    color: #111827;
+                    font-weight: 600;
+                    margin-bottom: 0.75rem;
+                  "
+                >
+                  Increased funding success
+                </p>
+                <p style="font-size: 0.97rem; color: #4b5563; line-height: 1.9">
+                  Targeted applications, stronger alignment with funder
+                  priorities and clearer evidence typically improve success
+                  rates and reduce wasted effort on low‑fit opportunities.
+                </p>
+
+                <p
+                  style="
+                    font-size: 1rem;
+                    color: #111827;
+                    font-weight: 600;
+                    margin: 1.25rem 0 0.75rem;
+                  "
+                >
+                  A sustainable pipeline
+                </p>
+                <p style="font-size: 0.97rem; color: #4b5563; line-height: 1.9">
+                  A live, prioritised pipeline makes it easier to plan over
+                  multiple years, coordinate activity across staff and report
+                  clearly to trustees, executives and programme leads.
+                </p>
+
+                <p
+                  style="
+                    font-size: 1rem;
+                    color: #111827;
+                    font-weight: 600;
+                    margin: 1.25rem 0 0.75rem;
+                  "
+                >
+                  Internal capability
+                </p>
+                <p style="font-size: 0.97rem; color: #4b5563; line-height: 1.9">
+                  Templates, trackers, Salesforce fields and reports are
+                  designed so staff can continue building on the work rather
+                  than starting again after support ends.
+                </p>
+              </div>
+              <button
+                class="expand-toggle"
+                type="button"
+                data-target="gainExpandable"
+              >
+                Read more
+              </button>
+            </div>
+
+            <div class="fundraising-stats">
+              <div class="fundraising-stat">
+                <div class="fundraising-stat-number">
+                  <span class="counter" data-target="6">0</span>+
+                </div>
+                <div class="fundraising-stat-label">Organisations backed</div>
+                <div class="fundraising-stat-text">
+                  Fundraising projects supported across cancer, violence
+                  prevention and community development.
+                </div>
+              </div>
+              <div class="fundraising-stat">
+                <div class="fundraising-stat-number">
+                  £<span class="counter" data-target="1">0</span>M+
+                </div>
+                <div class="fundraising-stat-label">Funding influenced</div>
+                <div class="fundraising-stat-text">
+                  Value of bids and pipelines shaped or supported through this
+                  work.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Supported organisations slider with logos -->
+      <section class="section alt">
+        <div class="container" style="text-align: center">
+          <h2 class="section-title">
+            Organisations supported with fundraising
+          </h2>
+          <p
+            class="section-intro"
+            style="max-width: 800px; margin: 0 auto 1.5rem"
+          >
+            Versed Global has supported fundraising for organisations working in
+            cancer support, domestic violence, international development and
+            community impact.
+          </p>
+        </div>
+
+        <div class="org-slider">
+          <div class="org-slide-track">
+            <!-- First loop -->
+            <a
+              href="https://www.wessexcancer.org.uk/"
+              target="_blank"
+              rel="noopener"
+              class="org-slide-card"
+            >
+              <img
+                src="https://www.wessexcancer.org.uk/wp-content/uploads/2023/08/Wessex-Cancer-Support-generic-banner.jpg"
+                alt="Wessex Cancer Support logo"
+              />
+              <span>Wessex Cancer Support</span>
+            </a>
+
+            <a
+              href="https://www.olivetreecancersupport.org.uk/"
+              target="_blank"
+              rel="noopener"
+              class="org-slide-card"
+            >
+              <img
+                src="https://cdn.prod.website-files.com/5b72c41709e80cf98c633794/5b72c4d279ce4e7365722f57_Olive%20tree%20logo-header.svg"
+                alt="The Olive Tree Cancer Support logo"
+              />
+              <span>The Olive Tree Cancer Support</span>
+            </a>
+
+            <a
+              href="https://chrysalisgroup.org/"
+              target="_blank"
+              rel="noopener"
+              class="org-slide-card"
+            >
+              <img
+                src="https://www.chrysalisgroupservices.co.uk/assets/img/chrysalis-supported-association.png"
+                alt="Chrysalis Group logo"
+              />
+              <span>Chrysalis Group</span>
+            </a>
+
+            <a
+              href="https://opoka.org.uk/"
+              target="_blank"
+              rel="noopener"
+              class="org-slide-card"
+            >
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuKYrTWJcO_wszQh3blx-pZ0Z7mtUY42hz0g&s"
+                alt="Opoka CIO logo"
+              />
+              <span>Opoka CIO</span>
+            </a>
+
+            <a
+              href="https://zambianrainbow.org/"
+              target="_blank"
+              rel="noopener"
+              class="org-slide-card"
+            >
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjv79s3GYcLgm9kqICMI7kr4UILW_2zRkpsg&s"
+                alt="Zambian Rainbow Development Foundation logo"
+              />
+              <span>Zambian Rainbow Development Foundation</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/company/africa-transformation-centres-foundation/"
+              target="_blank"
+              rel="noopener"
+              class="org-slide-card"
+            >
+              <img
+                src="https://media.licdn.com/dms/image/v2/D4E0BAQEnisYQKwRnWw/company-logo_200_200/B4EZWpVYV_HUAI-/0/1742302710133/africa_transformation_centres_foundation_logo?e=2147483647&v=beta&t=9NsHwPFNitLtT5co_BBMYO6d8LOx7uJ2iTOnkoUHj6E"
+                alt="Global Impact Foundation logo"
+              />
+              <span>Global Impact Foundation</span>
+            </a>
+
+            <!-- Second loop for seamless sliding -->
+            <a
+              href="https://www.wessexcancer.org.uk/"
+              target="_blank"
+              rel="noopener"
+              class="org-slide-card"
+            >
+              <img
+                src="https://www.wessexcancer.org.uk/wp-content/uploads/2023/08/Wessex-Cancer-Support-generic-banner.jpg"
+                alt="Wessex Cancer Support logo"
+              />
+              <span>Wessex Cancer Support</span>
+            </a>
+
+            <a
+              href="https://www.olivetreecancersupport.org.uk/"
+              target="_blank"
+              rel="noopener"
+              class="org-slide-card"
+            >
+              <img
+                src="https://cdn.prod.website-files.com/5b72c41709e80cf98c633794/5b72c4d279ce4e7365722f57_Olive%20tree%20logo-header.svg"
+                alt="The Olive Tree Cancer Support logo"
+              />
+              <span>The Olive Tree Cancer Support</span>
+            </a>
+
+            <a
+              href="https://chrysalisgroup.org/"
+              target="_blank"
+              rel="noopener"
+              class="org-slide-card"
+            >
+              <img
+                src="https://www.chrysalisgroupservices.co.uk/assets/img/chrysalis-supported-association.png"
+                alt="Chrysalis Group logo"
+              />
+              <span>Chrysalis Group</span>
+            </a>
+
+            <a
+              href="https://opoka.org.uk/"
+              target="_blank"
+              rel="noopener"
+              class="org-slide-card"
+            >
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuKYrTWJcO_wszQh3blx-pZ0Z7mtUY42hz0g&s"
+                alt="Opoka CIO logo"
+              />
+              <span>Opoka CIO</span>
+            </a>
+
+            <a
+              href="https://zambianrainbow.org/"
+              target="_blank"
+              rel="noopener"
+              class="org-slide-card"
+            >
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjv79s3GYcLgm9kqICMI7kr4UILW_2zRkpsg&s"
+                alt="Zambian Rainbow Development Foundation logo"
+              />
+              <span>Zambian Rainbow Development Foundation</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/company/africa-transformation-centres-foundation/"
+              target="_blank"
+              rel="noopener"
+              class="org-slide-card"
+            >
+              <img
+                src="https://media.licdn.com/dms/image/v2/D4E0BAQEnisYQKwRnWw/company-logo_200_200/B4EZWpVYV_HUAI-/0/1742302710133/africa_transformation_centres_foundation_logo?e=2147483647&v=beta&t=9NsHwPFNitLtT5co_BBMYO6d8LOx7uJ2iTOnkoUHj6E"
+                alt="Global Impact Foundation logo"
+              />
+              <span>Global Impact Foundation</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Who this is for (short, flowing) -->
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Who this support is for</h2>
+          <p
+            class="section-intro"
+            style="max-width: 820px; margin-bottom: 2rem"
+          >
+            Work is typically with small to mid‑sized charities, social
+            enterprises and NGOs that need a realistic, achievable institutional
+            fundraising approach that fits limited time and capacity.
+          </p>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+              gap: 1.75rem;
             "
           >
             <div
               style="
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: center;
-                gap: 0.75rem;
-                text-align: center;
+                border-radius: 16px;
+                padding: 1.6rem 1.7rem;
+                border: 1px solid rgba(34, 197, 94, 0.35);
+                background: linear-gradient(
+                  135deg,
+                  rgba(22, 163, 74, 0.04),
+                  rgba(22, 163, 74, 0.08)
+                );
               "
             >
-              <span
-                style="
-                  padding: 0.45rem 0.9rem;
-                  border-radius: 999px;
-                  border: 1px solid rgba(129, 140, 248, 0.8);
-                  background: rgba(15, 23, 42, 0.9);
-                  min-width: 150px;
-                "
-                >1. Strategy &amp; needs</span
-              >
-              <span style="opacity: 0.7">➝</span>
-              <span
-                style="
-                  padding: 0.45rem 0.9rem;
-                  border-radius: 999px;
-                  border: 1px solid rgba(96, 165, 250, 0.8);
-                  background: rgba(15, 23, 42, 0.9);
-                  min-width: 150px;
-                "
-                >2. Prospect research</span
-              >
-              <span style="opacity: 0.7">➝</span>
-              <span
-                style="
-                  padding: 0.45rem 0.9rem;
-                  border-radius: 999px;
-                  border: 1px solid rgba(56, 189, 248, 0.8);
-                  background: rgba(15, 23, 42, 0.9);
-                  min-width: 150px;
-                "
-                >3. Pipeline &amp; planning</span
-              >
-              <span style="opacity: 0.7">➝</span>
-              <span
-                style="
-                  padding: 0.45rem 0.9rem;
-                  border-radius: 999px;
-                  border: 1px solid rgba(52, 211, 153, 0.8);
-                  background: rgba(15, 23, 42, 0.9);
-                  min-width: 150px;
-                "
-                >4. Applications &amp; bids</span
-              >
-              <span style="opacity: 0.7">➝</span>
-              <span
-                style="
-                  padding: 0.45rem 0.9rem;
-                  border-radius: 999px;
-                  border: 1px solid rgba(251, 191, 36, 0.9);
-                  background: rgba(15, 23, 42, 0.9);
-                  min-width: 150px;
-                "
-                >5. Stewardship &amp; renewals</span
-              >
-              <span style="opacity: 0.7">➝</span>
-              <span
-                style="
-                  padding: 0.45rem 0.9rem;
-                  border-radius: 999px;
-                  border: 1px solid rgba(244, 114, 182, 0.9);
-                  background: rgba(15, 23, 42, 0.9);
-                  min-width: 150px;
-                "
-                >6. Learning &amp; improvement</span
-              >
-            </div>
-          </div>
-
-          <div class="three-grid">
-            <div class="card">
-              <h3>Relationship management</h3>
-              <p>
-                Ongoing stewardship of funder relationships through reporting,
-                updates and demonstrating impact. Preparation for meetings, site
-                visits and renewal conversations to build long‑term, trust‑based
-                partnerships.
+              <h3 style="margin-top: 0; color: #166534; font-size: 1.1rem">
+                Charities up to ~£1m
+              </h3>
+              <p style="font-size: 0.95rem; color: #14532d">
+                Organisations building or stabilising a trust and foundation
+                portfolio for core and programme costs.
               </p>
             </div>
-            <div class="card">
-              <h3>Monitoring, evaluation &amp; reporting</h3>
-              <p>
-                Support to define outcomes, indicators and data collection so
-                you can report clearly to funders. Integration with Salesforce
-                reporting for grant tracking and funder‑specific metrics where
-                appropriate.
+            <div
+              style="
+                border-radius: 16px;
+                padding: 1.6rem 1.7rem;
+                border: 1px solid rgba(59, 130, 246, 0.35);
+                background: linear-gradient(
+                  135deg,
+                  rgba(37, 99, 235, 0.04),
+                  rgba(37, 99, 235, 0.08)
+                );
+              "
+            >
+              <h3 style="margin-top: 0; color: #1d4ed8; font-size: 1.1rem">
+                Growing organisations
+              </h3>
+              <p style="font-size: 0.95rem; color: #1e3a8a">
+                Teams needing to connect bids, reporting and stewardship into
+                Salesforce and wider governance.
               </p>
             </div>
-            <div class="card">
-              <h3>Capacity building &amp; training</h3>
-              <p>
-                Training for internal teams on trust fundraising best practice,
-                proposal development, funder relationship management and
-                pipeline tracking using Salesforce or other systems, so skills
-                remain within your organisation.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- What we deliver -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">What clients gain</h2>
-          <div class="three-grid">
-            <div class="card">
-              <h3>Increased funding success</h3>
-              <p>
-                Higher grant success rates through targeted applications, clear
-                cases for support and strong alignment with funder priorities
-                and criteria.
-              </p>
-            </div>
-            <div class="card">
-              <h3>Sustainable pipelines</h3>
-              <p>
-                Robust, prioritised prospect pipelines with clear next steps,
-                reducing reliance on last‑minute bids and building long‑term,
-                renewable funding relationships.
-              </p>
-            </div>
-            <div class="card">
-              <h3>Internal capability</h3>
-              <p>
-                Teams equipped with templates, processes and systems –
-                integrated with Salesforce where appropriate – so successful
-                fundraising can continue independently.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Approach -->
-      <section class="section alt">
-        <div class="container">
-          <h2 class="section-title">Collaborative fundraising support</h2>
-          <p class="section-intro">
-            Versed Global works alongside your team rather than replacing it.
-            The aim is to remove fundraising bottlenecks while strengthening
-            your internal skills, systems and confidence around trusts and
-            foundations.
-          </p>
-          <div class="three-grid">
-            <div class="card">
-              <h3>Strategic focus</h3>
-              <p>
-                Support to focus on the highest‑value, best‑fit opportunities
-                instead of spreading limited capacity across too many funders
-                and low‑yield bids.
-              </p>
-            </div>
-            <div class="card">
-              <h3>Practical tools</h3>
-              <p>
-                Templates, trackers and processes you can use immediately and
-                adapt to your organisation’s specific programmes, governance and
-                reporting needs.
-              </p>
-            </div>
-            <div class="card">
-              <h3>Integration with Salesforce</h3>
-              <p>
-                Fundraising pipelines and reporting configured within your CRM
-                so activity tracking, deadlines and stewardship are embedded in
-                everyday operations, not held in separate spreadsheets.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Who benefits -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Designed for your organisation</h2>
-          <div class="three-grid">
-            <div class="card">
-              <h3>Small charities (up to ~£500k)</h3>
-              <p>
-                Focused support to secure anchor funders and build sustainable
-                core and project funding pipelines, often from a low starting
-                base.
-              </p>
-            </div>
-            <div class="card">
-              <h3>Growing charities (£500k–£3m+)</h3>
-              <p>
-                Scaling institutional fundraising alongside other income
-                streams, with stronger systems, governance and data for
-                decision‑making.
-              </p>
-            </div>
-            <div class="card">
-              <h3>Social enterprises &amp; CICs</h3>
-              <p>
-                Accessing grants, contracts and blended funding through targeted
-                approaches that reflect both impact goals and commercial models.
+            <div
+              style="
+                border-radius: 16px;
+                padding: 1.6rem 1.7rem;
+                border: 1px solid rgba(251, 146, 60, 0.35);
+                background: linear-gradient(
+                  135deg,
+                  rgba(249, 115, 22, 0.04),
+                  rgba(249, 115, 22, 0.08)
+                );
+              "
+            >
+              <h3 style="margin-top: 0; color: #c2410c; font-size: 1.1rem">
+                Social enterprises &amp; CICs
+              </h3>
+              <p style="font-size: 0.95rem; color: #7c2d12">
+                Blended funding models where grants complement trading,
+                contracts and impact investment.
               </p>
             </div>
           </div>
@@ -382,10 +1249,8 @@
             class="section-intro"
             style="margin: 0 auto 2rem; max-width: 600px"
           >
-            Whether you are building your first trust pipeline, refining an
-            existing strategy, or integrating fundraising with Salesforce,
-            Versed Global can support you at the right level for your
-            organisation’s stage and capacity.
+            Share your current approach, capacity and targets, and explore what
+            realistic, phased support could look like for your organisation.
           </p>
           <div
             style="
@@ -408,80 +1273,203 @@
 
     <!-- Footer -->
     <footer>
-      <div class="container footer-inner">
-        <div class="footer-note">
-          &copy; <span id="year"></span> Versed Global Ltd | Trust &amp;
-          foundation fundraising specialists.
+      <div class="footer-container">
+        <div class="footer-content">
+          <!-- About Section -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              <img src="images/versed-global-logo.png" alt="Versed Global" />
+              <span>Versed Global</span>
+            </div>
+            <p style="margin-bottom: 1.5rem">
+              Salesforce CRM implementation, trust and foundation fundraising,
+              and digital governance solutions for charities, corporates and
+              public-sector organisations.
+            </p>
+            <div class="social-links">
+              <a
+                href="https://linkedin.com/company/versed-global"
+                class="social-link linkedin"
+                title="LinkedIn"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/versedglobal"
+                class="social-link instagram"
+                title="Instagram"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.facebook.com/share/14U4YEg25nN/?mibextid=wwXIfr"
+                class="social-link facebook"
+                title="Facebook"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Section -->
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <div class="footer-contact">
+              <div>
+                <strong style="color: #f1f5f9">Phone</strong>
+                <p style="margin: 0.5rem 0 0">
+                  <a href="tel:+447554623171">07554 623171</a>
+                </p>
+              </div>
+              <div>
+                <strong style="color: #f1f5f9">Email</strong>
+                <p style="margin: 0.5rem 0 0">
+                  <a href="mailto:info@versedglobal.com">
+                    info@versedglobal.com
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address Section -->
+          <div class="footer-section">
+            <h4>Office Address</h4>
+            <div class="footer-address">
+              <p>29 Crown Way</p>
+              <p>Burgess Hill</p>
+              <p>RH15 8SX</p>
+              <p style="margin-top: 1rem">England and Wales</p>
+            </div>
+            <div class="company-info" style="margin-top: 1rem">
+              <p style="margin: 0">
+                <strong>Registered Company Number:</strong> 16933204
+              </p>
+              <p style="margin: 0.5rem 0 0">
+                VAT Registered | Registered in England and Wales
+              </p>
+            </div>
+          </div>
+
+          <!-- Review & Links Section -->
+          <div class="footer-section">
+            <h4>Leave a Review</h4>
+            <p>Help us improve by sharing your experience on Trustpilot.</p>
+            <a
+              href="mailto:versedglobal.com+1dd03088a8@invite.trustpilot.com"
+              class="trustpilot-link"
+            >
+              <i class="fas fa-star"></i>
+              Review on Trustpilot
+            </a>
+
+            <h4 style="margin-top: 2rem">Quick Links</h4>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <a href="services.html">Salesforce Services</a>
+              <a href="fundraising.html">Fundraising Support</a>
+              <a href="training.html">Training &amp; Support</a>
+              <a href="about.html">About Us</a>
+            </div>
+          </div>
         </div>
 
-        <!-- Footer phone highlight (same design as index.html) -->
-        <div
-          style="
-            margin: 1.2rem 0 1.4rem;
-            padding: 0.6rem 1.4rem;
-            border-radius: 999px;
-            background: radial-gradient(
-              circle at 0% 0%,
-              #1f2937 0%,
-              #020617 55%,
-              #4f46e5 95%
-            );
-            display: inline-flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.7rem 1.2rem;
-            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.8);
-            color: #e5e7eb;
-          "
-        >
-          <span
-            style="
-              text-transform: uppercase;
-              letter-spacing: 0.16em;
-              font-size: 0.72rem;
-              font-weight: 600;
-              color: #a5b4fc;
-            "
-            >Call Versed Global</span
-          >
-          <span
-            style="
-              width: 1px;
-              height: 22px;
-              background: linear-gradient(to bottom, #a5b4fc, #f9a8d4);
-              opacity: 0.7;
-            "
-          ></span>
-          <a
-            href="tel:+447554623171"
-            style="
-              padding: 0.45rem 1.25rem;
-              border-radius: 999px;
-              background: rgba(15, 23, 42, 0.9);
-              border: 1px solid rgba(248, 250, 252, 0.35);
-              color: #f9fafb;
-              font-weight: 600;
-              text-decoration: none;
-              box-shadow: 0 12px 30px rgba(15, 23, 42, 0.8);
-              display: inline-flex;
-              align-items: center;
-            "
-          >
-            <span>07554 623171</span>
-          </a>
-        </div>
-
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="services.html">Salesforce services</a>
-          <a href="contact.html">Contact</a>
+        <!-- Footer Divider -->
+        <div class="footer-divider">
+          <div class="footer-bottom">
+            <div>
+              &copy; <span id="year"></span> Versed Global Ltd. All rights
+              reserved.
+            </div>
+            <div>
+              <a href="#" style="margin-right: 1.5rem">Privacy Policy</a>
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
 
     <script src="script.js"></script>
     <script>
+      // Set current year
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Mobile menu toggle
+      const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+        });
+      }
+
+      // Simple "read more" toggles
+      document.querySelectorAll(".expand-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const targetId = btn.getAttribute("data-target");
+          const fadeId = btn.getAttribute("data-fade");
+          const content = document.getElementById(targetId);
+          const fade = fadeId ? document.getElementById(fadeId) : null;
+          if (!content) return;
+
+          content.classList.toggle("expanded");
+          if (fade) {
+            fade.style.display = content.classList.contains("expanded")
+              ? "none"
+              : "block";
+          }
+          btn.textContent = content.classList.contains("expanded")
+            ? "Show less"
+            : "Read more";
+        });
+      });
+
+      // Counter animation (reuse existing counters in stats)
+      const counters = document.querySelectorAll(".counter");
+      let statsAnimated = false;
+
+      function animateCounters() {
+        counters.forEach((counter) => {
+          const target = parseInt(counter.getAttribute("data-target"), 10);
+          const duration = 2000;
+          const increment = target / (duration / 30);
+          let current = 0;
+
+          const update = () => {
+            current += increment;
+            if (current < target) {
+              counter.textContent = Math.floor(current);
+              requestAnimationFrame(update);
+            } else {
+              counter.textContent = target;
+            }
+          };
+
+          update();
+        });
+      }
+
+      const statsSection = document.querySelector(".fundraising-stats");
+      if (statsSection) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (entries[0].isIntersecting && !statsAnimated) {
+              statsAnimated = true;
+              animateCounters();
+              observer.unobserve(statsSection);
+            }
+          },
+          { threshold: 0.4 },
+        );
+        observer.observe(statsSection);
+      }
     </script>
   </body>
 </html>
