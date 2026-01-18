@@ -16,6 +16,20 @@
     />
     <link rel="stylesheet" href="styles.css" />
 
+    <!-- Google Fonts for professional typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <!-- Organization / Logo Schema -->
     <script type="application/ld+json">
       {
@@ -61,6 +75,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative; /* FIXED: Required for mobile nav dropdown positioning */
       }
 
       .logo-area {
@@ -163,6 +178,10 @@
           display: none;
         }
 
+        .mobile-menu {
+          display: block;
+        }
+
         .main-nav {
           width: 100%;
           order: 3;
@@ -180,6 +199,7 @@
           max-height: 0;
           overflow: hidden;
           transition: max-height 0.3s ease;
+          z-index: 1000;
         }
 
         .nav-links.active {
@@ -193,8 +213,8 @@
           border-bottom: 1px solid #e2e8f0;
         }
 
-        .mobile-menu {
-          display: block;
+        .nav-links a.nav-cta {
+          margin-left: 0;
         }
       }
 
@@ -391,634 +411,343 @@
         border-top: 1px solid #e5e7eb;
         border-bottom: 1px solid #e5e7eb;
         padding: 1.5rem 0;
+        margin-top: 2rem;
       }
 
       .org-slide-track {
         display: flex;
-        width: calc(260px * 18);
-        animation: scroll 45s linear infinite;
+        gap: 2rem;
+        animation: scroll-left 45s linear infinite;
+        width: max-content;
       }
 
-      .org-slide {
-        width: 260px;
-        height: 140px;
-        margin: 0 1rem;
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        text-decoration: none;
-        padding: 0.75rem 1rem;
-        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease,
-          border-color 0.3s ease;
-      }
-
-      .org-slide:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.16);
-        border-color: #3b82f6;
-      }
-
-      .org-slide img {
-        max-width: 100%;
-        max-height: 70px;
-        object-fit: contain;
-        margin-bottom: 0.5rem;
-      }
-
-      .org-slide span {
-        font-size: 0.8rem;
-        color: #4b5563;
-        font-weight: 500;
-        text-align: center;
-      }
-
-      @keyframes scroll {
+      @keyframes scroll-left {
         0% {
           transform: translateX(0);
         }
         100% {
-          transform: translateX(calc(-260px * 9));
+          transform: translateX(-50%);
         }
       }
 
-      .org-slide-track:hover {
-        animation-play-state: paused;
+      .org-slide {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 180px;
+        padding: 1rem;
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+        text-decoration: none;
+        transition: all 0.3s ease;
       }
 
-      @media (max-width: 768px) {
-        .org-slide {
-          width: 200px;
-          height: 120px;
-          margin: 0 0.75rem;
-        }
+      .org-slide:hover {
+        border-color: #3b82f6;
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.12);
+        transform: translateY(-4px);
+      }
 
-        .org-slide img {
-          max-height: 60px;
-        }
+      .org-slide img {
+        height: 56px;
+        width: auto;
+        max-width: 140px;
+        object-fit: contain;
+        margin-bottom: 0.75rem;
+      }
+
+      .org-slide span {
+        font-size: 0.85rem;
+        color: #475569;
+        text-align: center;
+        font-weight: 500;
+      }
+
+      /* Case study cards */
+      .case-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-top: 2.5rem;
+      }
+
+      .case-card {
+        background: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+        transition: all 0.35s ease;
+      }
+
+      .case-card:hover {
+        box-shadow: 0 16px 40px rgba(59, 130, 246, 0.12);
+        border-color: rgba(59, 130, 246, 0.3);
+        transform: translateY(-6px);
+      }
+
+      .case-card-header {
+        padding: 1.5rem 1.5rem 1rem;
+        border-bottom: 1px solid #f1f5f9;
+      }
+
+      .case-card-header h3 {
+        font-size: 1.15rem;
+        color: #0f172a;
+        margin: 0 0 0.5rem;
+        font-weight: 700;
+      }
+
+      .case-card-header .case-tag {
+        display: inline-block;
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        background: rgba(59, 130, 246, 0.08);
+        color: #3b82f6;
+        font-weight: 600;
+      }
+
+      .case-card-body {
+        padding: 1rem 1.5rem 1.5rem;
+      }
+
+      .case-card-body p {
+        font-size: 0.95rem;
+        color: #475569;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      /* Section styling */
+      .section {
+        padding: 3.5rem 0;
+      }
+
+      .section.alt {
+        background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin: 0 0 1rem;
+        line-height: 1.2;
+      }
+
+      .section-intro {
+        font-size: 1.05rem;
+        color: #475569;
+        line-height: 1.8;
+        max-width: 800px;
+        margin-bottom: 2rem;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.75rem 1.75rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+      }
+
+      .btn-primary {
+        background: #3b82f6;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #3b82f6;
+        border: 2px solid #3b82f6;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(59, 130, 246, 0.1);
       }
     </style>
   </head>
   <body>
-    <!-- Header / Nav -->
+    <!-- Header -->
     <header class="header-bar">
       <div class="header-inner">
         <div class="logo-area">
-          <a
-            href="index.html"
-            class="logo-link"
-            aria-label="Versed Global home"
-          >
+          <a href="index.html" class="logo-link">
             <img
               src="images/versed-global-logo.png"
-              alt="Versed Global logo"
+              alt="Versed Global"
               class="logo-image"
             />
-            <div>
-              <div class="logo-text">Versed Global</div>
-              <div class="tagline">
-                Salesforce CRM Implementation & Digital Governance Solutions
-              </div>
-            </div>
+            <span class="logo-text">Versed Global</span>
           </a>
+          <span class="tagline">Salesforce &amp; Fundraising for Impact</span>
         </div>
-        <nav class="main-nav" aria-label="Primary navigation">
+
+        <button
+          class="mobile-menu"
+          id="mobileMenuToggle"
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+
+        <nav class="main-nav">
           <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="services.html">Salesforce</a>
-            <a href="about.html">About</a>
-            <a href="clients.html" class="active">Clients</a>
             <a href="fundraising.html">Fundraising</a>
             <a href="training.html">Training</a>
-            <a href="news.html">News</a>
+            <a href="clients.html" class="active">Clients</a>
+            <a href="about.html">About</a>
             <a href="contact.html" class="nav-cta">Contact</a>
           </div>
-          <button
-            class="mobile-menu"
-            id="mobileMenuToggle"
-            type="button"
-            aria-label="Toggle navigation menu"
-          >
-            ☰
-          </button>
         </nav>
       </div>
     </header>
 
-    <!-- MAIN APP SHELL FOR SPA -->
-    <main id="app">
-      <!-- Page Hero -->
-      <section class="section alt">
+    <main>
+      <!-- Intro -->
+      <section class="section">
         <div class="container">
-          <h1 class="section-title">Clients &amp; impact delivered</h1>
+          <h1 class="section-title">Client stories</h1>
           <p class="section-intro">
-            Versed Global works with charities, social enterprises, corporate
-            teams and public‑sector institutions that need Salesforce CRM and
-            fundraising support to work together. These examples reflect the
-            type of outcomes Versed aims to deliver through joined‑up systems
-            and strategy.
+            Versed Global has supported a growing portfolio of organisations
+            across the charity, corporate and public sectors. Below are examples
+            of recent work and the kinds of challenges addressed.
           </p>
         </div>
       </section>
 
-      <!-- Client logo-style tiles -->
-      <section class="section">
-        <div class="container">
-          <h2
-            class="section-title"
-            style="text-align: center; margin-bottom: 3rem"
-          >
-            Organisations we support
-          </h2>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-              gap: 2.5rem;
-              margin-top: 2rem;
-              align-items: center;
-            "
-          >
-            <div
-              class="card"
-              style="text-align: center; padding: 1.5rem; height: 140px"
-            >
-              <div
-                style="
-                  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-                  height: 70px;
-                  border-radius: 12px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  margin-bottom: 0.75rem;
-                  font-size: 0.9rem;
-                  font-weight: 600;
-                  color: #1f2937;
-                "
-              >
-                Health charity
-              </div>
-              <p style="font-weight: 500; color: #374151">Service delivery</p>
-              <p style="font-size: 0.8rem; color: #6b7280">
-                UK‑based, regional
-              </p>
-            </div>
-            <div
-              class="card"
-              style="text-align: center; padding: 1.5rem; height: 140px"
-            >
-              <div
-                style="
-                  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-                  height: 70px;
-                  border-radius: 12px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  margin-bottom: 0.75rem;
-                  font-size: 0.9rem;
-                  font-weight: 600;
-                  color: #1f2937;
-                "
-              >
-                Environment trust
-              </div>
-              <p style="font-weight: 500; color: #374151">Conservation</p>
-              <p style="font-size: 0.8rem; color: #6b7280">
-                Grants-led portfolio
-              </p>
-            </div>
-            <div
-              class="card"
-              style="text-align: center; padding: 1.5rem; height: 140px"
-            >
-              <div
-                style="
-                  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-                  height: 70px;
-                  border-radius: 12px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  margin-bottom: 0.75rem;
-                  font-size: 0.9rem;
-                  font-weight: 600;
-                  color: #1f2937;
-                "
-              >
-                Corporate CSR team
-              </div>
-              <p style="font-weight: 500; color: #374151">Social impact</p>
-              <p style="font-size: 0.8rem; color: #6b7280">
-                Stakeholder &amp; ESG
-              </p>
-            </div>
-            <div
-              class="card"
-              style="text-align: center; padding: 1.5rem; height: 140px"
-            >
-              <div
-                style="
-                  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
-                  height: 70px;
-                  border-radius: 12px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  margin-bottom: 0.75rem;
-                  font-size: 0.9rem;
-                  font-weight: 600;
-                  color: #1f2937;
-                "
-              >
-                Public‑sector programme
-              </div>
-              <p style="font-weight: 500; color: #374151">Grant programmes</p>
-              <p style="font-size: 0.8rem; color: #6b7280">
-                UK government body
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Case Study 1: Charity -->
+      <!-- Case studies -->
       <section class="section alt">
         <div class="container">
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              gap: 4rem;
-              align-items: start;
-              margin-bottom: 4rem;
-            "
-          >
-            <div>
-              <h2 class="section-title" style="margin-bottom: 1.5rem">
-                Regional charity: From spreadsheets to Salesforce
-              </h2>
-              <div class="highlight">
-                <h3
-                  style="color: #10b981; font-size: 1.5rem; margin-bottom: 1rem"
-                >
-                  Illustrative outcome: income growth with better data
-                </h3>
-                <div
-                  style="
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 1.5rem;
-                    margin: 1.5rem 0;
-                  "
-                >
-                  <div>
-                    <h4 style="color: #1a365d; margin-bottom: 0.5rem">
-                      Challenge
-                    </h4>
-                    <ul style="font-size: 0.95rem; color: #4b5568">
-                      <li>
-                        Service users and volunteers tracked in spreadsheets
-                      </li>
-                      <li>
-                        No central view of grant requirements or deadlines
-                      </li>
-                      <li>Manual reporting for multiple funders</li>
-                      <li>Fundraising and delivery data not connected</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 style="color: #1a365d; margin-bottom: 0.5rem">
-                      Approach
-                    </h4>
-                    <ul style="font-size: 0.95rem; color: #4b5568">
-                      <li>Salesforce Nonprofit Success Pack implementation</li>
-                      <li>Service delivery and volunteer management modules</li>
-                      <li>Fundraising and grant tracking in a single CRM</li>
-                      <li>Dashboards for operational and funder reporting</li>
-                    </ul>
-                  </div>
-                </div>
-                <div
-                  style="
-                    background: #f0fdf4;
-                    padding: 1.5rem;
-                    border-radius: 8px;
-                    border-left: 4px solid #10b981;
-                  "
-                >
-                  <p
-                    style="
-                      font-size: 0.96rem;
-                      color: #065f46;
-                      margin: 0 0 0.75rem;
-                    "
-                  >
-                    This type of project reduces manual reporting effort,
-                    improves data quality and creates a single view of service
-                    users, volunteers and funders in one Salesforce environment.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-                padding: 2.5rem;
-                border-radius: 16px;
-                text-align: center;
-              "
-            >
-              <h3 style="color: #1a365d; margin-bottom: 2rem">
-                Typical benefits
-              </h3>
-              <div style="display: grid; gap: 1.5rem; font-size: 1.1rem">
-                <div>
-                  <strong style="color: #059669">Less admin time</strong
-                  ><br /><span style="font-size: 0.9rem; color: #6b7280"
-                    >Grant reporting prepared from CRM data</span
-                  >
-                </div>
-                <div>
-                  <strong style="color: #059669">Clearer insight</strong
-                  ><br /><span style="font-size: 0.9rem; color: #6b7280"
-                    >Service and income data in one place</span
-                  >
-                </div>
-                <div>
-                  <strong style="color: #059669">Stronger cases</strong
-                  ><br /><span style="font-size: 0.9rem; color: #6b7280"
-                    >Evidence for applications and renewals</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Case Study 2: Fundraising -->
-      <section class="section">
-        <div class="container">
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              gap: 4rem;
-              align-items: start;
-              margin-bottom: 4rem;
-            "
-          >
-            <div style="order: 2">
-              <h2 class="section-title" style="margin-bottom: 1.5rem">
-                National charity: Trust and foundation programme
-              </h2>
-              <div class="highlight">
-                <h3
-                  style="color: #f59e0b; font-size: 1.5rem; margin-bottom: 1rem"
-                >
-                  Illustrative outcome: stronger, more predictable pipeline
-                </h3>
-                <div
-                  style="
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 1.5rem;
-                    margin: 1.5rem 0;
-                  "
-                >
-                  <div>
-                    <h4 style="color: #1a365d; margin-bottom: 0.5rem">
-                      Challenge
-                    </h4>
-                    <ul style="font-size: 0.95rem; color: #4b5568">
-                      <li>Low and inconsistent grant success rate</li>
-                      <li>No systematic prospect research or prioritisation</li>
-                      <li>Pipeline held in spreadsheets and emails</li>
-                      <li>Salesforce used only for basic recording</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 style="color: #1a365d; margin-bottom: 0.5rem">
-                      Approach
-                    </h4>
-                    <ul style="font-size: 0.95rem; color: #4b5568">
-                      <li>
-                        Trust and foundation strategy and case for support
-                      </li>
-                      <li>Prioritised multi‑year pipeline and research</li>
-                      <li>Structured proposal templates and review support</li>
-                      <li>
-                        Configured Salesforce opportunity stages and reports
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div
-                  style="
-                    background: #fef3c7;
-                    padding: 1.5rem;
-                    border-radius: 8px;
-                    border-left: 4px solid #f59e0b;
-                  "
-                >
-                  <p
-                    style="
-                      font-size: 0.96rem;
-                      color: #92400e;
-                      margin: 0 0 0.75rem;
-                    "
-                  >
-                    Work of this kind typically improves success rates, supports
-                    clearer decision‑ making on where to invest time and creates
-                    a shared view of the pipeline across teams.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                order: 1;
-                background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-                padding: 2.5rem;
-                border-radius: 16px;
-                text-align: center;
-              "
-            >
-              <h3 style="color: #92400e; margin-bottom: 2rem">
-                Typical benefits
-              </h3>
-              <div style="display: grid; gap: 1.5rem; font-size: 1.1rem">
-                <div>
-                  <strong style="color: #b45309">Higher quality bids</strong
-                  ><br /><span style="font-size: 0.9rem; color: #92400e"
-                    >Consistent case and evidence base</span
-                  >
-                </div>
-                <div>
-                  <strong style="color: #b45309">Stronger pipeline</strong
-                  ><br /><span style="font-size: 0.9rem; color: #92400e"
-                    >Clear priorities over 12–36 months</span
-                  >
-                </div>
-                <div>
-                  <strong style="color: #b45309">Better visibility</strong
-                  ><br /><span style="font-size: 0.9rem; color: #92400e"
-                    >Board‑ and SMT‑ready reporting</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Short success tiles -->
-      <section class="section alt">
-        <div class="container">
-          <h2 class="section-title" style="text-align: center">
-            Further examples of work
-          </h2>
-          <div class="three-grid" style="margin-top: 3rem">
-            <div class="card">
-              <h3>Corporate CSR team</h3>
-              <p>
-                <strong>Focus:</strong> Stakeholder and partnership tracking.<br />
-                <strong>Delivered:</strong> Salesforce solution for ESG
-                programmes and engagement.<br />
-                <strong>Outcome:</strong> Faster internal reporting and clearer
-                audit trail.
-              </p>
-            </div>
-            <div class="card">
-              <h3>Social enterprise</h3>
-              <p>
-                <strong>Focus:</strong> Blended grants, contracts and trading
-                income.<br />
-                <strong>Delivered:</strong> Unified opportunity tracking in
-                Salesforce.<br />
-                <strong>Outcome:</strong> Improved visibility for leadership and
-                investors.
-              </p>
-            </div>
-            <div class="card">
-              <h3>Public grant programme</h3>
-              <p>
-                <strong>Focus:</strong> Application, assessment and compliance
-                processes.<br />
-                <strong>Delivered:</strong> Salesforce‑based grants and
-                stakeholder workflows.<br />
-                <strong>Outcome:</strong> Reduced processing time and stronger
-                governance.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Client sectors -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Types of organisations we support</h2>
-          <p
-            class="section-intro"
-            style="text-align: center; max-width: 800px; margin: 0 auto 3rem"
-          >
-            Versed Global works with small to mid‑sized charities, social
-            enterprises, corporate teams and public‑sector institutions that
-            need Salesforce and fundraising support that work in combination.
+          <h2 class="section-title">Recent engagements</h2>
+          <p class="section-intro">
+            Each project is shaped around the client's context, capacity and
+            goals. Here are summaries of a few recent pieces of work.
           </p>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-              gap: 2rem;
-            "
-          >
-            <div class="card">
-              <h3>£0–£500k charities</h3>
-              <p>
-                Setting up essential CRM and initial institutional funding
-                pipelines for service delivery organisations.
-              </p>
+
+          <div class="case-grid">
+            <div class="case-card">
+              <div class="case-card-header">
+                <h3>Charity CRM rebuild</h3>
+                <span class="case-tag">Salesforce</span>
+              </div>
+              <div class="case-card-body">
+                <p>
+                  Redesigned and rebuilt a Salesforce Nonprofit Success Pack
+                  implementation for a UK charity, resolving data quality
+                  issues, streamlining donation tracking and enabling accurate
+                  reporting for trustees and funders.
+                </p>
+              </div>
             </div>
-            <div class="card">
-              <h3>£500k–£5m charities</h3>
-              <p>
-                Scaling Salesforce and trust and foundation fundraising
-                alongside wider income streams.
-              </p>
+
+            <div class="case-card">
+              <div class="case-card-header">
+                <h3>Trust fundraising strategy</h3>
+                <span class="case-tag">Fundraising</span>
+              </div>
+              <div class="case-card-body">
+                <p>
+                  Developed a trust and foundation fundraising strategy for a
+                  social enterprise, including prospect research, pipeline
+                  prioritisation and the creation of a tailored case for
+                  support.
+                </p>
+              </div>
             </div>
-            <div class="card">
-              <h3>Corporate CSR/ESG teams</h3>
-              <p>
-                Businesses managing social impact, partnerships and stakeholder
-                relationships in a structured Salesforce environment.
-              </p>
+
+            <div class="case-card">
+              <div class="case-card-header">
+                <h3>CSR stakeholder management</h3>
+                <span class="case-tag">Salesforce</span>
+              </div>
+              <div class="case-card-body">
+                <p>
+                  Configured Salesforce for a corporate CSR team to manage
+                  charity partnerships, employee engagement programmes and
+                  impact reporting – replacing fragmented spreadsheets with a
+                  single source of truth.
+                </p>
+              </div>
             </div>
-            <div class="card">
-              <h3>Social enterprises &amp; CICs</h3>
-              <p>
-                Blended funding tracking across grants, contracts and trading
-                income with clear reporting.
-              </p>
+
+            <div class="case-card">
+              <div class="case-card-header">
+                <h3>Grant application support</h3>
+                <span class="case-tag">Fundraising</span>
+              </div>
+              <div class="case-card-body">
+                <p>
+                  Provided grant writing support for a community interest
+                  company, securing funding from a major trust to expand
+                  programme delivery into new regions.
+                </p>
+              </div>
             </div>
-            <div class="card">
-              <h3>Public‑sector &amp; government</h3>
-              <p>
-                Secure systems for grant programmes, stakeholder management and
-                accountability requirements.
-              </p>
+
+            <div class="case-card">
+              <div class="case-card-header">
+                <h3>Public-sector CRM scoping</h3>
+                <span class="case-tag">Salesforce</span>
+              </div>
+              <div class="case-card-body">
+                <p>
+                  Led discovery workshops for a public-sector programme team,
+                  mapping requirements for a Salesforce-based grants management
+                  system aligned with government reporting obligations.
+                </p>
+              </div>
             </div>
-            <div class="card">
-              <h3>UK‑based NGOs with international work</h3>
-              <p>
-                Organisations coordinating multi‑site or multi‑country
-                programmes needing joined‑up CRM and reporting.
-              </p>
+
+            <div class="case-card">
+              <div class="case-card-header">
+                <h3>Data migration &amp; cleanup</h3>
+                <span class="case-tag">Salesforce</span>
+              </div>
+              <div class="case-card-body">
+                <p>
+                  Managed a complex data migration from a legacy CRM into
+                  Salesforce for a mid-sized charity, including data cleansing,
+                  deduplication and validation to ensure a clean launch.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Partners and collaborations -->
-      <section class="section alt">
-        <div class="container" style="text-align: center">
-          <h2 class="section-title">Partners and collaborations</h2>
-          <p
-            class="section-intro"
-            style="max-width: 800px; margin: 0 auto 2.5rem"
-          >
-            Versed Global collaborates with charities, Salesforce consultancies,
-            fundraising agencies and technology vendors to deliver comprehensive
-            CRM and fundraising solutions.
+      <!-- Organisations supported -->
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Organisations supported</h2>
+          <p class="section-intro">
+            Versed Global has worked with and alongside a range of
+            organisations, from small charities to established corporates and
+            Salesforce partners.
           </p>
         </div>
 
         <div class="org-slider">
           <div class="org-slide-track">
-            <!-- Primary loop -->
-            <a
-              href="https://olivetreecancersupport.org.uk/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://cdn.prod.website-files.com/5b72c41709e80cf98c633794/5b72c4d279ce4e7365722f57_Olive%20tree%20logo-header.svg"
-                alt="The Olive Tree Cancer Support logo"
-              />
-              <span>The Olive Tree Cancer Support</span>
-            </a>
-
             <a
               href="https://naturalneighbours.org/"
               target="_blank"
@@ -1110,33 +839,7 @@
               <span>Time Technology</span>
             </a>
 
-            <a
-              href="https://xenogenix.co.uk/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://xenogenix.co.uk/wp-content/uploads/2021/11/is-now-a-Salesforce-Gold-Partner.png"
-                alt="Xenogenix Salesforce Partner logo"
-              />
-              <span>Xenogenix</span>
-            </a>
-
-            <!-- Duplicate loop for seamless scroll -->
-            <a
-              href="https://olivetreecancersupport.org.uk/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://cdn.prod.website-files.com/5b72c41709e80cf98c633794/5b72c4d279ce4e7365722f57_Olive%20tree%20logo-header.svg"
-                alt="The Olive Tree Cancer Support logo"
-              />
-              <span>The Olive Tree Cancer Support</span>
-            </a>
-
+            <!-- Duplicate set for seamless loop -->
             <a
               href="https://naturalneighbours.org/"
               target="_blank"
@@ -1406,6 +1109,14 @@
           navLinks.classList.toggle("active");
         });
       }
+
+      // Close mobile menu when link is clicked
+      const navItems = navLinks.querySelectorAll("a");
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+        });
+      });
     </script>
   </body>
 </html>
