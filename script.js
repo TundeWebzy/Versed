@@ -368,11 +368,19 @@ function initScrollIndicator() {
   const update = throttle(() => {
     const scrollTop = window.scrollY || window.pageYOffset;
     const scrollHeight = document.body.scrollHeight - window.innerHeight;
-    const scrolled = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+    if (scrollHeight <= 0) {
+      bar.style.width = "0%";
+      return;
+    }
+
+    const scrolled = (scrollTop / scrollHeight) * 100;
     bar.style.width = `${scrolled}%`;
   }, 30);
 
   window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update, { passive: true });
+  update();
 }
 
 // ---------- 8. SMOOTH PAGE TRANSITIONS ----------
@@ -578,22 +586,44 @@ function initResponsiveHelpers() {
 
   const ro = new ResizeObserver(
     throttle(() => {
-      if (window.innerWidth < 768) {
+      const width = window.innerWidth;
+
+      // Ensure mobile nav never stays stuck open on breakpoint changes
+      if (width >= 768) {
         const navLinks = qs(".nav-links");
         const toggle = qs("#mobileMenuToggle");
         if (navLinks && navLinks.classList.contains("mobile-open")) {
           navLinks.classList.remove("mobile-open");
-          document.body.classList.remove("no-scroll");
-          if (toggle) {
-            toggle.classList.remove("open");
-            toggle.setAttribute("aria-expanded", "false");
-          }
+        }
+        document.body.classList.remove("no-scroll");
+        if (toggle) {
+          toggle.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
         }
       }
+
+      // Optional: add a helper class for very small devices
+      document.body.classList.toggle("is-small-device", width < 480);
     }, 150),
   );
 
   ro.observe(document.documentElement);
+}
+
+// ---------- 17. MOBILE VIEWPORT HEIGHT FIX ----------
+function initViewportHeightFix() {
+  if (typeof window === "undefined") return;
+
+  const setVar = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  };
+
+  setVar();
+  window.addEventListener("resize", throttle(setVar, 150));
+  window.addEventListener("orientationchange", () => {
+    setTimeout(setVar, 250);
+  });
 }
 
 // ---------- INIT ALL ----------
@@ -612,6 +642,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollSpy();
   initLazyImages();
   initResponsiveHelpers();
+  initViewportHeightFix();
 
   if (!prefersReducedMotion()) {
     initPageFade();
