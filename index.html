@@ -113,11 +113,15 @@
         width: auto;
       }
 
+      /* Company name styled to reflect logo/theme */
       .logo-text {
         font-size: 1.25rem;
         font-weight: 700;
-        color: #1e293b;
         letter-spacing: -0.02em;
+        background: linear-gradient(135deg, #1e40af, #4f46e5, #ec4899);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
 
       .tagline {
@@ -129,7 +133,7 @@
         padding-left: 0.5rem;
         border-left: 1px solid #e2e8f0;
         line-height: 1.2;
-        max-width: 200px;
+        max-width: 260px;
       }
 
       .main-nav {
@@ -1455,7 +1459,6 @@
                 <div class="why-pillboard-title">
                   What this means in day-to-day work
                 </div>
-
                 <div class="why-pillboard-grid">
                   <div>
                     <div class="why-pill-item-label">Systems</div>
