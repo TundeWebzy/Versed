@@ -1017,6 +1017,20 @@ footer::after {
   }
 }
 
+/* 3b. MOBILE HEADER OVERLAP FIX – push main content below sticky header */
+@media (max-width: 768px) {
+  body {
+    scroll-padding-top: 72px;
+  }
+
+  main,
+  .site-content,
+  .page-wrap,
+  .content-wrapper {
+    margin-top: 72px;
+  }
+}
+
 /* 4. CONTACT CARDS MOBILE PERFECT */
 @media (max-width: 768px) {
   .contact-elegance {
