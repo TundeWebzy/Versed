@@ -18,6 +18,20 @@
     />
     <link rel="stylesheet" href="styles.css" />
 
+    <!-- Google Fonts for professional typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <!-- Organization / Logo Schema -->
     <script type="application/ld+json">
       {
@@ -62,6 +76,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative; /* FIXED: Required for mobile nav dropdown positioning */
       }
 
       .logo-area {
@@ -163,6 +178,10 @@
           display: none;
         }
 
+        .mobile-menu {
+          display: block;
+        }
+
         .main-nav {
           width: 100%;
           order: 3;
@@ -180,6 +199,7 @@
           max-height: 0;
           overflow: hidden;
           transition: max-height 0.3s ease;
+          z-index: 1000;
         }
 
         .nav-links.active {
@@ -193,8 +213,8 @@
           border-bottom: 1px solid #e2e8f0;
         }
 
-        .mobile-menu {
-          display: block;
+        .nav-links a.nav-cta {
+          margin-left: 0;
         }
       }
 
@@ -293,7 +313,7 @@
           transform: translate(0, 0);
         }
         50% {
-          transform: translate(15%, 8%);
+          transform: translate(18%, 6%);
         }
         100% {
           transform: translate(0, 0);
@@ -313,75 +333,176 @@
         margin-bottom: 0.4rem;
       }
 
-      /* Flowing “ways to contact” strip */
-
-      .contact-rail {
-        margin-top: 2.5rem;
-        overflow-x: auto;
-        padding-bottom: 1rem;
-        scroll-snap-type: x mandatory;
-      }
-
-      .contact-track {
-        display: flex;
-        gap: 1.5rem;
-        min-width: 860px;
-      }
-
-      .contact-pill {
-        scroll-snap-align: start;
-        min-width: 260px;
-        max-width: 320px;
-        border-radius: 18px;
-        border: 1px solid #e2e8f0;
-        padding: 1.6rem 1.4rem;
+      /* Contact form styling */
+      .contact-form {
         background: #ffffff;
-        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
-        position: relative;
-      }
-
-      .contact-pill-title {
-        font-size: 1.05rem;
-        font-weight: 600;
-        color: #0f172a;
-        margin-bottom: 0.4rem;
-      }
-
-      .contact-pill-text {
-        font-size: 0.9rem;
-        color: #4b5563;
-      }
-
-      .contact-pill-action {
-        margin-top: 0.75rem;
-        font-size: 0.9rem;
-      }
-
-      @media (max-width: 768px) {
-        .contact-track {
-          min-width: 720px;
-        }
-      }
-
-      /* Contact form container */
-
-      .contact-form-shell {
-        max-width: 640px;
-        margin: 0 auto;
-        background: #f8fafc;
-        border-radius: 16px;
-        padding: 2rem 2.25rem;
+        border-radius: 20px;
+        padding: 2.5rem;
         box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+        border: 1px solid #e2e8f0;
       }
 
-      @media (max-width: 640px) {
-        .contact-form-shell {
-          padding: 1.75rem 1.4rem;
-        }
+      .contact-form h2 {
+        font-size: 1.5rem;
+        color: #0f172a;
+        margin: 0 0 1.5rem;
+        font-weight: 700;
       }
 
-      /* Footer aligned with other pages */
+      .form-group {
+        margin-bottom: 1.25rem;
+      }
 
+      .form-group label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+      }
+
+      .form-group textarea {
+        min-height: 140px;
+        resize: vertical;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.85rem 2rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: #3b82f6;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #3b82f6;
+        border: 2px solid #3b82f6;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(59, 130, 246, 0.1);
+      }
+
+      /* Section styling */
+      .section {
+        padding: 3.5rem 0;
+      }
+
+      .section.alt {
+        background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin: 0 0 1rem;
+        line-height: 1.2;
+      }
+
+      .section-intro {
+        font-size: 1.05rem;
+        color: #475569;
+        line-height: 1.8;
+        max-width: 800px;
+        margin-bottom: 2rem;
+      }
+
+      /* Contact cards */
+      .card {
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .card:hover {
+        box-shadow: 0 12px 32px rgba(59, 130, 246, 0.1);
+        border-color: #3b82f6;
+      }
+
+      .card h3 {
+        font-size: 1.1rem;
+        color: #1e293b;
+        margin: 1rem 0 0.5rem;
+        font-weight: 700;
+      }
+
+      .card p {
+        color: #475569;
+        line-height: 1.6;
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      .card a {
+        color: #3b82f6;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .card a:hover {
+        text-decoration: underline;
+      }
+
+      .icon-container {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto;
+        background: linear-gradient(135deg, #eff6ff, #dbeafe);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #3b82f6;
+      }
+
+      /* Footer */
       footer {
         background: #1e293b;
         color: #e2e8f0;
@@ -568,413 +689,280 @@
     </style>
   </head>
   <body>
-    <!-- Header / Nav -->
+    <!-- Header -->
     <header class="header-bar">
       <div class="header-inner">
         <div class="logo-area">
-          <a
-            href="index.html"
-            class="logo-link"
-            aria-label="Versed Global home"
-          >
+          <a href="index.html" class="logo-link">
             <img
               src="images/versed-global-logo.png"
-              alt="Versed Global logo"
+              alt="Versed Global"
               class="logo-image"
             />
-            <div>
-              <div class="logo-text">Versed Global</div>
-              <div class="tagline">
-                Salesforce CRM Implementation & Digital Governance Solutions
-              </div>
-            </div>
+            <span class="logo-text">Versed Global</span>
           </a>
+          <span class="tagline">Salesforce &amp; Fundraising for Impact</span>
         </div>
-        <nav class="main-nav" aria-label="Primary navigation">
+
+        <button
+          class="mobile-menu"
+          id="mobileMenuToggle"
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+
+        <nav class="main-nav">
           <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="services.html">Salesforce</a>
-            <a href="about.html">About</a>
-            <a href="clients.html">Clients</a>
             <a href="fundraising.html">Fundraising</a>
             <a href="training.html">Training</a>
-            <a href="news.html">News</a>
+            <a href="clients.html">Clients</a>
+            <a href="about.html">About</a>
             <a href="contact.html" class="nav-cta active">Contact</a>
           </div>
-          <button
-            class="mobile-menu"
-            id="mobileMenuToggle"
-            type="button"
-            aria-label="Toggle navigation menu"
-          >
-            ☰
-          </button>
         </nav>
       </div>
     </header>
 
-    <!-- MAIN APP SHELL FOR SPA -->
-    <main id="app">
-      <!-- Page Hero -->
-      <section class="section alt">
+    <main>
+      <!-- Contact intro -->
+      <section class="section">
         <div class="container">
           <h1 class="section-title">Get in touch</h1>
           <p class="section-intro">
-            Versed Global operates as a UK‑based, remote‑first consultancy,
-            working with charities, corporates and public‑sector organisations
-            on Salesforce CRM and trust and foundation fundraising.
+            Whether you have a question about Salesforce, want to discuss a
+            fundraising project, or simply want to explore how Versed Global
+            might support your organisation, I'd be happy to hear from you.
           </p>
-        </div>
-      </section>
 
-      <!-- Narrative + highlight band -->
-      <section class="section">
-        <div class="container">
           <div class="contact-flow-layout">
             <div>
-              <h2 class="section-title">How contact typically works</h2>
-              <div class="expandable" id="introBlock">
-                <p style="font-size: 1rem; color: #4b5563; line-height: 1.9">
-                  Most conversations begin with a short email or message
-                  summarising your context: the type of organisation you are,
-                  the systems you use now, the fundraising or Salesforce
-                  challenges you are facing and what a good outcome would look
-                  like over the next 6–18 months.
-                </p>
-                <p style="font-size: 1rem; color: #4b5563; line-height: 1.9">
-                  From there, a 30‑minute discovery call can be arranged to
-                  explore your requirements, timelines and constraints in more
-                  detail. This is a practical conversation focused on whether
-                  Versed Global is the right partner, what is realistic within
-                  your capacity and budget, and which work should be tackled
-                  first.
-                </p>
-                <p style="font-size: 1rem; color: #4b5563; line-height: 1.9">
-                  Where there is a clear fit, you receive a scoped proposal that
-                  outlines options, deliverables and indicative costs. Where
-                  another specialist or approach would be better, this will be
-                  explained honestly and alternative routes signposted where
-                  possible.
-                </p>
-                <div class="expand-fade" id="introFade"></div>
+              <div class="highlight-band">
+                <div class="highlight-band-orbit"></div>
+                <div class="highlight-band-inner">
+                  <p class="highlight-band-label">Working approach</p>
+                  <p style="font-size: 1.02rem; line-height: 1.85; margin: 0">
+                    Versed Global is a UK-based, remote-first consultancy. Most
+                    work is delivered remotely, with in-person sessions
+                    available for workshops, training or key meetings where
+                    appropriate.
+                  </p>
+                </div>
               </div>
-              <button
-                class="expand-toggle"
-                type="button"
-                data-target="introBlock"
-                data-fade="introFade"
-              >
-                Read more
-              </button>
 
               <div class="glance-chips">
-                <div class="glance-chip">
-                  Clear response within one working day
-                </div>
-                <div class="glance-chip">30‑minute discovery call</div>
-                <div class="glance-chip">Fixed‑scope proposals</div>
-                <div class="glance-chip">Remote‑first, UK‑based delivery</div>
+                <span class="glance-chip">UK-based consultancy</span>
+                <span class="glance-chip">Remote-first delivery</span>
+                <span class="glance-chip">In-person available</span>
+                <span class="glance-chip">Charities & nonprofits</span>
+                <span class="glance-chip">Corporate CSR</span>
+                <span class="glance-chip">Public sector</span>
               </div>
-            </div>
 
-            <div class="highlight-band">
-              <div class="highlight-band-orbit"></div>
-              <div class="highlight-band-inner">
-                <div class="highlight-band-label">At a glance</div>
-                <p style="font-size: 0.95rem; margin: 0 0 0.8rem">
-                  Contact is designed to be straightforward, with no obligation
-                  to proceed and no pressure to commit during the first
-                  conversation.
-                </p>
-                <ul
+              <div style="margin-top: 2.5rem">
+                <h3
                   style="
-                    list-style: none;
-                    padding: 0;
-                    margin: 0;
-                    font-size: 0.9rem;
-                    display: grid;
-                    gap: 0.4rem;
+                    margin-top: 0;
+                    font-size: 1.15rem;
+                    color: #0f172a;
+                    margin-bottom: 0.75rem;
                   "
                 >
-                  <li>• Honest assessment of fit and priorities</li>
-                  <li>• Practical next steps, even if you do not proceed</li>
-                  <li>• Consideration for small teams and limited capacity</li>
-                </ul>
+                  What to expect
+                </h3>
+                <div class="expandable" id="expectBlock">
+                  <p
+                    style="font-size: 0.97rem; color: #4b5563; line-height: 1.9"
+                  >
+                    Initial conversations are informal and exploratory. There's
+                    no obligation, and the goal is simply to understand your
+                    context, challenges and goals.
+                  </p>
+                  <p
+                    style="font-size: 0.97rem; color: #4b5563; line-height: 1.9"
+                  >
+                    From there, if there's a fit, I'll outline options and
+                    indicative costs so you can make an informed decision about
+                    next steps.
+                  </p>
+                </div>
+                <button
+                  class="expand-toggle"
+                  type="button"
+                  data-target="expectBlock"
+                >
+                  Read more
+                </button>
               </div>
+            </div>
+
+            <!-- Contact form -->
+            <div class="contact-form">
+              <h2>Send a message</h2>
+              <form
+                action="https://formsubmit.co/info@versedglobal.com"
+                method="POST"
+              >
+                <!-- HONEYPOT -->
+                <input
+                  type="text"
+                  name="_honey"
+                  style="display: none"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+
+                <!-- Disable FormSubmit CAPTCHA -->
+                <input type="hidden" name="_captcha" value="false" />
+
+                <!-- Redirect after success -->
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://versedglobal.com/contact.html?submitted"
+                />
+
+                <!-- Email subject -->
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New Contact Form Submission - Versed Global"
+                />
+
+                <div class="form-group">
+                  <label for="name">Your name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    placeholder="Full name"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    placeholder="you@example.com"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="organisation">Organisation (optional)</label>
+                  <input
+                    type="text"
+                    id="organisation"
+                    name="organisation"
+                    placeholder="Your organisation"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="interest">Area of interest</label>
+                  <select id="interest" name="interest" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Salesforce CRM">Salesforce CRM</option>
+                    <option value="Trust & Foundation Fundraising">
+                      Trust & Foundation Fundraising
+                    </option>
+                    <option value="Both / Integrated">Both / Integrated</option>
+                    <option value="Training & Support">
+                      Training & Support
+                    </option>
+                    <option value="General enquiry">General enquiry</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Your message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    placeholder="Tell me about your project or question..."
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="width: 100%"
+                >
+                  Send message
+                </button>
+              </form>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Flowing ways to contact (rail) -->
+      <!-- Direct contact -->
       <section class="section alt">
         <div class="container">
-          <h2 class="section-title">Ways to contact Versed Global</h2>
-          <p class="section-intro">
-            Choose the option that works best. All enquiries are handled
-            confidentially and receive a considered reply.
-          </p>
-
-          <div class="contact-rail">
-            <div class="contact-track">
-              <div class="contact-pill">
-                <div class="contact-pill-title">Email</div>
-                <p class="contact-pill-text">
-                  Outline your Salesforce, fundraising or combined needs in your
-                  own words. Include any deadlines or decision points if
-                  helpful.
-                </p>
-                <p class="contact-pill-action">
-                  Email:
-                  <a href="mailto:info@versedglobal.com"
-                    >info@versedglobal.com</a
-                  >
-                </p>
-              </div>
-
-              <div class="contact-pill">
-                <div class="contact-pill-title">Phone</div>
-                <p class="contact-pill-text">
-                  For time‑sensitive questions or to sense‑check fit quickly,
-                  call during UK working hours.
-                </p>
-                <p class="contact-pill-action">
-                  Phone:
-                  <a href="tel:+447554623171">07554 623171</a>
-                </p>
-              </div>
-
-              <div class="contact-pill">
-                <div class="contact-pill-title">LinkedIn</div>
-                <p class="contact-pill-text">
-                  Connect and send a brief message, particularly if you would
-                  like to discuss a collaboration or speaking opportunity.
-                </p>
-                <p class="contact-pill-action">
-                  <a
-                    href="https://linkedin.com/company/versed-global"
-                    target="_blank"
-                    rel="noopener"
-                    >Visit LinkedIn page</a
-                  >
-                </p>
-              </div>
-
-              <div class="contact-pill">
-                <div class="contact-pill-title">Discovery call</div>
-                <p class="contact-pill-text">
-                  Use the form below to request a 30‑minute online call to walk
-                  through your context and questions in more depth.
-                </p>
-                <p class="contact-pill-action">
-                  Scroll to “Request a discovery call” below.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Booking form -->
-      <section class="section" id="booking">
-        <div class="container">
           <h2 class="section-title" style="text-align: center">
-            Request a discovery call
+            Prefer to reach out directly?
           </h2>
           <p
             class="section-intro"
-            style="text-align: center; margin-bottom: 2.5rem; max-width: 700px"
+            style="text-align: center; margin: 0 auto 2.5rem; max-width: 600px"
           >
-            Share a few details about your organisation and priorities. Versed
-            Global will suggest times for a 30‑minute online call (UK working
-            hours). For urgent matters, call
-            <strong>07554 623171</strong>.
+            You can also contact Versed Global via phone or email, or connect on
+            LinkedIn.
           </p>
 
-          <div class="contact-form-shell">
-            <form
-              action="https://formsubmit.co/info@versedglobal.com"
-              method="POST"
-            >
-              <!-- Honeypot -->
-              <input
-                type="text"
-                name="_honey"
-                style="display: none"
-                tabindex="-1"
-                autocomplete="off"
-              />
-
-              <!-- Disable CAPTCHA -->
-              <input type="hidden" name="_captcha" value="false" />
-
-              <!-- Redirect after success -->
-              <input
-                type="hidden"
-                name="_next"
-                value="https://versedglobal.com/contact.html?success"
-              />
-
-              <!-- Email subject -->
-              <input
-                type="hidden"
-                name="_subject"
-                value="New Discovery Call Request - Versed Global"
-              />
-
-              <!-- Table template -->
-              <input type="hidden" name="_template" value="table" />
-
-              <div
-                style="
-                  display: grid;
-                  grid-template-columns: 1fr 1fr;
-                  gap: 1.5rem;
-                  margin-bottom: 1.5rem;
-                "
-              >
-                <div>
-                  <label
-                    style="
-                      display: block;
-                      margin-bottom: 0.5rem;
-                      font-weight: 500;
-                    "
-                    >First name</label
-                  >
-                  <input
-                    type="text"
-                    name="first_name"
-                    required
-                    style="
-                      width: 100%;
-                      padding: 0.75rem;
-                      border: 1px solid #d1d5db;
-                      border-radius: 6px;
-                      font-size: 1rem;
-                    "
-                  />
-                </div>
-                <div>
-                  <label
-                    style="
-                      display: block;
-                      margin-bottom: 0.5rem;
-                      font-weight: 500;
-                    "
-                    >Last name</label
-                  >
-                  <input
-                    type="text"
-                    name="last_name"
-                    required
-                    style="
-                      width: 100%;
-                      padding: 0.75rem;
-                      border: 1px solid #d1d5db;
-                      border-radius: 6px;
-                      font-size: 1rem;
-                    "
-                  />
-                </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 2rem;
+            "
+          >
+            <div class="card">
+              <div class="icon-container">
+                <i class="fas fa-phone"></i>
               </div>
+              <h3>Phone</h3>
+              <p>
+                <a href="tel:+447554623171">07554 623171</a>
+              </p>
+            </div>
 
-              <div style="margin-bottom: 1.5rem">
-                <label
-                  style="
-                    display: block;
-                    margin-bottom: 0.5rem;
-                    font-weight: 500;
-                  "
-                  >Email</label
+            <div class="card">
+              <div class="icon-container">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h3>Email</h3>
+              <p>
+                <a href="mailto:info@versedglobal.com">info@versedglobal.com</a>
+              </p>
+            </div>
+
+            <div class="card">
+              <div class="icon-container">
+                <i class="fab fa-linkedin-in"></i>
+              </div>
+              <h3>LinkedIn</h3>
+              <p>
+                <a
+                  href="https://linkedin.com/company/versed-global"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Connect on LinkedIn</a
                 >
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  style="
-                    width: 100%;
-                    padding: 0.75rem;
-                    border: 1px solid #d1d5db;
-                    border-radius: 6px;
-                    font-size: 1rem;
-                  "
-                />
-              </div>
-
-              <div style="margin-bottom: 1.5rem">
-                <label
-                  style="
-                    display: block;
-                    margin-bottom: 0.5rem;
-                    font-weight: 500;
-                  "
-                  >Organisation</label
-                >
-                <input
-                  type="text"
-                  name="organisation"
-                  style="
-                    width: 100%;
-                    padding: 0.75rem;
-                    border: 1px solid #d1d5db;
-                    border-radius: 6px;
-                    font-size: 1rem;
-                  "
-                />
-              </div>
-
-              <div style="margin-bottom: 1.5rem">
-                <label
-                  style="
-                    display: block;
-                    margin-bottom: 0.5rem;
-                    font-weight: 500;
-                  "
-                  >What can we help with?</label
-                >
-                <textarea
-                  name="message"
-                  rows="4"
-                  required
-                  style="
-                    width: 100%;
-                    padding: 0.75rem;
-                    border: 1px solid #d1d5db;
-                    border-radius: 6px;
-                    font-size: 1rem;
-                    font-family: inherit;
-                  "
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                class="btn btn-primary"
-                style="width: 100%; padding: 1rem; font-size: 1.05rem"
-              >
-                Send message and request call
-              </button>
-            </form>
-
-            <p
-              style="
-                text-align: center;
-                margin-top: 1.5rem;
-                color: #6b7280;
-                font-size: 0.9rem;
-              "
-            >
-              Prefer email only? Contact
-              <strong>info@versedglobal.com</strong> and a response will be
-              provided within one working day.
-            </p>
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Availability -->
-      <section class="section alt">
+      <section class="section">
         <div class="container">
           <h2 class="section-title" style="text-align: center">
             Availability and response times
@@ -1157,6 +1145,14 @@
           navLinks.classList.toggle("active");
         });
       }
+
+      // Close mobile menu when link is clicked
+      const navItems = navLinks.querySelectorAll("a");
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+        });
+      });
 
       // Read-more toggles
       document.querySelectorAll(".expand-toggle").forEach((btn) => {
