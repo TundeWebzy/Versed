@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Versed Global | Salesforce CRM & Fundraising Strategy</title>
+    <title>Versed Global | Salesforce CRM &amp; Fundraising Strategy</title>
 
     <!-- FAVICON -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -15,10 +15,24 @@
 
     <meta
       name="description"
-      content="Versed Global designs, integrates and manages Salesforce CRM systems and delivers high-impact trust and foundation fundraising support for charities, corporates and public‑sector organisations."
+      content="Versed Global designs, integrates and manages Salesforce CRM systems and delivers high-impact trust and foundation fundraising support for charities, corporates and public-sector organisations."
     />
 
     <link rel="stylesheet" href="styles.css" />
+
+    <!-- Google Fonts for professional typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
     <!-- Organization / Logo Schema -->
     <script type="application/ld+json">
@@ -29,7 +43,11 @@
         "url": "https://versedglobal.com/",
         "logo": "https://versedglobal.com/images/versed-global-logo.png",
         "description": "Versed Global designs, integrates and manages Salesforce CRM systems and delivers high-impact trust and foundation fundraising support for charities, corporates and public-sector organisations.",
-        "sameAs": ["https://www.linkedin.com/company/versed-global"],
+        "sameAs": [
+          "https://www.linkedin.com/company/versed-global",
+          "https://www.instagram.com/versedglobal",
+          "https://www.facebook.com/share/14U4YEg25nN/?mibextid=wwXIfr"
+        ],
         "contactPoint": [
           {
             "@type": "ContactPoint",
@@ -41,11 +59,788 @@
         ]
       }
     </script>
+
+    <style>
+      /* Base / header / footer from existing file */
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .header-bar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+      }
+
+      .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 1.5rem;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+      }
+
+      .logo-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+
+      .logo-image {
+        height: 40px;
+        width: auto;
+      }
+
+      .logo-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1e293b;
+        letter-spacing: -0.02em;
+      }
+
+      .tagline {
+        font-size: 0.75rem;
+        color: #64748b;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        margin-left: 0.5rem;
+        padding-left: 0.5rem;
+        border-left: 1px solid #e2e8f0;
+        line-height: 1.2;
+        max-width: 200px;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        color: #475569;
+        font-weight: 500;
+        font-size: 0.95rem;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+
+      .nav-links a:hover {
+        color: #3b82f6;
+        background: transparent;
+      }
+
+      .nav-links a.active {
+        color: #3b82f6;
+      }
+
+      .nav-links a.nav-cta {
+        background: #3b82f6;
+        color: white;
+        padding: 0.5rem 1.25rem;
+        border-radius: 6px;
+        margin-left: 0.5rem;
+      }
+
+      .nav-links a.nav-cta:hover {
+        background: #2563eb;
+        color: white;
+      }
+
+      .mobile-menu {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #1e293b;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          flex-direction: column;
+          gap: 0;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: white;
+          border-top: 1px solid #e2e8f0;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+        }
+
+        .nav-links.active {
+          max-height: 500px;
+        }
+
+        .nav-links a {
+          width: 100%;
+          padding: 1rem;
+          border-radius: 0;
+          border-bottom: 1px solid #e2e8f0;
+        }
+
+        .mobile-menu {
+          display: block;
+        }
+
+        .header-inner {
+          flex-wrap: wrap;
+        }
+
+        .tagline {
+          display: none;
+        }
+
+        .main-nav {
+          width: 100%;
+          order: 3;
+        }
+      }
+
+      /* HERO + INTRO FLOW REDESIGN */
+
+      .hero-shell {
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient(circle at 0% 0%, #0b1120, #020617 55%);
+        color: #f9fafb;
+      }
+
+      .hero-bg-image {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .hero-bg-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.18;
+        transform: scale(1.05);
+      }
+
+      .hero-orbit {
+        position: absolute;
+        inset: -40%;
+        background:
+          radial-gradient(
+            circle at 10% 10%,
+            rgba(59, 130, 246, 0.35),
+            transparent 60%
+          ),
+          radial-gradient(
+            circle at 85% 0,
+            rgba(244, 114, 182, 0.35),
+            transparent 60%
+          );
+        opacity: 0.8;
+        animation: hero-orbit 26s linear infinite;
+      }
+
+      @keyframes hero-orbit {
+        0% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(18%, 10%);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      .hero-inner-flex {
+        position: relative;
+        z-index: 1;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 4.5rem 1.5rem 3.75rem;
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        gap: 3.5rem;
+        align-items: center;
+      }
+
+      @media (max-width: 960px) {
+        .hero-inner-flex {
+          grid-template-columns: 1fr;
+          padding-top: 3.5rem;
+          padding-bottom: 3.25rem;
+        }
+      }
+
+      .hero-eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #a5b4fc;
+        margin-bottom: 1rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2.7rem, 4.2vw, 3.7rem);
+        line-height: 1.05;
+        margin-bottom: 1.1rem;
+        color: #f9fafb;
+        letter-spacing: -0.04em;
+        text-shadow: 0 18px 40px rgba(15, 23, 42, 0.6);
+      }
+
+      .hero-subtitle {
+        font-size: 1.02rem;
+        line-height: 1.9;
+        color: #e5e7eb;
+        max-width: 640px;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-expandable {
+        position: relative;
+        overflow: hidden;
+        max-height: 170px;
+        transition: max-height 0.4s ease;
+      }
+
+      .hero-expandable.expanded {
+        max-height: 900px;
+      }
+
+      .hero-expand-fade {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 3rem;
+        background: linear-gradient(
+          to bottom,
+          rgba(15, 23, 42, 0),
+          rgba(15, 23, 42, 0.98)
+        );
+        pointer-events: none;
+      }
+
+      .hero-expand-toggle {
+        margin-top: 0.6rem;
+        background: none;
+        border: none;
+        color: #93c5fd;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .hero-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin: 1.6rem 0 2.1rem;
+      }
+
+      .hero-badge {
+        background: rgba(15, 23, 42, 0.65);
+        border-radius: 999px;
+        padding: 0.4rem 0.95rem;
+        border: 1px solid rgba(148, 163, 184, 0.7);
+        font-size: 0.84rem;
+        font-weight: 500;
+        color: #e5e7eb;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .hero-metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1.2rem;
+        font-size: 0.86rem;
+        color: #cbd5f5;
+      }
+
+      .hero-metric-label {
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 0.74rem;
+        color: #a5b4fc;
+        margin-bottom: 0.15rem;
+      }
+
+      .hero-metric-value {
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: #e5e7eb;
+      }
+
+      .hero-metric-note {
+        font-size: 0.8rem;
+        color: #94a3b8;
+      }
+
+      /* Flowing capability rail */
+
+      .flow-section {
+        padding: 3.5rem 0 3rem;
+      }
+
+      .flow-section.alt {
+        background: radial-gradient(circle at 0% 0%, #f9fafb, #eef2ff);
+      }
+
+      .flow-section .section-title {
+        margin-bottom: 0.35rem;
+      }
+
+      .flow-section .section-intro {
+        max-width: 760px;
+      }
+
+      .capability-rail {
+        margin-top: 2.1rem;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+        scroll-snap-type: x mandatory;
+      }
+
+      .capability-track {
+        display: flex;
+        gap: 1.6rem;
+        min-width: 980px;
+      }
+
+      .capability-pill {
+        scroll-snap-align: start;
+        min-width: 260px;
+        max-width: 320px;
+        border-radius: 20px;
+        border: 1px solid #e2e8f0;
+        background: #ffffff;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+        padding: 1.6rem 1.5rem 1.4rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .capability-pill::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+      }
+
+      .capability-label {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: #64748b;
+        margin-bottom: 0.35rem;
+      }
+
+      .capability-title {
+        font-size: 1.02rem;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 0.4rem;
+      }
+
+      .capability-text {
+        font-size: 0.9rem;
+        color: #4b5563;
+        margin-bottom: 0.45rem;
+      }
+
+      .capability-subtext {
+        font-size: 0.85rem;
+        color: #6b7280;
+      }
+
+      @media (max-width: 900px) {
+        .capability-track {
+          min-width: 760px;
+        }
+      }
+
+      /* Who we work with rail */
+
+      .sector-rail {
+        margin-top: 2rem;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+        scroll-snap-type: x mandatory;
+      }
+
+      .sector-track {
+        display: flex;
+        gap: 1.5rem;
+        min-width: 860px;
+      }
+
+      .sector-pill {
+        scroll-snap-align: start;
+        min-width: 260px;
+        max-width: 320px;
+        border-radius: 18px;
+        border: 1px solid #e2e8f0;
+        padding: 1.5rem 1.4rem 1.35rem;
+        background: #ffffff;
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      }
+
+      .sector-title {
+        font-size: 1.02rem;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 0.4rem;
+      }
+
+      .sector-text {
+        font-size: 0.9rem;
+        color: #4b5563;
+      }
+
+      @media (max-width: 900px) {
+        .sector-track {
+          min-width: 720px;
+        }
+      }
+
+      /* “Why Versed Global” flowing narrative + read more */
+
+      .why-flow-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+        gap: 3rem;
+        align-items: start;
+      }
+
+      @media (max-width: 900px) {
+        .why-flow-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .why-highlight {
+        position: relative;
+        border-radius: 18px;
+        padding: 1.7rem 1.7rem 1.5rem;
+        background: radial-gradient(circle at 0% 0%, #eff6ff, #f9fafb);
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+      }
+
+      .why-list {
+        list-style: none;
+        padding: 0;
+        margin: 1.1rem 0 0;
+        display: grid;
+        gap: 0.6rem;
+        font-size: 0.9rem;
+        color: #4b5563;
+      }
+
+      /* FAQ, footer etc. keep existing styles from original */
+
+      .faq-section {
+        background: #f8fafc;
+        border-radius: 12px;
+        padding: 2rem;
+        margin: 2rem 0;
+      }
+
+      .faq-item {
+        margin-bottom: 1.25rem;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .faq-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 0;
+        cursor: pointer;
+        user-select: none;
+        font-weight: 600;
+        color: #1e293b;
+        font-size: 1rem;
+      }
+
+      .faq-question:hover {
+        color: #3b82f6;
+      }
+
+      .faq-toggle {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        color: #3b82f6;
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+        margin-left: 1rem;
+      }
+
+      .faq-item.active .faq-toggle {
+        transform: rotate(180deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding: 0 0 0 0;
+      }
+
+      .faq-item.active .faq-answer {
+        max-height: 500px;
+        padding: 0 0 1.25rem 0;
+      }
+
+      .faq-answer p {
+        color: #475569;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      /* Footer redesign – unchanged */
+
+      .social-links {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: #3b82f6;
+        color: white;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+      }
+
+      .social-link:hover {
+        background: #2563eb;
+        transform: translateY(-3px);
+      }
+
+      .social-link.linkedin {
+        background: #0a66c2;
+      }
+
+      .social-link.linkedin:hover {
+        background: #084999;
+      }
+
+      .social-link.instagram {
+        background: #e4405f;
+      }
+
+      .social-link.instagram:hover {
+        background: #c72e5f;
+      }
+
+      .social-link.facebook {
+        background: #1877f2;
+      }
+
+      .social-link.facebook:hover {
+        background: #0a66ff;
+      }
+
+      footer {
+        background: #1e293b;
+        color: #e2e8f0;
+        padding: 3rem 0 1.5rem;
+        margin-top: 4rem;
+      }
+
+      .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h4 {
+        color: #f1f5f9;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.25rem;
+        font-weight: 700;
+      }
+
+      .footer-section p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-section a {
+        color: #cbd5e1;
+        text-decoration: none;
+        transition: color 0.3s.ease;
+      }
+
+      .footer-section a:hover {
+        color: #f1f5f9;
+      }
+
+      .footer-address {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .footer-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .footer-contact a {
+        display: inline-block;
+        width: fit-content;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-logo img {
+        height: 48px;
+        width: 48px;
+        background: white;
+        border-radius: 8px;
+        padding: 4px;
+        object-fit: contain;
+        filter: none;
+      }
+
+      .footer-logo span {
+        color: #f1f5f9;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .footer-divider {
+        border-top: 1px solid #334155;
+        padding-top: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        font-size: 0.9rem;
+        color: #94a3b8;
+      }
+
+      .footer-bottom a {
+        color: #cbd5e1;
+      }
+
+      .trustpilot-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: #cbd5e1;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+      }
+
+      .trustpilot-link:hover {
+        color: #f1f5f9;
+      }
+
+      .company-info {
+        font-size: 0.85rem;
+        color: #94a3b8;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 768px) {
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Header / Nav -->
     <header class="header-bar">
-      <div class="container header-inner">
+      <div class="header-inner">
         <div class="logo-area">
           <a
             href="index.html"
@@ -57,19 +852,24 @@
               alt="Versed Global logo"
               class="logo-image"
             />
-            <span class="logo-text">Versed Global</span>
+            <div>
+              <div class="logo-text">Versed Global</div>
+              <div class="tagline">
+                Salesforce CRM Implementation &amp; Digital Governance Solutions
+              </div>
+            </div>
           </a>
         </div>
         <nav class="main-nav" aria-label="Primary navigation">
-          <div class="nav-links">
+          <div class="nav-links" id="navLinks">
             <a href="index.html" class="active">Home</a>
-            <a href="services.html">Salesforce Services</a>
-            <a href="fundraising.html">Fundraising Support</a>
-            <a href="training.html">Training &amp; Support</a>
-            <a href="news.html">News &amp; insights</a>
+            <a href="services.html">Salesforce</a>
             <a href="about.html">About</a>
             <a href="clients.html">Clients</a>
-            <a href="contact.html" class="nav-cta">Contact</a>
+            <a href="contact.html">Contact</a>
+            <a href="fundraising.html">Fundraising</a>
+            <a href="training.html">Training</a>
+            <a href="news.html">News</a>
           </div>
           <button
             class="mobile-menu"
@@ -83,225 +883,315 @@
       </div>
     </header>
 
-    <!-- MAIN APP SHELL FOR SPA -->
+    <!-- MAIN APP SHELL -->
     <main id="app">
-      <!-- Hero -->
-      <section class="hero" style="position: relative; overflow: hidden">
-        <div style="position: absolute; inset: 0; z-index: 0; overflow: hidden">
+      <!-- HERO + INTRO (redesigned) -->
+      <section class="hero-shell">
+        <div class="hero-bg-image">
           <img
             src="images/hero-consulting.jpg"
             alt="Consulting team collaborating in a meeting room"
-            style="
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              opacity: 0.25;
-              transform: scale(1.05);
-            "
           />
         </div>
+        <div class="hero-orbit"></div>
 
-        <div
-          class="container hero-inner"
-          style="
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 3rem;
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-          "
-        >
-          <div class="hero-content" style="flex: 1.1; max-width: 720px">
-            <p
-              style="
-                text-transform: uppercase;
-                letter-spacing: 0.2em;
-                font-size: 0.8rem;
-                font-weight: 600;
-                color: #c7d2fe;
-                margin-bottom: 1rem;
-              "
-            >
-              Salesforce · Fundraising · Strategy · CRM Training
+        <div class="hero-inner-flex">
+          <div>
+            <p class="hero-eyebrow">
+              Salesforce · Fundraising · Strategy · Training
             </p>
-
-            <h1
-              style="
-                font-size: clamp(2.8rem, 4.6vw, 3.8rem);
-                line-height: 1.05;
-                margin-bottom: 1.4rem;
-                color: #f9fafb;
-                letter-spacing: -0.04em;
-                text-shadow: 0 18px 40px rgba(15, 23, 42, 0.6);
-              "
-            >
-              Salesforce &amp; fundraising<br />
-              that work together
+            <h1 class="hero-title">
+              Salesforce &amp; fundraising<br />that work as one system
             </h1>
 
-            <p
-              class="hero-subtitle"
-              style="
-                font-size: 1.08rem;
-                line-height: 1.9;
-                color: #e2e8f0;
-                max-width: 640px;
-                margin-bottom: 2.3rem;
-              "
+            <div class="hero-expandable" id="heroIntro">
+              <p class="hero-subtitle" style="margin-bottom: 0.8rem">
+                Versed Global designs, implements and refines Salesforce CRM
+                alongside trust and foundation fundraising so that income,
+                programmes and reporting are joined up rather than competing.
+              </p>
+              <p
+                class="hero-subtitle"
+                style="font-size: 0.98rem; color: #dbeafe"
+              >
+                The focus is on practical, sustainable change: Salesforce
+                configurations that reflect how your teams actually work,
+                fundraising strategies grounded in your data and capacity, and
+                training that helps people use the tools with confidence rather
+                than fear.
+              </p>
+            </div>
+            <div class="hero-expand-fade" id="heroIntroFade"></div>
+            <button
+              class="hero-expand-toggle"
+              type="button"
+              data-target="heroIntro"
+              data-fade="heroIntroFade"
             >
-              Versed Global is a specialist consultancy that designs, integrates
-              and builds Salesforce-based CRM systems and provides targeted
-              trust and foundation fundraising support for charities, corporates
-              and public-sector organisations.
-            </p>
+              Read more
+            </button>
 
-            <div
-              class="hero-badges"
-              style="
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.75rem;
-                margin-bottom: 2.4rem;
-              "
-            >
-              <span
-                class="hero-badge"
-                style="
-                  background: rgba(15, 23, 42, 0.65);
-                  border: 1px solid rgba(129, 140, 248, 0.65);
-                  color: #e0e7ff;
-                  padding: 0.45rem 1rem;
-                  border-radius: 999px;
-                  font-size: 0.86rem;
-                  font-weight: 500;
-                "
-                >Salesforce CRM design &amp; build</span
+            <div class="hero-badges">
+              <span class="hero-badge">Salesforce CRM design &amp; build</span>
+              <span class="hero-badge">Trust &amp; foundation fundraising</span>
+              <span class="hero-badge"
+                >Programme &amp; reporting alignment</span
               >
-              <span
-                class="hero-badge"
-                style="
-                  background: rgba(15, 23, 42, 0.65);
-                  border: 1px solid rgba(244, 114, 182, 0.7);
-                  color: #ffe4f0;
-                  padding: 0.45rem 1rem;
-                  border-radius: 999px;
-                  font-size: 0.86rem;
-                  font-weight: 500;
-                "
-                >Trust &amp; foundation fundraising</span
-              >
-              <span
-                class="hero-badge"
-                style="
-                  background: rgba(15, 23, 42, 0.65);
-                  border: 1px solid rgba(45, 212, 191, 0.7);
-                  color: #ccfbf1;
-                  padding: 0.45rem 1rem;
-                  border-radius: 999px;
-                  font-size: 0.86rem;
-                  font-weight: 500;
-                "
-                >Charity, corporate &amp; public sector</span
-              >
+              <span class="hero-badge">Training &amp; ongoing support</span>
             </div>
 
-            <div
-              class="hero-buttons"
-              style="
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1rem;
-                align-items: center;
-              "
-            >
-              <a href="services.html" class="btn btn-primary"
-                >Explore Salesforce services</a
-              >
-              <a href="fundraising.html" class="btn btn-secondary"
-                >View fundraising support</a
-              >
+            <div class="hero-buttons">
+              <a href="services.html" class="btn btn-primary">
+                Explore Salesforce services
+              </a>
+              <a href="fundraising.html" class="btn btn-secondary">
+                View fundraising support
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <div class="hero-metrics">
+              <div>
+                <div class="hero-metric-label">Focus</div>
+                <div class="hero-metric-value">CRM &amp; income</div>
+                <div class="hero-metric-note">
+                  Salesforce, fundraising and governance in one place.
+                </div>
+              </div>
+              <div>
+                <div class="hero-metric-label">Clients</div>
+                <div class="hero-metric-value">Mission-led</div>
+                <div class="hero-metric-note">
+                  Charities, corporates and public-sector teams.
+                </div>
+              </div>
+              <div>
+                <div class="hero-metric-label">Approach</div>
+                <div class="hero-metric-value">Partnership</div>
+                <div class="hero-metric-note">
+                  Designing with you, not just for you.
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- What we do -->
-      <section class="section">
+      <!-- WHAT WE DO – flowing capability rail -->
+      <section class="section flow-section">
         <div class="container">
           <h2 class="section-title">What Versed Global does</h2>
           <p class="section-intro">
-            Versed Global closes the gap between strong systems and strong
-            income generation by aligning Salesforce CRM with real-world
-            fundraising and programme needs.
+            Versed Global closes the gap between robust systems and sustainable
+            income by aligning Salesforce CRM with real-world fundraising,
+            programme and reporting needs.
           </p>
-          <div class="three-grid">
-            <div class="card">
-              <h3>Salesforce CRM design &amp; build</h3>
-              <p>
-                End-to-end Salesforce analysis, design, configuration,
-                integration and training for charities, corporates and
-                public-sector institutions.
-              </p>
-            </div>
-            <div class="card">
-              <h3>Trust &amp; foundation fundraising</h3>
-              <p>
-                Strategy, pipeline development, bid writing and reporting for
-                trusts, foundations and institutional funders, integrated with
-                your CRM.
-              </p>
-            </div>
-            <div class="card">
-              <h3>Ongoing optimisation &amp; support</h3>
-              <p>
-                Continuous improvement, reporting and user support so your CRM
-                and fundraising programmes remain effective as you grow.
-              </p>
+
+          <div class="capability-rail">
+            <div class="capability-track">
+              <div class="capability-pill">
+                <div class="capability-label">Capability 1</div>
+                <div class="capability-title">
+                  Salesforce CRM design &amp; build
+                </div>
+                <p class="capability-text">
+                  Analysis, architecture and configuration of Salesforce so that
+                  objects, fields and automation match how your organisation
+                  actually operates.
+                </p>
+                <p class="capability-subtext">
+                  Includes requirements gathering, NPSP or core configuration,
+                  data migration planning and role-specific training plans.
+                </p>
+              </div>
+
+              <div class="capability-pill">
+                <div class="capability-label">Capability 2</div>
+                <div class="capability-title">
+                  Trust &amp; foundation fundraising
+                </div>
+                <p class="capability-text">
+                  Strategy, pipeline creation, bid development and reporting for
+                  trusts, foundations and institutional funders.
+                </p>
+                <p class="capability-subtext">
+                  Emphasis on realistic pipelines, evidence-rich cases for
+                  support and clear governance around decision-making.
+                </p>
+              </div>
+
+              <div class="capability-pill">
+                <div class="capability-label">Capability 3</div>
+                <div class="capability-title">
+                  Integrated systems &amp; income support
+                </div>
+                <p class="capability-text">
+                  Joining up Salesforce with fundraising, delivery and finance
+                  processes, so that income, outcomes and reporting draw on the
+                  same underlying data.
+                </p>
+                <p class="capability-subtext">
+                  Mapping journeys from enquiry to reporting, identifying where
+                  data is duplicated, missed or under-used.
+                </p>
+              </div>
+
+              <div class="capability-pill">
+                <div class="capability-label">Capability 4</div>
+                <div class="capability-title">
+                  Ongoing optimisation &amp; training
+                </div>
+                <p class="capability-text">
+                  Light-touch support, refinements and team training so that
+                  your system keeps pace with changing programmes and staffing.
+                </p>
+                <p class="capability-subtext">
+                  Includes periodic health checks, mini projects and targeted
+                  sessions for new starters or new features.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Who we serve -->
-      <section class="section alt">
+      <!-- WHO WE WORK WITH – flowing rail -->
+      <section class="section flow-section alt">
         <div class="container">
           <h2 class="section-title">Who we work with</h2>
           <p class="section-intro">
-            Versed Global serves mission-driven, corporate and public-sector
-            teams that need Salesforce and fundraising support that work
-            together.
+            Versed Global works with mission-driven, corporate and public-sector
+            teams that need Salesforce and fundraising support to pull in the
+            same direction.
           </p>
-          <div class="three-grid">
-            <div class="card">
-              <h3>Charities &amp; social enterprises</h3>
-              <p>
-                Organisations that rely on trusts, foundations and institutional
-                funders and need joined-up CRM and fundraising support.
-              </p>
-            </div>
-            <div class="card">
-              <h3>Corporate organisations</h3>
-              <p>
-                Corporate teams using Salesforce for stakeholder management, CSR
-                and ESG programmes, and data-driven reporting.
-              </p>
-            </div>
-            <div class="card">
-              <h3>Public-sector institutions</h3>
-              <p>
-                Government and public-sector bodies that require secure,
-                well-designed Salesforce systems for programmes, grants and
-                stakeholder engagement.
-              </p>
+
+          <div class="sector-rail">
+            <div class="sector-track">
+              <div class="sector-pill">
+                <div class="sector-title">
+                  Charities &amp; social enterprises
+                </div>
+                <p class="sector-text">
+                  Organisations that rely on trusts, foundations and
+                  institutional funders and need joined-up CRM and fundraising
+                  support that respects limited internal capacity.
+                </p>
+              </div>
+
+              <div class="sector-pill">
+                <div class="sector-title">Corporate organisations</div>
+                <p class="sector-text">
+                  Corporate teams using Salesforce for stakeholder management,
+                  CSR, ESG reporting and partnerships, who need clear,
+                  repeatable processes and visibility across regions or teams.
+                </p>
+              </div>
+
+              <div class="sector-pill">
+                <div class="sector-title">Public-sector institutions</div>
+                <p class="sector-text">
+                  Government and public-sector bodies requiring secure,
+                  well-designed Salesforce systems for programmes, grants and
+                  stakeholder engagement, with strong governance and audit
+                  trails.
+                </p>
+              </div>
+
+              <div class="sector-pill">
+                <div class="sector-title">Collaborative initiatives</div>
+                <p class="sector-text">
+                  Partnerships and consortia where multiple organisations,
+                  funders and delivery partners need a shared picture of
+                  activity, outcomes and learning.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- How we work / Values -->
+      <!-- WHY CHOOSE VERSED GLOBAL – flowing narrative (no cards) -->
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Why choose Versed Global?</h2>
+          <div class="why-flow-layout">
+            <div>
+              <p class="section-intro" style="margin-bottom: 1.3rem">
+                Versed Global brings Salesforce implementation and fundraising
+                strategy together, so that systems, income and governance are
+                considered as one joined-up piece of work rather than separate
+                threads.
+              </p>
+              <div class="expandable" id="whyBlock">
+                <p style="font-size: 0.98rem; color: #4b5563; line-height: 1.9">
+                  Experience spans charities, corporates and public-sector
+                  organisations, with an emphasis on trust and foundation
+                  fundraising and Salesforce Nonprofit Success Pack
+                  configurations. That mix means conversations are as much about
+                  stewardship journeys, risk and renewal as they are about page
+                  layouts and automation.
+                </p>
+                <p style="font-size: 0.98rem; color: #4b5563; line-height: 1.9">
+                  The work is grounded in clear values: impact, integrity,
+                  equity, excellence, collaboration and learning. This shapes
+                  everything from how requirements are gathered and documented,
+                  through to how risks are flagged and how knowledge is
+                  transferred to internal teams.
+                </p>
+                <p style="font-size: 0.98rem; color: #4b5563; line-height: 1.9">
+                  Rather than creating long-term dependency, the aim is to
+                  increase your internal confidence. That can mean simplifying
+                  existing Salesforce configurations, documenting governance
+                  decisions or building training materials that new staff can
+                  easily pick up as your organisation evolves.
+                </p>
+              </div>
+              <button
+                class="expand-toggle"
+                type="button"
+                data-target="whyBlock"
+              >
+                Read more
+              </button>
+            </div>
+
+            <div class="why-highlight">
+              <div
+                style="
+                  font-size: 0.78rem;
+                  text-transform: uppercase;
+                  letter-spacing: 0.18em;
+                  color: #64748b;
+                  margin-bottom: 0.4rem;
+                "
+              >
+                In practice, this looks like
+              </div>
+              <ul class="why-list">
+                <li>
+                  • Designing Salesforce structures that mirror real fundraising
+                  and programme workflows.
+                </li>
+                <li>
+                  • Translating complex requirements into manageable phases of
+                  work.
+                </li>
+                <li>
+                  • Providing honest guidance on what is possible within your
+                  timeframe and budget.
+                </li>
+                <li>
+                  • Documenting decisions so future staff can understand how and
+                  why the system is set up the way it is.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How we work / Values (unchanged from your file) -->
       <section class="section" style="position: relative; overflow: hidden">
         <div
           style="
@@ -342,8 +1232,14 @@
                 box-shadow: 0 8px 25px rgba(59, 91, 219, 0.08);
                 transition: all 0.4s ease;
               "
-              onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 45px rgba(59,91,219,0.15)'"
-              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(59,91,219,0.08)'"
+              onmouseover="
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 20px 45px rgba(59,91,219,0.15)';
+              "
+              onmouseout="
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 8px 25px rgba(59,91,219,0.08)';
+              "
             >
               <h3
                 style="
@@ -372,8 +1268,14 @@
                 box-shadow: 0 8px 25px rgba(139, 92, 246, 0.1);
                 transition: all 0.4s ease;
               "
-              onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 45px rgba(139,92,246,0.2)'"
-              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(139,92,246,0.1)'"
+              onmouseover="
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 20px 45px rgba(139,92,246,0.2)';
+              "
+              onmouseout="
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 8px 25px rgba(139,92,246,0.1)';
+              "
             >
               <h3
                 style="
@@ -400,8 +1302,14 @@
                 box-shadow: 0 8px 25px rgba(236, 72, 153, 0.1);
                 transition: all 0.4s ease;
               "
-              onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 45px rgba(236,72,153,0.2)'"
-              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(236,72,153,0.1)'"
+              onmouseover="
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 20px 45px rgba(236,72,153,0.2)';
+              "
+              onmouseout="
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 8px 25px rgba(236,72,153,0.1)';
+              "
             >
               <h3
                 style="
@@ -429,8 +1337,14 @@
                 box-shadow: 0 8px 25px rgba(20, 184, 166, 0.1);
                 transition: all 0.4s ease;
               "
-              onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 45px rgba(20,184,166,0.2)'"
-              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(20,184,166,0.1)'"
+              onmouseover="
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 20px 45px rgba(20,184,166,0.2)';
+              "
+              onmouseout="
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 8px 25px rgba(20,184,166,0.1)';
+              "
             >
               <h3
                 style="
@@ -458,8 +1372,14 @@
                 box-shadow: 0 8px 25px rgba(79, 70, 229, 0.1);
                 transition: all 0.4s ease;
               "
-              onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 45px rgba(79,70,229,0.2)'"
-              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(79,70,229,0.1)'"
+              onmouseover="
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 20px 45px rgba(79,70,229,0.2)';
+              "
+              onmouseout="
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 8px 25px rgba(79,70,229,0.1)';
+              "
             >
               <h3
                 style="
@@ -486,8 +1406,14 @@
                 box-shadow: 0 8px 25px rgba(16, 185, 129, 0.1);
                 transition: all 0.4s ease;
               "
-              onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 45px rgba(16,185,129,0.2)'"
-              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(16,185,129,0.1)'"
+              onmouseover="
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 20px 45px rgba(16,185,129,0.2)';
+              "
+              onmouseout="
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 8px 25px rgba(16,185,129,0.1)';
+              "
             >
               <h3
                 style="
@@ -507,7 +1433,111 @@
         </div>
       </section>
 
-      <!-- CTA -->
+      <!-- Frequently Asked Questions (unchanged) -->
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Frequently asked questions</h2>
+          <p class="section-intro">
+            Find answers to common questions about our services, process and
+            support.
+          </p>
+          <div class="faq-section">
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>What is included in a Salesforce implementation?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Our Salesforce implementations include comprehensive needs
+                  analysis, system design, data migration, configuration, user
+                  training and ongoing support. We tailor the scope to match
+                  your organisation's specific requirements and budget.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>How long does a typical Salesforce project take?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Project timelines vary depending on complexity and scope. A
+                  basic implementation typically takes 8-12 weeks, while more
+                  complex integrations may take 12-20 weeks. We'll provide a
+                  detailed timeline during the scoping phase.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Do you work with the Nonprofit Success Pack (NPSP)?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Yes, we specialise in NPSP configuration for charities and
+                  nonprofits. We have extensive experience with accounts,
+                  contacts, donations, relationships and all NPSP functionality
+                  tailored to nonprofit fundraising requirements.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>What support do you provide after implementation?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  We offer comprehensive post-launch support including user
+                  training, system optimisation, troubleshooting, and strategic
+                  advice. Support packages can be customised as ongoing
+                  retainers or project-based.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span
+                  >How can fundraising strategy integrate with Salesforce?</span
+                >
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  We design your CRM to support your fundraising workflows, from
+                  prospect research and pipeline management to grant tracking
+                  and reporting. This alignment ensures your system enables, not
+                  hinders, your fundraising programme.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Can you help migrate data from our current system?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Yes. We handle data assessment, cleansing, mapping and
+                  migration from existing systems. We ensure data integrity
+                  throughout the process and validate all migrated records
+                  before go-live.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA (unchanged copy, kept) -->
       <section class="section alt">
         <div class="container" style="text-align: center">
           <h2 class="section-title">
@@ -525,109 +1555,218 @@
 
     <!-- Footer -->
     <footer>
-      <div class="container footer-inner">
-        <div class="footer-left">
-          <div class="footer-note">
-            &copy; <span id="year"></span> Versed Global Ltd | Company no.
-            16933204 | All rights reserved.
+      <div class="footer-container">
+        <div class="footer-content">
+          <!-- About Section -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              <img src="images/versed-global-logo.png" alt="Versed Global" />
+              <span>Versed Global</span>
+            </div>
+            <p style="margin-bottom: 1.5rem">
+              Salesforce CRM implementation and digital governance solutions for
+              charities, corporates and public-sector organisations.
+            </p>
+            <div class="social-links">
+              <a
+                href="https://linkedin.com/company/versed-global"
+                class="social-link linkedin"
+                title="LinkedIn"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/versedglobal"
+                class="social-link instagram"
+                title="Instagram"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.facebook.com/share/14U4YEg25nN/?mibextid=wwXIfr"
+                class="social-link facebook"
+                title="Facebook"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </div>
           </div>
 
-          <!-- Footer phone highlight -->
-          <div
-            style="
-              margin: 1.2rem 0 1.4rem;
-              padding: 0.6rem 1.4rem;
-              border-radius: 999px;
-              background: radial-gradient(
-                circle at 0% 0%,
-                #1f2937 0%,
-                #020617 55%,
-                #4f46e5 95%
-              );
-              display: inline-flex;
-              flex-wrap: wrap;
-              align-items: center;
-              gap: 0.7rem 1.2rem;
-              box-shadow: 0 18px 40px rgba(15, 23, 42, 0.8);
-              color: #e5e7eb;
-            "
-          >
-            <span
-              style="
-                text-transform: uppercase;
-                letter-spacing: 0.16em;
-                font-size: 0.72rem;
-                font-weight: 600;
-                color: #a5b4fc;
-              "
-              >Call Versed Global</span
-            >
-            <span
-              style="
-                width: 1px;
-                height: 22px;
-                background: linear-gradient(to bottom, #a5b4fc, #f9a8d4);
-                opacity: 0.7;
-              "
-            ></span>
+          <!-- Contact Section -->
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <div class="footer-contact">
+              <div>
+                <strong style="color: #f1f5f9">Phone</strong>
+                <p style="margin: 0.5rem 0 0">
+                  <a href="tel:+447554623171">07554 623171</a>
+                </p>
+              </div>
+              <div>
+                <strong style="color: #f1f5f9">Email</strong>
+                <p style="margin: 0.5rem 0 0">
+                  <a href="mailto:info@versedglobal.com">
+                    info@versedglobal.com
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address Section -->
+          <div class="footer-section">
+            <h4>Office Address</h4>
+            <div class="footer-address">
+              <p>29 Crown Way</p>
+              <p>Burgess Hill</p>
+              <p>RH15 8SX</p>
+              <p style="margin-top: 1rem">England and Wales</p>
+            </div>
+            <div class="company-info" style="margin-top: 1rem">
+              <p style="margin: 0">
+                <strong>Registered Company Number:</strong> 16933204
+              </p>
+              <p style="margin: 0.5rem 0 0">
+                VAT Registered | Registered in England and Wales
+              </p>
+            </div>
+          </div>
+
+          <!-- Review & Links Section -->
+          <div class="footer-section">
+            <h4>Leave a Review</h4>
+            <p>Help us improve by sharing your experience on Trustpilot.</p>
             <a
-              href="tel:+447554623171"
-              style="
-                padding: 0.45rem 1.25rem;
-                border-radius: 999px;
-                background: rgba(15, 23, 42, 0.9);
-                border: 1px solid rgba(248, 250, 252, 0.35);
-                color: #f9fafb;
-                font-weight: 600;
-                text-decoration: none;
-                box-shadow: 0 12px 30px rgba(15, 23, 42, 0.8);
-                display: inline-flex;
-                align-items: center;
-              "
+              href="mailto:versedglobal.com+1dd03088a8@invite.trustpilot.com"
+              class="trustpilot-link"
             >
-              <span>07554 623171</span>
+              <i class="fas fa-star"></i>
+              Review on Trustpilot
             </a>
-          </div>
 
-          <!-- Homepage footer search -->
-          <form
-            class="site-search-footer site-search-footer-wide"
-            action="https://www.google.com/search"
-            method="GET"
-            role="search"
-            aria-label="Search Versed Global"
-            onsubmit="this.q.value = 'site:versedglobal.com ' + (this.search_terms.value || '')"
-          >
-            <!-- Visible input for user terms -->
-            <input
-              type="text"
-              name="search_terms"
-              class="site-search-input-footer site-search-input-footer-wide"
-              placeholder="Search content on Versed Global..."
-              aria-label="Search"
-            />
-            <!-- Single q parameter actually sent to Google -->
-            <input type="hidden" name="q" value="" />
-            <button
-              type="submit"
-              class="site-search-btn-footer site-search-btn-footer-wide"
-            >
-              Search
-            </button>
-          </form>
+            <h4 style="margin-top: 2rem">Quick Links</h4>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <a href="services.html">Salesforce Services</a>
+              <a href="fundraising.html">Fundraising Support</a>
+              <a href="training.html">Training &amp; Support</a>
+              <a href="about.html">About Us</a>
+            </div>
+          </div>
         </div>
 
-        <div class="footer-links">
-          <a href="services.html">Services</a>
-          <a href="fundraising.html">Fundraising</a>
-          <a href="contact.html">Contact</a>
+        <!-- Footer Divider -->
+        <div class="footer-divider">
+          <div class="footer-bottom">
+            <div>
+              &copy; <span id="year"></span> Versed Global Ltd. All rights
+              reserved.
+            </div>
+            <div>
+              <a href="#" style="margin-right: 1.5rem">Privacy Policy</a>
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
 
     <script src="script.js"></script>
     <script>
+      // Set current year
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Mobile menu toggle
+      const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+        });
+      }
+
+      // Close mobile menu when link is clicked
+      const navItems = navLinks.querySelectorAll("a");
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+        });
+      });
+
+      // Browser History Navigation - Closes mobile menu on back/forward
+      window.addEventListener("popstate", () => {
+        if (navLinks.classList.contains("active")) {
+          navLinks.classList.remove("active");
+        }
+      });
+
+      // Update active nav link based on current page
+      function updateActiveNav() {
+        const currentPage = window.location.pathname;
+        const navLinksEls = document.querySelectorAll(".nav-links a");
+
+        navLinksEls.forEach((link) => {
+          link.classList.remove("active");
+          if (currentPage === "/" || currentPage === "/index.html") {
+            if (link.getAttribute("href") === "index.html") {
+              link.classList.add("active");
+            }
+          } else {
+            if (link.getAttribute("href") === currentPage.split("/").pop()) {
+              link.classList.add("active");
+            }
+          }
+        });
+      }
+
+      updateActiveNav();
+
+      // FAQ toggle functionality
+      function toggleFAQ(element) {
+        const faqItem = element.parentElement;
+        const isActive = faqItem.classList.contains("active");
+
+        document.querySelectorAll(".faq-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+
+        if (!isActive) {
+          faqItem.classList.add("active");
+        }
+      }
+
+      // Read-more toggles (hero + why)
+      document
+        .querySelectorAll(".hero-expand-toggle, .expand-toggle")
+        .forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const targetId = btn.getAttribute("data-target");
+            const fadeId = btn.getAttribute("data-fade");
+            const block =
+              targetId && document.getElementById(targetId)
+                ? document.getElementById(targetId)
+                : btn.previousElementSibling;
+            const fade = fadeId ? document.getElementById(fadeId) : null;
+
+            if (!block) return;
+
+            block.classList.toggle("expanded");
+            if (fade) {
+              fade.style.display = block.classList.contains("expanded")
+                ? "none"
+                : "block";
+            }
+
+            const expanded = block.classList.contains("expanded");
+            btn.textContent = expanded ? "Show less" : "Read more";
+          });
+        });
     </script>
   </body>
 </html>
