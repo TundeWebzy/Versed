@@ -72,6 +72,7 @@
           sans-serif;
         margin: 0;
         padding: 0;
+        padding-top: env(safe-area-inset-top, 0); /* better iOS safe area */
       }
 
       .header-bar {
@@ -81,6 +82,7 @@
         background: #ffffff;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         transition: all 0.3s ease;
+        padding-top: max(0px, env(safe-area-inset-top, 0));
       }
 
       .header-inner {
@@ -216,6 +218,7 @@
 
         .header-inner {
           flex-wrap: wrap;
+          padding: 0.6rem 1rem;
         }
 
         .tagline {
@@ -297,9 +300,9 @@
       @media (max-width: 960px) {
         .hero-inner-flex {
           grid-template-columns: 1fr;
-          padding-top: 2.75rem;
-          padding-bottom: 2.75rem;
-          gap: 2rem;
+          padding-top: 2.5rem;
+          padding-bottom: 2.5rem;
+          gap: 1.8rem;
         }
       }
 
@@ -387,8 +390,14 @@
         .hero-title {
           font-size: clamp(2rem, 7vw, 2.4rem);
         }
+
         .hero-kicker {
           max-width: none;
+          font-size: 0.94rem;
+        }
+
+        .hero-metrics {
+          margin-top: 0.75rem;
         }
       }
 
@@ -459,6 +468,28 @@
       @media (max-width: 640px) {
         .hero-strategy-inner {
           padding-inline: 1.25rem;
+          gap: 1.25rem;
+        }
+
+        .hero-strategy-copy p {
+          font-size: 0.9rem;
+          line-height: 1.7;
+        }
+
+        .hero-strategy-pill {
+          padding: 0.75rem 0.8rem 0.7rem;
+          font-size: 0.84rem;
+        }
+
+        .hero-strategy-pills {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 400px) {
+        /* optional: hide one pill to reduce height on very small phones */
+        .hero-strategy-pill:nth-child(3) {
+          display: none;
         }
       }
 
@@ -548,6 +579,14 @@
         }
       }
 
+      @media (max-width: 768px) {
+        /* pull rail edge-to-edge so partial card looks intentional */
+        .capability-rail {
+          margin: 2rem -1.25rem 1.25rem;
+          padding: 0 1.25rem 1.25rem;
+        }
+      }
+
       /* Who we work with rail */
 
       .sector-rail {
@@ -589,6 +628,13 @@
       @media (max-width: 900px) {
         .sector-track {
           min-width: 720px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .sector-rail {
+          margin: 2rem -1.25rem 1.25rem;
+          padding: 0 1.25rem 1.25rem;
         }
       }
 
