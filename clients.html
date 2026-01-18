@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -25,7 +25,11 @@
         "url": "https://versedglobal.com/",
         "logo": "https://versedglobal.com/images/versed-global-logo.png",
         "description": "Versed Global designs, integrates and manages Salesforce CRM systems and delivers high-impact trust and foundation fundraising support for charities, corporates and public-sector organisations.",
-        "sameAs": ["https://www.linkedin.com/company/versed-global"],
+        "sameAs": [
+          "https://www.linkedin.com/company/versed-global",
+          "https://www.instagram.com/versedglobal",
+          "https://www.facebook.com/share/14U4YEg25nN/?mibextid=wwXIfr"
+        ],
         "contactPoint": [
           {
             "@type": "ContactPoint",
@@ -37,11 +41,435 @@
         ]
       }
     </script>
+
+    <style>
+      /* Basic typography and layout hooks used here to keep header/footer consistent
+         with other pages; page-level enhancements can live in styles.css. */
+
+      .header-bar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: #ffffff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      .header-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+      }
+
+      .logo-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+
+      .logo-image {
+        height: 40px;
+        width: auto;
+      }
+
+      .logo-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1e293b;
+        letter-spacing: -0.02em;
+      }
+
+      .tagline {
+        font-size: 0.75rem;
+        color: #64748b;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        margin-left: 0.5rem;
+        padding-left: 0.5rem;
+        border-left: 1px solid #e2e8f0;
+        line-height: 1.2;
+        max-width: 200px;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        color: #475569;
+        font-weight: 500;
+        font-size: 0.95rem;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+
+      .nav-links a:hover {
+        color: #3b82f6;
+      }
+
+      .nav-links a.active {
+        color: #3b82f6;
+      }
+
+      .nav-links .nav-cta {
+        background: #3b82f6;
+        color: #ffffff;
+        padding: 0.5rem 1.25rem;
+        border-radius: 6px;
+        margin-left: 0.5rem;
+      }
+
+      .nav-links .nav-cta:hover {
+        background: #2563eb;
+        color: #ffffff;
+      }
+
+      .mobile-menu {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #1e293b;
+      }
+
+      @media (max-width: 768px) {
+        .header-inner {
+          flex-wrap: wrap;
+        }
+
+        .tagline {
+          display: none;
+        }
+
+        .main-nav {
+          width: 100%;
+          order: 3;
+        }
+
+        .nav-links {
+          flex-direction: column;
+          gap: 0;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: #ffffff;
+          border-top: 1px solid #e2e8f0;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+        }
+
+        .nav-links.active {
+          max-height: 500px;
+        }
+
+        .nav-links a {
+          width: 100%;
+          padding: 1rem;
+          border-radius: 0;
+          border-bottom: 1px solid #e2e8f0;
+        }
+
+        .mobile-menu {
+          display: block;
+        }
+      }
+
+      footer {
+        background: #1e293b;
+        color: #e2e8f0;
+        padding: 3rem 0 1.5rem;
+        margin-top: 4rem;
+      }
+
+      .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h4 {
+        color: #f1f5f9;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.25rem;
+        font-weight: 700;
+      }
+
+      .footer-section p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-section a {
+        color: #cbd5e1;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section a:hover {
+        color: #f1f5f9;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-logo img {
+        height: 48px;
+        width: 48px;
+        background: #ffffff;
+        border-radius: 8px;
+        padding: 4px;
+        object-fit: contain;
+      }
+
+      .footer-logo span {
+        color: #f1f5f9;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .footer-address {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .footer-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .footer-contact a {
+        display: inline-block;
+        width: fit-content;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: #3b82f6;
+        color: #ffffff;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+      }
+
+      .social-link:hover {
+        background: #2563eb;
+        transform: translateY(-3px);
+      }
+
+      .social-link.linkedin {
+        background: #0a66c2;
+      }
+
+      .social-link.linkedin:hover {
+        background: #084999;
+      }
+
+      .social-link.instagram {
+        background: #e4405f;
+      }
+
+      .social-link.instagram:hover {
+        background: #c72e5f;
+      }
+
+      .social-link.facebook {
+        background: #1877f2;
+      }
+
+      .social-link.facebook:hover {
+        background: #0a66ff;
+      }
+
+      .footer-divider {
+        border-top: 1px solid #334155;
+        padding-top: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        font-size: 0.9rem;
+        color: #94a3b8;
+      }
+
+      .footer-bottom a {
+        color: #cbd5e1;
+      }
+
+      .company-info {
+        font-size: 0.85rem;
+        color: #94a3b8;
+        line-height: 1.6;
+      }
+
+      .trustpilot-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: #cbd5e1;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+      }
+
+      .trustpilot-link:hover {
+        color: #f1f5f9;
+      }
+
+      @media (max-width: 768px) {
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+
+      /* Partner slider card visuals */
+      .org-slider {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        background: #f9fafb;
+        border-top: 1px solid #e5e7eb;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 1.5rem 0;
+      }
+
+      .org-slide-track {
+        display: flex;
+        width: calc(260px * 18);
+        animation: scroll 45s linear infinite;
+      }
+
+      .org-slide {
+        width: 260px;
+        height: 140px;
+        margin: 0 1rem;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        text-decoration: none;
+        padding: 0.75rem 1rem;
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .org-slide:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.16);
+        border-color: #3b82f6;
+      }
+
+      .org-slide img {
+        max-width: 100%;
+        max-height: 70px;
+        object-fit: contain;
+        margin-bottom: 0.5rem;
+      }
+
+      .org-slide span {
+        font-size: 0.8rem;
+        color: #4b5563;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-260px * 9));
+        }
+      }
+
+      .org-slide-track:hover {
+        animation-play-state: paused;
+      }
+
+      @media (max-width: 768px) {
+        .org-slide {
+          width: 200px;
+          height: 120px;
+          margin: 0 0.75rem;
+        }
+
+        .org-slide img {
+          max-height: 60px;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Header / Nav -->
     <header class="header-bar">
-      <div class="container header-inner">
+      <div class="header-inner">
         <div class="logo-area">
           <a
             href="index.html"
@@ -53,18 +481,23 @@
               alt="Versed Global logo"
               class="logo-image"
             />
-            <span class="logo-text">Versed Global</span>
+            <div>
+              <div class="logo-text">Versed Global</div>
+              <div class="tagline">
+                Salesforce CRM Implementation & Digital Governance Solutions
+              </div>
+            </div>
           </a>
         </div>
         <nav class="main-nav" aria-label="Primary navigation">
-          <div class="nav-links">
+          <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
-            <a href="services.html">Salesforce Services</a>
-            <a href="fundraising.html">Fundraising Support</a>
-            <a href="training.html">Training &amp; Support</a>
-            <a href="news.html">News &amp; insights</a>
+            <a href="services.html">Salesforce</a>
             <a href="about.html">About</a>
             <a href="clients.html" class="active">Clients</a>
+            <a href="fundraising.html">Fundraising</a>
+            <a href="training.html">Training</a>
+            <a href="news.html">News</a>
             <a href="contact.html" class="nav-cta">Contact</a>
           </div>
           <button
@@ -570,195 +1003,232 @@
           </p>
         </div>
 
-        <div
-          class="org-slider"
-          style="
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-            background: #f9fafb;
-            border-top: 1px solid #e5e7eb;
-            border-bottom: 1px solid #e5e7eb;
-          "
-        >
-          <div
-            class="org-slide-track"
-            style="
-              display: flex;
-              width: calc(240px * 20);
-              animation: scroll 45s linear infinite;
-            "
-          >
+        <div class="org-slider">
+          <div class="org-slide-track">
+            <!-- Primary loop -->
             <a
               href="https://olivetreecancersupport.org.uk/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >The Olive Tree Cancer Support</a
             >
+              <img
+                src="https://cdn.prod.website-files.com/5b72c41709e80cf98c633794/5b72c4d279ce4e7365722f57_Olive%20tree%20logo-header.svg"
+                alt="The Olive Tree Cancer Support logo"
+              />
+              <span>The Olive Tree Cancer Support</span>
+            </a>
+
             <a
               href="https://naturalneighbours.org/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >Natural Neighbours</a
             >
+              <img
+                src="https://www.avivacommunityfund.co.uk/uploads/project_images/69/c0/1676158/1765450374_1765450374270.png"
+                alt="Natural Neighbours logo"
+              />
+              <span>Natural Neighbours</span>
+            </a>
+
             <a
               href="https://zambianrainbow.org/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >Zambian Rainbow Development Foundation</a
             >
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjv79s3GYcLgm9kqICMI7kr4UILW_2zRkpsg&s"
+                alt="Zambian Rainbow Development Foundation logo"
+              />
+              <span>Zambian Rainbow Development Foundation</span>
+            </a>
+
             <a
               href="https://wessexcancer.org.uk/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >Wessex Cancer Support</a
             >
+              <img
+                src="https://www.wessexcancer.org.uk/wp-content/uploads/2023/08/Wessex-Cancer-Support-generic-banner.jpg"
+                alt="Wessex Cancer Support logo"
+              />
+              <span>Wessex Cancer Support</span>
+            </a>
+
             <a
               href="https://opoka.org.uk/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >Opoka CIO</a
             >
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuKYrTWJcO_wszQh3blx-pZ0Z7mtUY42hz0g&s"
+                alt="Opoka CIO logo"
+              />
+              <span>Opoka CIO</span>
+            </a>
+
             <a
               href="https://chrysalisgroup.org/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >Chrysalis Group</a
             >
+              <img
+                src="https://www.chrysalisgroupservices.co.uk/assets/img/chrysalis-supported-association.png"
+                alt="Chrysalis Group logo"
+              />
+              <span>Chrysalis Group</span>
+            </a>
+
             <a
               href="https://nimbuspoint.com/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >NimbusPoint</a
             >
+              <img
+                src="https://mma.prnewswire.com/media/2473768/NIMBUSLOGO_STRAPLINE2024.jpg"
+                alt="NimbusPoint logo"
+              />
+              <span>NimbusPoint</span>
+            </a>
+
             <a
-              href="https://timetechnology.co.uk/"
+              href="https://time-technology.com/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >Time Technology</a
             >
+              <img
+                src="https://appexchange.salesforce.com/partners/servlet/servlet.FileDownload?file=00P4V00000reVXvUAM"
+                alt="Time Technology Salesforce Partner logo"
+              />
+              <span>Time Technology</span>
+            </a>
+
             <a
               href="https://xenogenix.co.uk/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >Xenogenix</a
             >
-            <span
-              class="org-slide"
-              style="font-style: italic; color: #6b7280; cursor: default"
-              >…and other partners</span
-            >
+              <img
+                src="https://xenogenix.co.uk/wp-content/uploads/2021/11/is-now-a-Salesforce-Gold-Partner.png"
+                alt="Xenogenix Salesforce Partner logo"
+              />
+              <span>Xenogenix</span>
+            </a>
 
-            <!-- Duplicate slides for continuous scrolling -->
+            <!-- Duplicate loop for seamless scroll -->
             <a
               href="https://olivetreecancersupport.org.uk/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >The Olive Tree Cancer Support</a
             >
+              <img
+                src="https://cdn.prod.website-files.com/5b72c41709e80cf98c633794/5b72c4d279ce4e7365722f57_Olive%20tree%20logo-header.svg"
+                alt="The Olive Tree Cancer Support logo"
+              />
+              <span>The Olive Tree Cancer Support</span>
+            </a>
+
             <a
               href="https://naturalneighbours.org/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >Natural Neighbours</a
             >
+              <img
+                src="https://www.avivacommunityfund.co.uk/uploads/project_images/69/c0/1676158/1765450374_1765450374270.png"
+                alt="Natural Neighbours logo"
+              />
+              <span>Natural Neighbours</span>
+            </a>
+
             <a
               href="https://zambianrainbow.org/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >Zambian Rainbow Development Foundation</a
             >
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjv79s3GYcLgm9kqICMI7kr4UILW_2zRkpsg&s"
+                alt="Zambian Rainbow Development Foundation logo"
+              />
+              <span>Zambian Rainbow Development Foundation</span>
+            </a>
+
             <a
               href="https://wessexcancer.org.uk/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >Wessex Cancer Support</a
             >
+              <img
+                src="https://www.wessexcancer.org.uk/wp-content/uploads/2023/08/Wessex-Cancer-Support-generic-banner.jpg"
+                alt="Wessex Cancer Support logo"
+              />
+              <span>Wessex Cancer Support</span>
+            </a>
+
             <a
               href="https://opoka.org.uk/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >Opoka CIO</a
             >
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuKYrTWJcO_wszQh3blx-pZ0Z7mtUY42hz0g&s"
+                alt="Opoka CIO logo"
+              />
+              <span>Opoka CIO</span>
+            </a>
+
             <a
               href="https://chrysalisgroup.org/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >Chrysalis Group</a
             >
+              <img
+                src="https://www.chrysalisgroupservices.co.uk/assets/img/chrysalis-supported-association.png"
+                alt="Chrysalis Group logo"
+              />
+              <span>Chrysalis Group</span>
+            </a>
+
             <a
               href="https://nimbuspoint.com/"
               target="_blank"
               rel="noopener"
               class="org-slide"
-              >NimbusPoint</a
             >
+              <img
+                src="https://mma.prnewswire.com/media/2473768/NIMBUSLOGO_STRAPLINE2024.jpg"
+                alt="NimbusPoint logo"
+              />
+              <span>NimbusPoint</span>
+            </a>
+
+            <a
+              href="https://time-technology.com/"
+              target="_blank"
+              rel="noopener"
+              class="org-slide"
+            >
+              <img
+                src="https://appexchange.salesforce.com/partners/servlet/servlet.FileDownload?file=00P4V00000reVXvUAM"
+                alt="Time Technology Salesforce Partner logo"
+              />
+              <span>Time Technology</span>
+            </a>
           </div>
         </div>
-
-        <style>
-          .org-slide {
-            width: 240px;
-            height: 120px;
-            margin: 1rem;
-            background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-weight: 600;
-            color: #374151;
-            font-size: 0.95rem;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease,
-              color 0.3s ease;
-            text-decoration: none;
-          }
-
-          .org-slide:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            color: #2563eb;
-          }
-
-          @keyframes scroll {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(calc(-240px * 10));
-            }
-          }
-
-          .org-slide-track:hover {
-            animation-play-state: paused;
-          }
-
-          @media (max-width: 768px) {
-            .org-slide {
-              width: 180px;
-              height: 100px;
-              font-size: 0.85rem;
-            }
-          }
-        </style>
       </section>
 
       <!-- CTA Section -->
@@ -801,81 +1271,141 @@
 
     <!-- Footer -->
     <footer>
-      <div class="container footer-inner">
-        <div class="footer-note">
-          &copy; <span id="year"></span> Versed Global Ltd | Supporting
-          mission‑driven, corporate and public‑sector organisations.
+      <div class="footer-container">
+        <div class="footer-content">
+          <!-- About Section -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              <img src="images/versed-global-logo.png" alt="Versed Global" />
+              <span>Versed Global</span>
+            </div>
+            <p style="margin-bottom: 1.5rem">
+              Salesforce CRM implementation and digital governance solutions for
+              charities, corporates and public-sector organisations.
+            </p>
+            <div class="social-links">
+              <a
+                href="https://linkedin.com/company/versed-global"
+                class="social-link linkedin"
+                title="LinkedIn"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/versedglobal"
+                class="social-link instagram"
+                title="Instagram"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.facebook.com/share/14U4YEg25nN/?mibextid=wwXIfr"
+                class="social-link facebook"
+                title="Facebook"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Section -->
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <div class="footer-contact">
+              <div>
+                <strong style="color: #f1f5f9">Phone</strong>
+                <p style="margin: 0.5rem 0 0">
+                  <a href="tel:+447554623171">07554 623171</a>
+                </p>
+              </div>
+              <div>
+                <strong style="color: #f1f5f9">Email</strong>
+                <p style="margin: 0.5rem 0 0">
+                  <a href="mailto:info@versedglobal.com">
+                    info@versedglobal.com
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address Section -->
+          <div class="footer-section">
+            <h4>Office Address</h4>
+            <div class="footer-address">
+              <p>29 Crown Way</p>
+              <p>Burgess Hill</p>
+              <p>RH15 8SX</p>
+              <p style="margin-top: 1rem">England and Wales</p>
+            </div>
+            <div class="company-info" style="margin-top: 1rem">
+              <p style="margin: 0">
+                <strong>Registered Company Number:</strong> 16933204
+              </p>
+              <p style="margin: 0.5rem 0 0">
+                VAT Registered | Registered in England and Wales
+              </p>
+            </div>
+          </div>
+
+          <!-- Review & Links Section -->
+          <div class="footer-section">
+            <h4>Leave a Review</h4>
+            <p>Help us improve by sharing your experience on Trustpilot.</p>
+            <a
+              href="mailto:versedglobal.com+1dd03088a8@invite.trustpilot.com"
+              class="trustpilot-link"
+            >
+              <i class="fas fa-star"></i>
+              Review on Trustpilot
+            </a>
+
+            <h4 style="margin-top: 2rem">Quick Links</h4>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <a href="services.html">Salesforce Services</a>
+              <a href="fundraising.html">Fundraising Support</a>
+              <a href="training.html">Training &amp; Support</a>
+              <a href="about.html">About Us</a>
+            </div>
+          </div>
         </div>
 
-        <!-- Footer phone highlight (same design as index.html) -->
-        <div
-          style="
-            margin: 1.2rem 0 1.4rem;
-            padding: 0.6rem 1.4rem;
-            border-radius: 999px;
-            background: radial-gradient(
-              circle at 0% 0%,
-              #1f2937 0%,
-              #020617 55%,
-              #4f46e5 95%
-            );
-            display: inline-flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.7rem 1.2rem;
-            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.8);
-            color: #e5e7eb;
-          "
-        >
-          <span
-            style="
-              text-transform: uppercase;
-              letter-spacing: 0.16em;
-              font-size: 0.72rem;
-              font-weight: 600;
-              color: #a5b4fc;
-            "
-            >Call Versed Global</span
-          >
-          <span
-            style="
-              width: 1px;
-              height: 22px;
-              background: linear-gradient(to bottom, #a5b4fc, #f9a8d4);
-              opacity: 0.7;
-            "
-          ></span>
-          <a
-            href="tel:+447554623171"
-            style="
-              padding: 0.45rem 1.25rem;
-              border-radius: 999px;
-              background: rgba(15, 23, 42, 0.9);
-              border: 1px solid rgba(248, 250, 252, 0.35);
-              color: #f9fafb;
-              font-weight: 600;
-              text-decoration: none;
-              box-shadow: 0 12px 30px rgba(15, 23, 42, 0.8);
-              display: inline-flex;
-              align-items: center;
-            "
-          >
-            <span>07554 623171</span>
-          </a>
-        </div>
-
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="services.html">Salesforce services</a>
-          <a href="fundraising.html">Fundraising support</a>
-          <a href="contact.html">Get in touch</a>
+        <!-- Footer Divider -->
+        <div class="footer-divider">
+          <div class="footer-bottom">
+            <div>
+              &copy; <span id="year"></span> Versed Global Ltd. All rights
+              reserved.
+            </div>
+            <div>
+              <a href="#" style="margin-right: 1.5rem">Privacy Policy</a>
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
 
     <script src="script.js"></script>
     <script>
+      // Set current year
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Mobile menu toggle
+      const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+        });
+      }
     </script>
   </body>
 </html>
