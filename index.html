@@ -228,7 +228,7 @@
         }
       }
 
-      /* HERO + INTRO FLOW REDESIGN */
+      /* HERO – LIGHTER, SIMPLER FIRST SECTION */
 
       .hero-shell {
         position: relative;
@@ -248,7 +248,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        opacity: 0.18;
+        opacity: 0.22;
         transform: scale(1.05);
       }
 
@@ -266,7 +266,7 @@
             rgba(244, 114, 182, 0.35),
             transparent 60%
           );
-        opacity: 0.8;
+        opacity: 0.75;
         animation: hero-orbit 26s linear infinite;
       }
 
@@ -287,18 +287,19 @@
         z-index: 1;
         max-width: 1400px;
         margin: 0 auto;
-        padding: 4.5rem 1.5rem 3.75rem;
+        padding: 3.25rem 1.5rem 3rem;
         display: grid;
         grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-        gap: 3.5rem;
+        gap: 2.75rem;
         align-items: center;
       }
 
       @media (max-width: 960px) {
         .hero-inner-flex {
           grid-template-columns: 1fr;
-          padding-top: 3.5rem;
-          padding-bottom: 3.25rem;
+          padding-top: 2.75rem;
+          padding-bottom: 2.75rem;
+          gap: 2rem;
         }
       }
 
@@ -308,90 +309,57 @@
         font-size: 0.78rem;
         font-weight: 600;
         color: #a5b4fc;
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
       }
 
       .hero-title {
-        font-size: clamp(2.7rem, 4.2vw, 3.7rem);
-        line-height: 1.05;
-        margin-bottom: 1.1rem;
+        font-size: clamp(2.3rem, 4vw, 3.4rem);
+        line-height: 1.08;
+        margin-bottom: 0.9rem;
         color: #f9fafb;
         letter-spacing: -0.04em;
-        text-shadow: 0 18px 40px rgba(15, 23, 42, 0.6);
+        text-shadow: 0 14px 32px rgba(15, 23, 42, 0.6);
       }
 
-      .hero-subtitle {
-        font-size: 1.02rem;
-        line-height: 1.9;
+      .hero-kicker {
+        font-size: 0.98rem;
+        line-height: 1.7;
+        max-width: 520px;
         color: #e5e7eb;
-        max-width: 640px;
-        margin-bottom: 1.5rem;
-      }
-
-      .hero-expandable {
-        position: relative;
-        overflow: hidden;
-        max-height: 170px;
-        transition: max-height 0.4s ease;
-      }
-
-      .hero-expandable.expanded {
-        max-height: 900px;
-      }
-
-      .hero-expand-fade {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 3rem;
-        background: linear-gradient(
-          to bottom,
-          rgba(15, 23, 42, 0),
-          rgba(15, 23, 42, 0.98)
-        );
-        pointer-events: none;
-      }
-
-      .hero-expand-toggle {
-        margin-top: 0.6rem;
-        background: none;
-        border: none;
-        color: #93c5fd;
-        font-weight: 600;
-        font-size: 0.9rem;
-        cursor: pointer;
-        padding: 0;
-      }
-
-      .hero-badges {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.7rem;
-        margin: 1.6rem 0 2.1rem;
-      }
-
-      .hero-badge {
-        background: rgba(15, 23, 42, 0.65);
-        border-radius: 999px;
-        padding: 0.4rem 0.95rem;
-        border: 1px solid rgba(148, 163, 184, 0.7);
-        font-size: 0.84rem;
-        font-weight: 500;
-        color: #e5e7eb;
+        margin-bottom: 1.4rem;
       }
 
       .hero-buttons {
         display: flex;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.85rem;
         align-items: center;
+      }
+
+      .hero-buttons .btn {
+        min-width: 0;
+      }
+
+      .hero-quick-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1.6rem;
+        font-size: 0.78rem;
+        color: #cbd5f5;
+      }
+
+      .hero-quick-tags span {
+        padding: 0.2rem 0.7rem;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        background: rgba(15, 23, 42, 0.7);
       }
 
       .hero-metrics {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 1.2rem;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
         font-size: 0.86rem;
         color: #cbd5f5;
       }
@@ -405,7 +373,7 @@
       }
 
       .hero-metric-value {
-        font-size: 1.45rem;
+        font-size: 1.35rem;
         font-weight: 700;
         color: #e5e7eb;
       }
@@ -413,6 +381,85 @@
       .hero-metric-note {
         font-size: 0.8rem;
         color: #94a3b8;
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: clamp(2rem, 7vw, 2.4rem);
+        }
+        .hero-kicker {
+          max-width: none;
+        }
+      }
+
+      /* NEW: HERO STRATEGY STRIP – holds moved copy in a lighter component */
+
+      .hero-strategy-strip {
+        background: #0b1120;
+        color: #e5e7eb;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      }
+
+      .hero-strategy-inner {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 1.8rem 1.5rem 2.1rem;
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+        gap: 2rem;
+      }
+
+      .hero-strategy-copy p {
+        font-size: 0.96rem;
+        line-height: 1.8;
+        margin: 0 0 0.85rem;
+        color: #cbd5f5;
+      }
+
+      .hero-strategy-copy p:last-child {
+        margin-bottom: 0;
+      }
+
+      .hero-strategy-pills {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 0.85rem;
+      }
+
+      .hero-strategy-pill {
+        border-radius: 16px;
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        background: radial-gradient(
+          circle at 0% 0%,
+          rgba(59, 130, 246, 0.2),
+          rgba(15, 23, 42, 0.95)
+        );
+        padding: 0.9rem 0.9rem 0.8rem;
+        font-size: 0.88rem;
+        color: #e5e7eb;
+      }
+
+      .hero-strategy-pill strong {
+        display: block;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: #bfdbfe;
+        margin-bottom: 0.15rem;
+      }
+
+      @media (max-width: 900px) {
+        .hero-strategy-inner {
+          grid-template-columns: 1fr;
+          padding-top: 1.6rem;
+          padding-bottom: 1.9rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero-strategy-inner {
+          padding-inline: 1.25rem;
+        }
       }
 
       /* Flowing capability rail */
@@ -545,7 +592,7 @@
         }
       }
 
-      /* WHY CHOOSE VERSED GLOBAL – FLOW REDESIGN */
+      /* WHY CHOOSE VERSED GLOBAL – FLOW REDESIGN (unchanged) */
 
       .why-flow-layout {
         display: grid;
@@ -1040,7 +1087,7 @@
 
     <!-- MAIN APP SHELL -->
     <main id="app">
-      <!-- HERO + INTRO (redesigned) -->
+      <!-- HERO – lighter, header-safe -->
       <section class="hero-shell">
         <div class="hero-bg-image">
           <img
@@ -1058,42 +1105,11 @@
             <h1 class="hero-title">
               Salesforce &amp; fundraising<br />that work as one system
             </h1>
-
-            <div class="hero-expandable" id="heroIntro">
-              <p class="hero-subtitle" style="margin-bottom: 0.8rem">
-                Versed Global designs, implements and refines Salesforce CRM
-                alongside trust and foundation fundraising so that income,
-                programmes and reporting are joined up rather than competing.
-              </p>
-              <p
-                class="hero-subtitle"
-                style="font-size: 0.98rem; color: #dbeafe"
-              >
-                The focus is on practical, sustainable change: Salesforce
-                configurations that reflect how your teams actually work,
-                fundraising strategies grounded in your data and capacity, and
-                training that helps people use the tools with confidence rather
-                than fear.
-              </p>
-            </div>
-            <div class="hero-expand-fade" id="heroIntroFade"></div>
-            <button
-              class="hero-expand-toggle"
-              type="button"
-              data-target="heroIntro"
-              data-fade="heroIntroFade"
-            >
-              Read more
-            </button>
-
-            <div class="hero-badges">
-              <span class="hero-badge">Salesforce CRM design &amp; build</span>
-              <span class="hero-badge">Trust &amp; foundation fundraising</span>
-              <span class="hero-badge"
-                >Programme &amp; reporting alignment</span
-              >
-              <span class="hero-badge">Training &amp; ongoing support</span>
-            </div>
+            <p class="hero-kicker">
+              One partner for CRM design and trust &amp; foundation fundraising,
+              so systems and income plans support each other instead of
+              competing.
+            </p>
 
             <div class="hero-buttons">
               <a href="services.html" class="btn btn-primary">
@@ -1102,6 +1118,13 @@
               <a href="fundraising.html" class="btn btn-secondary">
                 View fundraising support
               </a>
+            </div>
+
+            <div class="hero-quick-tags" aria-label="Key themes">
+              <span>Salesforce CRM design &amp; build</span>
+              <span>Trust &amp; foundation fundraising</span>
+              <span>Programme &amp; reporting alignment</span>
+              <span>Training &amp; ongoing support</span>
             </div>
           </div>
 
@@ -1128,6 +1151,46 @@
                   Designing with you, not just for you.
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEW: Strategy strip holding the detailed hero copy -->
+      <section class="hero-strategy-strip">
+        <div class="hero-strategy-inner">
+          <div class="hero-strategy-copy">
+            <p>
+              Versed Global designs, implements and refines Salesforce CRM
+              alongside trust and foundation fundraising so that income,
+              programmes and reporting are joined up rather than competing.
+            </p>
+            <p>
+              The focus is on practical, sustainable change: Salesforce
+              configurations that reflect how your teams actually work,
+              fundraising strategies grounded in your data and capacity, and
+              training that helps people use the tools with confidence rather
+              than fear.
+            </p>
+          </div>
+          <div
+            class="hero-strategy-pills"
+            aria-label="How this works in practice"
+          >
+            <div class="hero-strategy-pill">
+              <strong>Configuration</strong>
+              Objects, fields and automation shaped around your real fundraising
+              and programme workflows.
+            </div>
+            <div class="hero-strategy-pill">
+              <strong>Fundraising</strong>
+              Trust &amp; foundation pipelines that sit inside Salesforce, not
+              across disconnected spreadsheets.
+            </div>
+            <div class="hero-strategy-pill">
+              <strong>Reporting</strong>
+              Income, delivery and learning data feeding the same set of
+              dashboards and funder reports.
             </div>
           </div>
         </div>
@@ -1266,7 +1329,7 @@
         </div>
       </section>
 
-      <!-- WHY CHOOSE VERSED GLOBAL – redesigned flow section -->
+      <!-- WHY CHOOSE VERSED GLOBAL – flow section (unchanged) -->
       <section class="section">
         <div class="container">
           <h2 class="section-title">Why choose Versed Global?</h2>
@@ -1399,7 +1462,7 @@
         </div>
       </section>
 
-      <!-- How we work / Values (unchanged from your file) -->
+      <!-- How we work / Values (unchanged) -->
       <section class="section" style="position: relative; overflow: hidden">
         <div
           style="
@@ -1948,33 +2011,6 @@
           faqItem.classList.add("active");
         }
       }
-
-      // Read-more toggles (hero + why)
-      document
-        .querySelectorAll(".hero-expand-toggle, .expand-toggle")
-        .forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const targetId = btn.getAttribute("data-target");
-            const fadeId = btn.getAttribute("data-fade");
-            const block =
-              targetId && document.getElementById(targetId)
-                ? document.getElementById(targetId)
-                : btn.previousElementSibling;
-            const fade = fadeId ? document.getElementById(fadeId) : null;
-
-            if (!block) return;
-
-            block.classList.toggle("expanded");
-            if (fade) {
-              fade.style.display = block.classList.contains("expanded")
-                ? "none"
-                : "block";
-            }
-
-            const expanded = block.classList.contains("expanded");
-            btn.textContent = expanded ? "Show less" : "Read more";
-          });
-        });
     </script>
   </body>
 </html>
