@@ -92,7 +92,7 @@
       }
 
       /* ============================================================
-         HEADER – FIXED STICKY POSITIONING (NO OVERLAP)
+         HEADER – STICKY WITH RESPONSIVE MOBILE MENU (UNIFIED)
          ============================================================ */
 
       .header-bar {
@@ -113,6 +113,7 @@
         max-width: 1400px;
         margin: 0 auto;
         width: 100%;
+        position: relative; /* CRITICAL: Required for mobile nav dropdown positioning */
       }
 
       .logo-area {
@@ -130,13 +131,13 @@
       }
 
       .logo-image {
-        height: 40px;
+        height: 48px; /* INCREASED: Bigger logo */
         width: auto;
         display: block;
       }
 
       .logo-text {
-        font-size: 1.25rem;
+        font-size: 1.35rem; /* INCREASED: Bigger text */
         font-weight: 700;
         letter-spacing: -0.02em;
         background: linear-gradient(135deg, #1e40af, #4f46e5, #ec4899);
@@ -219,7 +220,17 @@
       }
 
       /* ============================================================
-         RESPONSIVE HEADER – MOBILE & TABLET
+         RESPONSIVE HEADER – TABLET
+         ============================================================ */
+
+      @media (max-width: 992px) {
+        .tagline {
+          display: none;
+        }
+      }
+
+      /* ============================================================
+         RESPONSIVE HEADER – MOBILE
          ============================================================ */
 
       @media (max-width: 768px) {
@@ -229,13 +240,21 @@
           gap: 0.5rem;
         }
 
+        .logo-image {
+          height: 42px;
+        }
+
+        .logo-text {
+          font-size: 1.2rem;
+        }
+
         .tagline {
           display: none;
         }
 
         .mobile-menu {
           display: block;
-          order: 3;
+          order: 2;
         }
 
         .main-nav {
@@ -255,6 +274,8 @@
           transition: max-height 0.3s ease;
           flex-direction: column;
           gap: 0;
+          z-index: 1000;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .nav-links.active {
@@ -263,7 +284,7 @@
 
         .nav-links a {
           width: 100%;
-          padding: 1rem;
+          padding: 1rem 1.5rem;
           border-radius: 0;
           border-bottom: 1px solid #e2e8f0;
           white-space: normal;
@@ -271,6 +292,21 @@
 
         .nav-links a.nav-cta {
           margin-left: 0;
+          border-radius: 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header-inner {
+          padding: 0.5rem 0.75rem;
+        }
+
+        .logo-image {
+          height: 38px;
+        }
+
+        .logo-text {
+          font-size: 1.1rem;
         }
       }
 
@@ -1028,6 +1064,11 @@
       }
 
       @media (max-width: 768px) {
+        footer {
+          padding: 2.5rem 0 1.5rem;
+          margin-top: 3rem;
+        }
+
         .footer-content {
           grid-template-columns: 1fr;
         }
@@ -1044,47 +1085,39 @@
     </style>
   </head>
   <body>
-    <!-- Header / Nav -->
+    <!-- Header -->
     <header class="header-bar">
       <div class="header-inner">
         <div class="logo-area">
-          <a
-            href="index.html"
-            class="logo-link"
-            aria-label="Versed Global home"
-          >
+          <a href="index.html" class="logo-link">
             <img
               src="images/versed-global-logo.png"
-              alt="Versed Global logo"
+              alt="Versed Global"
               class="logo-image"
             />
-            <div>
-              <div class="logo-text">Versed Global</div>
-              <div class="tagline">
-                Salesforce CRM Implementation &amp; Digital Governance Solutions
-              </div>
-            </div>
+            <span class="logo-text">Versed Global</span>
           </a>
+          <span class="tagline">Salesforce &amp; Fundraising for Impact</span>
         </div>
-        <nav class="main-nav" aria-label="Primary navigation">
+
+        <button
+          class="mobile-menu"
+          id="mobileMenuToggle"
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+
+        <nav class="main-nav">
           <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="services.html" class="active">Salesforce</a>
-            <a href="about.html">About</a>
-            <a href="clients.html">Clients</a>
-            <a href="contact.html">Contact</a>
             <a href="fundraising.html">Fundraising</a>
             <a href="training.html">Training</a>
-            <a href="news.html">News</a>
+            <a href="clients.html">Clients</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
           </div>
-          <button
-            class="mobile-menu"
-            id="mobileMenuToggle"
-            type="button"
-            aria-label="Toggle navigation menu"
-          >
-            ☰
-          </button>
         </nav>
       </div>
     </header>
@@ -1850,6 +1883,10 @@
       if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener("click", () => {
           navLinks.classList.toggle("active");
+          // Change hamburger icon
+          mobileMenuToggle.textContent = navLinks.classList.contains("active")
+            ? "✕"
+            : "☰";
         });
       }
 
@@ -1858,36 +1895,37 @@
       navItems.forEach((item) => {
         item.addEventListener("click", () => {
           navLinks.classList.remove("active");
+          mobileMenuToggle.textContent = "☰";
         });
+      });
+
+      // Close menu on escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && navLinks.classList.contains("active")) {
+          navLinks.classList.remove("active");
+          mobileMenuToggle.textContent = "☰";
+        }
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          navLinks.classList.contains("active") &&
+          !navLinks.contains(e.target) &&
+          !mobileMenuToggle.contains(e.target)
+        ) {
+          navLinks.classList.remove("active");
+          mobileMenuToggle.textContent = "☰";
+        }
       });
 
       // Browser History Navigation - Closes mobile menu on back/forward
       window.addEventListener("popstate", () => {
         if (navLinks.classList.contains("active")) {
           navLinks.classList.remove("active");
+          mobileMenuToggle.textContent = "☰";
         }
       });
-
-      // Update active nav link based on current page
-      function updateActiveNav() {
-        const currentPage = window.location.pathname;
-        const navLinksEls = document.querySelectorAll(".nav-links a");
-
-        navLinksEls.forEach((link) => {
-          link.classList.remove("active");
-          if (currentPage === "/" || currentPage === "/index.html") {
-            if (link.getAttribute("href") === "index.html") {
-              link.classList.add("active");
-            }
-          } else {
-            if (link.getAttribute("href") === currentPage.split("/").pop()) {
-              link.classList.add("active");
-            }
-          }
-        });
-      }
-
-      updateActiveNav();
 
       // Toggle Service Card - Read More/Less
       function toggleServiceCard(button) {
