@@ -61,6 +61,7 @@ body {
   );
   overflow-x: hidden;
   position: relative;
+  padding-top: env(safe-area-inset-top, 0); /* iOS safe area */
 }
 
 /* Global glassy aurora background – simplified for performance */
@@ -166,7 +167,7 @@ a {
   padding: 0 1.5rem;
 }
 
-/* Vibrant Header with Glassmorphism */
+/* Vibrant Header with Glassmorphism – shared on all pages */
 .header-bar {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
@@ -176,6 +177,7 @@ a {
   top: 0;
   z-index: 1000;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  padding-top: max(0px, env(safe-area-inset-top, 0));
 }
 
 .header-inner {
@@ -229,8 +231,8 @@ a {
   font-size: 1.9rem;
   background: linear-gradient(135deg, #1e40af, #4f46e5, #7c3aed);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
   letter-spacing: -0.03em;
 }
 
@@ -278,9 +280,6 @@ a {
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-/* REMOVE moving colour plate effect */
-/* (deleted .nav-links a::before and :hover::before styles) */
 
 /* active/hover - brand colours */
 .nav-links a:hover,
@@ -373,8 +372,8 @@ a {
   margin-bottom: 1.5rem;
   background: linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
   line-height: 1.1;
 }
 
@@ -534,8 +533,8 @@ select:focus-visible {
   font-weight: 800;
   background: linear-gradient(135deg, #1e40af, #3b82f6, #6366f1);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -618,6 +617,7 @@ select:focus-visible {
   font-size: 1.25rem;
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -848,7 +848,7 @@ footer::after {
   }
 }
 
-/* Mobile menu animation */
+/* Mobile menu animation (shared across all pages) */
 @media (max-width: 768px) {
   .nav-links {
     position: fixed;
@@ -886,6 +886,16 @@ footer::after {
     opacity: 0;
     animation: fadeInUp 0.5s ease forwards;
     color: #e5e7eb;
+    transform: none; /* avoid hover lift in stacked list */
+    box-shadow: none;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active,
+  .nav-links a.active-section {
+    background: linear-gradient(135deg, #4f46e5, #6366f1, #ec4899);
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.7);
+    transform: none;
   }
 
   .nav-links a:nth-child(1) {
@@ -906,6 +916,12 @@ footer::after {
   .nav-links a:nth-child(6) {
     animation-delay: 0.6s;
   }
+  .nav-links a:nth-child(7) {
+    animation-delay: 0.7s;
+  }
+  .nav-links a:nth-child(8) {
+    animation-delay: 0.8s;
+  }
 
   .mobile-menu {
     display: block;
@@ -924,10 +940,16 @@ footer::after {
 
   .logo-image {
     height: 72px;
+    box-shadow: 0 3px 14px rgba(15, 23, 42, 0.18);
   }
 
   .logo-text {
-    font-size: 1.5rem;
+    font-size: 1.55rem;
+  }
+
+  .header-inner {
+    padding: 0.6rem 1rem;
+    column-gap: 1rem;
   }
 }
 
@@ -938,6 +960,10 @@ footer::after {
 
   .section {
     padding: 3rem 0;
+  }
+
+  .logo-text {
+    font-size: 1.45rem;
   }
 }
 
@@ -993,7 +1019,7 @@ footer::after {
   }
 
   .logo-text {
-    font-size: 1.5rem !important;
+    font-size: 1.55rem !important;
   }
 }
 
@@ -1027,17 +1053,17 @@ footer::after {
 /* 3. MOBILE HEADER FIX */
 @media (max-width: 768px) {
   .header-bar {
-    padding: 0.5rem 0 !important;
+    padding: 0.35rem 0 !important;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.16);
   }
 
   .header-inner {
-    padding: 0 1rem !important;
+    padding: 0.6rem 1rem !important;
     gap: 0.5rem !important;
   }
 
   .nav-links a {
-    font-size: 0.9rem !important;
-    padding: 0.5rem 0.75rem !important;
+    font-size: 0.95rem !important;
   }
 }
 
@@ -1105,7 +1131,6 @@ footer::after {
 @media (max-width: 480px) {
   .container {
     padding-left: 1rem !important;
-    padding-right: 1rem !important;
   }
 
   .section-title {
