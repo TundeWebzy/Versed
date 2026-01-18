@@ -87,6 +87,7 @@
         padding: 0.75rem 1.5rem;
         max-width: 1400px;
         margin: 0 auto;
+        position: relative; /* FIXED: Required for mobile nav dropdown positioning */
       }
 
       .logo-area {
@@ -183,6 +184,23 @@
 
       /* Mobile responsive */
       @media (max-width: 768px) {
+        .header-inner {
+          flex-wrap: wrap;
+        }
+
+        .tagline {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: block;
+        }
+
+        .main-nav {
+          width: 100%;
+          order: 3;
+        }
+
         .nav-links {
           flex-direction: column;
           gap: 0;
@@ -195,6 +213,7 @@
           max-height: 0;
           overflow: hidden;
           transition: max-height 0.3s ease;
+          z-index: 1000;
         }
 
         .nav-links.active {
@@ -208,21 +227,8 @@
           border-bottom: 1px solid #e2e8f0;
         }
 
-        .mobile-menu {
-          display: block;
-        }
-
-        .header-inner {
-          flex-wrap: wrap;
-        }
-
-        .tagline {
-          display: none;
-        }
-
-        .main-nav {
-          width: 100%;
-          order: 3;
+        .nav-links a.nav-cta {
+          margin-left: 0;
         }
       }
 
@@ -413,347 +419,68 @@
         object-fit: cover;
       }
 
-      .narrative-content {
-        font-size: 1rem;
-        line-height: 1.8;
+      .narrative-content h2 {
+        font-size: 2.2rem;
+        margin-bottom: 1.2rem;
         color: #0f172a;
-        padding-top: 1rem;
+        font-weight: 700;
       }
 
       .narrative-content p {
-        margin-bottom: 1.25rem;
+        font-size: 1.02rem;
+        line-height: 1.85;
         color: #475569;
+        margin-bottom: 1.1rem;
       }
 
-      .narrative-content strong {
-        color: #1e293b;
-        font-weight: 700;
+      @media (max-width: 900px) {
+        .narrative-section {
+          grid-template-columns: 1fr;
+        }
+
+        .narrative-image {
+          height: 280px;
+        }
       }
 
-      /* Values section styles */
-      .values-container {
-        display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
-        gap: 2.5rem;
-        align-items: stretch;
-        margin-top: 2rem;
-      }
-
-      .decision-lens {
-        border-radius: 20px;
-        padding: 1.75rem 1.9rem;
-        background: radial-gradient(circle at top left, #312e81, #0f172a);
-        box-shadow: 0 30px 80px rgba(15, 23, 42, 0.6);
-        color: #e5e7eb;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .decision-lens-label {
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.18em;
-        color: #a5b4fc;
-        margin-bottom: 0.9rem;
-      }
-
-      .decision-lens h3 {
-        font-size: 1.5rem;
-        margin-bottom: 1.4rem;
-        color: #f9fafb;
-      }
-
-      .decision-lens ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-        font-size: 0.95rem;
-      }
-
-      .decision-lens li {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.75rem;
-      }
-
-      .decision-lens li span {
-        margin-top: 2px;
-        flex-shrink: 0;
-      }
-
+      /* Values section */
       .values-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-        gap: 1.5rem;
-      }
-
-      .value {
-        border-radius: 18px;
-        padding: 1.5rem 1.6rem;
-        border: 1px solid rgba(59, 130, 246, 0.25);
-        transition: all 0.3s ease;
-      }
-
-      .value:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(59, 130, 246, 0.12);
-      }
-
-      .value h3 {
-        font-size: 1.15rem;
-        margin-bottom: 0.5rem;
-        margin-top: 0;
-        color: #1e293b;
-        font-weight: 700;
-      }
-
-      .value p {
-        font-size: 0.98rem;
-        color: #475569;
-        margin: 0;
-        line-height: 1.6;
-      }
-
-      /* HOW WE WORK - FLOATING CONTENT LAYOUT */
-      .how-we-work-container {
-        position: relative;
-        height: 600px;
-        margin-top: 3rem;
-        perspective: 1000px;
-      }
-
-      .work-item {
-        position: absolute;
-        width: 90%;
-        max-width: 350px;
-        background: white;
-        border-radius: 16px;
-        padding: 2rem;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        cursor: pointer;
-      }
-
-      .work-item:nth-child(1) {
-        left: 5%;
-        top: 0;
-        animation: float-1 6s ease-in-out infinite;
-      }
-
-      .work-item:nth-child(2) {
-        left: 35%;
-        top: 120px;
-        animation: float-2 6s ease-in-out infinite;
-      }
-
-      .work-item:nth-child(3) {
-        right: 5%;
-        top: 0;
-        animation: float-3 6s ease-in-out infinite;
-      }
-
-      @keyframes float-1 {
-        0%,
-        100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-30px);
-        }
-      }
-
-      @keyframes float-2 {
-        0%,
-        100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-40px);
-        }
-      }
-
-      @keyframes float-3 {
-        0%,
-        100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-25px);
-        }
-      }
-
-      .work-item:hover {
-        box-shadow: 0 20px 60px rgba(59, 130, 246, 0.15);
-        border-color: #3b82f6;
-        transform: translateY(-15px);
-      }
-
-      .work-item h3 {
-        font-size: 1.25rem;
-        color: #1e293b;
-        margin: 0 0 1rem;
-        font-weight: 700;
-      }
-
-      .work-item p {
-        color: #475569;
-        line-height: 1.7;
-        margin: 0;
-        font-size: 0.95rem;
-      }
-
-      .work-item-accent {
-        width: 4px;
-        height: 40px;
-        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-        border-radius: 2px;
-        margin-bottom: 1rem;
-      }
-
-      /* ORGANISATIONS WE SERVE - REDESIGNED */
-      .organisations-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 2rem;
-        margin-top: 2.5rem;
+        margin-top: 2rem;
       }
 
-      .org-item {
-        position: relative;
-        border-radius: 16px;
-        overflow: hidden;
-        transition: all 0.4s ease;
-      }
-
-      .org-item::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 6px;
-        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-        transition: height 0.4s ease;
-      }
-
-      .org-item:hover::before {
-        height: 8px;
-      }
-
-      .org-content {
-        background: white;
+      .value {
         padding: 2rem;
-        border: 1px solid #e2e8f0;
+        background: #ffffff;
         border-radius: 16px;
-        transition: all 0.3s ease;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+        transition: all 0.35s ease;
       }
 
-      .org-item:nth-child(1) .org-content {
-        background: linear-gradient(
-          135deg,
-          rgba(59, 130, 246, 0.05),
-          rgba(129, 140, 248, 0.05)
-        );
+      .value:hover {
+        border-color: rgba(59, 130, 246, 0.35);
+        box-shadow: 0 16px 40px rgba(59, 130, 246, 0.1);
+        transform: translateY(-4px);
       }
 
-      .org-item:nth-child(2) .org-content {
-        background: linear-gradient(
-          135deg,
-          rgba(16, 185, 129, 0.05),
-          rgba(45, 212, 191, 0.05)
-        );
-      }
-
-      .org-item:nth-child(3) .org-content {
-        background: linear-gradient(
-          135deg,
-          rgba(249, 115, 22, 0.05),
-          rgba(251, 146, 60, 0.05)
-        );
-      }
-
-      .org-item:nth-child(4) .org-content {
-        background: linear-gradient(
-          135deg,
-          rgba(236, 72, 153, 0.05),
-          rgba(251, 113, 133, 0.05)
-        );
-      }
-
-      .org-item:hover .org-content {
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-        border-color: #3b82f6;
-      }
-
-      .org-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 1rem;
-        font-size: 1.5rem;
-        font-weight: 700;
-      }
-
-      .org-item:nth-child(1) .org-icon {
-        background: rgba(59, 130, 246, 0.15);
-        color: #1d4ed8;
-      }
-
-      .org-item:nth-child(2) .org-icon {
-        background: rgba(16, 185, 129, 0.15);
-        color: #047857;
-      }
-
-      .org-item:nth-child(3) .org-icon {
-        background: rgba(249, 115, 22, 0.15);
-        color: #c2410c;
-      }
-
-      .org-item:nth-child(4) .org-icon {
-        background: rgba(236, 72, 153, 0.15);
-        color: #be185d;
-      }
-
-      .org-item h3 {
-        font-size: 1.15rem;
-        color: #1e293b;
+      .value h3 {
+        font-size: 1.2rem;
+        color: #0f172a;
         margin: 0 0 0.75rem;
         font-weight: 700;
       }
 
-      .org-item p {
+      .value p {
+        font-size: 0.95rem;
         color: #475569;
         line-height: 1.7;
         margin: 0;
-        font-size: 0.95rem;
-        flex-grow: 1;
       }
 
-      .org-cta {
-        margin-top: 1.5rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid rgba(0, 0, 0, 0.08);
-        font-size: 0.9rem;
-        color: #3b82f6;
-        font-weight: 600;
-        transition: color 0.3s ease;
-      }
-
-      .org-item:hover .org-cta {
-        color: #2563eb;
-      }
-
-      /* Footer styles */
+      /* Footer */
       footer {
         background: #1e293b;
         color: #e2e8f0;
@@ -809,7 +536,7 @@
       .footer-logo img {
         height: 48px;
         width: 48px;
-        background: white;
+        background: #ffffff;
         border-radius: 8px;
         padding: 4px;
         object-fit: contain;
@@ -851,7 +578,7 @@
         width: 40px;
         height: 40px;
         background: #3b82f6;
-        color: white;
+        color: #ffffff;
         border-radius: 50%;
         text-decoration: none;
         transition: all 0.3s ease;
@@ -927,33 +654,7 @@
         color: #f1f5f9;
       }
 
-      /* Responsive adjustments */
       @media (max-width: 768px) {
-        .narrative-section {
-          grid-template-columns: 1fr;
-        }
-
-        .values-container {
-          grid-template-columns: 1fr;
-        }
-
-        .stats-grid {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 1.5rem;
-        }
-
-        .stat-number {
-          font-size: 2.5rem;
-        }
-
-        .stat-label {
-          font-size: 0.9rem;
-        }
-
-        .section-title {
-          font-size: 1.8rem;
-        }
-
         .footer-content {
           grid-template-columns: 1fr;
         }
@@ -962,434 +663,212 @@
           flex-direction: column;
           text-align: center;
         }
-
-        .how-we-work-container {
-          height: auto;
-        }
-
-        .work-item {
-          position: relative !important;
-          width: 100% !important;
-          left: auto !important;
-          right: auto !important;
-          top: auto !important;
-          animation: none !important;
-          margin-bottom: 1.5rem;
-        }
-
-        .work-item:hover {
-          transform: translateY(-8px);
-        }
-
-        .organisations-grid {
-          grid-template-columns: 1fr;
-        }
       }
     </style>
   </head>
   <body>
-    <!-- Header / Nav -->
+    <!-- Header -->
     <header class="header-bar">
       <div class="header-inner">
         <div class="logo-area">
-          <a
-            href="index.html"
-            class="logo-link"
-            aria-label="Versed Global home"
-          >
+          <a href="index.html" class="logo-link">
             <img
               src="images/versed-global-logo.png"
-              alt="Versed Global logo"
+              alt="Versed Global"
               class="logo-image"
             />
-            <div>
-              <div class="logo-text">Versed Global</div>
-              <div class="tagline">
-                Salesforce CRM Implementation & Digital Governance Solutions
-              </div>
-            </div>
+            <span class="logo-text">Versed Global</span>
           </a>
+          <span class="tagline">Salesforce &amp; Fundraising for Impact</span>
         </div>
-        <nav class="main-nav" aria-label="Primary navigation">
+
+        <button
+          class="mobile-menu"
+          id="mobileMenuToggle"
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+
+        <nav class="main-nav">
           <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="services.html">Salesforce</a>
-            <a href="about.html" class="active">About</a>
-            <a href="clients.html">Clients</a>
-            <a href="contact.html">Contact</a>
             <a href="fundraising.html">Fundraising</a>
             <a href="training.html">Training</a>
-            <a href="news.html">News</a>
+            <a href="clients.html">Clients</a>
+            <a href="about.html" class="active">About</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
           </div>
-          <button
-            class="mobile-menu"
-            id="mobileMenuToggle"
-            type="button"
-            aria-label="Toggle navigation menu"
-          >
-            ☰
-          </button>
         </nav>
       </div>
     </header>
 
-    <!-- MAIN APP SHELL FOR SPA -->
-    <main id="app">
-      <!-- Page Hero -->
-      <section class="section alt">
+    <main>
+      <!-- Hero / Intro -->
+      <section class="section">
         <div class="container">
           <h1 class="section-title">About Versed Global</h1>
           <p class="section-intro">
-            Versed Global is a specialist consultancy that designs, integrates,
-            implements and supports Salesforce‑based CRM systems and targeted
+            Versed Global is a specialist consultancy that designs, implements
+            and supports Salesforce-based CRM systems and delivers targeted
             trust and foundation fundraising for charities, corporates and
-            public‑sector organisations. The focus is on helping mission‑driven,
-            corporate and public‑sector teams manage relationships, programmes
-            and funding more effectively.
+            public-sector organisations.
           </p>
+
+          <div class="highlight">
+            <p>
+              <strong>Versed Global Ltd</strong> was founded to close a gap many
+              organisations experience: the disconnect between technical systems
+              and the income strategies those systems are meant to support.
+            </p>
+            <p>
+              This consultancy brings together deep experience in Salesforce CRM
+              architecture and hands-on fundraising, so that clients receive
+              practical solutions built for real-world use – not theoretical
+              frameworks or generic implementations.
+            </p>
+          </div>
         </div>
       </section>
 
-      <!-- Founding Story / Why we exist -->
-      <section class="section">
+      <!-- Why we exist -->
+      <section class="section alt">
         <div class="container">
-          <h2 class="section-title">Why Versed Global exists</h2>
           <div class="narrative-section">
             <div class="narrative-image">
               <img
-                src="images/founder-placeholder.jpg"
-                alt="Versed Global team"
+                src="images/about-versed-global.jpg"
+                alt="About Versed Global consultancy"
+                onerror="this.style.display = 'none'"
               />
             </div>
             <div class="narrative-content">
+              <h2>Why Versed Global exists</h2>
               <p>
-                <strong>
-                  Too many teams have strong fundraising but weak systems, or
-                  strong systems but no coherent fundraising approach.
-                </strong>
+                Too often, organisations invest in expensive CRM systems only to
+                find that the system doesn't support how teams actually work.
+                Reports don't answer the questions funders ask. Data quality
+                degrades. Staff stop using the system.
               </p>
               <p>
-                Versed Global was created to remove these technical and
-                fundraising bottlenecks so organisations with important missions
-                can access the systems, skills and resources they need to serve
-                people and communities effectively.
+                At the same time, fundraising teams frequently operate without
+                the systems infrastructure needed to manage complex pipelines,
+                steward relationships properly or demonstrate impact to funders.
               </p>
               <p>
-                We recognised that mission‑driven teams shouldn't have to choose
-                between investing in Salesforce or investing in fundraising
-                expertise. By bringing both together – aligning CRM design with
-                real‑world funding models and stewardship approaches – we help
-                organisations manage relationships, programmes and funding in a
-                more joined‑up and accountable way.
-              </p>
-              <p>
-                The result is not just a technically impressive system, but a
-                practical one that actually supports your work and your bottom
-                line.
+                Versed Global was created to address both problems together:
+                building CRM systems that genuinely support fundraising, and
+                delivering fundraising that is grounded in data, governance and
+                sustainable practice.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Who we are / What we do -->
-      <section class="section alt">
+      <!-- Services overview -->
+      <section class="section">
         <div class="container">
-          <h2 class="section-title">Who we are and what we do</h2>
+          <h2 class="section-title">What we do</h2>
+          <p class="section-intro">
+            Versed Global offers two interconnected service areas, designed to
+            work together or independently depending on your organisation's
+            needs.
+          </p>
           <div class="three-grid">
             <div class="card">
-              <h3>Specialist Salesforce consultancy</h3>
+              <h3>Salesforce CRM</h3>
               <p>
-                Versed Global designs, integrates, implements and builds
-                Salesforce CRM databases and related systems for charities,
-                corporate organisations and government or public‑sector
-                institutions.
+                Design, implementation, optimisation and ongoing support for
+                Salesforce-based systems – configured specifically for
+                charities, social enterprises, CSR teams and public-sector
+                programmes.
               </p>
             </div>
             <div class="card">
-              <h3>Targeted fundraising support</h3>
+              <h3>Trust &amp; foundation fundraising</h3>
               <p>
-                Alongside technical delivery, Versed Global provides fundraising
-                support for mission‑driven organisations, including trust and
-                foundation strategy, pipeline creation, grant writing and
-                review.
+                Targeted support for trust, foundation and statutory fundraising
+                – from strategy development and prospect research through to
+                grant writing and funder stewardship.
               </p>
             </div>
             <div class="card">
-              <h3>Closing the systems–fundraising gap</h3>
+              <h3>Integrated solutions</h3>
               <p>
-                The consultancy exists to close the gap between strong income
-                generation and strong systems by ensuring Salesforce and
-                fundraising work together rather than in isolation.
+                Where fundraising and systems need to work as one – aligning
+                your Salesforce configuration with your income strategy so that
+                data, reporting and workflows support real fundraising goals.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Values Section -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Guided by clear values</h2>
-          <p class="section-intro">
-            Every Versed Global engagement is shaped by a set of values that
-            emphasise impact, ethics, equity, quality, collaboration and
-            learning.
-          </p>
-
-          <div class="values-container">
-            <!-- Left: decision lens -->
-            <div class="decision-lens">
-              <p class="decision-lens-label">Our values in practice</p>
-              <h3>How decisions are made at Versed Global</h3>
-
-              <ul>
-                <li>
-                  <span style="color: #bef264">▸</span>
-                  <span
-                    >Does this improve impact for people and communities
-                    served?</span
-                  >
-                </li>
-                <li>
-                  <span style="color: #fbbf24">▸</span>
-                  <span
-                    >Is the approach transparent, ethical and respectful of
-                    data?</span
-                  >
-                </li>
-                <li>
-                  <span style="color: #38bdf8">▸</span>
-                  <span>Are we enabling, not replacing, client capacity?</span>
-                </li>
-                <li>
-                  <span style="color: #f97316">▸</span>
-                  <span>Are we learning and documenting as we go?</span>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Right: value cards -->
-            <div class="values-grid">
-              <div
-                class="value"
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    rgba(16, 185, 129, 0.08),
-                    rgba(45, 212, 191, 0.08)
-                  );
-                  border-color: rgba(34, 197, 94, 0.25);
-                "
-              >
-                <h3 style="color: #047857">Impact</h3>
-                <p>
-                  Every system, training and strategy must contribute to
-                  meaningful outcomes for people and communities, not just
-                  internal metrics.
-                </p>
-              </div>
-              <div
-                class="value"
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    rgba(59, 130, 246, 0.08),
-                    rgba(129, 140, 248, 0.08)
-                  );
-                  border-color: rgba(59, 130, 246, 0.25);
-                "
-              >
-                <h3 style="color: #1d4ed8">Integrity</h3>
-                <p>
-                  Honest advice, ethical fundraising, transparent methods and
-                  strong respect for data privacy and governance.
-                </p>
-              </div>
-              <div
-                class="value"
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    rgba(236, 72, 153, 0.08),
-                    rgba(251, 113, 133, 0.08)
-                  );
-                  border-color: rgba(236, 72, 153, 0.25);
-                "
-              >
-                <h3 style="color: #be185d">Equity</h3>
-                <p>
-                  A commitment to supporting organisations working with
-                  underserved communities and addressing systemic barriers.
-                </p>
-              </div>
-              <div
-                class="value"
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    rgba(79, 70, 229, 0.08),
-                    rgba(30, 64, 175, 0.08)
-                  );
-                  border-color: rgba(79, 70, 229, 0.25);
-                "
-              >
-                <h3 style="color: #3730a3">Excellence</h3>
-                <p>
-                  High standards in solution design, training, writing, data
-                  quality and delivery; careful work, not superficial fixes.
-                </p>
-              </div>
-              <div
-                class="value"
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    rgba(14, 165, 233, 0.08),
-                    rgba(45, 212, 191, 0.08)
-                  );
-                  border-color: rgba(14, 165, 233, 0.25);
-                "
-              >
-                <h3 style="color: #0369a1">Collaboration</h3>
-                <p>
-                  Working alongside client teams, transferring skills and
-                  building internal capacity rather than creating dependency.
-                </p>
-              </div>
-              <div
-                class="value"
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    rgba(234, 179, 8, 0.08),
-                    rgba(251, 191, 36, 0.08)
-                  );
-                  border-color: rgba(234, 179, 8, 0.25);
-                "
-              >
-                <h3 style="color: #92400e">Learning</h3>
-                <p>
-                  Continual improvement in technology, fundraising practice and
-                  policy so clients benefit from current best practice.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- How we work - FLOATING CONTENT SECTION -->
+      <!-- Values -->
       <section class="section alt">
         <div class="container">
-          <h2 class="section-title">How Versed Global works</h2>
-          <div class="how-we-work-container">
-            <div class="work-item">
-              <div class="work-item-accent"></div>
-              <h3>Lean & flexible</h3>
+          <h2 class="section-title">Our values</h2>
+          <p class="section-intro">
+            Versed Global operates according to a set of principles that shape
+            how work is delivered and how client relationships are managed.
+          </p>
+          <div class="values-grid">
+            <div class="value">
+              <h3>Integrity</h3>
               <p>
-                Versed Global is structured to deliver high-quality,
-                project-based and ongoing support from the outset, with capacity
-                to involve experienced Salesforce and fundraising professionals
-                as needed.
+                Honest advice, even when it's not what you want to hear.
+                Transparency on what is achievable, at what cost and in what
+                timeframe informs how every engagement is delivered.
               </p>
             </div>
-            <div class="work-item">
-              <div
-                class="work-item-accent"
-                style="background: linear-gradient(135deg, #8b5cf6, #6366f1)"
-              ></div>
-              <h3>Remote-first delivery</h3>
+
+            <div class="value">
+              <h3>Equity</h3>
               <p>
-                Operating primarily from the UK, work is delivered
-                online—discovery, integration, builds, training and
-                strategy—with options for in-person workshops or implementation
-                support for UK-based clients.
+                A commitment to supporting organisations working with
+                underserved communities and addressing systemic barriers is
+                built into our practice.
               </p>
             </div>
-            <div class="work-item">
-              <div
-                class="work-item-accent"
-                style="background: linear-gradient(135deg, #6366f1, #3b82f6)"
-              ></div>
-              <h3>Collaborative partnerships</h3>
+
+            <div class="value">
+              <h3>Excellence</h3>
               <p>
-                Versed Global collaborates with Salesforce implementation
-                partners, fundraising and communications agencies, impact
-                evaluators and technology vendors to deliver joined-up
-                solutions.
+                High standards in solution design, data quality, writing and
+                delivery mean careful, sustainable solutions rather than quick
+                fixes.
+              </p>
+            </div>
+
+            <div class="value">
+              <h3>Collaboration</h3>
+              <p>
+                Working alongside client teams, transferring skills and building
+                internal capacity instead of creating dependency.
+              </p>
+            </div>
+
+            <div class="value">
+              <h3>Learning</h3>
+              <p>
+                Continuous learning in technology, fundraising practice and
+                policy ensures clients benefit from current best practice.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Who we serve - REDESIGNED SECTION -->
+      <!-- Stats -->
       <section class="section">
         <div class="container">
-          <h2 class="section-title">The organisations we serve</h2>
+          <h2 class="section-title">Experience in numbers</h2>
           <p class="section-intro">
-            We partner with mission-driven organisations across the nonprofit,
-            corporate and public sectors to deliver Salesforce systems that
-            enable growth and fundraising success.
+            Versed Global brings together years of hands-on experience in
+            Salesforce and fundraising across multiple sectors.
           </p>
-          <div class="organisations-grid">
-            <div class="org-item">
-              <div class="org-content">
-                <div class="org-icon">C</div>
-                <h3>Small & mid-sized charities</h3>
-                <p>
-                  Organisations that depend on trusts, foundations and
-                  institutional funders and need CRM systems and fundraising
-                  support that work together.
-                </p>
-                <div class="org-cta">Learn more</div>
-              </div>
-            </div>
-            <div class="org-item">
-              <div class="org-content">
-                <div class="org-icon">S</div>
-                <h3>Social enterprises & CICs</h3>
-                <p>
-                  Mission-driven organisations with blended funding models that
-                  need both robust stakeholder management and targeted
-                  institutional fundraising.
-                </p>
-                <div class="org-cta">Learn more</div>
-              </div>
-            </div>
-            <div class="org-item">
-              <div class="org-content">
-                <div class="org-icon">B</div>
-                <h3>Corporate organisations</h3>
-                <p>
-                  Businesses that require Salesforce CRM solutions for
-                  stakeholder management, CSR and ESG programmes, and
-                  data-driven reporting.
-                </p>
-                <div class="org-cta">Learn more</div>
-              </div>
-            </div>
-            <div class="org-item">
-              <div class="org-content">
-                <div class="org-icon">G</div>
-                <h3>Government & public-sector</h3>
-                <p>
-                  Public-sector institutions that need secure, well-designed
-                  Salesforce systems to manage programmes, grants and citizen or
-                  stakeholder engagement.
-                </p>
-                <div class="org-cta">Learn more</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Impact Statistics Section (towards the end) -->
-      <section class="section alt">
-        <div class="container">
-          <h2 class="section-title">Our Impact</h2>
           <div class="stats-section">
             <div class="stats-grid">
               <div class="stat-item">
