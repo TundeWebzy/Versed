@@ -24,14 +24,17 @@ const throttle = (fn, delay = 100) => {
     } else {
       queued = args;
       if (timeoutId) clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        if (queued) {
-          last = Date.now();
-          fn(...queued);
-          queued = null;
-          timeoutId = null;
-        }
-      }, delay - (now - last));
+      timeoutId = setTimeout(
+        () => {
+          if (queued) {
+            last = Date.now();
+            fn(...queued);
+            queued = null;
+            timeoutId = null;
+          }
+        },
+        delay - (now - last),
+      );
     }
   };
 };
@@ -57,7 +60,7 @@ function initMobileNav() {
   mobileMenuToggle.setAttribute("aria-label", "Toggle navigation");
   mobileMenuToggle.setAttribute("aria-expanded", "false");
   mobileMenuToggle.setAttribute("aria-controls", "primary-navigation");
-  navLinks.id = "primary-navigation";
+  if (!navLinks.id) navLinks.id = "primary-navigation";
 
   mobileMenuToggle.addEventListener("click", toggleNav);
 
@@ -69,7 +72,7 @@ function initMobileNav() {
       mobileMenuToggle.classList.remove("open");
       document.body.classList.remove("no-scroll");
       mobileMenuToggle.setAttribute("aria-expanded", "false");
-    })
+    }),
   );
 }
 
@@ -100,27 +103,32 @@ function setActiveNavigation() {
 // ---------- 3. SMOOTH IN-PAGE SCROLLING ----------
 function initSmoothScroll() {
   const reduce = prefersReducedMotion();
+  const header = qs(".header-bar");
+
   qsa('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", (e) => {
-      const id = anchor.getAttribute("href");
-      const target = id && id !== "#" ? qs(id) : null;
-      if (!target) return;
-      e.preventDefault();
+    anchor.addEventListener(
+      "click",
+      (e) => {
+        const id = anchor.getAttribute("href");
+        const target = id && id !== "#" ? qs(id) : null;
+        if (!target) return;
+        e.preventDefault();
 
-      const header = qs(".header-bar");
-      const offset = header ? header.offsetHeight + 16 : 0;
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        const offset = header ? header.offsetHeight + 16 : 0;
+        const top =
+          target.getBoundingClientRect().top + window.scrollY - offset;
 
-      if (reduce) {
-        window.scrollTo(0, top);
-      } else {
-        window.scrollTo({ top, behavior: "smooth" });
-      }
+        if (reduce) {
+          window.scrollTo(0, top);
+        } else {
+          window.scrollTo({ top, behavior: "smooth" });
+        }
 
-      // Accessible focus without jump
-      target.setAttribute("tabindex", "-1");
-      target.focus({ preventScroll: true });
-    });
+        target.setAttribute("tabindex", "-1");
+        target.focus({ preventScroll: true });
+      },
+      { passive: true },
+    );
   });
 }
 
@@ -136,7 +144,6 @@ function initHeaderEffects() {
     header.style.boxShadow =
       y > 80 ? "0 4px 30px rgba(15,23,42,.12)" : "0 1px 8px rgba(15,23,42,.04)";
 
-    // Subtle blur intensity tweak for tech feel
     const blurAmount = y > 40 ? 20 : 14;
     header.style.backdropFilter = `blur(${blurAmount}px)`;
     header.style.webkitBackdropFilter = `blur(${blurAmount}px)`;
@@ -150,7 +157,6 @@ function initContactForm() {
   const form = qs(".contact-form");
   if (!form) return;
 
-  // aria-live toast region
   let liveRegion = qs("#vg-live-region");
   if (!liveRegion) {
     liveRegion = document.createElement("div");
@@ -158,15 +164,21 @@ function initContactForm() {
     liveRegion.setAttribute("role", "status");
     liveRegion.setAttribute("aria-live", "polite");
     liveRegion.setAttribute("aria-atomic", "true");
-    liveRegion.style.position = "fixed";
-    liveRegion.style.left = "-9999px";
-    liveRegion.style.height = "1px";
-    liveRegion.style.overflow = "hidden";
+    Object.assign(liveRegion.style, {
+      position: "fixed",
+      left: "-9999px",
+      height: "1px",
+      overflow: "hidden",
+    });
     document.body.appendChild(liveRegion);
   }
 
   const showToast = (message, type = "success") => {
+    const existing = qs(".vg-toast");
+    if (existing) existing.remove();
+
     const toast = document.createElement("div");
+    toast.className = "vg-toast";
     toast.textContent = message;
     const bg =
       type === "error"
@@ -234,10 +246,10 @@ function initContactForm() {
     if (!valid) {
       showToast(
         "Please complete all required fields before submitting.",
-        "error"
+        "error",
       );
       const firstInvalid = requiredFields.find(
-        (f) => f.getAttribute("aria-invalid") === "true"
+        (f) => f.getAttribute("aria-invalid") === "true",
       );
       if (firstInvalid) firstInvalid.focus();
       return;
@@ -253,16 +265,14 @@ function initContactForm() {
     btn.textContent = "Sending…";
     btn.disabled = true;
 
-    // Let the external handler (FormSubmit) process the form
     form.submit();
 
-    // Fallback UI feedback if redirect is blocked/slow
     setTimeout(() => {
       btn.textContent = originalText;
       btn.disabled = false;
       form.reset();
       showToast(
-        "Thank you. Your message has been sent and a response will be provided within one working day."
+        "Thank you. Your message has been sent and a response will be provided within one working day.",
       );
     }, 1800);
   });
@@ -287,7 +297,7 @@ function initRevealAnimations() {
         }
       });
     },
-    { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+    { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
   );
 
   elements.forEach((el) => io.observe(el));
@@ -360,10 +370,14 @@ function initPageFade() {
   `;
   document.head.appendChild(style);
 
-  window.addEventListener("load", () => {
-    document.body.classList.add("page-loaded");
-    setActiveNavigation();
-  });
+  window.addEventListener(
+    "load",
+    () => {
+      document.body.classList.add("page-loaded");
+      setActiveNavigation();
+    },
+    { once: true },
+  );
 }
 
 // ---------- 10. KEYBOARD ESCAPE CLOSE ----------
@@ -444,7 +458,6 @@ function initScrollSpy() {
     if (direct) map.set(sec.id, direct);
   });
 
-  // If no hash-based mapping, fall back to URL-based only
   if (!map.size) return;
 
   const observer = new IntersectionObserver(
@@ -462,10 +475,68 @@ function initScrollSpy() {
     {
       threshold: 0.4,
       rootMargin: "-64px 0px -40% 0px",
-    }
+    },
   );
 
   sections.forEach((sec) => observer.observe(sec));
+}
+
+// ---------- 15. LAZY-LOAD IMAGES ----------
+function initLazyImages() {
+  const imgs = qsa("img[data-src]");
+  if (!imgs.length) return;
+
+  if ("loading" in HTMLImageElement.prototype) {
+    imgs.forEach((img) => {
+      img.src = img.dataset.src;
+      img.removeAttribute("data-src");
+    });
+    return;
+  }
+
+  const io = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const img = entry.target;
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+          img.removeAttribute("data-src");
+        }
+        obs.unobserve(img);
+      });
+    },
+    { threshold: 0.1, rootMargin: "100px 0px" },
+  );
+
+  imgs.forEach((img) => io.observe(img));
+}
+
+// ---------- 16. RESIZE OBSERVER FOR LAYOUT TWEAKS ----------
+function initResponsiveHelpers() {
+  if (!("ResizeObserver" in window)) return;
+  const header = qs(".header-bar");
+  if (!header) return;
+
+  const ro = new ResizeObserver(
+    throttle(() => {
+      // If viewport is very small, ensure nav is closed to avoid layout jank
+      if (window.innerWidth < 768) {
+        const navLinks = qs(".nav-links");
+        const toggle = qs("#mobileMenuToggle");
+        if (navLinks && navLinks.classList.contains("mobile-open")) {
+          navLinks.classList.remove("mobile-open");
+          document.body.classList.remove("no-scroll");
+          if (toggle) {
+            toggle.classList.remove("open");
+            toggle.setAttribute("aria-expanded", "false");
+          }
+        }
+      }
+    }, 150),
+  );
+
+  ro.observe(document.documentElement);
 }
 
 // ---------- INIT ALL ----------
@@ -482,8 +553,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initDarkModeClass();
   initOrgSliderAccessibility();
   initScrollSpy();
+  initLazyImages();
+  initResponsiveHelpers();
 
-  // Only run fade-in transitions if user has not requested reduced motion
   if (!prefersReducedMotion()) {
     initPageFade();
   } else {
