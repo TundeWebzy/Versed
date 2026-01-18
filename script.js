@@ -4,8 +4,9 @@
    =============================== */
 
 // ---------- 0. UTILITIES ----------
-const qs = (sel, ctx = document) => ctx.querySelector(sel);
-const qsa = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+const qs = (sel, ctx = document) => (ctx ? ctx.querySelector(sel) : null);
+const qsa = (sel, ctx = document) =>
+  ctx ? Array.from(ctx.querySelectorAll(sel)) : [];
 
 const throttle = (fn, delay = 100) => {
   let last = 0;
@@ -40,6 +41,7 @@ const throttle = (fn, delay = 100) => {
 };
 
 const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
   window.matchMedia &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -48,6 +50,13 @@ function initMobileNav() {
   const mobileMenuToggle = qs("#mobileMenuToggle");
   const navLinks = qs(".nav-links");
   if (!mobileMenuToggle || !navLinks) return;
+
+  const closeNav = () => {
+    navLinks.classList.remove("mobile-open");
+    mobileMenuToggle.classList.remove("open");
+    document.body.classList.remove("no-scroll");
+    mobileMenuToggle.setAttribute("aria-expanded", "false");
+  };
 
   const toggleNav = () => {
     const isOpen = !navLinks.classList.contains("mobile-open");
@@ -62,22 +71,47 @@ function initMobileNav() {
   mobileMenuToggle.setAttribute("aria-controls", "primary-navigation");
   if (!navLinks.id) navLinks.id = "primary-navigation";
 
+  // Main toggle
   mobileMenuToggle.addEventListener("click", toggleNav);
 
   // Close on nav link click (mobile)
   qsa(".nav-links a").forEach((link) =>
     link.addEventListener("click", () => {
       if (!navLinks.classList.contains("mobile-open")) return;
-      navLinks.classList.remove("mobile-open");
-      mobileMenuToggle.classList.remove("open");
-      document.body.classList.remove("no-scroll");
-      mobileMenuToggle.setAttribute("aria-expanded", "false");
+      closeNav();
     }),
   );
+
+  // Close on window resize to desktop to avoid stuck states
+  window.addEventListener(
+    "resize",
+    throttle(() => {
+      if (
+        window.innerWidth >= 768 &&
+        navLinks.classList.contains("mobile-open")
+      ) {
+        closeNav();
+      }
+    }, 150),
+  );
+
+  // Close on orientation change (iOS/Android)
+  window.addEventListener("orientationchange", () => {
+    setTimeout(() => {
+      if (
+        window.innerWidth >= 768 &&
+        navLinks.classList.contains("mobile-open")
+      ) {
+        closeNav();
+      }
+    }, 250);
+  });
 }
 
 // ---------- 2. ACTIVE NAVIGATION (URL-BASED) ----------
 function setActiveNavigation() {
+  if (typeof window === "undefined") return;
+
   const path = (window.location.pathname.split("/").pop() || "index.html")
     .split("?")[0]
     .split("#")[0];
@@ -102,6 +136,8 @@ function setActiveNavigation() {
 
 // ---------- 3. SMOOTH IN-PAGE SCROLLING ----------
 function initSmoothScroll() {
+  if (typeof window === "undefined") return;
+
   const reduce = prefersReducedMotion();
   const header = qs(".header-bar");
 
@@ -120,12 +156,18 @@ function initSmoothScroll() {
 
         if (reduce) {
           window.scrollTo(0, top);
-        } else {
+        } else if ("scrollBehavior" in document.documentElement.style) {
           window.scrollTo({ top, behavior: "smooth" });
+        } else {
+          window.scrollTo(0, top);
         }
 
-        target.setAttribute("tabindex", "-1");
-        target.focus({ preventScroll: true });
+        try {
+          target.setAttribute("tabindex", "-1");
+          target.focus({ preventScroll: true });
+        } catch {
+          target.focus();
+        }
       },
       { passive: true },
     );
@@ -134,6 +176,7 @@ function initSmoothScroll() {
 
 // ---------- 4. STICKY HEADER + DYNAMIC BACKGROUND ----------
 function initHeaderEffects() {
+  if (typeof window === "undefined") return;
   const header = qs(".header-bar");
   if (!header) return;
 
@@ -283,7 +326,7 @@ function initRevealAnimations() {
   const elements = qsa(".card, .value, .section-title");
   if (!elements.length) return;
 
-  if (prefersReducedMotion()) {
+  if (prefersReducedMotion() || typeof IntersectionObserver === "undefined") {
     elements.forEach((el) => el.classList.add("animate-fade-in"));
     return;
   }
@@ -351,6 +394,9 @@ function initPageTransitions() {
 
     link.addEventListener("click", (e) => {
       if (!enableTransitions) return;
+      // Don't interfere with modifier clicks (new tab, etc.)
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
       e.preventDefault();
       document.body.classList.add("page-exit");
       setTimeout(() => {
@@ -421,7 +467,11 @@ function initDarkModeClass() {
   };
 
   apply(mq.matches);
-  mq.addEventListener("change", (e) => apply(e.matches));
+  if (mq.addEventListener) {
+    mq.addEventListener("change", (e) => apply(e.matches));
+  } else if (mq.addListener) {
+    mq.addListener((e) => apply(e.matches));
+  }
 }
 
 // ---------- 13. ORG SLIDER PAUSE ON FOCUS ----------
@@ -447,6 +497,8 @@ function initOrgSliderAccessibility() {
 
 // ---------- 14. SECTION SCROLL-SPY (ADVANCED NAV HIGHLIGHT) ----------
 function initScrollSpy() {
+  if (typeof IntersectionObserver === "undefined") return;
+
   const sections = qsa("section[id]");
   const navLinks = qsa(".nav-links a[href^='#'], .nav-links a[href*='.html']");
   if (!sections.length || !navLinks.length) return;
@@ -494,6 +546,14 @@ function initLazyImages() {
     return;
   }
 
+  if (typeof IntersectionObserver === "undefined") {
+    imgs.forEach((img) => {
+      img.src = img.dataset.src;
+      img.removeAttribute("data-src");
+    });
+    return;
+  }
+
   const io = new IntersectionObserver(
     (entries, obs) => {
       entries.forEach((entry) => {
@@ -514,13 +574,10 @@ function initLazyImages() {
 
 // ---------- 16. RESIZE OBSERVER FOR LAYOUT TWEAKS ----------
 function initResponsiveHelpers() {
-  if (!("ResizeObserver" in window)) return;
-  const header = qs(".header-bar");
-  if (!header) return;
+  if (typeof window === "undefined" || !("ResizeObserver" in window)) return;
 
   const ro = new ResizeObserver(
     throttle(() => {
-      // If viewport is very small, ensure nav is closed to avoid layout jank
       if (window.innerWidth < 768) {
         const navLinks = qs(".nav-links");
         const toggle = qs("#mobileMenuToggle");
