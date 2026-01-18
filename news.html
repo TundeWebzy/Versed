@@ -16,7 +16,21 @@
     />
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Organization / Logo Schema -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Schema -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -41,968 +55,125 @@
         ]
       }
     </script>
-
-    <style>
-      /* Header aligned with other pages */
-
-      .header-bar {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        background: #ffffff;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      }
-
-      .header-inner {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0.75rem 1.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo-area {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        flex-shrink: 0;
-      }
-
-      .logo-link {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        text-decoration: none;
-      }
-
-      .logo-image {
-        height: 40px;
-        width: auto;
-      }
-
-      .logo-text {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: #1e293b;
-        letter-spacing: -0.02em;
-      }
-
-      .tagline {
-        font-size: 0.75rem;
-        color: #64748b;
-        font-weight: 500;
-        letter-spacing: 0.05em;
-        margin-left: 0.5rem;
-        padding-left: 0.5rem;
-        border-left: 1px solid #e2e8f0;
-        line-height: 1.2;
-        max-width: 220px;
-      }
-
-      .main-nav {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-      }
-
-      .nav-links a {
-        padding: 0.5rem 1rem;
-        text-decoration: none;
-        color: #475569;
-        font-weight: 500;
-        font-size: 0.95rem;
-        border-radius: 6px;
-        transition: all 0.2s ease;
-        white-space: nowrap;
-      }
-
-      .nav-links a:hover {
-        color: #3b82f6;
-      }
-
-      .nav-links a.active {
-        color: #3b82f6;
-      }
-
-      .nav-links .nav-cta {
-        background: #3b82f6;
-        color: #ffffff;
-        padding: 0.5rem 1.25rem;
-        border-radius: 6px;
-        margin-left: 0.5rem;
-      }
-
-      .nav-links .nav-cta:hover {
-        background: #2563eb;
-      }
-
-      .mobile-menu {
-        display: none;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: #1e293b;
-      }
-
-      @media (max-width: 768px) {
-        .header-inner {
-          flex-wrap: wrap;
-        }
-
-        .tagline {
-          display: none;
-        }
-
-        .main-nav {
-          width: 100%;
-          order: 3;
-        }
-
-        .nav-links {
-          flex-direction: column;
-          gap: 0;
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: #ffffff;
-          border-top: 1px solid #e2e8f0;
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.3s ease;
-        }
-
-        .nav-links.active {
-          max-height: 500px;
-        }
-
-        .nav-links a {
-          width: 100%;
-          padding: 1rem;
-          border-radius: 0;
-          border-bottom: 1px solid #e2e8f0;
-        }
-
-        .mobile-menu {
-          display: block;
-        }
-      }
-
-      /* Flowing “update rail” */
-
-      .update-rail {
-        margin-top: 2rem;
-        overflow-x: auto;
-        padding-bottom: 1rem;
-        scroll-snap-type: x mandatory;
-      }
-
-      .update-track {
-        display: flex;
-        gap: 1.5rem;
-        min-width: 900px;
-      }
-
-      .update-item {
-        scroll-snap-align: start;
-        min-width: 260px;
-        max-width: 320px;
-        border-radius: 18px;
-        border: 1px solid #e2e8f0;
-        padding: 1.5rem 1.4rem;
-        background: #ffffff;
-        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .update-item::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
-      }
-
-      .update-meta {
-        font-size: 0.78rem;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        color: #64748b;
-        margin-bottom: 0.35rem;
-      }
-
-      .update-title {
-        font-size: 1.05rem;
-        font-weight: 600;
-        color: #111827;
-        margin-bottom: 0.4rem;
-      }
-
-      .update-text {
-        font-size: 0.9rem;
-        color: #4b5563;
-      }
-
-      .update-tag {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.25rem 0.7rem;
-        border-radius: 999px;
-        font-size: 0.78rem;
-        background: rgba(99, 102, 241, 0.06);
-        color: #4f46e5;
-        border: 1px solid rgba(129, 140, 248, 0.35);
-        margin-top: 0.6rem;
-      }
-
-      @media (max-width: 768px) {
-        .update-track {
-          min-width: 720px;
-        }
-      }
-
-      /* Expandable long-form items */
-
-      .expandable {
-        position: relative;
-        overflow: hidden;
-        max-height: 190px;
-        transition: max-height 0.4s ease;
-      }
-
-      .expandable.expanded {
-        max-height: 1600px;
-      }
-
-      .expand-fade {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 3rem;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
-        pointer-events: none;
-      }
-
-      .expand-toggle {
-        margin-top: 0.75rem;
-        background: none;
-        border: none;
-        color: #2563eb;
-        font-weight: 600;
-        font-size: 0.9rem;
-        cursor: pointer;
-        padding: 0;
-      }
-
-      /* Animated highlight band */
-
-      .highlight-band {
-        position: relative;
-        margin-top: 3rem;
-        border-radius: 20px;
-        padding: 1.8rem 1.9rem;
-        background: radial-gradient(circle at 0% 0%, #0f172a, #1e293b);
-        color: #e5e7eb;
-        overflow: hidden;
-      }
-
-      .highlight-band-orbit {
-        position: absolute;
-        inset: -40%;
-        background:
-          radial-gradient(
-            circle at 10% 10%,
-            rgba(96, 165, 250, 0.32),
-            transparent 55%
-          ),
-          radial-gradient(
-            circle at 85% 0,
-            rgba(244, 114, 182, 0.32),
-            transparent 55%
-          );
-        opacity: 0.8;
-        animation: band-orbit 18s linear infinite;
-      }
-
-      @keyframes band-orbit {
-        0% {
-          transform: translate(0, 0);
-        }
-        50% {
-          transform: translate(18%, 6%);
-        }
-        100% {
-          transform: translate(0, 0);
-        }
-      }
-
-      .highlight-band-inner {
-        position: relative;
-        z-index: 1;
-      }
-
-      .highlight-band-label {
-        font-size: 0.78rem;
-        text-transform: uppercase;
-        letter-spacing: 0.18em;
-        color: #a5b4fc;
-        margin-bottom: 0.4rem;
-      }
-
-      /* Newsletter re‑styled slightly to match flow */
-
-      .newsletter-wrapper {
-        max-width: 720px;
-        margin: 0 auto;
-        background: rgba(15, 23, 42, 0.96);
-        border-radius: 24px;
-        padding: 2.5rem 2.25rem;
-        box-shadow: 0 26px 70px rgba(15, 23, 42, 0.65);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .newsletter-wrapper::before {
-        content: "";
-        position: absolute;
-        inset: -40%;
-        opacity: 0.2;
-        background:
-          radial-gradient(circle at 10% 10%, #6366f1, transparent 55%),
-          radial-gradient(circle at 80% 0%, #ec4899, transparent 55%),
-          radial-gradient(circle at 10% 85%, #22c55e, transparent 55%);
-        z-index: 0;
-      }
-
-      .newsletter-inner {
-        position: relative;
-        z-index: 1;
-      }
-
-      .newsletter-title {
-        font-size: 1.8rem;
-        color: #f9fafb;
-        margin-bottom: 0.5rem;
-      }
-
-      .newsletter-copy {
-        color: #cbd5e1;
-        font-size: 0.98rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .newsletter-benefits {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .newsletter-benefits span {
-        font-size: 0.8rem;
-        padding: 0.3rem 0.75rem;
-        border-radius: 999px;
-        background: rgba(15, 23, 42, 0.75);
-        border: 1px solid rgba(148, 163, 184, 0.5);
-        color: #e5e7eb;
-      }
-
-      .newsletter-form {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-      }
-
-      .newsletter-form input[type="email"] {
-        flex: 1 1 220px;
-        min-width: 0;
-        padding: 0.85rem 1rem;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.8);
-        background: rgba(15, 23, 42, 0.85);
-        color: #f9fafb;
-        font-size: 0.95rem;
-      }
-
-      .newsletter-form input::placeholder {
-        color: #94a3b8;
-      }
-
-      .newsletter-note {
-        margin-top: 0.75rem;
-        font-size: 0.8rem;
-        color: #9ca3af;
-      }
-
-      @media (max-width: 640px) {
-        .newsletter-wrapper {
-          padding: 2rem 1.6rem;
-        }
-
-        .newsletter-form {
-          flex-direction: column;
-        }
-
-        .newsletter-form button {
-          width: 100%;
-        }
-      }
-
-      /* Footer aligned with other pages */
-
-      footer {
-        background: #1e293b;
-        color: #e2e8f0;
-        padding: 3rem 0 1.5rem;
-        margin-top: 4rem;
-      }
-
-      .footer-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-      }
-
-      .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 3rem;
-        margin-bottom: 2rem;
-      }
-
-      .footer-section h4 {
-        color: #f1f5f9;
-        font-size: 0.95rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 1.25rem;
-        font-weight: 700;
-      }
-
-      .footer-section p {
-        font-size: 0.95rem;
-        line-height: 1.8;
-        margin-bottom: 0.75rem;
-      }
-
-      .footer-section a {
-        color: #cbd5e1;
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .footer-section a:hover {
-        color: #f1f5f9;
-      }
-
-      .footer-logo {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-      }
-
-      .footer-logo img {
-        height: 48px;
-        width: 48px;
-        background: #ffffff;
-        border-radius: 8px;
-        padding: 4px;
-        object-fit: contain;
-      }
-
-      .footer-logo span {
-        color: #f1f5f9;
-        font-weight: 700;
-        font-size: 1rem;
-      }
-
-      .footer-address {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .footer-contact {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .footer-contact a {
-        display: inline-block;
-        width: fit-content;
-      }
-
-      .social-links {
-        display: flex;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-      }
-
-      .social-link {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        background: #3b82f6;
-        color: #ffffff;
-        border-radius: 50%;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        font-size: 1.1rem;
-      }
-
-      .social-link:hover {
-        background: #2563eb;
-        transform: translateY(-3px);
-      }
-
-      .social-link.linkedin {
-        background: #0a66c2;
-      }
-
-      .social-link.linkedin:hover {
-        background: #084999;
-      }
-
-      .social-link.instagram {
-        background: #e4405f;
-      }
-
-      .social-link.instagram:hover {
-        background: #c72e5f;
-      }
-
-      .social-link.facebook {
-        background: #1877f2;
-      }
-
-      .social-link.facebook:hover {
-        background: #0a66ff;
-      }
-
-      .footer-divider {
-        border-top: 1px solid #334155;
-        padding-top: 1.5rem;
-        margin-top: 2rem;
-      }
-
-      .footer-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        font-size: 0.9rem;
-        color: #94a3b8;
-      }
-
-      .footer-bottom a {
-        color: #cbd5e1;
-      }
-
-      .company-info {
-        font-size: 0.85rem;
-        color: #94a3b8;
-        line-height: 1.6;
-      }
-
-      .trustpilot-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        color: #cbd5e1;
-        text-decoration: none;
-        font-size: 0.95rem;
-        transition: color 0.3s ease;
-      }
-
-      .trustpilot-link:hover {
-        color: #f1f5f9;
-      }
-
-      @media (max-width: 768px) {
-        .footer-content {
-          grid-template-columns: 1fr;
-        }
-
-        .footer-bottom {
-          flex-direction: column;
-          text-align: center;
-        }
-      }
-    </style>
   </head>
   <body>
-    <!-- Header / Nav -->
+    <!-- Header -->
     <header class="header-bar">
       <div class="header-inner">
         <div class="logo-area">
-          <a
-            href="index.html"
-            class="logo-link"
-            aria-label="Versed Global home"
-          >
+          <a href="index.html" class="logo-link">
             <img
               src="images/versed-global-logo.png"
-              alt="Versed Global logo"
+              alt="Versed Global"
               class="logo-image"
             />
-            <div>
-              <div class="logo-text">Versed Global</div>
-              <div class="tagline">
-                Salesforce CRM Implementation & Digital Governance Solutions
-              </div>
-            </div>
+            <span class="logo-text">Versed Global</span>
           </a>
+          <span class="tagline">Salesforce &amp; Fundraising for Impact</span>
         </div>
-        <nav class="main-nav" aria-label="Primary navigation">
+
+        <button
+          class="mobile-menu"
+          id="mobileMenuToggle"
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+
+        <nav class="main-nav">
           <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="services.html">Salesforce</a>
-            <a href="about.html">About</a>
-            <a href="clients.html">Clients</a>
             <a href="fundraising.html">Fundraising</a>
             <a href="training.html">Training</a>
-            <a href="news.html" class="active">News</a>
+            <a href="clients.html">Clients</a>
+            <a href="about.html">About</a>
             <a href="contact.html" class="nav-cta">Contact</a>
           </div>
-          <button
-            class="mobile-menu"
-            id="mobileMenuToggle"
-            type="button"
-            aria-label="Toggle navigation menu"
-          >
-            ☰
-          </button>
         </nav>
       </div>
     </header>
 
-    <!-- MAIN APP SHELL FOR SPA -->
-    <main id="app">
-      <!-- Hero / Intro -->
-      <section class="section alt">
+    <main>
+      <!-- Intro -->
+      <section class="section">
         <div class="container">
-          <h1 class="section-title">News &amp; insights</h1>
+          <h1 class="section-title">News &amp; updates</h1>
           <p class="section-intro">
-            Updates from Versed Global on Salesforce CRM, fundraising strategy
-            and the realities of building systems that support income,
-            programmes and reporting in one place.
+            Latest news, insights and updates from Versed Global on Salesforce
+            CRM, fundraising strategy and integrated systems for charities,
+            corporates and public-sector organisations.
           </p>
         </div>
       </section>
 
-      <!-- Flowing update rail -->
-      <section class="section">
+      <!-- News -->
+      <section class="section alt">
         <div class="container">
-          <h2 class="section-title">Latest updates</h2>
-          <p class="section-intro">
-            A scrollable rail of recent highlights. Click through to longer
-            posts, guides or event pages as they are published.
+          <h2 class="section-title">Recent updates</h2>
+
+          <div class="news-grid">
+            <div class="news-card">
+              <div class="news-card-header">
+                <div class="news-date">Coming Soon</div>
+                <h3>Salesforce tips for charities</h3>
+              </div>
+              <div class="news-card-body">
+                <p>
+                  Practical guidance on getting the most from your Salesforce
+                  implementation – from data quality to reporting.
+                </p>
+              </div>
+            </div>
+
+            <div class="news-card">
+              <div class="news-card-header">
+                <div class="news-date">Coming Soon</div>
+                <h3>Trust fundraising insights</h3>
+              </div>
+              <div class="news-card-body">
+                <p>
+                  Lessons from successful trust and foundation fundraising
+                  campaigns and how to strengthen your approach.
+                </p>
+              </div>
+            </div>
+
+            <div class="news-card">
+              <div class="news-card-header">
+                <div class="news-date">Coming Soon</div>
+                <h3>System integration stories</h3>
+              </div>
+              <div class="news-card-body">
+                <p>
+                  Real examples of how organisations have connected their
+                  Salesforce and fundraising workflows for better results.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section">
+        <div class="container" style="text-align: center">
+          <h2 class="section-title">Stay updated</h2>
+          <p
+            class="section-intro"
+            style="margin: 0 auto 2rem; max-width: 600px"
+          >
+            Follow Versed Global on LinkedIn for the latest updates, tips and
+            insights on Salesforce and fundraising.
           </p>
-
-          <div class="update-rail">
-            <div class="update-track">
-              <article class="update-item">
-                <div class="update-meta">December 2025 · Salesforce</div>
-                <div class="update-title">
-                  Aligning Salesforce with trust &amp; foundation fundraising
-                </div>
-                <p class="update-text">
-                  How Salesforce objects, stages and reports can be mapped to
-                  real‑world fundraising cycles, from first approach to renewal.
-                </p>
-                <span class="update-tag">Salesforce architecture</span>
-              </article>
-
-              <article class="update-item">
-                <div class="update-meta">November 2025 · Fundraising</div>
-                <div class="update-title">
-                  Five data points every grant‑seeking team should track
-                </div>
-                <p class="update-text">
-                  A short checklist for fundraisers and programme leads on what
-                  to capture in your CRM to strengthen bids and reporting.
-                </p>
-                <span class="update-tag">Trusts &amp; foundations</span>
-              </article>
-
-              <article class="update-item">
-                <div class="update-meta">October 2025 · Events</div>
-                <div class="update-title">
-                  Online clinic: getting more value from Salesforce reports
-                </div>
-                <p class="update-text">
-                  A 45‑minute virtual session for UK‑based teams focusing on
-                  practical dashboards that leaders will actually use.
-                </p>
-                <span class="update-tag">Events &amp; clinics</span>
-              </article>
-
-              <article class="update-item">
-                <div class="update-meta">September 2025 · Versed Global</div>
-                <div class="update-title">
-                  Expanding remote support for UK‑wide charities
-                </div>
-                <p class="update-text">
-                  New support options for organisations without in‑house
-                  Salesforce or fundraising capacity.
-                </p>
-                <span class="update-tag">Company news</span>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Featured long-form insight with Read more -->
-      <section class="section alt">
-        <div class="container">
-          <h2 class="section-title">Featured insight</h2>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-              gap: 3rem;
-              align-items: start;
-            "
+          <a
+            href="https://linkedin.com/company/versed-global"
+            class="btn btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <div>
-              <h3
-                style="
-                  margin-top: 0;
-                  font-size: 1.35rem;
-                  color: #0f172a;
-                  margin-bottom: 0.6rem;
-                "
-              >
-                What makes a CRM genuinely useful for fundraising?
-              </h3>
-              <div class="expandable" id="featureBlock">
-                <p style="font-size: 0.98rem; color: #4b5563; line-height: 1.9">
-                  Many organisations adopt Salesforce with the promise that it
-                  will transform fundraising and reporting. In practice, the
-                  difference between “another system to feed” and a genuinely
-                  useful CRM often comes down to a few design choices: how
-                  closely the database mirrors real fundraising journeys, how
-                  easy it is to surface the right information at the right time
-                  and how well people are supported to use it.
-                </p>
-                <p style="font-size: 0.98rem; color: #4b5563; line-height: 1.9">
-                  A useful CRM supports decision‑making at every level. Funders
-                  can be seen in the context of previous contact, proposals and
-                  reports. Fundraisers can see what needs attention this week,
-                  not just what happened last year. Leadership can see how
-                  secure income is over the next 6–18 months, and where to
-                  invest effort.
-                </p>
-                <p style="font-size: 0.98rem; color: #4b5563; line-height: 1.9">
-                  Versed Global focuses on implementations and refinements that
-                  reflect how teams actually work: aligning Salesforce objects
-                  and fields with programme delivery, trust and foundation
-                  pipelines, corporate partnerships and impact reporting rather
-                  than generic templates alone.
-                </p>
-                <div class="expand-fade" id="featureFade"></div>
-              </div>
-              <button
-                class="expand-toggle"
-                type="button"
-                data-target="featureBlock"
-                data-fade="featureFade"
-              >
-                Read more
-              </button>
-            </div>
-
-            <div class="highlight-band">
-              <div class="highlight-band-orbit"></div>
-              <div class="highlight-band-inner">
-                <div class="highlight-band-label">In practice</div>
-                <p style="font-size: 0.95rem; margin: 0 0 0.7rem">
-                  Themes that often appear in Versed Global projects:
-                </p>
-                <ul
-                  style="
-                    list-style: none;
-                    padding: 0;
-                    margin: 0;
-                    display: grid;
-                    gap: 0.4rem;
-                    font-size: 0.9rem;
-                  "
-                >
-                  <li>• Joining fundraising, delivery and finance data</li>
-                  <li>
-                    • Replacing spreadsheet pipelines with Salesforce views
-                  </li>
-                  <li>• Simplifying page layouts to match real workflows</li>
-                  <li>• Building reports that answer specific questions</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- How to use this page / content flows -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">How this page will be used</h2>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-              gap: 2.5rem;
-              align-items: start;
-            "
-          >
-            <div class="expandable" id="usageBlock">
-              <p style="font-size: 0.97rem; color: #4b5563; line-height: 1.9">
-                Over time, posts here will cover client stories, implementation
-                lessons, fundraising guidance and announcements about services
-                or events. Some will be brief “signal” updates; others will link
-                to deeper resources such as checklists, templates or longer
-                articles hosted elsewhere.
-              </p>
-              <p style="font-size: 0.97rem; color: #4b5563; line-height: 1.9">
-                For organisations considering working with Versed Global, these
-                posts can show how Salesforce and fundraising work is approached
-                in practice. For existing clients, they provide an additional
-                source of tips, reminders and language that can be used in
-                internal documents or funding applications.
-              </p>
-            </div>
-            <button
-              class="expand-toggle"
-              type="button"
-              data-target="usageBlock"
-            >
-              Read more
-            </button>
-
-            <div>
-              <h3
-                style="
-                  margin-top: 0;
-                  font-size: 1.1rem;
-                  color: #0f172a;
-                  margin-bottom: 0.6rem;
-                "
-              >
-                Typical content themes
-              </h3>
-              <ul
-                style="
-                  list-style: none;
-                  padding: 0;
-                  margin: 0;
-                  font-size: 0.92rem;
-                  color: #4b5563;
-                  display: grid;
-                  gap: 0.4rem;
-                "
-              >
-                <li>• Salesforce tips for charities and NGOs</li>
-                <li>• Trust &amp; foundation fundraising guidance</li>
-                <li>• Lessons from implementations and projects</li>
-                <li>• Announcements about clinics, webinars and talks</li>
-                <li>• Company updates and collaborations</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Newsletter sign-up -->
-      <section class="section alt">
-        <div class="container">
-          <div class="newsletter-wrapper">
-            <div class="newsletter-inner">
-              <h2 class="newsletter-title">Subscribe to Versed Global news</h2>
-              <p class="newsletter-copy">
-                Receive occasional updates on Salesforce practice, fundraising
-                guidance and new resources. Expect a concise email, a few times
-                a year, focused on practical value.
-              </p>
-
-              <div class="newsletter-benefits">
-                <span>Salesforce tips for charities</span>
-                <span>Trust &amp; foundation insights</span>
-                <span>Implementation checklists</span>
-                <span>Invitations to clinics &amp; talks</span>
-              </div>
-
-              <form
-                class="newsletter-form"
-                action="https://formsubmit.co/info@versedglobal.com"
-                method="POST"
-              >
-                <!-- HONEYPOT -->
-                <input
-                  type="text"
-                  name="_honey"
-                  style="display: none"
-                  tabindex="-1"
-                  autocomplete="off"
-                />
-
-                <!-- Disable FormSubmit CAPTCHA -->
-                <input type="hidden" name="_captcha" value="false" />
-
-                <!-- Redirect after success -->
-                <input
-                  type="hidden"
-                  name="_next"
-                  value="https://versedglobal.com/news.html?subscribed"
-                />
-
-                <!-- Email subject -->
-                <input
-                  type="hidden"
-                  name="_subject"
-                  value="New Newsletter Subscription - Versed Global"
-                />
-
-                <!-- Tag as newsletter -->
-                <input
-                  type="hidden"
-                  name="source"
-                  value="Versed Global website newsletter"
-                />
-
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="Your email address"
-                />
-                <button type="submit" class="btn btn-primary">
-                  Subscribe to newsletter
-                </button>
-              </form>
-              <p class="newsletter-note">
-                Versed Global will only use your details to send occasional
-                updates and will never share your information with third
-                parties. You can unsubscribe at any time.
-              </p>
-            </div>
-          </div>
+            Follow on LinkedIn
+          </a>
         </div>
       </section>
     </main>
@@ -1011,7 +182,6 @@
     <footer>
       <div class="footer-container">
         <div class="footer-content">
-          <!-- About Section -->
           <div class="footer-section">
             <div class="footer-logo">
               <img src="images/versed-global-logo.png" alt="Versed Global" />
@@ -1053,7 +223,6 @@
             </div>
           </div>
 
-          <!-- Contact Section -->
           <div class="footer-section">
             <h4>Contact</h4>
             <div class="footer-contact">
@@ -1066,15 +235,14 @@
               <div>
                 <strong style="color: #f1f5f9">Email</strong>
                 <p style="margin: 0.5rem 0 0">
-                  <a href="mailto:info@versedglobal.com">
-                    info@versedglobal.com
-                  </a>
+                  <a href="mailto:info@versedglobal.com"
+                    >info@versedglobal.com</a
+                  >
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- Address Section -->
           <div class="footer-section">
             <h4>Office Address</h4>
             <div class="footer-address">
@@ -1093,7 +261,6 @@
             </div>
           </div>
 
-          <!-- Review & Links Section -->
           <div class="footer-section">
             <h4>Leave a Review</h4>
             <p>Help us improve by sharing your experience on Trustpilot.</p>
@@ -1115,7 +282,6 @@
           </div>
         </div>
 
-        <!-- Footer Divider -->
         <div class="footer-divider">
           <div class="footer-bottom">
             <div>
@@ -1132,40 +298,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-      // Set current year
-      document.getElementById("year").textContent = new Date().getFullYear();
-
-      // Mobile menu toggle
-      const mobileMenuToggle = document.getElementById("mobileMenuToggle");
-      const navLinks = document.getElementById("navLinks");
-
-      if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener("click", () => {
-          navLinks.classList.toggle("active");
-        });
-      }
-
-      // Read-more toggles
-      document.querySelectorAll(".expand-toggle").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const targetId = btn.getAttribute("data-target");
-          const fadeId = btn.getAttribute("data-fade");
-          const block = document.getElementById(targetId);
-          const fade = fadeId ? document.getElementById(fadeId) : null;
-          if (!block) return;
-
-          block.classList.toggle("expanded");
-          if (fade) {
-            fade.style.display = block.classList.contains("expanded")
-              ? "none"
-              : "block";
-          }
-          btn.textContent = block.classList.contains("expanded")
-            ? "Show less"
-            : "Read more";
-        });
-      });
-    </script>
   </body>
 </html>
