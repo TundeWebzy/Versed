@@ -74,7 +74,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        position: relative; /* FIXED: Required for mobile nav dropdown positioning */
+        position: relative; /* Required for mobile nav dropdown positioning */
       }
 
       .logo-area {
@@ -314,6 +314,141 @@
         font-size: 0.95rem;
       }
 
+      /* Hero redesign: Training & support */
+      .hero-training {
+        padding: 3.5rem 0;
+        background: radial-gradient(circle at 0% 0%, #eef2ff, #f8fafc);
+      }
+
+      .hero-training-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .hero-training-media {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.4);
+        isolation: isolate;
+      }
+
+      .hero-training-media::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at top,
+          rgba(255, 255, 255, 0.15),
+          transparent 55%
+        );
+        mix-blend-mode: screen;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .hero-training-video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        filter: saturate(1.25) contrast(1.1);
+        transform: scale(1.02);
+      }
+
+      .hero-training-badge {
+        position: absolute;
+        bottom: 1.25rem;
+        left: 1.25rem;
+        padding: 0.4rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.75);
+        color: #e5f0ff;
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        z-index: 2;
+      }
+
+      .hero-training-badge i {
+        font-size: 0.85rem;
+        color: #38bdf8;
+      }
+
+      .hero-training-content {
+        max-width: 620px;
+        margin-left: auto;
+      }
+
+      .hero-training-eyebrow {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: #6366f1;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+
+      .hero-training .section-title {
+        margin-bottom: 0.75rem;
+      }
+
+      .hero-training .section-intro {
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-training-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 1.75rem;
+        font-size: 0.9rem;
+        color: #475569;
+      }
+
+      .hero-training-meta span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+      }
+
+      .hero-training-meta i {
+        color: #22c55e;
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 900px) {
+        .hero-training-inner {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 2.5rem;
+        }
+
+        .hero-training-content {
+          margin-left: 0;
+          order: -1;
+        }
+
+        .hero-training {
+          padding: 3rem 0 3.25rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero-training {
+          padding: 2.5rem 0 3rem;
+        }
+
+        .hero-training-badge {
+          bottom: 0.9rem;
+          left: 0.9rem;
+          font-size: 0.7rem;
+        }
+      }
+
       /* Footer */
       footer {
         background: #1e293b;
@@ -539,16 +674,50 @@
     </header>
 
     <main>
-      <!-- Intro -->
-      <section class="section">
+      <!-- Redesigned hero: Training & support -->
+      <section class="hero-training">
         <div class="container">
-          <h1 class="section-title">Training &amp; support</h1>
-          <p class="section-intro">
-            Versed Global provides flexible Salesforce and fundraising training
-            and support, tailored to your roles, configuration and programmes.
-            Training can be delivered remotely or on-site, depending on your
-            needs.
-          </p>
+          <div class="hero-training-inner">
+            <div class="hero-training-media">
+              <video
+                class="hero-training-video"
+                autoplay
+                muted
+                loop
+                playsinline
+              >
+                <source
+                  src="https://media.istockphoto.com/id/2184183660/video/businesspeople-engaging-in-seminar-activities-at-convention-center.avif?s=640x640&k=20&c=-HwWPAh7mOfsJqDW2l7JmnWk2Tdkusg90l-GaTSt7Dk="
+                  type="video/mp4"
+                />
+              </video>
+              <div class="hero-training-badge">
+                <i class="fas fa-chalkboard-teacher"></i>
+                Live &amp; remote delivery
+              </div>
+            </div>
+            <div class="hero-training-content">
+              <div class="hero-training-eyebrow">Training &amp; support</div>
+              <h1 class="section-title">Build confident, capable teams</h1>
+              <p class="section-intro">
+                Versed Global provides flexible Salesforce and fundraising
+                training and support, tailored to your roles, configuration and
+                programmes. Training can be delivered remotely or on-site,
+                depending on your needs.
+              </p>
+              <div class="hero-training-meta">
+                <span><i class="fas fa-users"></i> Role-specific sessions</span>
+                <span
+                  ><i class="fas fa-laptop-house"></i> Remote &amp;
+                  on-site</span
+                >
+                <span
+                  ><i class="fas fa-book-open"></i> Practical, hands-on
+                  focus</span
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -709,7 +878,7 @@
                 <strong style="color: #f1f5f9">Email</strong>
                 <p style="margin: 0.5rem 0 0">
                   <a href="mailto:info@versedglobal.com">
-                    info@versedglobal.com
+                    [info@versedglobal.com](mailto:info@versedglobal.com)
                   </a>
                 </p>
               </div>
