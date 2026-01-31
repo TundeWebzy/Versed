@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Versed Global | Salesforce CRM &amp; Fundraising Strategy</title>
+    <title>
+      Versed Global | Salesforce CRM, Web Design & Fundraising Strategy
+    </title>
 
     <!-- FAVICON -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -15,7 +17,7 @@
 
     <meta
       name="description"
-      content="Versed Global designs, integrates and manages Salesforce CRM systems and delivers high-impact trust and foundation fundraising support for charities, corporates and public-sector organisations."
+      content="Versed Global designs, integrates and manages Salesforce CRM systems, creates professional websites, and delivers high-impact trust and foundation fundraising support for charities, corporates and public-sector organisations."
     />
 
     <link rel="stylesheet" href="styles.css" />
@@ -50,7 +52,7 @@
         "name": "Versed Global",
         "url": "https://versedglobal.com/",
         "logo": "https://versedglobal.com/images/versed-global-logo.png",
-        "description": "Versed Global designs, integrates and manages Salesforce CRM systems and delivers high-impact trust and foundation fundraising support for charities, corporates and public-sector organisations.",
+        "description": "Versed Global designs, integrates and manages Salesforce CRM systems, creates professional websites, and delivers high-impact trust and foundation fundraising support for charities, corporates and public-sector organisations.",
         "sameAs": [
           "https://www.linkedin.com/company/versed-global",
           "https://www.instagram.com/versedglobal",
@@ -100,70 +102,78 @@
       }
 
       /* ============================================================
-         HEADER – STICKY WITH RESPONSIVE MOBILE MENU
+         HEADER – UPDATED WITH LOGO-MATCHED TEAL/NAVY THEME
          ============================================================ */
 
       .header-bar {
         position: sticky;
         top: 0;
         z-index: 1000;
-        background: #ffffff;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        background: linear-gradient(135deg, #ffffff 0%, #e6f7f7 100%);
+        box-shadow: 0 2px 12px rgba(14, 116, 144, 0.12);
         transition: all 0.3s ease;
         width: 100%;
+        border-bottom: 2px solid rgba(14, 116, 144, 0.2);
       }
 
       .header-inner {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.75rem 1.5rem;
+        padding: 0.85rem 1.5rem;
         max-width: 1400px;
         margin: 0 auto;
         width: 100%;
-        position: relative; /* CRITICAL: Required for mobile nav dropdown positioning */
+        position: relative;
       }
 
       .logo-area {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: 0.85rem;
         flex-shrink: 0;
       }
 
       .logo-link {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: 0.85rem;
         text-decoration: none;
       }
 
       .logo-image {
-        height: 48px; /* INCREASED: Bigger logo */
+        height: 50px;
         width: auto;
         display: block;
+        filter: drop-shadow(0 2px 4px rgba(14, 116, 144, 0.25));
       }
 
       .logo-text {
-        font-size: 1.35rem; /* INCREASED: Bigger text */
+        font-size: 1.4rem;
         font-weight: 700;
         letter-spacing: -0.02em;
-        background: linear-gradient(135deg, #1e40af, #4f46e5, #ec4899);
+        background: linear-gradient(
+          135deg,
+          #0e7490 0%,
+          #0891b2 50%,
+          #06b6d4 100%
+        );
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
+        text-shadow: 0 2px 4px rgba(14, 116, 144, 0.15);
       }
 
       .tagline {
-        font-size: 0.75rem;
-        color: #64748b;
-        font-weight: 500;
-        letter-spacing: 0.05em;
-        margin-left: 0.5rem;
-        padding-left: 0.5rem;
-        border-left: 1px solid #e2e8f0;
-        line-height: 1.2;
-        max-width: 260px;
+        font-size: 0.775rem;
+        color: #155e75;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        margin-left: 0.65rem;
+        padding-left: 0.65rem;
+        border-left: 2px solid #0891b2;
+        line-height: 1.3;
+        max-width: 220px;
       }
 
       .main-nav {
@@ -174,56 +184,72 @@
 
       .nav-links {
         display: flex;
-        gap: 0.5rem;
+        gap: 0.35rem;
         align-items: center;
         list-style: none;
       }
 
       .nav-links a {
-        padding: 0.5rem 1rem;
+        padding: 0.55rem 0.95rem;
         text-decoration: none;
-        color: #475569;
-        font-weight: 500;
-        font-size: 0.95rem;
-        border-radius: 6px;
-        transition: all 0.2s ease;
+        color: #155e75;
+        font-weight: 600;
+        font-size: 0.93rem;
+        border-radius: 8px;
+        transition: all 0.25s ease;
         white-space: nowrap;
+        position: relative;
       }
 
       .nav-links a:hover {
-        color: #3b82f6;
-        background: transparent;
+        color: #0891b2;
+        background: rgba(8, 145, 178, 0.1);
+        transform: translateY(-1px);
       }
 
       .nav-links a.active {
-        color: #3b82f6;
+        color: #ffffff;
+        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
       }
 
       .nav-links a.nav-cta {
-        background: #3b82f6;
+        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
         color: white;
-        padding: 0.5rem 1.25rem;
-        border-radius: 6px;
+        padding: 0.55rem 1.35rem;
+        border-radius: 8px;
         margin-left: 0.5rem;
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
       }
 
       .nav-links a.nav-cta:hover {
-        background: #2563eb;
+        background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
         color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(8, 145, 178, 0.45);
       }
 
       .mobile-menu {
         display: none;
-        background: none;
+        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
         border: none;
         font-size: 1.5rem;
         cursor: pointer;
-        color: #1e293b;
-        padding: 0.5rem;
+        color: #ffffff;
+        padding: 0.6rem 0.8rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
+        transition: all 0.25s ease;
+      }
+
+      .mobile-menu:hover {
+        background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(8, 145, 178, 0.45);
       }
 
       .mobile-menu:focus {
-        outline: 2px solid #3b82f6;
+        outline: 3px solid rgba(8, 145, 178, 0.4);
         outline-offset: 2px;
       }
 
@@ -231,25 +257,34 @@
          RESPONSIVE HEADER – MOBILE & TABLET
          ============================================================ */
 
-      @media (max-width: 992px) {
+      @media (max-width: 1100px) {
         .tagline {
           display: none;
+        }
+
+        .nav-links {
+          gap: 0.25rem;
+        }
+
+        .nav-links a {
+          padding: 0.5rem 0.75rem;
+          font-size: 0.88rem;
         }
       }
 
       @media (max-width: 768px) {
         .header-inner {
           flex-wrap: wrap;
-          padding: 0.6rem 1rem;
+          padding: 0.7rem 1rem;
           gap: 0.5rem;
         }
 
         .logo-image {
-          height: 42px; /* Slightly smaller on mobile but still bigger than before */
+          height: 44px;
         }
 
         .logo-text {
-          font-size: 1.2rem;
+          font-size: 1.25rem;
         }
 
         .tagline {
@@ -271,57 +306,91 @@
           top: 100%;
           left: 0;
           right: 0;
-          background: #ffffff;
-          border-top: 1px solid #e2e8f0;
+          background: linear-gradient(180deg, #ffffff 0%, #e6f7f7 100%);
+          border-top: 2px solid rgba(14, 116, 144, 0.25);
           max-height: 0;
           overflow: hidden;
-          transition: max-height 0.3s ease;
+          transition: max-height 0.4s ease;
           flex-direction: column;
           gap: 0;
           z-index: 1000;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 8px 24px rgba(14, 116, 144, 0.18);
         }
 
         .nav-links.active {
-          max-height: 500px;
+          max-height: 600px;
         }
 
         .nav-links a {
           width: 100%;
-          padding: 1rem 1.5rem;
+          padding: 1.1rem 1.5rem;
           border-radius: 0;
-          border-bottom: 1px solid #e2e8f0;
+          border-bottom: 1px solid rgba(14, 116, 144, 0.15);
           white-space: normal;
+          text-align: left;
+        }
+
+        .nav-links a:hover {
+          background: rgba(8, 145, 178, 0.12);
+          transform: translateX(4px);
+        }
+
+        .nav-links a.active {
+          background: linear-gradient(
+            90deg,
+            rgba(8, 145, 178, 0.18) 0%,
+            transparent 100%
+          );
+          color: #0e7490;
+          border-left: 4px solid #0891b2;
         }
 
         .nav-links a.nav-cta {
           margin-left: 0;
           border-radius: 0;
+          background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+          color: white;
+          border-bottom: none;
+        }
+
+        .nav-links a.nav-cta:hover {
+          background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
+          transform: translateX(4px);
         }
       }
 
       @media (max-width: 480px) {
         .header-inner {
-          padding: 0.5rem 0.75rem;
+          padding: 0.6rem 0.85rem;
         }
 
         .logo-image {
-          height: 38px;
+          height: 40px;
         }
 
         .logo-text {
-          font-size: 1.1rem;
+          font-size: 1.15rem;
+        }
+
+        .nav-links a {
+          padding: 1rem 1.25rem;
+          font-size: 0.95rem;
         }
       }
 
       /* ============================================================
-         HERO SECTION
+         HERO SECTION – UPDATED WITH LOGO COLORS
          ============================================================ */
 
       .hero-shell {
         position: relative;
         overflow: hidden;
-        background: radial-gradient(circle at 0% 0%, #0b1120, #020617 55%);
+        background: radial-gradient(
+          circle at 10% 20%,
+          #164e63,
+          #0c4a6e 40%,
+          #082f49 80%
+        );
         color: #f9fafb;
         padding-top: 0;
       }
@@ -337,7 +406,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        opacity: 0.22;
+        opacity: 0.18;
         transform: scale(1.05);
       }
 
@@ -346,17 +415,17 @@
         inset: -40%;
         background:
           radial-gradient(
-            circle at 10% 10%,
-            rgba(59, 130, 246, 0.35),
-            transparent 60%
+            circle at 15% 15%,
+            rgba(8, 145, 178, 0.4),
+            transparent 55%
           ),
           radial-gradient(
-            circle at 85% 0,
-            rgba(244, 114, 182, 0.35),
-            transparent 60%
+            circle at 85% 5%,
+            rgba(6, 182, 212, 0.35),
+            transparent 55%
           );
-        opacity: 0.75;
-        animation: hero-orbit 26s linear infinite;
+        opacity: 0.8;
+        animation: hero-orbit 28s linear infinite;
       }
 
       @keyframes hero-orbit {
@@ -364,7 +433,7 @@
           transform: translate(0, 0);
         }
         50% {
-          transform: translate(18%, 10%);
+          transform: translate(15%, 8%);
         }
         100% {
           transform: translate(0, 0);
@@ -398,7 +467,7 @@
         letter-spacing: 0.2em;
         font-size: 0.78rem;
         font-weight: 600;
-        color: #a5b4fc;
+        color: #67e8f9;
         margin-bottom: 0.8rem;
       }
 
@@ -408,14 +477,14 @@
         margin-bottom: 0.9rem;
         color: #f9fafb;
         letter-spacing: -0.04em;
-        text-shadow: 0 14px 32px rgba(15, 23, 42, 0.6);
+        text-shadow: 0 14px 32px rgba(8, 47, 73, 0.7);
       }
 
       .hero-kicker {
         font-size: 0.98rem;
         line-height: 1.7;
         max-width: 520px;
-        color: #e5e7eb;
+        color: #e0f2fe;
         margin-bottom: 1.4rem;
       }
 
@@ -436,14 +505,14 @@
         gap: 0.5rem;
         margin-top: 1.6rem;
         font-size: 0.78rem;
-        color: #cbd5f5;
+        color: #a5f3fc;
       }
 
       .hero-quick-tags span {
         padding: 0.2rem 0.7rem;
         border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.6);
-        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(103, 232, 249, 0.5);
+        background: rgba(8, 47, 73, 0.75);
       }
 
       .hero-metrics {
@@ -451,26 +520,26 @@
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 1rem;
         font-size: 0.86rem;
-        color: #cbd5f5;
+        color: #a5f3fc;
       }
 
       .hero-metric-label {
         text-transform: uppercase;
         letter-spacing: 0.16em;
         font-size: 0.74rem;
-        color: #a5b4fc;
+        color: #67e8f9;
         margin-bottom: 0.15rem;
       }
 
       .hero-metric-value {
         font-size: 1.35rem;
         font-weight: 700;
-        color: #e5e7eb;
+        color: #e0f2fe;
       }
 
       .hero-metric-note {
         font-size: 0.8rem;
-        color: #94a3b8;
+        color: #a5f3fc;
       }
 
       @media (max-width: 768px) {
@@ -493,13 +562,13 @@
       }
 
       /* ============================================================
-         HERO STRATEGY STRIP
+         HERO STRATEGY STRIP – LOGO COLORS
          ============================================================ */
 
       .hero-strategy-strip {
-        background: #0b1120;
-        color: #e5e7eb;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+        background: #082f49;
+        color: #e0f2fe;
+        border-bottom: 1px solid rgba(103, 232, 249, 0.3);
       }
 
       .hero-strategy-inner {
@@ -516,7 +585,7 @@
         font-size: 0.96rem;
         line-height: 1.8;
         margin: 0 0 0.85rem;
-        color: #cbd5f5;
+        color: #bae6fd;
       }
 
       .hero-strategy-copy p:last-child {
@@ -531,15 +600,15 @@
 
       .hero-strategy-pill {
         border-radius: 16px;
-        border: 1px solid rgba(148, 163, 184, 0.35);
+        border: 1px solid rgba(103, 232, 249, 0.35);
         background: radial-gradient(
           circle at 0% 0%,
-          rgba(59, 130, 246, 0.2),
-          rgba(15, 23, 42, 0.95)
+          rgba(8, 145, 178, 0.25),
+          rgba(8, 47, 73, 0.95)
         );
         padding: 0.9rem 0.9rem 0.8rem;
         font-size: 0.88rem;
-        color: #e5e7eb;
+        color: #e0f2fe;
       }
 
       .hero-strategy-pill strong {
@@ -547,7 +616,7 @@
         font-size: 0.8rem;
         text-transform: uppercase;
         letter-spacing: 0.16em;
-        color: #bfdbfe;
+        color: #7dd3fc;
         margin-bottom: 0.15rem;
       }
 
@@ -596,7 +665,12 @@
       }
 
       .section.alt {
-        background: radial-gradient(circle at 0% 0%, #f9fafb, #eef2ff);
+        background: radial-gradient(
+          circle at 5% 5%,
+          #f0fdfa,
+          #ecfeff 50%,
+          #f0f9ff
+        );
       }
 
       .container {
@@ -609,7 +683,7 @@
       .section-title {
         font-size: clamp(1.8rem, 4vw, 2.4rem);
         font-weight: 700;
-        color: #1e293b;
+        color: #0c4a6e;
         margin-bottom: 0.5rem;
         letter-spacing: -0.02em;
       }
@@ -637,7 +711,7 @@
       }
 
       /* ============================================================
-         BUTTONS
+         BUTTONS – LOGO COLORS
          ============================================================ */
 
       .btn {
@@ -656,25 +730,26 @@
       }
 
       .btn:focus-visible {
-        outline: 2px solid #3b82f6;
+        outline: 2px solid #0891b2;
         outline-offset: 2px;
       }
 
       .btn-primary {
-        background: #3b82f6;
+        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
         color: white;
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
       }
 
       .btn-primary:hover {
-        background: #2563eb;
+        background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
         transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+        box-shadow: 0 8px 16px rgba(8, 145, 178, 0.45);
       }
 
       .btn-secondary {
         background: rgba(255, 255, 255, 0.15);
         color: white;
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.35);
       }
 
       .btn-secondary:hover {
@@ -699,7 +774,7 @@
       }
 
       /* ============================================================
-         CAPABILITY & SECTOR RAILS
+         CAPABILITY & SECTOR RAILS – LOGO ACCENT
          ============================================================ */
 
       .capability-rail,
@@ -725,16 +800,16 @@
         min-width: 260px;
         max-width: 320px;
         border-radius: 18px;
-        border: 1px solid #e2e8f0;
+        border: 1px solid #cffafe;
         background: #ffffff;
-        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        box-shadow: 0 12px 30px rgba(14, 116, 144, 0.1);
         padding: 1.5rem;
         flex-shrink: 0;
         transition: all 0.3s ease;
       }
 
       .capability-pill:hover {
-        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+        box-shadow: 0 16px 40px rgba(14, 116, 144, 0.15);
         transform: translateY(-4px);
       }
 
@@ -745,7 +820,7 @@
         left: 0;
         right: 0;
         height: 3px;
-        background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+        background: linear-gradient(90deg, #0891b2, #06b6d4, #22d3ee);
         border-radius: 18px 18px 0 0;
       }
 
@@ -758,28 +833,29 @@
         font-size: 0.78rem;
         text-transform: uppercase;
         letter-spacing: 0.18em;
-        color: #64748b;
+        color: #0891b2;
         margin-bottom: 0.5rem;
+        font-weight: 600;
       }
 
       .capability-title,
       .sector-title {
         font-size: 1.02rem;
         font-weight: 600;
-        color: #0f172a;
+        color: #0c4a6e;
         margin-bottom: 0.5rem;
       }
 
       .capability-text,
       .sector-text {
         font-size: 0.9rem;
-        color: #4b5563;
+        color: #475569;
         line-height: 1.6;
       }
 
       .capability-subtext {
         font-size: 0.85rem;
-        color: #6b7280;
+        color: #64748b;
         margin-top: 0.5rem;
       }
 
@@ -799,7 +875,7 @@
       }
 
       /* ============================================================
-         WHY CHOOSE VERSED GLOBAL
+         WHY CHOOSE VERSED GLOBAL – LOGO COLORS
          ============================================================ */
 
       .why-flow-layout {
@@ -818,7 +894,7 @@
       .why-flow-intro {
         max-width: 640px;
         font-size: 1rem;
-        color: #4b5563;
+        color: #475569;
         line-height: 1.8;
         margin-bottom: 1.6rem;
       }
@@ -838,12 +914,12 @@
         width: 2px;
         background: linear-gradient(
           to bottom,
-          #3b82f6,
-          #8b5cf6,
-          #ec4899,
-          #10b981
+          #0891b2,
+          #06b6d4,
+          #22d3ee,
+          #67e8f9
         );
-        opacity: 0.5;
+        opacity: 0.6;
       }
 
       .why-flow-step {
@@ -864,28 +940,29 @@
         height: 0.85rem;
         border-radius: 999px;
         background: #ffffff;
-        border: 2px solid #3b82f6;
-        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+        border: 2px solid #0891b2;
+        box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.15);
       }
 
       .why-flow-step-label {
         text-transform: uppercase;
         letter-spacing: 0.18em;
         font-size: 0.75rem;
-        color: #6b7280;
+        color: #0891b2;
         margin-bottom: 0.2rem;
+        font-weight: 600;
       }
 
       .why-flow-step-title {
         font-size: 1.02rem;
         font-weight: 600;
-        color: #0f172a;
+        color: #0c4a6e;
         margin-bottom: 0.2rem;
       }
 
       .why-flow-step-body {
         font-size: 0.9rem;
-        color: #4b5563;
+        color: #475569;
         line-height: 1.6;
       }
 
@@ -893,11 +970,11 @@
         position: relative;
         border-radius: 20px;
         padding: 1.8rem;
-        background: radial-gradient(circle at 0% 0%, #eff6ff, #fdf2ff);
-        border: 1px solid #e2e8f0;
+        background: radial-gradient(circle at 5% 5%, #ecfeff, #f0fdfa);
+        border: 1px solid #a5f3fc;
         box-shadow:
-          0 18px 45px rgba(15, 23, 42, 0.08),
-          0 1px 0 rgba(255, 255, 255, 0.9);
+          0 18px 45px rgba(14, 116, 144, 0.12),
+          0 1px 0 rgba(255, 255, 255, 0.95);
         overflow: hidden;
       }
 
@@ -907,16 +984,16 @@
         inset: 0;
         background:
           radial-gradient(
-            circle at 10% 0%,
-            rgba(59, 130, 246, 0.17),
-            transparent 55%
+            circle at 10% 5%,
+            rgba(8, 145, 178, 0.15),
+            transparent 50%
           ),
           radial-gradient(
-            circle at 90% 100%,
-            rgba(236, 72, 153, 0.14),
-            transparent 55%
+            circle at 90% 95%,
+            rgba(6, 182, 212, 0.12),
+            transparent 50%
           );
-        opacity: 0.9;
+        opacity: 0.85;
         pointer-events: none;
       }
 
@@ -931,8 +1008,8 @@
         gap: 0.4rem;
         padding: 0.35rem 0.75rem;
         border-radius: 999px;
-        background: rgba(15, 23, 42, 0.72);
-        color: #e5e7eb;
+        background: #0c4a6e;
+        color: #e0f2fe;
         font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 0.16em;
@@ -942,7 +1019,7 @@
       .why-pillboard-title {
         font-size: 1rem;
         font-weight: 600;
-        color: #0f172a;
+        color: #0c4a6e;
         margin-bottom: 0.75rem;
       }
 
@@ -958,18 +1035,19 @@
         font-size: 0.8rem;
         text-transform: uppercase;
         letter-spacing: 0.16em;
-        color: #6b7280;
+        color: #0891b2;
         margin-bottom: 0.25rem;
+        font-weight: 600;
       }
 
       .why-pill-item-title {
         font-weight: 600;
         margin-bottom: 0.1rem;
-        color: #0f172a;
+        color: #0c4a6e;
       }
 
       .why-pill-item-text {
-        color: #4b5563;
+        color: #475569;
         line-height: 1.5;
       }
 
@@ -990,7 +1068,7 @@
       }
 
       /* ============================================================
-         VALUES SECTION
+         VALUES SECTION – LOGO COLORS
          ============================================================ */
 
       .values-grid {
@@ -1001,22 +1079,23 @@
       }
 
       .value {
-        background: linear-gradient(145deg, #f4f6fb, #ffffff);
+        background: linear-gradient(145deg, #ecfeff, #ffffff);
         border-radius: 18px;
         padding: 2rem;
         text-align: center;
-        box-shadow: 0 8px 25px rgba(59, 91, 219, 0.08);
+        box-shadow: 0 8px 25px rgba(14, 116, 144, 0.1);
         transition: all 0.4s ease;
+        border: 1px solid #cffafe;
       }
 
       .value:hover {
         transform: translateY(-10px);
-        box-shadow: 0 20px 45px rgba(59, 91, 219, 0.15);
+        box-shadow: 0 20px 45px rgba(14, 116, 144, 0.18);
       }
 
       .value h3 {
         font-size: 1.3rem;
-        color: #1e293b;
+        color: #0c4a6e;
         margin-bottom: 0.6rem;
         font-weight: 700;
       }
@@ -1046,19 +1125,20 @@
       }
 
       /* ============================================================
-         FAQ SECTION
+         FAQ SECTION – LOGO ACCENT
          ============================================================ */
 
       .faq-section {
-        background: #f8fafc;
+        background: #f0fdfa;
         border-radius: 12px;
         padding: 2rem;
         margin: 2rem 0;
+        border: 1px solid #cffafe;
       }
 
       .faq-item {
         margin-bottom: 1.25rem;
-        border-bottom: 1px solid #e2e8f0;
+        border-bottom: 1px solid #a5f3fc;
       }
 
       .faq-item:last-child {
@@ -1074,13 +1154,13 @@
         cursor: pointer;
         user-select: none;
         font-weight: 600;
-        color: #1e293b;
+        color: #0c4a6e;
         font-size: 1rem;
         transition: color 0.2s ease;
       }
 
       .faq-question:hover {
-        color: #3b82f6;
+        color: #0891b2;
       }
 
       .faq-toggle {
@@ -1090,7 +1170,7 @@
         align-items: center;
         justify-content: center;
         font-size: 1.25rem;
-        color: #3b82f6;
+        color: #0891b2;
         transition: transform 0.3s ease;
         flex-shrink: 0;
         margin-left: 1rem;
@@ -1133,12 +1213,12 @@
       }
 
       /* ============================================================
-         FOOTER
+         FOOTER – LOGO COLORS
          ============================================================ */
 
       footer {
-        background: #1e293b;
-        color: #e2e8f0;
+        background: linear-gradient(135deg, #0c4a6e 0%, #082f49 100%);
+        color: #e0f2fe;
         padding: 3rem 0 1.5rem;
         margin-top: 4rem;
       }
@@ -1158,7 +1238,7 @@
       }
 
       .footer-section h4 {
-        color: #f1f5f9;
+        color: #f0f9ff;
         font-size: 0.95rem;
         text-transform: uppercase;
         letter-spacing: 0.05em;
@@ -1173,13 +1253,13 @@
       }
 
       .footer-section a {
-        color: #cbd5e1;
+        color: #bae6fd;
         text-decoration: none;
         transition: color 0.3s ease;
       }
 
       .footer-section a:hover {
-        color: #f1f5f9;
+        color: #f0f9ff;
       }
 
       .footer-address {
@@ -1216,7 +1296,7 @@
       }
 
       .footer-logo span {
-        color: #f1f5f9;
+        color: #f0f9ff;
         font-weight: 700;
         font-size: 1rem;
       }
@@ -1233,7 +1313,7 @@
         justify-content: center;
         width: 40px;
         height: 40px;
-        background: #3b82f6;
+        background: #0891b2;
         color: #ffffff;
         border-radius: 50%;
         text-decoration: none;
@@ -1242,36 +1322,36 @@
       }
 
       .social-link:hover {
-        background: #2563eb;
+        background: #06b6d4;
         transform: translateY(-3px);
       }
 
       .social-link.linkedin {
-        background: #0a66c2;
+        background: #0891b2;
       }
 
       .social-link.linkedin:hover {
-        background: #084999;
+        background: #06b6d4;
       }
 
       .social-link.instagram {
-        background: #e4405f;
+        background: #0e7490;
       }
 
       .social-link.instagram:hover {
-        background: #c72e5f;
+        background: #0891b2;
       }
 
       .social-link.facebook {
-        background: #1877f2;
+        background: #155e75;
       }
 
       .social-link.facebook:hover {
-        background: #0a66ff;
+        background: #0e7490;
       }
 
       .footer-divider {
-        border-top: 1px solid #334155;
+        border-top: 1px solid rgba(103, 232, 249, 0.3);
         padding-top: 1.5rem;
         margin-top: 2rem;
       }
@@ -1283,16 +1363,16 @@
         flex-wrap: wrap;
         gap: 1.5rem;
         font-size: 0.9rem;
-        color: #94a3b8;
+        color: #a5f3fc;
       }
 
       .footer-bottom a {
-        color: #cbd5e1;
+        color: #bae6fd;
       }
 
       .company-info {
         font-size: 0.85rem;
-        color: #94a3b8;
+        color: #a5f3fc;
         line-height: 1.6;
       }
 
@@ -1300,14 +1380,14 @@
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
-        color: #cbd5e1;
+        color: #bae6fd;
         text-decoration: none;
         font-size: 0.95rem;
         transition: color 0.3s ease;
       }
 
       .trustpilot-link:hover {
-        color: #f1f5f9;
+        color: #f0f9ff;
       }
 
       .footer-trustpilot-widget {
@@ -1349,7 +1429,9 @@
             />
             <span class="logo-text">Versed Global</span>
           </a>
-          <span class="tagline">Salesforce &amp; Fundraising for Impact</span>
+          <span class="tagline"
+            >Salesforce CRM, Web Design &amp; Fundraising</span
+          >
         </div>
 
         <button
@@ -1364,9 +1446,11 @@
           <div class="nav-links" id="navLinks">
             <a href="index.html" class="active">Home</a>
             <a href="services.html">Salesforce</a>
+            <a href="website.html">Web Design</a>
             <a href="fundraising.html">Fundraising</a>
             <a href="training.html">Training</a>
             <a href="clients.html">Clients</a>
+            <a href="news.html">News</a>
             <a href="about.html">About</a>
             <a href="contact.html" class="nav-cta">Contact</a>
           </div>
@@ -1388,13 +1472,15 @@
 
         <div class="hero-inner-flex">
           <div>
-            <p class="hero-eyebrow">Salesforce · Fundraising · Strategy</p>
+            <p class="hero-eyebrow">Salesforce · Web Design · Fundraising</p>
             <h1 class="hero-title">
-              CRM design and fundraising<br />that moves your mission forward
+              CRM design, web design and fundraising<br />that moves your
+              mission forward
             </h1>
             <p class="hero-kicker">
-              Versed Global brings together Salesforce CRM expertise and trust
-              and foundation fundraising so that your systems, income and
+              Versed Global brings together Salesforce CRM expertise,
+              professional web design for businesses, and trust and foundation
+              fundraising so that your systems, online presence, income and
               governance work as one.
             </p>
             <div class="hero-buttons">
@@ -1408,9 +1494,9 @@
 
             <div class="hero-quick-tags">
               <span>Charities</span>
+              <span>Businesses</span>
               <span>Corporate CSR</span>
               <span>Public Sector</span>
-              <span>Social Enterprises</span>
             </div>
           </div>
 
@@ -1439,16 +1525,20 @@
         <div class="hero-strategy-inner">
           <div class="hero-strategy-copy">
             <p>
-              <strong>Systems, income and governance – aligned.</strong>
-              Versed Global works with charities, corporates and public-sector
-              teams that need Salesforce and fundraising support to pull in the
-              same direction.
+              <strong
+                >Systems, digital presence, income and governance –
+                aligned.</strong
+              >
+              Versed Global works with charities, businesses, corporates and
+              public-sector teams that need Salesforce, web design and
+              fundraising support to pull in the same direction.
             </p>
             <p>
               That means CRM configurations designed around your actual
-              workflows, trust and foundation fundraising grounded in realistic
-              pipelines, and reporting that answers the questions funders and
-              boards actually ask.
+              workflows, professional websites that showcase your work
+              effectively, trust and foundation fundraising grounded in
+              realistic pipelines, and reporting that answers the questions
+              funders and boards actually ask.
             </p>
           </div>
           <div class="hero-strategy-pills">
@@ -1458,14 +1548,14 @@
               organisation actually operates.
             </div>
             <div class="hero-strategy-pill">
+              <strong>Web Design</strong>
+              Professional, accessible websites designed to communicate your
+              mission, services and impact.
+            </div>
+            <div class="hero-strategy-pill">
               <strong>Income</strong>
               Trust and foundation fundraising grounded in research, realistic
               pipelines and strong governance.
-            </div>
-            <div class="hero-strategy-pill">
-              <strong>Reporting</strong>
-              Income, delivery and learning data feeding the same set of
-              dashboards and funder reports.
             </div>
           </div>
         </div>
@@ -1476,9 +1566,10 @@
         <div class="container">
           <h2 class="section-title">What Versed Global does</h2>
           <p class="section-intro">
-            Versed Global closes the gap between robust systems and sustainable
-            income by aligning Salesforce CRM with real-world fundraising,
-            programme and reporting needs.
+            Versed Global closes the gap between robust systems, effective
+            digital presence and sustainable income by aligning Salesforce CRM
+            and web design with real-world fundraising, programme and reporting
+            needs.
           </p>
 
           <div class="capability-rail">
@@ -1502,6 +1593,22 @@
               <div class="capability-pill">
                 <div class="capability-label">Capability 2</div>
                 <div class="capability-title">
+                  Professional web design for businesses
+                </div>
+                <p class="capability-text">
+                  Custom website design and development that communicates your
+                  brand, services and impact with clarity and professionalism.
+                </p>
+                <p class="capability-subtext">
+                  Responsive, accessible websites built with modern standards –
+                  from landing pages to full business sites, designed to convert
+                  visitors into clients or supporters.
+                </p>
+              </div>
+
+              <div class="capability-pill">
+                <div class="capability-label">Capability 3</div>
+                <div class="capability-title">
                   Trust &amp; foundation fundraising
                 </div>
                 <p class="capability-text">
@@ -1515,29 +1622,31 @@
               </div>
 
               <div class="capability-pill">
-                <div class="capability-label">Capability 3</div>
+                <div class="capability-label">Capability 4</div>
                 <div class="capability-title">
-                  Integrated systems &amp; income support
+                  Integrated systems &amp; digital support
                 </div>
                 <p class="capability-text">
-                  Joining up Salesforce with fundraising, delivery and finance
-                  processes, so that income, outcomes and reporting draw on the
-                  same underlying data.
+                  Joining up Salesforce with websites, fundraising, delivery and
+                  finance processes, so that income, outcomes and reporting draw
+                  on the same underlying data.
                 </p>
                 <p class="capability-subtext">
                   Mapping journeys from enquiry to reporting, identifying where
-                  data is duplicated, missed or under-used.
+                  data is duplicated, missed or under-used across digital
+                  touchpoints.
                 </p>
               </div>
 
               <div class="capability-pill">
-                <div class="capability-label">Capability 4</div>
+                <div class="capability-label">Capability 5</div>
                 <div class="capability-title">
                   Ongoing optimisation &amp; training
                 </div>
                 <p class="capability-text">
                   Light-touch support, refinements and team training so that
-                  your system keeps pace with changing programmes and staffing.
+                  your system and website keep pace with changing programmes and
+                  staffing.
                 </p>
                 <p class="capability-subtext">
                   Includes periodic health checks, mini projects and targeted
@@ -1554,9 +1663,9 @@
         <div class="container">
           <h2 class="section-title">Who we work with</h2>
           <p class="section-intro">
-            Versed Global works with mission-driven, corporate and public-sector
-            teams that need Salesforce and fundraising support to pull in the
-            same direction.
+            Versed Global works with mission-driven organisations, businesses,
+            corporates and public-sector teams that need Salesforce, web design
+            and fundraising support to pull in the same direction.
           </p>
 
           <div class="sector-rail">
@@ -1567,8 +1676,18 @@
                 </div>
                 <p class="sector-text">
                   Organisations that rely on trusts, foundations and
-                  institutional funders and need joined-up CRM and fundraising
-                  support that respects limited internal capacity.
+                  institutional funders and need joined-up CRM, web presence and
+                  fundraising support that respects limited internal capacity.
+                </p>
+              </div>
+
+              <div class="sector-pill">
+                <div class="sector-title">Businesses &amp; consultancies</div>
+                <p class="sector-text">
+                  Professional service firms, consultancies and businesses that
+                  need modern, credible websites and CRM systems to support
+                  client acquisition, stakeholder engagement and business
+                  development.
                 </p>
               </div>
 
@@ -1585,9 +1704,9 @@
                 <div class="sector-title">Public-sector institutions</div>
                 <p class="sector-text">
                   Government and public-sector bodies requiring secure,
-                  well-designed Salesforce systems for programmes, grants and
-                  stakeholder engagement, with strong governance and audit
-                  trails.
+                  well-designed Salesforce systems and websites for programmes,
+                  grants and stakeholder engagement, with strong governance and
+                  audit trails.
                 </p>
               </div>
 
@@ -1596,7 +1715,7 @@
                 <p class="sector-text">
                   Partnerships and consortia where multiple organisations,
                   funders and delivery partners need a shared picture of
-                  activity, outcomes and learning.
+                  activity, outcomes and learning across digital platforms.
                 </p>
               </div>
             </div>
@@ -1611,9 +1730,10 @@
           <div class="why-flow-layout">
             <div>
               <p class="why-flow-intro">
-                Versed Global brings Salesforce implementation and fundraising
-                strategy together so that systems, income and governance move in
-                a single direction rather than pulling against each other.
+                Versed Global brings Salesforce implementation, web design and
+                fundraising strategy together so that systems, digital presence,
+                income and governance move in a single direction rather than
+                pulling against each other.
               </p>
 
               <div class="why-flow-timeline" aria-label="Engagement flow">
@@ -1626,8 +1746,8 @@
                   <p class="why-flow-step-body">
                     Workshops, interviews and light-touch reviews uncover how
                     fundraising, delivery and reporting operate today – where
-                    Salesforce helps, where it hinders and where data is being
-                    duplicated or missed.
+                    Salesforce and your website help, where they hinder and
+                    where data is being duplicated or missed.
                   </p>
                 </div>
 
@@ -1635,12 +1755,13 @@
                   <div class="why-flow-step-dot"></div>
                   <div class="why-flow-step-label">Step 2 · Design</div>
                   <div class="why-flow-step-title">
-                    Shape Salesforce around those workflows
+                    Shape Salesforce and websites around those workflows
                   </div>
                   <p class="why-flow-step-body">
-                    Objects, fields, automations and reports are designed to
-                    mirror real processes: prospecting, award management,
-                    delivery and reporting – not just a generic CRM template.
+                    Objects, fields, automations, reports and website structures
+                    are designed to mirror real processes: prospecting, award
+                    management, delivery and reporting – not just generic
+                    templates.
                   </p>
                 </div>
 
@@ -1648,13 +1769,13 @@
                   <div class="why-flow-step-dot"></div>
                   <div class="why-flow-step-label">Step 3 · Integrate</div>
                   <div class="why-flow-step-title">
-                    Join up systems and fundraising
+                    Join up systems, digital presence and fundraising
                   </div>
                   <p class="why-flow-step-body">
                     Fundraising strategy, governance and reporting are threaded
                     through the build, so that income plans, risk registers and
-                    funder obligations are visible inside Salesforce rather than
-                    living in separate spreadsheets.
+                    funder obligations are visible inside Salesforce and
+                    communicated effectively through your website.
                   </p>
                 </div>
 
@@ -1666,8 +1787,9 @@
                   </div>
                   <p class="why-flow-step-body">
                     Documentation, handover sessions and role-specific training
-                    help internal teams understand how the system works, what
-                    has been decided and how to adapt it as programmes grow.
+                    help internal teams understand how the system and website
+                    work, what has been decided and how to adapt them as
+                    programmes grow.
                   </p>
                 </div>
               </div>
@@ -1695,6 +1817,18 @@
                   </div>
 
                   <div>
+                    <div class="why-pill-item-label">Web Design</div>
+                    <div class="why-pill-item-title">
+                      Websites that work for you
+                    </div>
+                    <p class="why-pill-item-text">
+                      Professional, accessible sites that communicate your
+                      mission and convert visitors – built with modern standards
+                      and designed to grow with your organisation.
+                    </p>
+                  </div>
+
+                  <div>
                     <div class="why-pill-item-label">Fundraising</div>
                     <div class="why-pill-item-title">
                       Pipelines you can trust
@@ -1706,25 +1840,14 @@
                   </div>
 
                   <div>
-                    <div class="why-pill-item-label">Governance</div>
-                    <div class="why-pill-item-title">
-                      Clear decisions, captured once
-                    </div>
-                    <p class="why-pill-item-text">
-                      Risks, approvals and key choices are documented in the
-                      system so new colleagues can follow the same path.
-                    </p>
-                  </div>
-
-                  <div>
                     <div class="why-pill-item-label">People</div>
                     <div class="why-pill-item-title">
                       Teams that feel equipped
                     </div>
                     <p class="why-pill-item-text">
                       Training and materials are written in plain language so
-                      staff can use Salesforce and fundraising tools with
-                      confidence.
+                      staff can use Salesforce, your website and fundraising
+                      tools with confidence.
                     </p>
                   </div>
                 </div>
@@ -1742,8 +1865,8 @@
             inset: 0;
             background: linear-gradient(
               135deg,
-              #3b5bdb15,
-              #14b8a615,
+              #ecfeff15,
+              #0891b215,
               #ffffff10
             );
             z-index: 0;
@@ -1752,17 +1875,17 @@
         <div class="container" style="position: relative; z-index: 1">
           <h2 class="section-title">How we work</h2>
           <p class="section-intro">
-            Our work combines technical precision with fundraising expertise,
-            grounded in clear values that keep impact, ethics and equity at the
-            centre of every project.
+            Our work combines technical precision with fundraising expertise and
+            design excellence, grounded in clear values that keep impact, ethics
+            and equity at the centre of every project.
           </p>
           <div class="values-grid">
             <div class="value">
               <h3>Impact</h3>
               <p>
-                Every system, training and strategy is designed to contribute to
-                meaningful outcomes for people and communities, not just
-                internal metrics.
+                Every system, website, training and strategy is designed to
+                contribute to meaningful outcomes for people and communities,
+                not just internal metrics.
               </p>
             </div>
 
@@ -1831,6 +1954,22 @@
                   analysis, system design, data migration, configuration, user
                   training and ongoing support. We tailor the scope to match
                   your organisation's specific requirements and budget.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Do you design websites for businesses?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Yes, Versed Global provides professional web design services
+                  for businesses, charities and public-sector organisations. We
+                  create responsive, accessible websites that effectively
+                  communicate your services, values and impact – from single
+                  landing pages to complete business websites.
                 </p>
               </div>
             </div>
@@ -1919,12 +2058,13 @@
       <section class="section alt">
         <div class="container" style="text-align: center">
           <h2 class="section-title">
-            Ready to align your Salesforce and fundraising?
+            Ready to align your Salesforce, web presence and fundraising?
           </h2>
           <p class="section-intro" style="margin: 0 auto 1.5rem">
             Versed Global is a UK-registered consultancy delivering
-            project-based and ongoing Salesforce and fundraising support for
-            mission-driven, corporate and public-sector organisations.
+            project-based and ongoing Salesforce, web design and fundraising
+            support for mission-driven organisations, businesses, corporates and
+            public-sector teams.
           </p>
           <a href="contact.html" class="btn btn-primary">Book a conversation</a>
         </div>
@@ -1942,8 +2082,9 @@
               <span>Versed Global</span>
             </div>
             <p style="margin-bottom: 1.5rem">
-              Salesforce CRM implementation and digital governance solutions for
-              charities, corporates and public-sector organisations.
+              Salesforce CRM implementation, professional web design, and
+              digital governance solutions for charities, businesses, corporates
+              and public-sector organisations.
             </p>
             <div class="social-links">
               <a
@@ -1981,13 +2122,13 @@
             <h4>Contact</h4>
             <div class="footer-contact">
               <div>
-                <strong style="color: #f1f5f9">Phone</strong>
+                <strong style="color: #f0f9ff">Phone</strong>
                 <p style="margin: 0.5rem 0 0">
                   <a href="tel:+447554623171">07554 623171</a>
                 </p>
               </div>
               <div>
-                <strong style="color: #f1f5f9">Email</strong>
+                <strong style="color: #f0f9ff">Email</strong>
                 <p style="margin: 0.5rem 0 0">
                   <a href="mailto:info@versedglobal.com">
                     info@versedglobal.com
@@ -2052,6 +2193,7 @@
             <h4 style="margin-top: 2rem">Quick Links</h4>
             <div style="display: flex; flex-direction: column; gap: 0.75rem">
               <a href="services.html">Salesforce Services</a>
+              <a href="website.html">Web Design</a>
               <a href="fundraising.html">Fundraising Support</a>
               <a href="training.html">Training &amp; Support</a>
               <a href="about.html">About Us</a>
