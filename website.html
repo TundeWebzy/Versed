@@ -1,0 +1,2631 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Design | Versed Global</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- ALGOLIA SITE VERIFICATION -->
+    <meta name="algolia-site-verification" content="1E71BF4B63127FEC" />
+
+    <meta
+      name="description"
+      content="Versed Global creates bespoke, professional websites for charities, businesses, corporates and social enterprises. Custom web design and development that reflects your brand and integrates with your systems."
+    />
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Google Fonts for professional typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Website Design and Development",
+        "provider": {
+          "@type": "Organization",
+          "name": "Versed Global",
+          "url": "https://versedglobal.com/"
+        },
+        "areaServed": "GB",
+        "description": "Bespoke website design and development services for charities, businesses, corporates and social enterprises, with seamless Salesforce and CRM integration."
+      }
+    </script>
+
+    <style>
+      /* ============================================================
+         ROOT / RESET / BASE TYPOGRAPHY
+         ============================================================ */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        color: #1e293b;
+        line-height: 1.6;
+      }
+
+      /* ============================================================
+         HEADER – UPDATED WITH LOGO-MATCHED TEAL/NAVY THEME
+         ============================================================ */
+
+      .header-bar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: linear-gradient(135deg, #ffffff 0%, #e6f7f7 100%);
+        box-shadow: 0 2px 12px rgba(14, 116, 144, 0.12);
+        transition: all 0.3s ease;
+        width: 100%;
+        border-bottom: 2px solid rgba(14, 116, 144, 0.2);
+      }
+
+      .header-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.85rem 1.5rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+      }
+
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        flex-shrink: 0;
+      }
+
+      .logo-link {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        text-decoration: none;
+      }
+
+      .logo-image {
+        height: 50px;
+        width: auto;
+        display: block;
+        filter: drop-shadow(0 2px 4px rgba(14, 116, 144, 0.25));
+      }
+
+      .logo-text {
+        font-size: 1.4rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        background: linear-gradient(
+          135deg,
+          #0e7490 0%,
+          #0891b2 50%,
+          #06b6d4 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 2px 4px rgba(14, 116, 144, 0.15);
+      }
+
+      .tagline {
+        font-size: 0.775rem;
+        color: #155e75;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        margin-left: 0.65rem;
+        padding-left: 0.65rem;
+        border-left: 2px solid #0891b2;
+        line-height: 1.3;
+        max-width: 220px;
+      }
+
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 0.35rem;
+        align-items: center;
+        list-style: none;
+      }
+
+      .nav-links a {
+        padding: 0.55rem 0.95rem;
+        text-decoration: none;
+        color: #155e75;
+        font-weight: 600;
+        font-size: 0.93rem;
+        border-radius: 8px;
+        transition: all 0.25s ease;
+        white-space: nowrap;
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: #0891b2;
+        background: rgba(8, 145, 178, 0.1);
+        transform: translateY(-1px);
+      }
+
+      .nav-links a.active {
+        color: #ffffff;
+        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
+      }
+
+      .nav-links a.nav-cta {
+        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+        color: white;
+        padding: 0.55rem 1.35rem;
+        border-radius: 8px;
+        margin-left: 0.5rem;
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
+      }
+
+      .nav-links a.nav-cta:hover {
+        background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(8, 145, 178, 0.45);
+      }
+
+      .mobile-menu {
+        display: none;
+        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #ffffff;
+        padding: 0.6rem 0.8rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
+        transition: all 0.25s ease;
+      }
+
+      .mobile-menu:hover {
+        background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(8, 145, 178, 0.45);
+      }
+
+      .mobile-menu:focus {
+        outline: 3px solid rgba(8, 145, 178, 0.4);
+        outline-offset: 2px;
+      }
+
+      /* ============================================================
+         RESPONSIVE HEADER – MOBILE & TABLET
+         ============================================================ */
+
+      @media (max-width: 1100px) {
+        .tagline {
+          display: none;
+        }
+
+        .nav-links {
+          gap: 0.25rem;
+        }
+
+        .nav-links a {
+          padding: 0.5rem 0.75rem;
+          font-size: 0.88rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-inner {
+          flex-wrap: wrap;
+          padding: 0.7rem 1rem;
+          gap: 0.5rem;
+        }
+
+        .logo-image {
+          height: 44px;
+        }
+
+        .logo-text {
+          font-size: 1.25rem;
+        }
+
+        .tagline {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: block;
+          order: 2;
+        }
+
+        .main-nav {
+          width: 100%;
+          order: 3;
+        }
+
+        .nav-links {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: linear-gradient(180deg, #ffffff 0%, #e6f7f7 100%);
+          border-top: 2px solid rgba(14, 116, 144, 0.25);
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.4s ease;
+          flex-direction: column;
+          gap: 0;
+          z-index: 1000;
+          box-shadow: 0 8px 24px rgba(14, 116, 144, 0.18);
+        }
+
+        .nav-links.active {
+          max-height: 600px;
+        }
+
+        .nav-links a {
+          width: 100%;
+          padding: 1.1rem 1.5rem;
+          border-radius: 0;
+          border-bottom: 1px solid rgba(14, 116, 144, 0.15);
+          white-space: normal;
+          text-align: left;
+        }
+
+        .nav-links a:hover {
+          background: rgba(8, 145, 178, 0.12);
+          transform: translateX(4px);
+        }
+
+        .nav-links a.active {
+          background: linear-gradient(
+            90deg,
+            rgba(8, 145, 178, 0.18) 0%,
+            transparent 100%
+          );
+          color: #0e7490;
+          border-left: 4px solid #0891b2;
+        }
+
+        .nav-links a.nav-cta {
+          margin-left: 0;
+          border-radius: 0;
+          background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+          color: white;
+          border-bottom: none;
+        }
+
+        .nav-links a.nav-cta:hover {
+          background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
+          transform: translateX(4px);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header-inner {
+          padding: 0.6rem 0.85rem;
+        }
+
+        .logo-image {
+          height: 40px;
+        }
+
+        .logo-text {
+          font-size: 1.15rem;
+        }
+
+        .nav-links a {
+          padding: 1rem 1.25rem;
+          font-size: 0.95rem;
+        }
+      }
+
+      /* ============================================================
+         REDESIGNED HERO SECTION - CLEAN & MINIMALIST (LOGO COLORS)
+         ============================================================ */
+
+      .hero-shell {
+        position: relative;
+        background: linear-gradient(
+          135deg,
+          #e6f7f7 0%,
+          #ffffff 50%,
+          #f0f9ff 100%
+        );
+        padding: 4rem 0 3rem;
+        overflow: hidden;
+      }
+
+      /* Subtle decorative elements - minimal */
+      .hero-shell::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(8, 145, 178, 0.08) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        z-index: 0;
+      }
+
+      .hero-shell::after {
+        content: "";
+        position: absolute;
+        bottom: -30%;
+        left: -5%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(12, 74, 110, 0.06) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        z-index: 0;
+      }
+
+      .hero-content-wrapper {
+        position: relative;
+        z-index: 1;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        width: 100%;
+      }
+
+      .hero-inner-flex {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        gap: 4rem;
+        align-items: center;
+      }
+
+      @media (max-width: 960px) {
+        .hero-inner-flex {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+      }
+
+      .hero-text-content {
+        max-width: 650px;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: rgba(8, 145, 178, 0.1);
+        border: 1px solid rgba(8, 145, 178, 0.2);
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #0e7490;
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .hero-badge:hover {
+        background: rgba(8, 145, 178, 0.15);
+        border-color: rgba(8, 145, 178, 0.3);
+      }
+
+      .hero-badge i {
+        color: #0891b2;
+      }
+
+      .hero-title {
+        font-size: clamp(2.2rem, 5vw, 3.2rem);
+        line-height: 1.15;
+        margin-bottom: 1.25rem;
+        color: #0f172a;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+      }
+
+      .hero-title .highlight {
+        background: linear-gradient(135deg, #0e7490 0%, #0891b2 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero-description {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: #475569;
+        margin-bottom: 2rem;
+        max-width: 580px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .hero-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .hero-feature-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        color: #64748b;
+      }
+
+      .hero-feature-item i {
+        color: #0891b2;
+        font-size: 1.1rem;
+      }
+
+      .hero-visual {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(14, 116, 144, 0.12);
+        border: 1px solid rgba(8, 145, 178, 0.15);
+      }
+
+      .hero-stat {
+        text-align: center;
+        padding: 1rem;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #e6f7f7 0%, #ffffff 100%);
+        transition: all 0.3s ease;
+      }
+
+      .hero-stat:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(8, 145, 178, 0.18);
+      }
+
+      .hero-stat-value {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #0e7490;
+        margin-bottom: 0.25rem;
+        line-height: 1;
+      }
+
+      .hero-stat-label {
+        display: block;
+        font-size: 0.85rem;
+        color: #64748b;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      @media (max-width: 768px) {
+        .hero-shell {
+          padding: 3rem 0 2.5rem;
+        }
+
+        .hero-title {
+          font-size: clamp(1.8rem, 6vw, 2.5rem);
+        }
+
+        .hero-description {
+          font-size: 1rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .hero-buttons .btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .hero-stats-grid {
+          padding: 1.5rem;
+          gap: 1rem;
+        }
+
+        .hero-stat-value {
+          font-size: 1.5rem;
+        }
+      }
+
+      /* ============================================================
+         BUTTONS – LOGO COLORS
+         ============================================================ */
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.85rem 1.75rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 10px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        gap: 0.5rem;
+      }
+
+      .btn:focus-visible {
+        outline: 2px solid #0891b2;
+        outline-offset: 2px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+        color: white;
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(8, 145, 178, 0.45);
+      }
+
+      .btn-secondary {
+        background: white;
+        color: #0e7490;
+        border: 2px solid #0891b2;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(8, 145, 178, 0.1);
+        border-color: #0e7490;
+      }
+
+      @media (max-width: 640px) {
+        .btn {
+          padding: 0.75rem 1.5rem;
+          font-size: 0.95rem;
+        }
+      }
+
+      /* ============================================================
+         SECTIONS & LAYOUT
+         ============================================================ */
+
+      .section {
+        position: relative;
+        padding: 3.5rem 0 3rem;
+      }
+
+      .section.alt {
+        background: radial-gradient(
+          circle at 5% 5%,
+          #e6f7f7,
+          #ecfeff 50%,
+          #f0f9ff
+        );
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        width: 100%;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        font-weight: 700;
+        color: #0c4a6e;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.02em;
+      }
+
+      .section-intro {
+        font-size: 1rem;
+        color: #475569;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        max-width: 760px;
+      }
+
+      @media (max-width: 768px) {
+        .section {
+          padding: 2.5rem 0 2rem;
+        }
+
+        .container {
+          padding: 0 1.25rem;
+        }
+
+        .section-title {
+          font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+      }
+
+      /* ============================================================
+         CAPABILITY & SECTOR RAILS – LOGO COLORS
+         ============================================================ */
+
+      .capability-rail,
+      .sector-rail {
+        margin-top: 2rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 1rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .capability-track,
+      .sector-track {
+        display: flex;
+        gap: 1.6rem;
+        min-width: fit-content;
+      }
+
+      .capability-pill,
+      .sector-pill {
+        scroll-snap-align: start;
+        min-width: 260px;
+        max-width: 320px;
+        border-radius: 18px;
+        border: 1px solid #cffafe;
+        background: #ffffff;
+        box-shadow: 0 12px 30px rgba(14, 116, 144, 0.1);
+        padding: 1.5rem;
+        flex-shrink: 0;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .capability-pill:hover {
+        box-shadow: 0 16px 40px rgba(8, 145, 178, 0.15);
+        transform: translateY(-4px);
+      }
+
+      .capability-pill::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #0891b2, #06b6d4, #22d3ee);
+        border-radius: 18px 18px 0 0;
+      }
+
+      .capability-label,
+      .sector-label {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: #64748b;
+        margin-bottom: 0.5rem;
+      }
+
+      .capability-title,
+      .sector-title {
+        font-size: 1.02rem;
+        font-weight: 600;
+        color: #0c4a6e;
+        margin-bottom: 0.5rem;
+      }
+
+      .capability-text,
+      .sector-text {
+        font-size: 0.9rem;
+        color: #4b5563;
+        line-height: 1.6;
+      }
+
+      .capability-subtext {
+        font-size: 0.85rem;
+        color: #6b7280;
+        margin-top: 0.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .capability-rail,
+        .sector-rail {
+          margin: 2rem -1.25rem 1.25rem;
+          padding: 0 1.25rem 1.25rem;
+        }
+
+        .capability-pill,
+        .sector-pill {
+          min-width: 240px;
+          max-width: 280px;
+          padding: 1.25rem;
+        }
+      }
+
+      /* ============================================================
+         WHY CHOOSE SECTION – LOGO COLORS
+         ============================================================ */
+
+      .why-flow-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+        gap: 3rem;
+        align-items: start;
+      }
+
+      @media (max-width: 900px) {
+        .why-flow-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .why-flow-intro {
+        max-width: 640px;
+        font-size: 1rem;
+        color: #4b5563;
+        line-height: 1.8;
+        margin-bottom: 1.6rem;
+      }
+
+      .why-flow-timeline {
+        position: relative;
+        margin-top: 0.5rem;
+        padding-left: 1.4rem;
+      }
+
+      .why-flow-timeline::before {
+        content: "";
+        position: absolute;
+        left: 0.35rem;
+        top: 0.1rem;
+        bottom: 0.1rem;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          #0891b2,
+          #06b6d4,
+          #0891b2,
+          #0e7490
+        );
+        opacity: 0.5;
+      }
+
+      .why-flow-step {
+        position: relative;
+        padding-left: 1.3rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .why-flow-step:last-child {
+        margin-bottom: 0;
+      }
+
+      .why-flow-step-dot {
+        position: absolute;
+        left: -0.15rem;
+        top: 0.32rem;
+        width: 0.85rem;
+        height: 0.85rem;
+        border-radius: 999px;
+        background: #ffffff;
+        border: 2px solid #0891b2;
+        box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.15);
+      }
+
+      .why-flow-step-label {
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.75rem;
+        color: #6b7280;
+        margin-bottom: 0.2rem;
+      }
+
+      .why-flow-step-title {
+        font-size: 1.02rem;
+        font-weight: 600;
+        color: #0c4a6e;
+        margin-bottom: 0.2rem;
+      }
+
+      .why-flow-step-body {
+        font-size: 0.9rem;
+        color: #4b5563;
+        line-height: 1.6;
+      }
+
+      .why-flow-pillboard {
+        position: relative;
+        border-radius: 20px;
+        padding: 1.8rem;
+        background: radial-gradient(circle at 0% 0%, #e6f7f7, #f0fdfa);
+        border: 1px solid #cffafe;
+        box-shadow:
+          0 18px 45px rgba(14, 116, 144, 0.1),
+          0 1px 0 rgba(255, 255, 255, 0.9);
+        overflow: hidden;
+      }
+
+      .why-flow-pillboard::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 10% 0%,
+            rgba(8, 145, 178, 0.17),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 90% 100%,
+            rgba(14, 116, 144, 0.14),
+            transparent 55%
+          );
+        opacity: 0.9;
+        pointer-events: none;
+      }
+
+      .why-pillboard-inner {
+        position: relative;
+        z-index: 1;
+      }
+
+      .why-pillboard-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(14, 116, 144, 0.85);
+        color: #e6f7f7;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        margin-bottom: 0.8rem;
+      }
+
+      .why-pillboard-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #0c4a6e;
+        margin-bottom: 0.75rem;
+      }
+
+      .why-pillboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        font-size: 0.88rem;
+        color: #374151;
+      }
+
+      .why-pill-item-label {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: #6b7280;
+        margin-bottom: 0.25rem;
+      }
+
+      .why-pill-item-title {
+        font-weight: 600;
+        margin-bottom: 0.1rem;
+        color: #0c4a6e;
+      }
+
+      .why-pill-item-text {
+        color: #4b5563;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 600px) {
+        .why-flow-timeline {
+          padding-left: 1.2rem;
+        }
+        .why-flow-timeline::before {
+          left: 0.3rem;
+        }
+        .why-flow-step {
+          padding-left: 1.25rem;
+          margin-bottom: 1.25rem;
+        }
+        .why-flow-step-dot {
+          left: -0.2rem;
+        }
+      }
+
+      /* ============================================================
+         VALUES SECTION – LOGO COLORS
+         ============================================================ */
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2rem;
+        margin-top: 2.5rem;
+      }
+
+      .value {
+        background: linear-gradient(145deg, #e6f7f7, #ffffff);
+        border-radius: 18px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(14, 116, 144, 0.1);
+        transition: all 0.4s ease;
+      }
+
+      .value:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 45px rgba(8, 145, 178, 0.18);
+      }
+
+      .value h3 {
+        font-size: 1.3rem;
+        color: #0c4a6e;
+        margin-bottom: 0.6rem;
+        font-weight: 700;
+      }
+
+      .value p {
+        color: #475569;
+        line-height: 1.7;
+      }
+
+      @media (max-width: 768px) {
+        .values-grid {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 1.5rem;
+        }
+
+        .value {
+          padding: 1.5rem;
+        }
+
+        .value h3 {
+          font-size: 1.1rem;
+        }
+
+        .value p {
+          font-size: 0.95rem;
+        }
+      }
+
+      /* ============================================================
+         FAQ SECTION – LOGO COLORS
+         ============================================================ */
+
+      .faq-section {
+        background: #f0fdfa;
+        border-radius: 12px;
+        padding: 2rem;
+        margin: 2rem 0;
+      }
+
+      .faq-item {
+        margin-bottom: 1.25rem;
+        border-bottom: 1px solid #cffafe;
+      }
+
+      .faq-item:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 0;
+        cursor: pointer;
+        user-select: none;
+        font-weight: 600;
+        color: #0c4a6e;
+        font-size: 1rem;
+        transition: color 0.2s ease;
+      }
+
+      .faq-question:hover {
+        color: #0891b2;
+      }
+
+      .faq-toggle {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        color: #0891b2;
+        transition: transform 0.3s ease;
+        flex-shrink: 0;
+        margin-left: 1rem;
+      }
+
+      .faq-item.active .faq-toggle {
+        transform: rotate(180deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .faq-item.active .faq-answer {
+        max-height: 300px;
+      }
+
+      .faq-answer p {
+        padding: 0 0 1.25rem;
+        color: #475569;
+        line-height: 1.7;
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 768px) {
+        .faq-section {
+          padding: 1.5rem;
+        }
+
+        .faq-question {
+          font-size: 0.95rem;
+          padding: 1rem 0;
+        }
+
+        .faq-answer p {
+          font-size: 0.9rem;
+        }
+      }
+
+      /* ============================================================
+         FOOTER – UPDATED WITH LOGO-MATCHED TEAL/NAVY THEME
+         ============================================================ */
+
+      footer {
+        background: linear-gradient(135deg, #0c4a6e 0%, #082f49 100%);
+        color: #e0f2fe;
+        padding: 3rem 0 1.5rem;
+        margin-top: 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(8, 145, 178, 0.15) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+
+      footer::after {
+        content: "";
+        position: absolute;
+        bottom: -40%;
+        left: -5%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(6, 182, 212, 0.1) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+
+      .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h4 {
+        color: #f0f9ff;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.25rem;
+        font-weight: 700;
+      }
+
+      .footer-section p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        margin-bottom: 0.75rem;
+        color: #bae6fd;
+      }
+
+      .footer-section a {
+        color: #bae6fd;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section a:hover {
+        color: #7dd3fc;
+      }
+
+      .footer-address {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .footer-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .footer-contact a {
+        display: inline-block;
+        width: fit-content;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-logo img {
+        height: 48px;
+        width: 48px;
+        background: white;
+        border-radius: 8px;
+        padding: 4px;
+        object-fit: contain;
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.25);
+      }
+
+      .footer-logo span {
+        color: #f0f9ff;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: rgba(8, 145, 178, 0.25);
+        color: #e0f2fe;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+        border: 1px solid rgba(8, 145, 178, 0.3);
+      }
+
+      .social-link:hover {
+        background: #0891b2;
+        color: #ffffff;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(8, 145, 178, 0.35);
+      }
+
+      .social-link.linkedin {
+        background: rgba(10, 102, 194, 0.25);
+        border-color: rgba(10, 102, 194, 0.3);
+      }
+
+      .social-link.linkedin:hover {
+        background: #0a66c2;
+        border-color: #0a66c2;
+      }
+
+      .social-link.instagram {
+        background: rgba(228, 64, 95, 0.25);
+        border-color: rgba(228, 64, 95, 0.3);
+      }
+
+      .social-link.instagram:hover {
+        background: #e4405f;
+        border-color: #e4405f;
+      }
+
+      .social-link.facebook {
+        background: rgba(24, 119, 242, 0.25);
+        border-color: rgba(24, 119, 242, 0.3);
+      }
+
+      .social-link.facebook:hover {
+        background: #1877f2;
+        border-color: #1877f2;
+      }
+
+      .footer-divider {
+        border-top: 1px solid rgba(8, 145, 178, 0.3);
+        padding-top: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        font-size: 0.9rem;
+        color: #7dd3fc;
+      }
+
+      .footer-bottom a {
+        color: #bae6fd;
+        transition: color 0.3s ease;
+      }
+
+      .footer-bottom a:hover {
+        color: #7dd3fc;
+      }
+
+      .company-info {
+        font-size: 0.85rem;
+        color: #7dd3fc;
+        line-height: 1.6;
+      }
+
+      .company-info strong {
+        color: #bae6fd;
+      }
+
+      .trustpilot-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: #bae6fd;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        background: rgba(8, 145, 178, 0.15);
+        border: 1px solid rgba(8, 145, 178, 0.25);
+      }
+
+      .trustpilot-link:hover {
+        color: #ffffff;
+        background: rgba(8, 145, 178, 0.25);
+        border-color: rgba(8, 145, 178, 0.4);
+        transform: translateY(-2px);
+      }
+
+      .trustpilot-link i {
+        color: #fbbf24;
+      }
+
+      @media (max-width: 768px) {
+        footer {
+          padding: 2.5rem 0 1.5rem;
+          margin-top: 3rem;
+        }
+
+        .footer-container {
+          padding: 0 1.25rem;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+
+      /* ============================================================
+         CUSTOM WEBSITE PAGE STYLES – LOGO COLORS
+         ============================================================ */
+
+      .tech-stack-grid {
+        background: white;
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 12px 30px rgba(14, 116, 144, 0.1);
+      }
+
+      .tech-stack-grid > div {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .tech-item h3 {
+        font-size: 1.1rem;
+        color: #0c4a6e;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+      }
+
+      .tech-item ul {
+        list-style: none;
+        padding: 0;
+        color: #475569;
+        line-height: 1.8;
+      }
+
+      .tech-item li {
+        margin-bottom: 0.5rem;
+      }
+
+      .tech-item li::before {
+        content: "✓ ";
+        color: #0891b2;
+        font-weight: 600;
+        margin-right: 0.5rem;
+      }
+
+      .integration-grid {
+        background: linear-gradient(135deg, #e6f7f7, #f0fdfa);
+        border-radius: 20px;
+        padding: 2.5rem;
+        margin-top: 2rem;
+      }
+
+      .integration-card {
+        background: white;
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
+      }
+
+      .integration-icon {
+        color: #0891b2;
+        font-size: 1.8rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .integration-card h3 {
+        font-size: 1.05rem;
+        color: #0c4a6e;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .integration-card p {
+        color: #475569;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      .pricing-card {
+        background: white;
+        border-radius: 18px;
+        padding: 2rem;
+        box-shadow: 0 8px 25px rgba(14, 116, 144, 0.1);
+      }
+
+      .pricing-card.featured {
+        border: 2px solid #0891b2;
+      }
+
+      .pricing-badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .pricing-badge.starter {
+        background: #e6f7f7;
+        color: #0e7490;
+      }
+
+      .pricing-badge.professional {
+        background: #0891b2;
+        color: white;
+      }
+
+      .pricing-badge.enterprise {
+        background: #cffafe;
+        color: #0e7490;
+      }
+
+      .pricing-card h3 {
+        font-size: 1.5rem;
+        color: #0c4a6e;
+        margin-bottom: 0.75rem;
+      }
+
+      .pricing-card > p {
+        color: #475569;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .pricing-card ul {
+        list-style: none;
+        padding: 0;
+        color: #475569;
+        line-height: 1.9;
+      }
+
+      .pricing-card li {
+        margin-bottom: 0.5rem;
+      }
+
+      .pricing-card li::before {
+        content: "✓";
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background: #0891b2;
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 0.75rem;
+        line-height: 1.4;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+      }
+
+      .pricing-footer {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .pricing-footer p {
+        color: #64748b;
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      .info-box {
+        background: #fef3c7;
+        border-left: 4px solid #f59e0b;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-top: 2.5rem;
+      }
+
+      .info-box p {
+        margin: 0;
+        color: #78350f;
+        line-height: 1.7;
+      }
+
+      .info-box strong {
+        color: #92400e;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header-bar site-header">
+      <div class="header-inner">
+        <div class="logo-area">
+          <a href="index.html" class="logo-link">
+            <img
+              src="images/versed-global-logo.png"
+              alt="Versed Global"
+              class="logo-image"
+            />
+            <span class="logo-text">Versed Global</span>
+          </a>
+          <span class="tagline"
+            >Salesforce CRM, Web Design &amp; Fundraising</span
+          >
+        </div>
+
+        <button
+          class="mobile-menu"
+          id="mobileMenuToggle"
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+
+        <nav class="main-nav" aria-label="Primary navigation">
+          <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="services.html">Salesforce</a>
+            <a href="website.html" class="active">Web Design</a>
+            <a href="fundraising.html">Fundraising</a>
+            <a href="training.html">Training</a>
+            <a href="clients.html">Clients</a>
+            <a href="news.html">News</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- REDESIGNED HERO SECTION - CLEAN & MINIMAL -->
+      <section class="hero-shell">
+        <div class="hero-content-wrapper">
+          <div class="hero-inner-flex">
+            <!-- Left Column - Text Content -->
+            <div class="hero-text-content">
+              <div class="hero-badge">
+                <i class="fas fa-code"></i>
+                <span>Custom Web Development</span>
+              </div>
+
+              <h1 class="hero-title">
+                Professional websites that
+                <span class="highlight">drive results</span>
+              </h1>
+
+              <p class="hero-description">
+                Versed Global creates bespoke, responsive websites for
+                charities, businesses, corporates and social enterprises –
+                designed to reflect your brand, engage your audience and
+                integrate seamlessly with your Salesforce CRM.
+              </p>
+
+              <div class="hero-buttons">
+                <a href="contact.html" class="btn btn-primary">
+                  <i class="fas fa-rocket"></i>
+                  Start Your Project
+                </a>
+                <a href="#website-approach" class="btn btn-secondary">
+                  <i class="fas fa-layer-group"></i>
+                  Our Approach
+                </a>
+              </div>
+
+              <div class="hero-features">
+                <div class="hero-feature-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Fully Responsive</span>
+                </div>
+                <div class="hero-feature-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>SEO Optimised</span>
+                </div>
+                <div class="hero-feature-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>CRM Integration</span>
+                </div>
+                <div class="hero-feature-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Fast & Secure</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column - Stats Grid -->
+            <div class="hero-visual">
+              <div class="hero-stats-grid">
+                <div class="hero-stat">
+                  <span class="hero-stat-value">5+</span>
+                  <span class="hero-stat-label">Years Experience</span>
+                </div>
+                <div class="hero-stat">
+                  <span class="hero-stat-value">100%</span>
+                  <span class="hero-stat-label">Bespoke Design</span>
+                </div>
+                <div class="hero-stat">
+                  <span class="hero-stat-value">24/7</span>
+                  <span class="hero-stat-label">Support Available</span>
+                </div>
+                <div class="hero-stat">
+                  <span class="hero-stat-value">Fast</span>
+                  <span class="hero-stat-label">Delivery</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What We Build Section -->
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">What we build</h2>
+          <p class="section-intro">
+            Every website project is tailored to your organisation's unique
+            needs, brand identity and audience. From informational sites to
+            integrated platforms, we create web experiences that support your
+            mission and drive engagement.
+          </p>
+
+          <div class="capability-rail">
+            <div class="capability-track">
+              <div class="capability-pill">
+                <div class="capability-label">Website Type 1</div>
+                <div class="capability-title">
+                  Charity &amp; nonprofit websites
+                </div>
+                <p class="capability-text">
+                  Professional, accessible websites that tell your story,
+                  showcase impact and support fundraising and volunteer
+                  recruitment.
+                </p>
+                <p class="capability-subtext">
+                  Includes donation integration, event calendars, volunteer
+                  portals, impact reports and accessibility compliance.
+                </p>
+              </div>
+
+              <div class="capability-pill">
+                <div class="capability-label">Website Type 2</div>
+                <div class="capability-title">
+                  Corporate &amp; business websites
+                </div>
+                <p class="capability-text">
+                  Clean, professional sites that establish credibility, showcase
+                  services and drive business enquiries and conversions.
+                </p>
+                <p class="capability-subtext">
+                  Includes service pages, case studies, contact forms, blog
+                  integration and lead capture systems.
+                </p>
+              </div>
+
+              <div class="capability-pill">
+                <div class="capability-label">Website Type 3</div>
+                <div class="capability-title">
+                  Salesforce-integrated portals
+                </div>
+                <p class="capability-text">
+                  Custom web portals that connect directly to your Salesforce
+                  CRM, enabling real-time data exchange and automation.
+                </p>
+                <p class="capability-subtext">
+                  Includes member portals, grant application systems,
+                  stakeholder dashboards and custom integrations.
+                </p>
+              </div>
+
+              <div class="capability-pill">
+                <div class="capability-label">Website Type 4</div>
+                <div class="capability-title">
+                  Campaign &amp; event microsites
+                </div>
+                <p class="capability-text">
+                  Focused, high-impact websites for specific campaigns, events
+                  or initiatives with clear calls to action.
+                </p>
+                <p class="capability-subtext">
+                  Includes event registration, campaign tracking, social media
+                  integration and analytics setup.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Our Web Services -->
+      <section class="section alt">
+        <div class="container">
+          <h2 class="section-title">
+            Why choose Versed Global for your website?
+          </h2>
+          <div class="why-flow-layout">
+            <div>
+              <p class="why-flow-intro">
+                Versed Global combines technical expertise with strategic
+                thinking to create websites that don't just look good – they
+                work intelligently, integrate seamlessly and support your
+                organisation's long-term digital goals.
+              </p>
+
+              <div class="why-flow-timeline" aria-label="Website process">
+                <div class="why-flow-step">
+                  <div class="why-flow-step-dot"></div>
+                  <div class="why-flow-step-label">Phase 1 · Discovery</div>
+                  <div class="why-flow-step-title">
+                    Understanding your brand and audience
+                  </div>
+                  <p class="why-flow-step-body">
+                    We start by understanding your organisation's mission,
+                    target audience, brand guidelines and strategic objectives.
+                    This shapes every design and development decision.
+                  </p>
+                </div>
+
+                <div class="why-flow-step">
+                  <div class="why-flow-step-dot"></div>
+                  <div class="why-flow-step-label">Phase 2 · Design</div>
+                  <div class="why-flow-step-title">
+                    Custom design that reflects your identity
+                  </div>
+                  <p class="why-flow-step-body">
+                    Bespoke visual design, user experience planning and content
+                    architecture – all tailored to your brand and optimised for
+                    conversion and accessibility.
+                  </p>
+                </div>
+
+                <div class="why-flow-step">
+                  <div class="why-flow-step-dot"></div>
+                  <div class="why-flow-step-label">Phase 3 · Development</div>
+                  <div class="why-flow-step-title">
+                    Modern, secure and responsive build
+                  </div>
+                  <p class="why-flow-step-body">
+                    Clean code, responsive design, fast performance and robust
+                    security. Built with modern standards and tested across all
+                    devices and browsers.
+                  </p>
+                </div>
+
+                <div class="why-flow-step">
+                  <div class="why-flow-step-dot"></div>
+                  <div class="why-flow-step-label">Phase 4 · Integration</div>
+                  <div class="why-flow-step-title">
+                    Connect to your existing systems
+                  </div>
+                  <p class="why-flow-step-body">
+                    Seamless integration with Salesforce, payment gateways,
+                    email platforms, analytics tools and any other systems your
+                    organisation uses.
+                  </p>
+                </div>
+
+                <div class="why-flow-step">
+                  <div class="why-flow-step-dot"></div>
+                  <div class="why-flow-step-label">Phase 5 · Launch</div>
+                  <div class="why-flow-step-title">
+                    Smooth deployment and handover
+                  </div>
+                  <p class="why-flow-step-body">
+                    Careful deployment, comprehensive testing, team training and
+                    clear documentation so you can confidently manage and update
+                    your site.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <aside class="why-flow-pillboard">
+              <div class="why-pillboard-inner">
+                <div class="why-pillboard-badge">
+                  <i class="fas fa-globe" aria-hidden="true"></i>
+                  <span>End-to-end web solutions</span>
+                </div>
+                <div class="why-pillboard-title">
+                  What makes our websites different
+                </div>
+                <div class="why-pillboard-grid">
+                  <div>
+                    <div class="why-pill-item-label">Design</div>
+                    <div class="why-pill-item-title">Truly bespoke</div>
+                    <p class="why-pill-item-text">
+                      No templates. Every site is designed from scratch to match
+                      your brand, audience and objectives.
+                    </p>
+                  </div>
+
+                  <div>
+                    <div class="why-pill-item-label">Technology</div>
+                    <div class="why-pill-item-title">Modern &amp; secure</div>
+                    <p class="why-pill-item-text">
+                      Built with current best practices, responsive design, fast
+                      loading speeds and robust security measures.
+                    </p>
+                  </div>
+
+                  <div>
+                    <div class="why-pill-item-label">Integration</div>
+                    <div class="why-pill-item-title">Connected systems</div>
+                    <p class="why-pill-item-text">
+                      Seamless connection to Salesforce, payment processors,
+                      email marketing and analytics platforms.
+                    </p>
+                  </div>
+
+                  <div>
+                    <div class="why-pill-item-label">Support</div>
+                    <div class="why-pill-item-title">Ongoing partnership</div>
+                    <p class="why-pill-item-text">
+                      Training, documentation and optional maintenance packages
+                      so your site stays current and secure.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features & Capabilities -->
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Features &amp; capabilities</h2>
+          <p class="section-intro">
+            Every website we build includes core features for performance,
+            accessibility and user experience, with additional capabilities
+            tailored to your specific requirements.
+          </p>
+
+          <div class="values-grid">
+            <div class="value">
+              <i
+                class="fas fa-mobile-alt"
+                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
+              ></i>
+              <h3>Responsive Design</h3>
+              <p>
+                Flawless experience across all devices – desktop, tablet and
+                mobile. Your site adapts intelligently to every screen size.
+              </p>
+            </div>
+
+            <div class="value">
+              <i
+                class="fas fa-search"
+                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
+              ></i>
+              <h3>SEO Optimised</h3>
+              <p>
+                Search engine optimisation built into every page, with clean
+                code, fast loading, proper meta tags and structured data.
+              </p>
+            </div>
+
+            <div class="value">
+              <i
+                class="fas fa-universal-access"
+                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
+              ></i>
+              <h3>Accessibility</h3>
+              <p>
+                WCAG 2.1 accessibility standards compliance ensuring your site
+                is usable by everyone, including those with disabilities.
+              </p>
+            </div>
+
+            <div class="value">
+              <i
+                class="fas fa-lock"
+                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
+              ></i>
+              <h3>Security</h3>
+              <p>
+                SSL certificates, secure hosting, regular updates and
+                best-practice security measures to protect your site and user
+                data.
+              </p>
+            </div>
+
+            <div class="value">
+              <i
+                class="fas fa-tachometer-alt"
+                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
+              ></i>
+              <h3>Performance</h3>
+              <p>
+                Optimised code, compressed images and efficient hosting for fast
+                loading times and excellent Core Web Vitals scores.
+              </p>
+            </div>
+
+            <div class="value">
+              <i
+                class="fas fa-chart-line"
+                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
+              ></i>
+              <h3>Analytics Integration</h3>
+              <p>
+                Google Analytics and other tracking tools configured to measure
+                traffic, conversions and user behaviour insights.
+              </p>
+            </div>
+
+            <div class="value">
+              <i
+                class="fas fa-edit"
+                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
+              ></i>
+              <h3>Content Management</h3>
+              <p>
+                Easy-to-use content management systems or custom admin panels so
+                you can update content without technical expertise.
+              </p>
+            </div>
+
+            <div class="value">
+              <i
+                class="fas fa-plug"
+                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
+              ></i>
+              <h3>System Integration</h3>
+              <p>
+                Connect your website to Salesforce, payment gateways, email
+                platforms, booking systems and third-party APIs.
+              </p>
+            </div>
+
+            <div class="value">
+              <i
+                class="fas fa-graduation-cap"
+                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
+              ></i>
+              <h3>Training &amp; Documentation</h3>
+              <p>
+                Comprehensive training sessions and clear documentation so your
+                team can confidently manage and update the website.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technology Stack -->
+      <section class="section alt" id="website-approach">
+        <div class="container">
+          <h2 class="section-title">Our approach to web development</h2>
+          <p class="section-intro">
+            We use modern, proven technologies and frameworks to build websites
+            that are fast, secure, maintainable and future-proof.
+          </p>
+
+          <div class="tech-stack-grid">
+            <div>
+              <div class="tech-item">
+                <h3>
+                  <i
+                    class="fas fa-code"
+                    style="color: #0891b2; margin-right: 0.5rem"
+                  ></i>
+                  Frontend Technologies
+                </h3>
+                <ul>
+                  <li>HTML5, CSS3, JavaScript (ES6+)</li>
+                  <li>Modern frameworks (React, Vue, etc.)</li>
+                  <li>Responsive CSS frameworks</li>
+                  <li>Progressive Web App capabilities</li>
+                </ul>
+              </div>
+
+              <div class="tech-item">
+                <h3>
+                  <i
+                    class="fas fa-server"
+                    style="color: #0891b2; margin-right: 0.5rem"
+                  ></i>
+                  Backend &amp; Infrastructure
+                </h3>
+                <ul>
+                  <li>Node.js, Python, PHP</li>
+                  <li>Secure hosting and SSL</li>
+                  <li>Database management</li>
+                  <li>API development &amp; integration</li>
+                </ul>
+              </div>
+
+              <div class="tech-item">
+                <h3>
+                  <i
+                    class="fas fa-palette"
+                    style="color: #0891b2; margin-right: 0.5rem"
+                  ></i>
+                  Design &amp; UX
+                </h3>
+                <ul>
+                  <li>Adobe Creative Suite</li>
+                  <li>Figma for wireframing</li>
+                  <li>User experience research</li>
+                  <li>Accessibility testing</li>
+                </ul>
+              </div>
+
+              <div class="tech-item">
+                <h3>
+                  <i
+                    class="fas fa-rocket"
+                    style="color: #0891b2; margin-right: 0.5rem"
+                  ></i>
+                  Tools &amp; Platforms
+                </h3>
+                <ul>
+                  <li>Git version control</li>
+                  <li>WordPress, custom CMS</li>
+                  <li>Google Analytics, Tag Manager</li>
+                  <li>Salesforce integration APIs</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Website + Salesforce Integration -->
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">
+            Website + Salesforce: A powerful combination
+          </h2>
+          <p class="section-intro">
+            One of Versed Global's unique strengths is connecting your website
+            directly to your Salesforce CRM, creating a seamless flow of data
+            between public-facing web experiences and internal systems.
+          </p>
+
+          <div class="integration-grid">
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 2rem;
+              "
+            >
+              <div class="integration-card">
+                <div class="integration-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+                <h3>Lead Capture &amp; Contact Forms</h3>
+                <p>
+                  Automatically create Leads or Contacts in Salesforce when
+                  users submit web forms, with custom field mapping and
+                  validation.
+                </p>
+              </div>
+
+              <div class="integration-card">
+                <div class="integration-icon">
+                  <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3>Event &amp; Training Registration</h3>
+                <p>
+                  Online registration forms that sync directly to Salesforce
+                  Campaigns, with automated confirmation emails and attendance
+                  tracking.
+                </p>
+              </div>
+
+              <div class="integration-card">
+                <div class="integration-icon">
+                  <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h3>Donation &amp; Payment Processing</h3>
+                <p>
+                  Secure donation pages integrated with payment gateways and
+                  Salesforce NPSP, automatically recording gifts and generating
+                  receipts.
+                </p>
+              </div>
+
+              <div class="integration-card">
+                <div class="integration-icon">
+                  <i class="fas fa-user-circle"></i>
+                </div>
+                <h3>Member &amp; Stakeholder Portals</h3>
+                <p>
+                  Secure portals where users can log in to view their data,
+                  update preferences and access personalised content from
+                  Salesforce.
+                </p>
+              </div>
+
+              <div class="integration-card">
+                <div class="integration-icon">
+                  <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>Grant &amp; Application Forms</h3>
+                <p>
+                  Online application forms for grants, funding or services that
+                  create records in Salesforce with attachments and workflow
+                  triggers.
+                </p>
+              </div>
+
+              <div class="integration-card">
+                <div class="integration-icon">
+                  <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3>Dynamic Content Display</h3>
+                <p>
+                  Pull data from Salesforce to display on your website – impact
+                  statistics, case studies, team profiles and real-time campaign
+                  updates.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Approach -->
+      <section class="section alt">
+        <div class="container">
+          <h2 class="section-title">Transparent, flexible pricing</h2>
+          <p class="section-intro">
+            Every website project is unique, and pricing depends on scope,
+            complexity and specific requirements. We provide detailed proposals
+            with clear costs and deliverables.
+          </p>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 2rem;
+              margin-top: 2rem;
+            "
+          >
+            <div class="pricing-card">
+              <div class="pricing-badge starter">Starter</div>
+              <h3>Small Business Sites</h3>
+              <p>
+                Perfect for small organisations, startups and campaigns needing
+                a professional web presence.
+              </p>
+              <ul>
+                <li>5-10 pages</li>
+                <li>Responsive design</li>
+                <li>Contact forms</li>
+                <li>Basic SEO setup</li>
+                <li>Content management</li>
+              </ul>
+              <div class="pricing-footer">
+                <p>Project-based pricing from <strong>£2,500</strong></p>
+              </div>
+            </div>
+
+            <div class="pricing-card featured">
+              <div class="pricing-badge professional">Professional</div>
+              <h3>Full-Featured Websites</h3>
+              <p>
+                Comprehensive websites for charities, corporates and
+                organisations with complex requirements.
+              </p>
+              <ul>
+                <li>10-30+ pages</li>
+                <li>Custom design</li>
+                <li>Advanced features</li>
+                <li>Third-party integrations</li>
+                <li>Full SEO &amp; analytics</li>
+                <li>Training &amp; documentation</li>
+              </ul>
+              <div class="pricing-footer">
+                <p>Project-based pricing from <strong>£5,000</strong></p>
+              </div>
+            </div>
+
+            <div class="pricing-card">
+              <div class="pricing-badge enterprise">Enterprise</div>
+              <h3>Salesforce-Integrated Platforms</h3>
+              <p>
+                Complex web platforms with full Salesforce CRM integration and
+                custom functionality.
+              </p>
+              <ul>
+                <li>Custom portals</li>
+                <li>Salesforce integration</li>
+                <li>User authentication</li>
+                <li>Advanced automation</li>
+                <li>Custom development</li>
+                <li>Ongoing support options</li>
+              </ul>
+              <div class="pricing-footer">
+                <p>Custom pricing based on scope</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <p>
+              <i class="fas fa-info-circle" style="margin-right: 0.5rem"></i>
+              <strong>All pricing is project-based and transparent.</strong> We
+              provide detailed proposals outlining deliverables, timelines and
+              costs before work begins. Optional maintenance and support
+              packages are available post-launch.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">Frequently asked questions</h2>
+          <p class="section-intro">
+            Common questions about our website design and development services.
+          </p>
+          <div class="faq-section">
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>How long does it take to build a website?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Timeline depends on project scope and complexity. A small
+                  business site typically takes 4-6 weeks from initial discovery
+                  to launch. Larger, more complex sites with custom features and
+                  Salesforce integration typically take 8-12 weeks. We provide
+                  detailed timelines during the proposal phase.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Do you provide content writing services?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Yes. We can provide professional copywriting services to
+                  create compelling, SEO-optimised content for your website. We
+                  can also work with your existing content or collaborate with
+                  your in-house team. Content strategy and structure planning is
+                  included in all projects.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Will I be able to update the website myself?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Absolutely. We build websites with user-friendly content
+                  management systems (WordPress or custom admin panels) so you
+                  can easily update text, images, news and other content. We
+                  provide comprehensive training and documentation to ensure
+                  your team feels confident managing the site.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Can you integrate our website with Salesforce?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Yes, this is one of our core strengths. We can connect your
+                  website to Salesforce for lead capture, contact form
+                  submissions, event registrations, donation processing, member
+                  portals and more. All data flows seamlessly between your
+                  website and Salesforce CRM.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Do you offer website hosting and maintenance?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  We can arrange secure, reliable hosting as part of your
+                  project, or work with your preferred hosting provider. We
+                  offer optional ongoing maintenance and support packages
+                  covering security updates, backups, performance monitoring and
+                  content updates.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Will my website be accessible and WCAG compliant?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Yes. We build all websites to meet WCAG 2.1 Level AA
+                  accessibility standards as a minimum, ensuring your site is
+                  usable by people with disabilities. This includes proper
+                  semantic markup, keyboard navigation, screen reader
+                  compatibility and sufficient colour contrast.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>Can you redesign our existing website?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  Yes. We offer website redesign services, either as a complete
+                  rebuild or incremental improvements to your existing site. We
+                  can migrate content, preserve SEO rankings and ensure a smooth
+                  transition with minimal disruption to your operations.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFAQ(this)">
+                <span>What happens after the website launches?</span>
+                <div class="faq-toggle">+</div>
+              </div>
+              <div class="faq-answer">
+                <p>
+                  After launch, we provide a settling-in period (typically 30
+                  days) to address any bugs or minor adjustments. We deliver
+                  full documentation, training and handover materials. You can
+                  then manage the site independently or opt for ongoing support
+                  and maintenance packages.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="section alt">
+        <div class="container" style="text-align: center">
+          <h2 class="section-title">Ready to start your website project?</h2>
+          <p class="section-intro" style="margin: 0 auto 1.5rem">
+            Whether you need a brand new website, a redesign of your existing
+            site or a complex Salesforce-integrated platform, Versed Global can
+            help. Get in touch to discuss your requirements and receive a
+            detailed proposal.
+          </p>
+          <a href="contact.html" class="btn btn-primary">
+            <i class="fas fa-comments"></i>
+            Start a conversation
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-content">
+          <!-- About Section -->
+          <div class="footer-section">
+            <div class="footer-logo">
+              <img src="images/versed-global-logo.png" alt="Versed Global" />
+              <span>Versed Global</span>
+            </div>
+            <p style="margin-bottom: 1.5rem">
+              Salesforce CRM implementation, trust and foundation fundraising,
+              digital governance and professional website design for charities,
+              corporates and public-sector organisations.
+            </p>
+            <div class="social-links">
+              <a
+                href="https://linkedin.com/company/versed-global"
+                class="social-link linkedin"
+                title="LinkedIn"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/versedglobal"
+                class="social-link instagram"
+                title="Instagram"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://www.facebook.com/share/14U4YEg25nN/?mibextid=wwXIfr"
+                class="social-link facebook"
+                title="Facebook"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Section -->
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <div class="footer-contact">
+              <div>
+                <strong style="color: #f0f9ff">Phone</strong>
+                <p style="margin: 0.5rem 0 0">
+                  <a href="tel:+447554623171">07554 623171</a>
+                </p>
+              </div>
+              <div>
+                <strong style="color: #f0f9ff">Email</strong>
+                <p style="margin: 0.5rem 0 0">
+                  <a href="mailto:info@versedglobal.com">
+                    info@versedglobal.com
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address Section -->
+          <div class="footer-section">
+            <h4>Office Address</h4>
+            <div class="footer-address">
+              <p>29 Crown Way</p>
+              <p>Burgess Hill</p>
+              <p>RH15 8SX</p>
+              <p style="margin-top: 1rem">England and Wales</p>
+            </div>
+            <div class="company-info" style="margin-top: 1rem">
+              <p style="margin: 0">
+                <strong>Registered Company Number:</strong> 16933204
+              </p>
+              <p style="margin: 0.5rem 0 0">
+                VAT Registered | Registered in England and Wales
+              </p>
+            </div>
+          </div>
+
+          <!-- Review & Links Section -->
+          <div class="footer-section">
+            <h4>Leave a Review</h4>
+            <p>Help us improve by sharing your experience on Trustpilot.</p>
+            <a
+              href="mailto:versedglobal.com+1dd03088a8@invite.trustpilot.com"
+              class="trustpilot-link"
+            >
+              <i class="fas fa-star"></i>
+              Review on Trustpilot
+            </a>
+
+            <h4 style="margin-top: 2rem">Quick Links</h4>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <a href="services.html">Salesforce Services</a>
+              <a href="website.html">Web Design</a>
+              <a href="fundraising.html">Fundraising Support</a>
+              <a href="training.html">Training &amp; Support</a>
+              <a href="about.html">About Us</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Divider -->
+        <div class="footer-divider">
+          <div class="footer-bottom">
+            <div>
+              &copy; <span id="year"></span> Versed Global Ltd. All rights
+              reserved.
+            </div>
+            <div>
+              <a href="#" style="margin-right: 1.5rem">Privacy Policy</a>
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Main script -->
+    <script src="script.js"></script>
+
+    <script>
+      // Set current year in footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Mobile menu toggle
+      const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+        });
+      }
+
+      // Close mobile menu when link is clicked
+      const navItems = navLinks.querySelectorAll("a");
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+        });
+      });
+
+      // Browser History Navigation - Closes mobile menu on back/forward
+      window.addEventListener("popstate", () => {
+        if (navLinks.classList.contains("active")) {
+          navLinks.classList.remove("active");
+        }
+      });
+
+      // FAQ toggle
+      function toggleFAQ(element) {
+        const faqItem = element.parentElement;
+        const isActive = faqItem.classList.contains("active");
+
+        document.querySelectorAll(".faq-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+
+        if (!isActive) {
+          faqItem.classList.add("active");
+        }
+      }
+    </script>
+  </body>
+</html>
