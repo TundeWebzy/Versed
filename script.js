@@ -162,7 +162,7 @@ class PremiumFormValidator {
       phone: (value) =>
         /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(value),
       url: (value) =>
-        /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(
+        /^(https?:\/\/)?([\ da-z\.-]+)\.([a-z\.]{2,6})([\/ \w \.-]*)*\/?$/.test(
           value,
         ),
       text: (value) => value.trim().length >= 2,
@@ -690,13 +690,24 @@ class NotificationCenter {
 // Initialize notification center
 const notifications = new NotificationCenter();
 
-// ---------- 1. MOBILE NAVIGATION WITH HAMBURGER MENU ----------
+// ---------- 1. MOBILE NAVIGATION WITH HAMBURGER MENU (ENHANCED FOR TOUCH) ----------
 function initMobileNav() {
-  const mobileMenuToggle = qs(".mobile-menu");
-  const navLinks = qs(".nav-links");
-  if (!mobileMenuToggle || !navLinks) return;
+  const mobileMenuToggle = qs(".mobile-menu") || qs("#mobileMenuToggle");
+  const navLinks = qs(".nav-links") || qs("#navLinks");
+
+  console.log("🔍 Mobile Nav Init:", {
+    toggle: mobileMenuToggle ? "Found ✓" : "Not Found ✗",
+    navLinks: navLinks ? "Found ✓" : "Not Found ✗",
+    screenWidth: window.innerWidth,
+  });
+
+  if (!mobileMenuToggle || !navLinks) {
+    console.error("❌ Mobile menu elements not found!");
+    return;
+  }
 
   const closeNav = () => {
+    console.log("📴 Closing navigation");
     navLinks.classList.remove("active");
     navLinks.classList.remove("open");
     mobileMenuToggle.classList.remove("active");
@@ -705,37 +716,80 @@ function initMobileNav() {
     mobileMenuToggle.setAttribute("aria-expanded", "false");
   };
 
+  const openNav = () => {
+    console.log("📂 Opening navigation");
+    navLinks.classList.add("active");
+    navLinks.classList.add("open");
+    mobileMenuToggle.classList.add("active");
+    mobileMenuToggle.classList.add("open");
+    document.body.classList.add("no-scroll");
+    mobileMenuToggle.setAttribute("aria-expanded", "true");
+  };
+
   const toggleNav = () => {
     const isOpen =
       navLinks.classList.contains("active") ||
       navLinks.classList.contains("open");
 
+    console.log("🔄 Toggle Nav - Current State:", isOpen ? "OPEN" : "CLOSED");
+
     if (isOpen) {
       closeNav();
     } else {
-      navLinks.classList.add("active");
-      navLinks.classList.add("open");
-      mobileMenuToggle.classList.add("active");
-      mobileMenuToggle.classList.add("open");
-      document.body.classList.add("no-scroll");
-      mobileMenuToggle.setAttribute("aria-expanded", "true");
+      openNav();
     }
   };
 
+  // Set initial ARIA attributes
   mobileMenuToggle.setAttribute("aria-label", "Toggle navigation menu");
   mobileMenuToggle.setAttribute("aria-expanded", "false");
   mobileMenuToggle.setAttribute("aria-controls", "primary-navigation");
   if (!navLinks.id) navLinks.id = "primary-navigation";
   navLinks.setAttribute("role", "navigation");
 
+  // CRITICAL: Enhanced event handling for mobile devices
+  // Handle both touch and click events
+  let touchHandled = false;
+
+  // Touch events (for mobile)
+  mobileMenuToggle.addEventListener(
+    "touchstart",
+    (e) => {
+      console.log("👆 Touch Start Event");
+      e.preventDefault();
+      e.stopPropagation();
+      touchHandled = true;
+      toggleNav();
+    },
+    { passive: false },
+  );
+
+  // Click events (for desktop and fallback)
   mobileMenuToggle.addEventListener("click", (e) => {
+    console.log("🖱️  Click Event - Touch Handled:", touchHandled);
+
+    // Prevent duplicate firing if touch was already handled
+    if (touchHandled) {
+      touchHandled = false;
+      return;
+    }
+
     e.preventDefault();
     e.stopPropagation();
     toggleNav();
   });
 
+  // Reset touch flag after a short delay
+  mobileMenuToggle.addEventListener("touchend", () => {
+    setTimeout(() => {
+      touchHandled = false;
+    }, 300);
+  });
+
+  // Close menu when clicking navigation links
   qsa(".nav-links a").forEach((link) => {
     link.addEventListener("click", () => {
+      console.log("📎 Nav link clicked");
       if (
         navLinks.classList.contains("active") ||
         navLinks.classList.contains("open")
@@ -745,6 +799,7 @@ function initMobileNav() {
     });
   });
 
+  // Close menu when clicking outside
   document.addEventListener("click", (e) => {
     const isMenuOpen =
       navLinks.classList.contains("active") ||
@@ -755,10 +810,12 @@ function initMobileNav() {
     const clickedToggle = mobileMenuToggle.contains(e.target);
 
     if (!clickedInsideMenu && !clickedToggle) {
+      console.log("🚪 Clicked outside - closing menu");
       closeNav();
     }
   });
 
+  // Close menu on window resize (desktop view)
   window.addEventListener(
     "resize",
     throttle(() => {
@@ -767,11 +824,13 @@ function initMobileNav() {
         (navLinks.classList.contains("active") ||
           navLinks.classList.contains("open"))
       ) {
+        console.log("📐 Resized to desktop - closing menu");
         closeNav();
       }
     }, 150),
   );
 
+  // Handle orientation change
   window.addEventListener("orientationchange", () => {
     setTimeout(() => {
       if (
@@ -779,10 +838,13 @@ function initMobileNav() {
         (navLinks.classList.contains("active") ||
           navLinks.classList.contains("open"))
       ) {
+        console.log("🔄 Orientation changed - closing menu");
         closeNav();
       }
     }, 250);
   });
+
+  console.log("✅ Mobile navigation initialized successfully!");
 }
 
 // ---------- 2. ACTIVE NAVIGATION (URL-BASED) ----------
@@ -1707,13 +1769,17 @@ function initParallaxEffect() {
 
 // ========== INIT ALL ==========
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("🚀 Versed Global Script Loading...");
+  console.log("📱 Screen Width:", window.innerWidth);
+  console.log("🖥️  User Agent:", navigator.userAgent);
+
   // Premium Features
   initDeviceDetection();
   initPremiumTooltips();
   new PremiumModal();
 
   // Core navigation and functionality
-  initMobileNav();
+  initMobileNav(); // ← ENHANCED FOR MOBILE
   initSmoothScroll();
   initHeaderEffects();
   initContactForm();
@@ -1761,6 +1827,8 @@ document.addEventListener("DOMContentLoaded", () => {
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }
+
+  console.log("✅ All scripts initialized successfully!");
 });
 
 // Backup: Set active navigation on any navigation event
