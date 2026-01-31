@@ -34,6 +34,7 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      crossorigin="anonymous"
     />
 
     <!-- TrustBox script -->
@@ -161,7 +162,6 @@
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-shadow: 0 2px 4px rgba(14, 116, 144, 0.15);
       }
 
       .tagline {
@@ -806,9 +806,11 @@
         padding: 1.5rem;
         flex-shrink: 0;
         transition: all 0.3s ease;
+        position: relative;
       }
 
-      .capability-pill:hover {
+      .capability-pill:hover,
+      .sector-pill:hover {
         box-shadow: 0 16px 40px rgba(14, 116, 144, 0.15);
         transform: translateY(-4px);
       }
@@ -822,10 +824,6 @@
         height: 3px;
         background: linear-gradient(90deg, #0891b2, #06b6d4, #22d3ee);
         border-radius: 18px 18px 0 0;
-      }
-
-      .capability-pill {
-        position: relative;
       }
 
       .capability-label,
@@ -1368,6 +1366,12 @@
 
       .footer-bottom a {
         color: #bae6fd;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-bottom a:hover {
+        color: #f0f9ff;
       }
 
       .company-info {
@@ -1414,6 +1418,37 @@
           text-align: center;
         }
       }
+
+      /* ============================================================
+         ACCESSIBILITY & RESPONSIVE ENHANCEMENTS
+         ============================================================ */
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      /* Focus visible for keyboard navigation */
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid #0891b2;
+        outline-offset: 3px;
+      }
+
+      /* Touch device optimization */
+      @media (hover: none) {
+        .btn:hover,
+        .nav-links a:hover,
+        .social-link:hover {
+          transform: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1438,6 +1473,7 @@
           class="mobile-menu"
           id="mobileMenuToggle"
           aria-label="Toggle navigation"
+          aria-expanded="false"
         >
           ☰
         </button>
@@ -1944,7 +1980,12 @@
           </p>
           <div class="faq-section">
             <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
+              <div
+                class="faq-question"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
                 <span>What is included in a Salesforce implementation?</span>
                 <div class="faq-toggle">+</div>
               </div>
@@ -1959,7 +2000,12 @@
             </div>
 
             <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
+              <div
+                class="faq-question"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
                 <span>Do you design websites for businesses?</span>
                 <div class="faq-toggle">+</div>
               </div>
@@ -1975,7 +2021,12 @@
             </div>
 
             <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
+              <div
+                class="faq-question"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
                 <span>How long does a typical Salesforce project take?</span>
                 <div class="faq-toggle">+</div>
               </div>
@@ -1990,7 +2041,12 @@
             </div>
 
             <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
+              <div
+                class="faq-question"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
                 <span>Do you work with the Nonprofit Success Pack (NPSP)?</span>
                 <div class="faq-toggle">+</div>
               </div>
@@ -2005,7 +2061,12 @@
             </div>
 
             <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
+              <div
+                class="faq-question"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
                 <span>What support do you provide after implementation?</span>
                 <div class="faq-toggle">+</div>
               </div>
@@ -2020,7 +2081,12 @@
             </div>
 
             <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
+              <div
+                class="faq-question"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
                 <span
                   >How can fundraising strategy integrate with Salesforce?</span
                 >
@@ -2037,7 +2103,12 @@
             </div>
 
             <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
+              <div
+                class="faq-question"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
                 <span>Can you help migrate data from our current system?</span>
                 <div class="faq-toggle">+</div>
               </div>
@@ -2093,6 +2164,7 @@
                 title="LinkedIn"
                 rel="noopener noreferrer"
                 target="_blank"
+                aria-label="Visit our LinkedIn page"
               >
                 <i class="fab fa-linkedin-in"></i>
               </a>
@@ -2102,6 +2174,7 @@
                 title="Instagram"
                 rel="noopener noreferrer"
                 target="_blank"
+                aria-label="Visit our Instagram page"
               >
                 <i class="fab fa-instagram"></i>
               </a>
@@ -2111,6 +2184,7 @@
                 title="Facebook"
                 rel="noopener noreferrer"
                 target="_blank"
+                aria-label="Visit our Facebook page"
               >
                 <i class="fab fa-facebook-f"></i>
               </a>
@@ -2141,12 +2215,12 @@
           <!-- Address Section -->
           <div class="footer-section">
             <h4>Office Address</h4>
-            <div class="footer-address">
+            <address class="footer-address" style="font-style: normal">
               <p>29 Crown Way</p>
               <p>Burgess Hill</p>
               <p>RH15 8SX</p>
               <p style="margin-top: 1rem">England and Wales</p>
-            </div>
+            </address>
             <div class="company-info" style="margin-top: 1rem">
               <p style="margin: 0">
                 <strong>Registered Company Number:</strong> 16933204
@@ -2183,7 +2257,7 @@
                 <a
                   href="https://www.trustpilot.com/review/versedglobal.com"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   >Trustpilot</a
                 >
               </div>
@@ -2226,26 +2300,30 @@
       const mobileMenuToggle = document.getElementById("mobileMenuToggle");
       const navLinks = document.getElementById("navLinks");
 
-      if (mobileMenuToggle) {
+      if (mobileMenuToggle && navLinks) {
         mobileMenuToggle.addEventListener("click", () => {
+          const isOpen = navLinks.classList.contains("active");
           navLinks.classList.toggle("active");
+          mobileMenuToggle.setAttribute("aria-expanded", !isOpen);
+        });
+
+        // Close mobile menu when link is clicked
+        const navItems = navLinks.querySelectorAll("a");
+        navItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+          });
+        });
+
+        // Browser History Navigation - Closes mobile menu on back/forward
+        window.addEventListener("popstate", () => {
+          if (navLinks.classList.contains("active")) {
+            navLinks.classList.remove("active");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+          }
         });
       }
-
-      // Close mobile menu when link is clicked
-      const navItems = navLinks.querySelectorAll("a");
-      navItems.forEach((item) => {
-        item.addEventListener("click", () => {
-          navLinks.classList.remove("active");
-        });
-      });
-
-      // Browser History Navigation - Closes mobile menu on back/forward
-      window.addEventListener("popstate", () => {
-        if (navLinks.classList.contains("active")) {
-          navLinks.classList.remove("active");
-        }
-      });
 
       // Update active nav link based on current page
       function updateActiveNav() {
@@ -2254,33 +2332,60 @@
 
         navLinksEls.forEach((link) => {
           link.classList.remove("active");
-          if (currentPage === "/" || currentPage === "/index.html") {
-            if (link.getAttribute("href") === "index.html") {
+          const href = link.getAttribute("href");
+
+          if (
+            currentPage === "/" ||
+            currentPage === "/index.html" ||
+            currentPage.endsWith("index.html")
+          ) {
+            if (href === "index.html") {
               link.classList.add("active");
             }
           } else {
-            if (link.getAttribute("href") === currentPage.split("/").pop()) {
+            if (currentPage.endsWith(href)) {
               link.classList.add("active");
             }
           }
         });
       }
 
+      // Initialize on load
       updateActiveNav();
 
       // FAQ toggle functionality
-      function toggleFAQ(element) {
-        const faqItem = element.parentElement;
-        const isActive = faqItem.classList.contains("active");
+      document.querySelectorAll(".faq-question").forEach((question) => {
+        question.addEventListener("click", function () {
+          const faqItem = this.parentElement;
+          const isActive = faqItem.classList.contains("active");
+          const toggle = this.querySelector(".faq-toggle");
 
-        document.querySelectorAll(".faq-item").forEach((item) => {
-          item.classList.remove("active");
+          // Close all FAQs
+          document.querySelectorAll(".faq-item").forEach((item) => {
+            item.classList.remove("active");
+            const itemToggle = item.querySelector(".faq-toggle");
+            if (itemToggle) itemToggle.textContent = "+";
+            const itemQuestion = item.querySelector(".faq-question");
+            if (itemQuestion)
+              itemQuestion.setAttribute("aria-expanded", "false");
+          });
+
+          // Open clicked FAQ if it wasn't active
+          if (!isActive) {
+            faqItem.classList.add("active");
+            if (toggle) toggle.textContent = "−";
+            this.setAttribute("aria-expanded", "true");
+          }
         });
 
-        if (!isActive) {
-          faqItem.classList.add("active");
-        }
-      }
+        // Keyboard accessibility for FAQ
+        question.addEventListener("keypress", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            this.click();
+          }
+        });
+      });
     </script>
   </body>
 </html>
