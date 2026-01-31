@@ -7,15 +7,20 @@
       About Versed Global | Salesforce &amp; Fundraising Consultancy
     </title>
 
-    <!-- FAVICON CODE ADDED -->
+    <!-- FAVICON -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+    <!-- ALGOLIA SITE VERIFICATION -->
+    <meta name="algolia-site-verification" content="1E71BF4B63127FEC" />
+
     <meta
       name="description"
-      content="Versed Global is a specialist consultancy that designs, implements and supports Salesforce-based CRM systems and targeted trust and foundation fundraising for charities, corporates and public enterprises."
+      content="Versed Global is a specialist consultancy that designs, implements and supports Salesforce-based CRM systems, delivers targeted trust and foundation fundraising, and builds strategic websites for charities, corporates and public enterprises."
     />
+
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="styles.css" />
 
     <!-- Google Fonts for professional typography -->
@@ -32,7 +37,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
-    <!-- Organization / Logo Schema -->
+    <!-- Organization Schema -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -59,7 +64,22 @@
     </script>
 
     <style>
-      /* Custom header styles for sticky navigation */
+      /* ============================================================
+         ROOT / RESET / BASE TYPOGRAPHY
+         ============================================================ */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
       body {
         font-family:
           "Inter",
@@ -69,63 +89,84 @@
           sans-serif;
         margin: 0;
         padding: 0;
+        background: #ffffff;
+        color: #1e293b;
+        line-height: 1.6;
       }
+
+      /* ============================================================
+         HEADER – UPDATED WITH LOGO-MATCHED TEAL/NAVY THEME
+         ============================================================ */
 
       .header-bar {
         position: sticky;
         top: 0;
         z-index: 1000;
-        background: #ffffff;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        background: linear-gradient(135deg, #ffffff 0%, #e6f7f7 100%);
+        box-shadow: 0 2px 12px rgba(14, 116, 144, 0.12);
         transition: all 0.3s ease;
+        width: 100%;
+        border-bottom: 2px solid rgba(14, 116, 144, 0.2);
       }
 
       .header-inner {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.75rem 1.5rem;
+        padding: 0.85rem 1.5rem;
         max-width: 1400px;
         margin: 0 auto;
-        position: relative; /* FIXED: Required for mobile nav dropdown positioning */
+        width: 100%;
+        position: relative;
       }
 
       .logo-area {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: 0.85rem;
         flex-shrink: 0;
       }
 
       .logo-link {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: 0.85rem;
         text-decoration: none;
       }
 
       .logo-image {
-        height: 40px;
+        height: 50px;
         width: auto;
+        display: block;
+        filter: drop-shadow(0 2px 4px rgba(14, 116, 144, 0.25));
       }
 
       .logo-text {
-        font-size: 1.25rem;
+        font-size: 1.4rem;
         font-weight: 700;
-        color: #1e293b;
         letter-spacing: -0.02em;
+        background: linear-gradient(
+          135deg,
+          #0e7490 0%,
+          #0891b2 50%,
+          #06b6d4 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 2px 4px rgba(14, 116, 144, 0.15);
       }
 
       .tagline {
-        font-size: 0.75rem;
-        color: #64748b;
-        font-weight: 500;
-        letter-spacing: 0.05em;
-        margin-left: 0.5rem;
-        padding-left: 0.5rem;
-        border-left: 1px solid #e2e8f0;
-        line-height: 1.2;
-        max-width: 200px;
+        font-size: 0.775rem;
+        color: #155e75;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        margin-left: 0.65rem;
+        padding-left: 0.65rem;
+        border-left: 2px solid #0891b2;
+        line-height: 1.3;
+        max-width: 220px;
       }
 
       .main-nav {
@@ -136,56 +177,107 @@
 
       .nav-links {
         display: flex;
-        gap: 0.5rem;
+        gap: 0.35rem;
         align-items: center;
+        list-style: none;
       }
 
       .nav-links a {
-        padding: 0.5rem 1rem;
+        padding: 0.55rem 0.95rem;
         text-decoration: none;
-        color: #475569;
-        font-weight: 500;
-        font-size: 0.95rem;
-        border-radius: 6px;
-        transition: all 0.2s ease;
+        color: #155e75;
+        font-weight: 600;
+        font-size: 0.93rem;
+        border-radius: 8px;
+        transition: all 0.25s ease;
         white-space: nowrap;
+        position: relative;
       }
 
       .nav-links a:hover {
-        color: #3b82f6;
-        background: transparent;
+        color: #0891b2;
+        background: rgba(8, 145, 178, 0.1);
+        transform: translateY(-1px);
       }
 
       .nav-links a.active {
-        color: #3b82f6;
+        color: #ffffff;
+        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
       }
 
       .nav-links a.nav-cta {
-        background: #3b82f6;
+        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
         color: white;
-        padding: 0.5rem 1.25rem;
-        border-radius: 6px;
+        padding: 0.55rem 1.35rem;
+        border-radius: 8px;
         margin-left: 0.5rem;
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
       }
 
       .nav-links a.nav-cta:hover {
-        background: #2563eb;
+        background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
         color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(8, 145, 178, 0.45);
       }
 
       .mobile-menu {
         display: none;
-        background: none;
+        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
         border: none;
         font-size: 1.5rem;
         cursor: pointer;
-        color: #1e293b;
+        color: #ffffff;
+        padding: 0.6rem 0.8rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
+        transition: all 0.25s ease;
       }
 
-      /* Mobile responsive */
+      .mobile-menu:hover {
+        background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(8, 145, 178, 0.45);
+      }
+
+      .mobile-menu:focus {
+        outline: 3px solid rgba(8, 145, 178, 0.4);
+        outline-offset: 2px;
+      }
+
+      /* ============================================================
+         RESPONSIVE HEADER – MOBILE & TABLET
+         ============================================================ */
+
+      @media (max-width: 1100px) {
+        .tagline {
+          display: none;
+        }
+
+        .nav-links {
+          gap: 0.25rem;
+        }
+
+        .nav-links a {
+          padding: 0.5rem 0.75rem;
+          font-size: 0.88rem;
+        }
+      }
+
       @media (max-width: 768px) {
         .header-inner {
           flex-wrap: wrap;
+          padding: 0.7rem 1rem;
+          gap: 0.5rem;
+        }
+
+        .logo-image {
+          height: 44px;
+        }
+
+        .logo-text {
+          font-size: 1.25rem;
         }
 
         .tagline {
@@ -194,6 +286,7 @@
 
         .mobile-menu {
           display: block;
+          order: 2;
         }
 
         .main-nav {
@@ -202,100 +295,123 @@
         }
 
         .nav-links {
-          flex-direction: column;
-          gap: 0;
           position: absolute;
           top: 100%;
           left: 0;
           right: 0;
-          background: white;
-          border-top: 1px solid #e2e8f0;
+          background: linear-gradient(180deg, #ffffff 0%, #e6f7f7 100%);
+          border-top: 2px solid rgba(14, 116, 144, 0.25);
           max-height: 0;
           overflow: hidden;
-          transition: max-height 0.3s ease;
+          transition: max-height 0.4s ease;
+          flex-direction: column;
+          gap: 0;
           z-index: 1000;
+          box-shadow: 0 8px 24px rgba(14, 116, 144, 0.18);
         }
 
         .nav-links.active {
-          max-height: 500px;
+          max-height: 600px;
         }
 
         .nav-links a {
           width: 100%;
-          padding: 1rem;
+          padding: 1.1rem 1.5rem;
           border-radius: 0;
-          border-bottom: 1px solid #e2e8f0;
+          border-bottom: 1px solid rgba(14, 116, 144, 0.15);
+          white-space: normal;
+          text-align: left;
+        }
+
+        .nav-links a:hover {
+          background: rgba(8, 145, 178, 0.12);
+          transform: translateX(4px);
+        }
+
+        .nav-links a.active {
+          background: linear-gradient(
+            90deg,
+            rgba(8, 145, 178, 0.18) 0%,
+            transparent 100%
+          );
+          color: #0e7490;
+          border-left: 4px solid #0891b2;
         }
 
         .nav-links a.nav-cta {
           margin-left: 0;
+          border-radius: 0;
+          background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+          color: white;
+          border-bottom: none;
+        }
+
+        .nav-links a.nav-cta:hover {
+          background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
+          transform: translateX(4px);
         }
       }
 
-      /* Global section styles */
+      @media (max-width: 480px) {
+        .header-inner {
+          padding: 0.6rem 0.85rem;
+        }
+
+        .logo-image {
+          height: 40px;
+        }
+
+        .logo-text {
+          font-size: 1.15rem;
+        }
+
+        .nav-links a {
+          padding: 1rem 1.25rem;
+          font-size: 0.95rem;
+        }
+      }
+
+      /* ============================================================
+         SECTIONS & LAYOUT
+         ============================================================ */
+
       .section {
-        padding: 3rem 0;
+        position: relative;
+        padding: 3.5rem 0 3rem;
       }
 
       .section.alt {
-        background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        background: radial-gradient(
+          circle at 5% 5%,
+          #e6f7f7,
+          #ecfeff 50%,
+          #f0f9ff
+        );
       }
 
       .container {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
         padding: 0 1.5rem;
+        width: 100%;
       }
 
       .section-title {
-        font-size: 2.5rem;
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
         font-weight: 700;
-        color: #1e293b;
-        margin: 0 0 1.5rem;
-        line-height: 1.2;
+        color: #0c4a6e;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.02em;
       }
 
       .section-intro {
-        font-size: 1.1rem;
+        font-size: 1rem;
         color: #475569;
         line-height: 1.8;
-        max-width: 900px;
         margin-bottom: 2rem;
+        max-width: 760px;
       }
 
-      .btn {
-        display: inline-block;
-        padding: 0.75rem 2rem;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        font-size: 1rem;
-        border: none;
-        cursor: pointer;
-      }
-
-      .btn-primary {
-        background: #3b82f6;
-        color: white;
-      }
-
-      .btn-primary:hover {
-        background: #2563eb;
-        transform: translateY(-2px);
-      }
-
-      .btn-secondary {
-        background: transparent;
-        color: #3b82f6;
-        border: 2px solid #3b82f6;
-      }
-
-      .btn-secondary:hover {
-        background: rgba(59, 130, 246, 0.1);
-      }
-
-      /* Highlight box styles */
       .highlight {
         font-size: 1.05rem;
         line-height: 1.8;
@@ -307,14 +423,84 @@
       }
 
       .highlight strong {
-        color: #1e293b;
+        color: #0c4a6e;
         font-weight: 700;
       }
 
-      /* Card grid styles */
-      .three-grid {
+      @media (max-width: 768px) {
+        .section {
+          padding: 2.5rem 0 2rem;
+        }
+
+        .container {
+          padding: 0 1.25rem;
+        }
+
+        .section-title {
+          font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+      }
+
+      /* ============================================================
+         BUTTONS – LOGO COLORS
+         ============================================================ */
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 8px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        gap: 0.5rem;
+      }
+
+      .btn:focus-visible {
+        outline: 2px solid #0891b2;
+        outline-offset: 2px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+        color: white;
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(8, 145, 178, 0.45);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #0891b2;
+        border: 2px solid #0891b2;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(8, 145, 178, 0.1);
+      }
+
+      @media (max-width: 640px) {
+        .btn {
+          padding: 0.65rem 1.25rem;
+          font-size: 0.95rem;
+        }
+      }
+
+      /* ============================================================
+         CARD STYLES – LOGO COLORS
+         ============================================================ */
+
+      .four-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 2rem;
         margin-top: 2rem;
       }
@@ -322,20 +508,21 @@
       .card {
         background: white;
         padding: 2rem;
-        border-radius: 12px;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        border-radius: 16px;
+        border: 1px solid #cffafe;
+        box-shadow: 0 8px 24px rgba(14, 116, 144, 0.08);
         transition: all 0.3s ease;
       }
 
       .card:hover {
-        box-shadow: 0 8px 24px rgba(59, 130, 246, 0.1);
-        border-color: #3b82f6;
+        box-shadow: 0 12px 32px rgba(8, 145, 178, 0.15);
+        border-color: #0891b2;
+        transform: translateY(-4px);
       }
 
       .card h3 {
-        font-size: 1.25rem;
-        color: #1e293b;
+        font-size: 1.2rem;
+        color: #0c4a6e;
         margin: 0 0 0.75rem;
         font-weight: 700;
       }
@@ -347,7 +534,108 @@
         font-size: 0.95rem;
       }
 
-      /* Statistics counter section - simplified */
+      /* ============================================================
+         NARRATIVE SECTION
+         ============================================================ */
+
+      .narrative-section {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 4rem;
+        align-items: flex-start;
+        margin-top: 2rem;
+      }
+
+      .narrative-image {
+        background: radial-gradient(
+          circle at top,
+          #a5f3fc,
+          #67e8f9 50%,
+          #22d3ee
+        );
+        height: 420px;
+        border-radius: 18px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 24px 60px rgba(14, 116, 144, 0.35);
+      }
+
+      .narrative-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .narrative-content h2 {
+        font-size: 2.2rem;
+        margin-bottom: 1.2rem;
+        color: #0c4a6e;
+        font-weight: 700;
+      }
+
+      .narrative-content p {
+        font-size: 1.02rem;
+        line-height: 1.85;
+        color: #475569;
+        margin-bottom: 1.1rem;
+      }
+
+      @media (max-width: 900px) {
+        .narrative-section {
+          grid-template-columns: 1fr;
+        }
+
+        .narrative-image {
+          height: 280px;
+        }
+      }
+
+      /* ============================================================
+         VALUES GRID – LOGO COLORS
+         ============================================================ */
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .value {
+        padding: 2rem;
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid #cffafe;
+        box-shadow: 0 8px 25px rgba(14, 116, 144, 0.08);
+        transition: all 0.35s ease;
+      }
+
+      .value:hover {
+        border-color: #0891b2;
+        box-shadow: 0 16px 40px rgba(8, 145, 178, 0.15);
+        transform: translateY(-4px);
+      }
+
+      .value h3 {
+        font-size: 1.2rem;
+        color: #0c4a6e;
+        margin: 0 0 0.75rem;
+        font-weight: 700;
+      }
+
+      .value p {
+        font-size: 0.95rem;
+        color: #475569;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      /* ============================================================
+         STATS SECTION – LOGO COLORS
+         ============================================================ */
+
       .stats-section {
         background: transparent;
         color: #1e293b;
@@ -373,7 +661,7 @@
       .stat-number {
         font-size: 3.5rem;
         font-weight: 700;
-        color: #3b82f6;
+        color: #0891b2;
         line-height: 1;
         margin-bottom: 0.5rem;
         font-variant-numeric: tabular-nums;
@@ -381,8 +669,8 @@
 
       .stat-label {
         font-size: 1rem;
-        color: #1e293b;
-        font-weight: 500;
+        color: #0c4a6e;
+        font-weight: 600;
         letter-spacing: 0.05em;
       }
 
@@ -393,105 +681,56 @@
         line-height: 1.5;
       }
 
-      /* Why we exist section - narrative flow */
-      .narrative-section {
-        display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        gap: 4rem;
-        align-items: flex-start;
-        margin-top: 2rem;
-      }
+      /* ============================================================
+         FOOTER – UPDATED WITH LOGO-MATCHED TEAL/NAVY THEME
+         ============================================================ */
 
-      .narrative-image {
-        background: radial-gradient(circle at top, #e2e8f0, #cbd5e1);
-        height: 420px;
-        border-radius: 18px;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.35);
-      }
-
-      .narrative-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .narrative-content h2 {
-        font-size: 2.2rem;
-        margin-bottom: 1.2rem;
-        color: #0f172a;
-        font-weight: 700;
-      }
-
-      .narrative-content p {
-        font-size: 1.02rem;
-        line-height: 1.85;
-        color: #475569;
-        margin-bottom: 1.1rem;
-      }
-
-      @media (max-width: 900px) {
-        .narrative-section {
-          grid-template-columns: 1fr;
-        }
-
-        .narrative-image {
-          height: 280px;
-        }
-      }
-
-      /* Values section */
-      .values-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-top: 2rem;
-      }
-
-      .value {
-        padding: 2rem;
-        background: #ffffff;
-        border-radius: 16px;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
-        transition: all 0.35s ease;
-      }
-
-      .value:hover {
-        border-color: rgba(59, 130, 246, 0.35);
-        box-shadow: 0 16px 40px rgba(59, 130, 246, 0.1);
-        transform: translateY(-4px);
-      }
-
-      .value h3 {
-        font-size: 1.2rem;
-        color: #0f172a;
-        margin: 0 0 0.75rem;
-        font-weight: 700;
-      }
-
-      .value p {
-        font-size: 0.95rem;
-        color: #475569;
-        line-height: 1.7;
-        margin: 0;
-      }
-
-      /* Footer */
       footer {
-        background: #1e293b;
-        color: #e2e8f0;
+        background: linear-gradient(135deg, #0c4a6e 0%, #082f49 100%);
+        color: #e0f2fe;
         padding: 3rem 0 1.5rem;
         margin-top: 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(8, 145, 178, 0.15) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+
+      footer::after {
+        content: "";
+        position: absolute;
+        bottom: -40%;
+        left: -5%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(6, 182, 212, 0.1) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
       }
 
       .footer-container {
         max-width: 1400px;
         margin: 0 auto;
         padding: 0 1.5rem;
+        width: 100%;
+        position: relative;
+        z-index: 1;
       }
 
       .footer-content {
@@ -502,7 +741,7 @@
       }
 
       .footer-section h4 {
-        color: #f1f5f9;
+        color: #f0f9ff;
         font-size: 0.95rem;
         text-transform: uppercase;
         letter-spacing: 0.05em;
@@ -514,38 +753,17 @@
         font-size: 0.95rem;
         line-height: 1.8;
         margin-bottom: 0.75rem;
+        color: #bae6fd;
       }
 
       .footer-section a {
-        color: #cbd5e1;
+        color: #bae6fd;
         text-decoration: none;
         transition: color 0.3s ease;
       }
 
       .footer-section a:hover {
-        color: #f1f5f9;
-      }
-
-      .footer-logo {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-      }
-
-      .footer-logo img {
-        height: 48px;
-        width: 48px;
-        background: #ffffff;
-        border-radius: 8px;
-        padding: 4px;
-        object-fit: contain;
-      }
-
-      .footer-logo span {
-        color: #f1f5f9;
-        font-weight: 700;
-        font-size: 1rem;
+        color: #7dd3fc;
       }
 
       .footer-address {
@@ -565,6 +783,29 @@
         width: fit-content;
       }
 
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .footer-logo img {
+        height: 48px;
+        width: 48px;
+        background: white;
+        border-radius: 8px;
+        padding: 4px;
+        object-fit: contain;
+        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.25);
+      }
+
+      .footer-logo span {
+        color: #f0f9ff;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
       .social-links {
         display: flex;
         gap: 1.5rem;
@@ -577,45 +818,54 @@
         justify-content: center;
         width: 40px;
         height: 40px;
-        background: #3b82f6;
-        color: #ffffff;
+        background: rgba(8, 145, 178, 0.25);
+        color: #e0f2fe;
         border-radius: 50%;
         text-decoration: none;
         transition: all 0.3s ease;
         font-size: 1.1rem;
+        border: 1px solid rgba(8, 145, 178, 0.3);
       }
 
       .social-link:hover {
-        background: #2563eb;
+        background: #0891b2;
+        color: #ffffff;
         transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(8, 145, 178, 0.35);
       }
 
       .social-link.linkedin {
-        background: #0a66c2;
+        background: rgba(10, 102, 194, 0.25);
+        border-color: rgba(10, 102, 194, 0.3);
       }
 
       .social-link.linkedin:hover {
-        background: #084999;
+        background: #0a66c2;
+        border-color: #0a66c2;
       }
 
       .social-link.instagram {
-        background: #e4405f;
+        background: rgba(228, 64, 95, 0.25);
+        border-color: rgba(228, 64, 95, 0.3);
       }
 
       .social-link.instagram:hover {
-        background: #c72e5f;
+        background: #e4405f;
+        border-color: #e4405f;
       }
 
       .social-link.facebook {
-        background: #1877f2;
+        background: rgba(24, 119, 242, 0.25);
+        border-color: rgba(24, 119, 242, 0.3);
       }
 
       .social-link.facebook:hover {
-        background: #0a66ff;
+        background: #1877f2;
+        border-color: #1877f2;
       }
 
       .footer-divider {
-        border-top: 1px solid #334155;
+        border-top: 1px solid rgba(8, 145, 178, 0.3);
         padding-top: 1.5rem;
         margin-top: 2rem;
       }
@@ -627,36 +877,66 @@
         flex-wrap: wrap;
         gap: 1.5rem;
         font-size: 0.9rem;
-        color: #94a3b8;
+        color: #7dd3fc;
       }
 
       .footer-bottom a {
-        color: #cbd5e1;
+        color: #bae6fd;
+        transition: color 0.3s ease;
+      }
+
+      .footer-bottom a:hover {
+        color: #7dd3fc;
       }
 
       .company-info {
         font-size: 0.85rem;
-        color: #94a3b8;
+        color: #7dd3fc;
         line-height: 1.6;
+      }
+
+      .company-info strong {
+        color: #bae6fd;
       }
 
       .trustpilot-link {
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
-        color: #cbd5e1;
+        color: #bae6fd;
         text-decoration: none;
         font-size: 0.95rem;
-        transition: color 0.3s ease;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        background: rgba(8, 145, 178, 0.15);
+        border: 1px solid rgba(8, 145, 178, 0.25);
       }
 
       .trustpilot-link:hover {
-        color: #f1f5f9;
+        color: #ffffff;
+        background: rgba(8, 145, 178, 0.25);
+        border-color: rgba(8, 145, 178, 0.4);
+        transform: translateY(-2px);
+      }
+
+      .trustpilot-link i {
+        color: #fbbf24;
       }
 
       @media (max-width: 768px) {
+        footer {
+          padding: 2.5rem 0 1.5rem;
+          margin-top: 3rem;
+        }
+
+        .footer-container {
+          padding: 0 1.25rem;
+        }
+
         .footer-content {
           grid-template-columns: 1fr;
+          gap: 2rem;
         }
 
         .footer-bottom {
@@ -679,7 +959,9 @@
             />
             <span class="logo-text">Versed Global</span>
           </a>
-          <span class="tagline">Salesforce &amp; Fundraising for Impact</span>
+          <span class="tagline"
+            >Salesforce CRM, Web Design &amp; Fundraising</span
+          >
         </div>
 
         <button
@@ -690,13 +972,15 @@
           ☰
         </button>
 
-        <nav class="main-nav">
+        <nav class="main-nav" aria-label="Primary navigation">
           <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="services.html">Salesforce</a>
+            <a href="website.html">Web Design</a>
             <a href="fundraising.html">Fundraising</a>
             <a href="training.html">Training</a>
             <a href="clients.html">Clients</a>
+            <a href="news.html">News</a>
             <a href="about.html" class="active">About</a>
             <a href="contact.html" class="nav-cta">Contact</a>
           </div>
@@ -711,22 +995,32 @@
           <h1 class="section-title">About Versed Global</h1>
           <p class="section-intro">
             Versed Global is a specialist consultancy that designs, implements
-            and supports Salesforce-based CRM systems and delivers targeted
-            trust and foundation fundraising for charities, corporates and
-            public-sector organisations.
+            and supports Salesforce-based CRM systems, delivers targeted trust
+            and foundation fundraising, and builds strategic websites that
+            enhance visibility and drive organisational growth for charities,
+            corporates and public-sector organisations.
           </p>
 
           <div class="highlight">
             <p>
               <strong>Versed Global Ltd</strong> was founded to close a gap many
-              organisations experience: the disconnect between technical systems
-              and the income strategies those systems are meant to support.
+              organisations experience: the disconnect between technical
+              systems, digital presence, and the strategic goals they're meant
+              to support.
             </p>
             <p>
               This consultancy brings together deep experience in Salesforce CRM
-              architecture and hands-on fundraising, so that clients receive
-              practical solutions built for real-world use – not theoretical
-              frameworks or generic implementations.
+              architecture, professional web design, and hands-on fundraising,
+              ensuring that clients receive practical, integrated solutions
+              built for real-world use – not theoretical frameworks or generic
+              implementations.
+            </p>
+            <p>
+              Whether it's a CRM system that genuinely supports your team's
+              workflow, a website that communicates your impact and converts
+              visitors into supporters, or a fundraising strategy grounded in
+              data and best practice, Versed Global delivers solutions that work
+              together strategically to support your mission.
             </p>
           </div>
         </div>
@@ -752,15 +1046,24 @@
                 degrades. Staff stop using the system.
               </p>
               <p>
-                At the same time, fundraising teams frequently operate without
-                the systems infrastructure needed to manage complex pipelines,
-                steward relationships properly or demonstrate impact to funders.
+                Similarly, many organisations have websites that fail to
+                communicate their value clearly, convert visitors effectively,
+                or adapt to how stakeholders engage digitally. An ineffective
+                online presence means missed opportunities for visibility,
+                engagement and income generation.
               </p>
               <p>
-                Versed Global was created to address both problems together:
-                building CRM systems that genuinely support fundraising, and
-                delivering fundraising that is grounded in data, governance and
-                sustainable practice.
+                Meanwhile, fundraising teams frequently operate without the
+                systems infrastructure or strategic digital presence needed to
+                manage complex pipelines, steward relationships properly, or
+                demonstrate impact to funders and supporters.
+              </p>
+              <p>
+                Versed Global was created to address these problems together:
+                building CRM systems that genuinely support fundraising,
+                designing websites that strategically enhance visibility and
+                drive growth, and delivering fundraising that is grounded in
+                data, governance and sustainable practice.
               </p>
             </div>
           </div>
@@ -772,34 +1075,47 @@
         <div class="container">
           <h2 class="section-title">What we do</h2>
           <p class="section-intro">
-            Versed Global offers two interconnected service areas, designed to
+            Versed Global offers three interconnected service areas, designed to
             work together or independently depending on your organisation's
-            needs.
+            needs and strategic priorities.
           </p>
-          <div class="three-grid">
+          <div class="four-grid">
             <div class="card">
               <h3>Salesforce CRM</h3>
               <p>
                 Design, implementation, optimisation and ongoing support for
                 Salesforce-based systems – configured specifically for
                 charities, social enterprises, CSR teams and public-sector
-                programmes.
+                programmes. From data architecture to custom workflows and
+                reporting dashboards.
               </p>
             </div>
             <div class="card">
-              <h3>Trust &amp; foundation fundraising</h3>
+              <h3>Professional Web Design</h3>
+              <p>
+                Strategic website design and development that enhances your
+                digital visibility, communicates your impact effectively, and
+                converts visitors into supporters, donors or customers. Built
+                with responsive design, accessibility, SEO best practices and
+                clear calls to action.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Trust &amp; Foundation Fundraising</h3>
               <p>
                 Targeted support for trust, foundation and statutory fundraising
                 – from strategy development and prospect research through to
-                grant writing and funder stewardship.
+                grant writing, application management and funder stewardship.
+                Grounded in data and aligned with your organisational capacity.
               </p>
             </div>
             <div class="card">
-              <h3>Integrated solutions</h3>
+              <h3>Integrated Solutions</h3>
               <p>
-                Where fundraising and systems need to work as one – aligning
-                your Salesforce configuration with your income strategy so that
-                data, reporting and workflows support real fundraising goals.
+                Where systems, digital presence and fundraising need to work as
+                one – aligning your Salesforce configuration, website strategy
+                and income generation so that data, reporting, communication and
+                workflows support your real organisational goals.
               </p>
             </div>
           </div>
@@ -812,7 +1128,9 @@
           <h2 class="section-title">Our values</h2>
           <p class="section-intro">
             Versed Global operates according to a set of principles that shape
-            how work is delivered and how client relationships are managed.
+            how work is delivered, how client relationships are managed, and how
+            every project is approached from initial scoping through to
+            completion.
           </p>
           <div class="values-grid">
             <div class="value">
@@ -820,7 +1138,8 @@
               <p>
                 Honest advice, even when it's not what you want to hear.
                 Transparency on what is achievable, at what cost and in what
-                timeframe informs how every engagement is delivered.
+                timeframe informs how every engagement is scoped, priced and
+                delivered. No overselling, no hidden costs.
               </p>
             </div>
 
@@ -829,16 +1148,18 @@
               <p>
                 A commitment to supporting organisations working with
                 underserved communities and addressing systemic barriers is
-                built into our practice.
+                built into our practice. Accessibility, inclusive design and
+                equitable service delivery inform everything we build.
               </p>
             </div>
 
             <div class="value">
               <h3>Excellence</h3>
               <p>
-                High standards in solution design, data quality, writing and
-                delivery mean careful, sustainable solutions rather than quick
-                fixes.
+                High standards in solution design, code quality, data
+                governance, writing and delivery mean careful, sustainable
+                solutions rather than quick fixes. Every system, website and
+                strategy is built to last.
               </p>
             </div>
 
@@ -846,15 +1167,29 @@
               <h3>Collaboration</h3>
               <p>
                 Working alongside client teams, transferring skills and building
-                internal capacity instead of creating dependency.
+                internal capacity instead of creating dependency. Your team
+                should be able to maintain and develop solutions long after the
+                engagement ends.
               </p>
             </div>
 
             <div class="value">
               <h3>Learning</h3>
               <p>
-                Continuous learning in technology, fundraising practice and
-                policy ensures clients benefit from current best practice.
+                Continuous learning in technology, fundraising practice, digital
+                strategy and policy ensures clients benefit from current best
+                practice. The sector evolves rapidly – we stay current so you
+                don't have to.
+              </p>
+            </div>
+
+            <div class="value">
+              <h3>Impact</h3>
+              <p>
+                Every project is measured not just by technical delivery but by
+                real organisational outcomes: increased efficiency, improved
+                fundraising results, enhanced visibility, stronger stakeholder
+                engagement and measurable return on investment.
               </p>
             </div>
           </div>
@@ -867,7 +1202,8 @@
           <h2 class="section-title">Experience in numbers</h2>
           <p class="section-intro">
             Versed Global brings together years of hands-on experience in
-            Salesforce and fundraising across multiple sectors.
+            Salesforce, web design, and fundraising across multiple sectors and
+            organisational contexts.
           </p>
           <div class="stats-section">
             <div class="stats-grid">
@@ -877,24 +1213,26 @@
                 </div>
                 <div class="stat-label">Organisations Supported</div>
                 <div class="stat-description">
-                  Charities, corporates & public sector
+                  Charities, corporates &amp; public sector
                 </div>
               </div>
               <div class="stat-item">
                 <div class="stat-number">
-                  <span class="counter" data-target="9">0</span>+
+                  <span class="counter" data-target="12">0</span>+
                 </div>
                 <div class="stat-label">Projects Delivered</div>
                 <div class="stat-description">
-                  CRM implementations & fundraising
+                  CRM, websites &amp; fundraising
                 </div>
               </div>
               <div class="stat-item">
                 <div class="stat-number">
-                  £<span class="counter" data-target="1">0</span>M
+                  £<span class="counter" data-target="1">0</span>M+
                 </div>
                 <div class="stat-label">Funding Supported</div>
-                <div class="stat-description">Aided by improved systems</div>
+                <div class="stat-description">
+                  Through improved systems &amp; strategies
+                </div>
               </div>
               <div class="stat-item">
                 <div class="stat-number">
@@ -916,13 +1254,13 @@
           </h2>
           <p
             class="section-intro"
-            style="margin: 0 auto 2rem; max-width: 650px"
+            style="margin: 0 auto 2rem; max-width: 700px"
           >
             Versed Global Ltd is a UK‑registered company (no. 16933204), now
             operational as a specialist consultancy supporting mission‑driven,
-            corporate and public‑sector organisations with Salesforce and
-            fundraising. Share your plans and explore how Versed Global can
-            help.
+            corporate and public‑sector organisations with Salesforce, web
+            design and fundraising. Share your plans and explore how integrated
+            solutions can support your strategic goals.
           </p>
           <div
             style="
@@ -934,7 +1272,7 @@
           >
             <a href="contact.html" class="btn btn-primary">Get in touch</a>
             <a href="services.html" class="btn btn-secondary"
-              >View Salesforce services</a
+              >View our services</a
             >
           </div>
         </div>
@@ -952,8 +1290,9 @@
               <span>Versed Global</span>
             </div>
             <p style="margin-bottom: 1.5rem">
-              Salesforce CRM implementation and digital governance solutions for
-              charities, corporates and public-sector organisations.
+              Salesforce CRM implementation, trust and foundation fundraising,
+              digital governance and professional website design for charities,
+              corporates and public-sector organisations.
             </p>
             <div class="social-links">
               <a
@@ -991,16 +1330,16 @@
             <h4>Contact</h4>
             <div class="footer-contact">
               <div>
-                <strong style="color: #f1f5f9">Phone</strong>
+                <strong style="color: #f0f9ff">Phone</strong>
                 <p style="margin: 0.5rem 0 0">
                   <a href="tel:+447554623171">07554 623171</a>
                 </p>
               </div>
               <div>
-                <strong style="color: #f1f5f9">Email</strong>
+                <strong style="color: #f0f9ff">Email</strong>
                 <p style="margin: 0.5rem 0 0">
                   <a href="mailto:info@versedglobal.com">
-                    [info@versedglobal.com](mailto:info@versedglobal.com)
+                    info@versedglobal.com
                   </a>
                 </p>
               </div>
@@ -1043,7 +1382,9 @@
               <a href="services.html">Salesforce Services</a>
               <a href="fundraising.html">Fundraising Support</a>
               <a href="training.html">Training &amp; Support</a>
+              <a href="website.html">Website Design</a>
               <a href="about.html">About Us</a>
+              <a href="contact.html">Contact</a>
             </div>
           </div>
         </div>
@@ -1064,9 +1405,11 @@
       </div>
     </footer>
 
+    <!-- Main script -->
     <script src="script.js"></script>
+
     <script>
-      // Set current year
+      // Set current year in footer
       document.getElementById("year").textContent = new Date().getFullYear();
 
       // Mobile menu toggle
@@ -1094,28 +1437,6 @@
         }
       });
 
-      // Update active nav link based on current page
-      function updateActiveNav() {
-        const currentPage = window.location.pathname;
-        const navItems = document.querySelectorAll(".nav-links a");
-
-        navItems.forEach((link) => {
-          link.classList.remove("active");
-          if (currentPage === "/" || currentPage === "/index.html") {
-            if (link.getAttribute("href") === "index.html") {
-              link.classList.add("active");
-            }
-          } else {
-            if (link.getAttribute("href") === currentPage.split("/").pop()) {
-              link.classList.add("active");
-            }
-          }
-        });
-      }
-
-      // Run on page load
-      updateActiveNav();
-
       // Counter animation on scroll
       const counters = document.querySelectorAll(".counter");
       let isAnimated = false;
@@ -1123,8 +1444,8 @@
       function animateCounters() {
         counters.forEach((counter) => {
           const target = parseInt(counter.getAttribute("data-target"));
-          const duration = 2000; // 2 seconds animation
-          const increment = target / (duration / 30); // 30ms updates
+          const duration = 2000;
+          const increment = target / (duration / 30);
 
           let current = 0;
           const updateCounter = () => {
