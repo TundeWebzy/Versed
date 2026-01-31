@@ -5,6 +5,7 @@
    Full Responsive Support
    Premium Performance Optimized
    Advanced Form Validation
+   FIXED: Mobile Navigation Conflict Resolution
    =============================== */
 
 // ---------- 0. UTILITIES ----------
@@ -162,7 +163,7 @@ class PremiumFormValidator {
       phone: (value) =>
         /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(value),
       url: (value) =>
-        /^(https?:\/\/)?([\ da-z\.-]+)\.([a-z\.]{2,6})([\/ \w \.-]*)*\/?$/.test(
+        /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})(\/[\w \.-]*)*\/?$/.test(
           value,
         ),
       text: (value) => value.trim().length >= 2,
@@ -690,12 +691,20 @@ class NotificationCenter {
 // Initialize notification center
 const notifications = new NotificationCenter();
 
-// ---------- 1. MOBILE NAVIGATION WITH HAMBURGER MENU (ENHANCED FOR TOUCH) ----------
+// ========== MOBILE NAVIGATION WITH HAMBURGER MENU (ENHANCED & FIXED) ==========
+// CRITICAL: This function is DISABLED on homepage to prevent conflict with inline script
 function initMobileNav() {
+  // Skip initialization if the inline script has already set up mobile nav
+  // Check if we're on the home page and inline script is running
+  if (window.disableScriptJsMobileNav === true) {
+    console.log("⏭️  Mobile nav skipped - inline script is handling it");
+    return;
+  }
+
   const mobileMenuToggle = qs(".mobile-menu") || qs("#mobileMenuToggle");
   const navLinks = qs(".nav-links") || qs("#navLinks");
 
-  console.log("🔍 Mobile Nav Init:", {
+  console.log("🔍 Mobile Nav Init (script.js):", {
     toggle: mobileMenuToggle ? "Found ✓" : "Not Found ✗",
     navLinks: navLinks ? "Found ✓" : "Not Found ✗",
     screenWidth: window.innerWidth,
@@ -706,38 +715,38 @@ function initMobileNav() {
     return;
   }
 
+  // Check if already initialized
+  if (navLinks.dataset.initialized === "true") {
+    console.log("⏭️  Mobile nav already initialized, skipping");
+    return;
+  }
+
+  // Mark as initialized
+  navLinks.dataset.initialized = "true";
+
+  let isMenuOpen = false;
+
   const closeNav = () => {
-    console.log("📴 Closing navigation");
-    navLinks.classList.remove("active");
-    navLinks.classList.remove("open");
-    mobileMenuToggle.classList.remove("active");
-    mobileMenuToggle.classList.remove("open");
+    console.log("📴 Closing navigation (script.js)");
+    navLinks.classList.remove("active", "open");
+    mobileMenuToggle.classList.remove("active", "open");
     document.body.classList.remove("no-scroll");
     mobileMenuToggle.setAttribute("aria-expanded", "false");
+    isMenuOpen = false;
   };
 
   const openNav = () => {
-    console.log("📂 Opening navigation");
-    navLinks.classList.add("active");
-    navLinks.classList.add("open");
-    mobileMenuToggle.classList.add("active");
-    mobileMenuToggle.classList.add("open");
+    console.log("📂 Opening navigation (script.js)");
+    navLinks.classList.add("active", "open");
+    mobileMenuToggle.classList.add("active", "open");
     document.body.classList.add("no-scroll");
     mobileMenuToggle.setAttribute("aria-expanded", "true");
+    isMenuOpen = true;
   };
 
   const toggleNav = () => {
-    const isOpen =
-      navLinks.classList.contains("active") ||
-      navLinks.classList.contains("open");
-
-    console.log("🔄 Toggle Nav - Current State:", isOpen ? "OPEN" : "CLOSED");
-
-    if (isOpen) {
-      closeNav();
-    } else {
-      openNav();
-    }
+    console.log("🔄 Toggle Nav", isMenuOpen ? "OPEN" : "CLOSED");
+    isMenuOpen ? closeNav() : openNav();
   };
 
   // Set initial ARIA attributes
@@ -747,53 +756,24 @@ function initMobileNav() {
   if (!navLinks.id) navLinks.id = "primary-navigation";
   navLinks.setAttribute("role", "navigation");
 
-  // CRITICAL: Enhanced event handling for mobile devices
-  // Handle both touch and click events
-  let touchHandled = false;
-
-  // Touch events (for mobile)
-  mobileMenuToggle.addEventListener(
-    "touchstart",
-    (e) => {
-      console.log("👆 Touch Start Event");
-      e.preventDefault();
-      e.stopPropagation();
-      touchHandled = true;
-      toggleNav();
-    },
-    { passive: false },
-  );
-
-  // Click events (for desktop and fallback)
-  mobileMenuToggle.addEventListener("click", (e) => {
-    console.log("🖱️  Click Event - Touch Handled:", touchHandled);
-
-    // Prevent duplicate firing if touch was already handled
-    if (touchHandled) {
-      touchHandled = false;
-      return;
-    }
-
+  // Single unified event handler for toggle
+  const handleToggle = (e) => {
     e.preventDefault();
     e.stopPropagation();
     toggleNav();
-  });
+  };
 
-  // Reset touch flag after a short delay
-  mobileMenuToggle.addEventListener("touchend", () => {
-    setTimeout(() => {
-      touchHandled = false;
-    }, 300);
+  // Touch and click events
+  mobileMenuToggle.addEventListener("touchstart", handleToggle, {
+    passive: false,
   });
+  mobileMenuToggle.addEventListener("click", handleToggle);
 
   // Close menu when clicking navigation links
   qsa(".nav-links a").forEach((link) => {
     link.addEventListener("click", () => {
-      console.log("📎 Nav link clicked");
-      if (
-        navLinks.classList.contains("active") ||
-        navLinks.classList.contains("open")
-      ) {
+      console.log("📎 Nav link clicked (script.js)");
+      if (isMenuOpen) {
         setTimeout(closeNav, 100);
       }
     });
@@ -801,50 +781,39 @@ function initMobileNav() {
 
   // Close menu when clicking outside
   document.addEventListener("click", (e) => {
-    const isMenuOpen =
-      navLinks.classList.contains("active") ||
-      navLinks.classList.contains("open");
     if (!isMenuOpen) return;
 
     const clickedInsideMenu = navLinks.contains(e.target);
     const clickedToggle = mobileMenuToggle.contains(e.target);
 
     if (!clickedInsideMenu && !clickedToggle) {
-      console.log("🚪 Clicked outside - closing menu");
+      console.log("🚪 Clicked outside - closing menu (script.js)");
       closeNav();
     }
   });
 
-  // Close menu on window resize (desktop view)
+  // Close menu on window resize
   window.addEventListener(
     "resize",
     throttle(() => {
-      if (
-        window.innerWidth >= 768 &&
-        (navLinks.classList.contains("active") ||
-          navLinks.classList.contains("open"))
-      ) {
-        console.log("📐 Resized to desktop - closing menu");
+      if (window.innerWidth >= 768 && isMenuOpen) {
+        console.log("📐 Resized to desktop - closing menu (script.js)");
         closeNav();
       }
     }, 150),
   );
 
-  // Handle orientation change
+  // Close menu on orientation change
   window.addEventListener("orientationchange", () => {
     setTimeout(() => {
-      if (
-        window.innerWidth >= 768 &&
-        (navLinks.classList.contains("active") ||
-          navLinks.classList.contains("open"))
-      ) {
-        console.log("🔄 Orientation changed - closing menu");
+      if (window.innerWidth >= 768 && isMenuOpen) {
+        console.log("🔄 Orientation changed - closing menu (script.js)");
         closeNav();
       }
     }, 250);
   });
 
-  console.log("✅ Mobile navigation initialized successfully!");
+  console.log("✅ Mobile navigation initialized successfully (script.js)!");
 }
 
 // ---------- 2. ACTIVE NAVIGATION (URL-BASED) ----------
@@ -1779,7 +1748,7 @@ document.addEventListener("DOMContentLoaded", () => {
   new PremiumModal();
 
   // Core navigation and functionality
-  initMobileNav(); // ← ENHANCED FOR MOBILE
+  initMobileNav(); // ← SKIPS IF INLINE SCRIPT IS ACTIVE
   initSmoothScroll();
   initHeaderEffects();
   initContactForm();
