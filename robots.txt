@@ -1,1 +1,7 @@
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
 Sitemap: https://versedglobal.com/sitemap.xml
