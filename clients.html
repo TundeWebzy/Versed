@@ -866,6 +866,156 @@
           text-align: center;
         }
       }
+
+      /* ============================================================
+         CLIENT LOGIN STYLES
+         ============================================================ */
+
+      .login-wrapper {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      .login-card {
+        position: relative;
+        background: radial-gradient(
+          circle at top left,
+          #e0f2fe,
+          #ecfeff 55%,
+          #f0f9ff
+        );
+        border-radius: 18px;
+        padding: 2.25rem 2rem 2rem;
+        box-shadow: 0 16px 40px rgba(15, 118, 110, 0.18);
+        border: 1px solid rgba(8, 145, 178, 0.25);
+        overflow: hidden;
+      }
+
+      .login-card::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 180px;
+        height: 180px;
+        background: radial-gradient(
+          circle,
+          rgba(45, 212, 191, 0.45) 0%,
+          transparent 70%
+        );
+        opacity: 0.7;
+      }
+
+      .login-card::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        left: -40px;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(
+          circle,
+          rgba(8, 145, 178, 0.25) 0%,
+          transparent 70%
+        );
+        opacity: 0.7;
+      }
+
+      .login-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .login-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #0f766e;
+        font-weight: 700;
+        padding: 0.3rem 0.85rem;
+        border-radius: 999px;
+        background: rgba(34, 211, 238, 0.18);
+        border: 1px solid rgba(8, 145, 178, 0.35);
+        margin-bottom: 0.8rem;
+      }
+
+      .login-form-row {
+        display: grid;
+        grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+        gap: 1.5rem;
+        align-items: flex-end;
+        margin-top: 1.5rem;
+      }
+
+      .login-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #0f172a;
+        font-size: 0.95rem;
+      }
+
+      .login-input {
+        width: 100%;
+        padding: 0.75rem 0.85rem;
+        border-radius: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.9);
+        font-size: 0.98rem;
+        outline: none;
+        transition: all 0.2s ease;
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .login-input:focus {
+        border-color: #0ea5e9;
+        box-shadow:
+          0 0 0 1px rgba(14, 165, 233, 0.45),
+          0 8px 20px rgba(8, 145, 178, 0.25);
+        background: #ffffff;
+      }
+
+      .login-helper {
+        margin-top: 0.9rem;
+        font-size: 0.9rem;
+        color: #0f172a;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .login-helper span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 999px;
+        background: rgba(8, 145, 178, 0.12);
+        color: #0e7490;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .login-error {
+        color: #b91c1c;
+        margin-top: 1rem;
+        min-height: 1.3rem;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        .login-card {
+          padding: 1.8rem 1.5rem 1.7rem;
+        }
+
+        .login-form-row {
+          grid-template-columns: minmax(0, 1fr);
+          align-items: stretch;
+        }
+      }
     </style>
   </head>
   <body>
@@ -911,6 +1061,80 @@
     </header>
 
     <main>
+      <!-- Client Portal Login -->
+      <section class="section">
+        <div class="container">
+          <div class="login-wrapper">
+            <div class="login-card">
+              <div class="login-content">
+                <div class="login-eyebrow">
+                  <i class="fa-solid fa-cloud"></i>
+                  Salesforce client portal
+                </div>
+
+                <h2 class="section-title" style="margin-bottom: 0.6rem">
+                  Client login
+                </h2>
+                <p class="section-intro" style="margin-bottom: 1.2rem">
+                  Existing Salesforce implementation clients can log in here to
+                  view the status of their projects and phases.
+                </p>
+
+                <form action="/portal/login.php" method="post">
+                  <div class="login-form-row">
+                    <div>
+                      <label for="portal-email" class="login-label">
+                        Email address we hold on record
+                      </label>
+                      <input
+                        type="email"
+                        id="portal-email"
+                        name="email"
+                        required
+                        class="login-input"
+                      />
+                    </div>
+                    <div>
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="
+                          width: 100%;
+                          justify-content: center;
+                          height: 48px;
+                        "
+                      >
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        <span>View my Salesforce projects</span>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+
+                <div class="login-helper">
+                  <span>i</span>
+                  <div>
+                    Use the same email address that Versed Global holds for your
+                    organisation’s Salesforce project records.
+                  </div>
+                </div>
+
+                <p class="login-error">
+                  <script>
+                    const params = new URLSearchParams(window.location.search);
+                    if (params.get("login_error") === "1") {
+                      document.write(
+                        "We could not find a client account with that email. Please check and try again or contact info@versedglobal.com.",
+                      );
+                    }
+                  </script>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Intro -->
       <section class="section">
         <div class="container">
@@ -1002,6 +1226,91 @@
                   Led discovery workshops for a public-sector programme team,
                   mapping requirements for a Salesforce-based grants management
                   system aligned with government reporting obligations.
+                </p>
+              </div>
+            </div>
+
+            <div class="case-card">
+              <div class="case-card-header">
+                <h3>Website and CRM alignment</h3>
+                <span class="case-tag">Web &amp; Salesforce</span>
+              </div>
+              <div class="case-card-body">
+                <p>
+                  Developed a new website and integrated enquiry forms directly
+                  with Salesforce, ensuring that every lead is captured and
+                  tracked from first contact through to programme engagement.
+                </p>
+              </div>
+            </div>
+
+            <div class="case-card">
+              <div class="case-card-header">
+                <h3>Corporate volunteering pipeline</h3>
+                <span class="case-tag">Salesforce</span>
+              </div>
+              <div class="case-card-body">
+                <p>
+                  Implemented a volunteering and skills-based CSR pipeline for a
+                  corporate partner, enabling better matching of employee skills
+                  with charity needs and clearer reporting on impact.
+                </p>
+              </div>
+            </div>
+
+            <div class="case-card">
+              <div class="case-card-header">
+                <h3>Donor stewardship workflow</h3>
+                <span class="case-tag">Salesforce</span>
+              </div>
+              <div class="case-card-body">
+                <p>
+                  Created an automated stewardship journey in Salesforce for
+                  individual donors, including thank-you emails, impact updates
+                  and prompts for staff to follow up on high-value supporters.
+                </p>
+              </div>
+            </div>
+
+            <div class="case-card">
+              <div class="case-card-header">
+                <h3>Multi-country programme tracking</h3>
+                <span class="case-tag">Salesforce</span>
+              </div>
+              <div class="case-card-body">
+                <p>
+                  Supported an international NGO to design a Salesforce data
+                  model capturing activities, outcomes and learning across
+                  multiple countries and programme streams.
+                </p>
+              </div>
+            </div>
+
+            <div class="case-card">
+              <div class="case-card-header">
+                <h3>Fundraising operations review</h3>
+                <span class="case-tag">Fundraising</span>
+              </div>
+              <div class="case-card-body">
+                <p>
+                  Conducted a review of fundraising operations for a national
+                  charity, identifying gaps in pipeline management, reporting
+                  and integration between digital channels and CRM.
+                </p>
+              </div>
+            </div>
+
+            <div class="case-card">
+              <div class="case-card-header">
+                <h3>Small charity CRM starter</h3>
+                <span class="case-tag">Salesforce</span>
+              </div>
+              <div class="case-card-body">
+                <p>
+                  Implemented a lightweight Salesforce setup for a small charity
+                  moving from spreadsheets, focusing on contact management,
+                  basic donation tracking and simple reporting that staff could
+                  maintain.
                 </p>
               </div>
             </div>
