@@ -6,6 +6,9 @@
    Premium Performance Optimized
    Advanced Form Validation
    FIXED: Mobile Navigation Conflict Resolution
+   FIXED: Service Card Read More Buttons (inline + delegated)
+   FIXED: Double-tap issue on touch devices
+   FIXED: Viewport units on mobile browsers
    =============================== */
 
 // ---------- 0. UTILITIES ----------
@@ -65,7 +68,6 @@ function initDeviceDetection() {
     const height = window.innerHeight;
     const dpr = window.devicePixelRatio || 1;
 
-    // Advanced device type detection
     let deviceType = "desktop";
     let deviceCategory = "desktop";
 
@@ -86,17 +88,14 @@ function initDeviceDetection() {
       deviceCategory = "desktop";
     }
 
-    // Orientation detection
     const orientation = width > height ? "landscape" : "portrait";
 
-    // Update document
     document.documentElement.setAttribute("data-device", deviceType);
     document.documentElement.setAttribute("data-category", deviceCategory);
     document.documentElement.setAttribute("data-orientation", orientation);
     document.documentElement.setAttribute("data-viewport-width", width);
     document.documentElement.setAttribute("data-dpr", dpr);
 
-    // Body classes for responsive styling
     document.body.classList.remove(
       "mobile-sm",
       "mobile-lg",
@@ -108,15 +107,14 @@ function initDeviceDetection() {
     );
     document.body.classList.add(deviceType, orientation);
 
-    // Check for notch/safe area (iPhone X+, modern Android)
     if (
+      CSS.supports &&
       CSS.supports("padding-top", "env(safe-area-inset-top)") &&
       CSS.supports("padding-left", "env(safe-area-inset-left)")
     ) {
       document.body.classList.add("has-notch");
     }
 
-    // Touch capability detection
     const isTouch =
       "ontouchstart" in window ||
       navigator.maxTouchPoints > 0 ||
@@ -125,7 +123,6 @@ function initDeviceDetection() {
     document.body.classList.toggle("touch-device", isTouch);
     document.body.classList.toggle("no-touch", !isTouch);
 
-    // Emit custom event for advanced tracking
     window.dispatchEvent(
       new CustomEvent("deviceDetected", {
         detail: {
@@ -194,9 +191,7 @@ class PremiumFormValidator {
   }
 
   init() {
-    // Real-time validation
     this.fields.forEach((field) => {
-      // Input validation
       field.addEventListener(
         "input",
         debounce(() => {
@@ -205,19 +200,16 @@ class PremiumFormValidator {
         }, 300),
       );
 
-      // Blur validation
       field.addEventListener("blur", () => {
         this.validateField(field);
         this.updateSubmitButton();
       });
 
-      // Focus styling
       field.addEventListener("focus", () => {
         this.clearFieldError(field);
       });
     });
 
-    // Form submission
     this.form.addEventListener("submit", (e) => {
       if (!this.validateForm()) {
         e.preventDefault();
@@ -227,7 +219,6 @@ class PremiumFormValidator {
       }
     });
 
-    // Initial button state
     this.updateSubmitButton();
   }
 
@@ -236,7 +227,6 @@ class PremiumFormValidator {
     const value = field.value;
     const isRequired = field.hasAttribute("required");
 
-    // Skip validation for optional empty fields
     if (!isRequired && value.trim() === "") {
       this.clearFieldError(field);
       return true;
@@ -245,38 +235,25 @@ class PremiumFormValidator {
     let isValid = true;
     let errorMessage = "";
 
-    // Email validation
     if (type === "email") {
       isValid = this.validators.email(value);
       errorMessage = isValid ? "" : "Please enter a valid email address";
-    }
-    // Phone validation
-    else if (type === "tel") {
+    } else if (type === "tel") {
       isValid = this.validators.phone(value);
       errorMessage = isValid ? "" : "Please enter a valid phone number";
-    }
-    // URL validation
-    else if (type === "url") {
+    } else if (type === "url") {
       isValid = this.validators.url(value);
       errorMessage = isValid ? "" : "Please enter a valid URL";
-    }
-    // Textarea validation
-    else if (type === "textarea") {
+    } else if (type === "textarea") {
       isValid = this.validators.textarea(value);
       errorMessage = isValid ? "" : "Please enter at least 10 characters";
-    }
-    // Select validation
-    else if (type === "select") {
+    } else if (type === "select") {
       isValid = this.validators.select(value);
       errorMessage = isValid ? "" : "Please select an option";
-    }
-    // Text validation
-    else if (type === "text" && isRequired) {
+    } else if (type === "text" && isRequired) {
       isValid = this.validators.text(value);
       errorMessage = isValid ? "" : "Please enter at least 2 characters";
-    }
-    // Required field check
-    else if (isRequired && value.trim() === "") {
+    } else if (isRequired && value.trim() === "") {
       isValid = false;
       errorMessage = "This field is required";
     }
@@ -311,11 +288,9 @@ class PremiumFormValidator {
     field.classList.remove("field-success");
     field.setAttribute("aria-invalid", "true");
 
-    // Remove existing error
     const existingError = qs(".error-message", wrapper);
     if (existingError) existingError.remove();
 
-    // Add error message
     if (message) {
       const errorDiv = document.createElement("div");
       errorDiv.className = "error-message";
@@ -323,7 +298,6 @@ class PremiumFormValidator {
       errorDiv.setAttribute("role", "alert");
       wrapper.appendChild(errorDiv);
 
-      // Animate in
       requestAnimationFrame(() => {
         errorDiv.style.opacity = "1";
         errorDiv.style.transform = "translateY(0)";
@@ -394,7 +368,6 @@ class PremiumFormValidator {
       <span>Sending...</span>
     `;
 
-    // Restore after 3 seconds (in case form doesn't redirect)
     setTimeout(() => {
       this.submitBtn.disabled = false;
       this.submitBtn.classList.remove("loading");
@@ -415,10 +388,8 @@ function initPremiumTooltips() {
       const text = el.getAttribute("data-tooltip");
       if (!text) return;
 
-      // Remove existing tooltip
       if (tooltipInstance) tooltipInstance.remove();
 
-      // Create tooltip
       tooltipInstance = document.createElement("div");
       tooltipInstance.className = "premium-tooltip";
       tooltipInstance.textContent = text;
@@ -426,14 +397,12 @@ function initPremiumTooltips() {
 
       document.body.appendChild(tooltipInstance);
 
-      // Position tooltip
       const rect = el.getBoundingClientRect();
       const tooltipRect = tooltipInstance.getBoundingClientRect();
 
       let top = rect.top - tooltipRect.height - 10;
       let left = rect.left + rect.width / 2 - tooltipRect.width / 2;
 
-      // Boundary checking
       if (top < 10) {
         top = rect.bottom + 10;
         tooltipInstance.classList.add("bottom");
@@ -447,7 +416,6 @@ function initPremiumTooltips() {
       tooltipInstance.style.top = `${top}px`;
       tooltipInstance.style.left = `${left}px`;
 
-      // Animate in
       requestAnimationFrame(() => {
         tooltipInstance.classList.add("visible");
       });
@@ -467,7 +435,6 @@ function initPremiumTooltips() {
 
 // ========== PREMIUM LOADING ANIMATION ==========
 function initPremiumLoader() {
-  // Create loader
   const loader = document.createElement("div");
   loader.className = "premium-loader";
   loader.innerHTML = `
@@ -494,7 +461,6 @@ function initPremiumLoader() {
 
   document.body.appendChild(loader);
 
-  // Hide loader when page is fully loaded
   window.addEventListener("load", () => {
     setTimeout(() => {
       loader.style.opacity = "0";
@@ -511,7 +477,6 @@ class PremiumModal {
   }
 
   init() {
-    // Listen for modal triggers
     qsa("[data-modal]").forEach((trigger) => {
       trigger.addEventListener("click", (e) => {
         e.preventDefault();
@@ -520,7 +485,6 @@ class PremiumModal {
       });
     });
 
-    // Close on escape
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && this.activeModal) {
         this.close();
@@ -532,7 +496,6 @@ class PremiumModal {
     const modalContent = qs(`#${modalId}`);
     if (!modalContent) return;
 
-    // Create modal overlay
     const overlay = document.createElement("div");
     overlay.className = "premium-modal-overlay";
 
@@ -543,7 +506,7 @@ class PremiumModal {
 
     const closeBtn = document.createElement("button");
     closeBtn.className = "modal-close";
-    closeBtn.innerHTML = "×";
+    closeBtn.innerHTML = "&times;";
     closeBtn.setAttribute("aria-label", "Close modal");
     closeBtn.addEventListener("click", () => this.close());
 
@@ -559,19 +522,16 @@ class PremiumModal {
 
     this.activeModal = overlay;
 
-    // Animate in
     requestAnimationFrame(() => {
       overlay.classList.add("visible");
     });
 
-    // Click outside to close
     overlay.addEventListener("click", (e) => {
       if (e.target === overlay) {
         this.close();
       }
     });
 
-    // Focus trap
     const focusableElements = qsa(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
       modalWrapper,
@@ -628,16 +588,16 @@ class NotificationCenter {
     notification.setAttribute("role", "alert");
 
     const icons = {
-      success: "✓",
-      error: "✕",
-      warning: "⚠",
-      info: "ℹ",
+      success: "&#10003;",
+      error: "&#10005;",
+      warning: "&#9888;",
+      info: "&#8505;",
     };
 
     notification.innerHTML = `
       <div class="notification-icon">${icons[type] || icons.info}</div>
       <div class="notification-content">${message}</div>
-      <button class="notification-close" aria-label="Close">×</button>
+      <button class="notification-close" aria-label="Close">&times;</button>
     `;
 
     const closeBtn = qs(".notification-close", notification);
@@ -646,12 +606,10 @@ class NotificationCenter {
     this.container.appendChild(notification);
     this.activeNotifications.add(notification);
 
-    // Animate in
     requestAnimationFrame(() => {
       notification.classList.add("visible");
     });
 
-    // Auto dismiss
     if (duration > 0) {
       setTimeout(() => this.dismiss(notification), duration);
     }
@@ -692,60 +650,44 @@ class NotificationCenter {
 const notifications = new NotificationCenter();
 
 // ========== MOBILE NAVIGATION WITH HAMBURGER MENU (ENHANCED & FIXED) ==========
-// CRITICAL: This function is DISABLED on homepage to prevent conflict with inline script
+// CRITICAL: This function is DISABLED on pages where inline script handles mobile nav
 function initMobileNav() {
-  // Skip initialization if the inline script has already set up mobile nav
-  // Check if we're on the home page and inline script is running
+  // Skip if inline script has already set up mobile nav
   if (window.disableScriptJsMobileNav === true) {
-    console.log("⏭️  Mobile nav skipped - inline script is handling it");
     return;
   }
 
   const mobileMenuToggle = qs(".mobile-menu") || qs("#mobileMenuToggle");
   const navLinks = qs(".nav-links") || qs("#navLinks");
 
-  console.log("🔍 Mobile Nav Init (script.js):", {
-    toggle: mobileMenuToggle ? "Found ✓" : "Not Found ✗",
-    navLinks: navLinks ? "Found ✓" : "Not Found ✗",
-    screenWidth: window.innerWidth,
-  });
+  if (!mobileMenuToggle || !navLinks) return;
 
-  if (!mobileMenuToggle || !navLinks) {
-    console.error("❌ Mobile menu elements not found!");
-    return;
-  }
-
-  // Check if already initialized
-  if (navLinks.dataset.initialized === "true") {
-    console.log("⏭️  Mobile nav already initialized, skipping");
-    return;
-  }
-
-  // Mark as initialized
-  navLinks.dataset.initialized = "true";
+  // Check if already initialized (prevents double-binding)
+  if (navLinks.dataset.scriptjsInit === "true") return;
+  navLinks.dataset.scriptjsInit = "true";
 
   let isMenuOpen = false;
+  let touchHandled = false;
 
   const closeNav = () => {
-    console.log("📴 Closing navigation (script.js)");
     navLinks.classList.remove("active", "open");
     mobileMenuToggle.classList.remove("active", "open");
     document.body.classList.remove("no-scroll");
     mobileMenuToggle.setAttribute("aria-expanded", "false");
+    mobileMenuToggle.innerHTML = "&#9776;";
     isMenuOpen = false;
   };
 
   const openNav = () => {
-    console.log("📂 Opening navigation (script.js)");
     navLinks.classList.add("active", "open");
     mobileMenuToggle.classList.add("active", "open");
     document.body.classList.add("no-scroll");
     mobileMenuToggle.setAttribute("aria-expanded", "true");
+    mobileMenuToggle.innerHTML = "&times;";
     isMenuOpen = true;
   };
 
   const toggleNav = () => {
-    console.log("🔄 Toggle Nav", isMenuOpen ? "OPEN" : "CLOSED");
     isMenuOpen ? closeNav() : openNav();
   };
 
@@ -756,23 +698,32 @@ function initMobileNav() {
   if (!navLinks.id) navLinks.id = "primary-navigation";
   navLinks.setAttribute("role", "navigation");
 
-  // Single unified event handler for toggle
-  const handleToggle = (e) => {
+  // Prevent double-fire on touch + click (critical for mobile)
+  mobileMenuToggle.addEventListener(
+    "touchstart",
+    (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      touchHandled = true;
+      toggleNav();
+    },
+    { passive: false },
+  );
+
+  mobileMenuToggle.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
+    // Only handle click if touch didn't already fire
+    if (touchHandled) {
+      touchHandled = false;
+      return;
+    }
     toggleNav();
-  };
-
-  // Touch and click events
-  mobileMenuToggle.addEventListener("touchstart", handleToggle, {
-    passive: false,
   });
-  mobileMenuToggle.addEventListener("click", handleToggle);
 
   // Close menu when clicking navigation links
-  qsa(".nav-links a").forEach((link) => {
+  qsa("a", navLinks).forEach((link) => {
     link.addEventListener("click", () => {
-      console.log("📎 Nav link clicked (script.js)");
       if (isMenuOpen) {
         setTimeout(closeNav, 100);
       }
@@ -787,17 +738,15 @@ function initMobileNav() {
     const clickedToggle = mobileMenuToggle.contains(e.target);
 
     if (!clickedInsideMenu && !clickedToggle) {
-      console.log("🚪 Clicked outside - closing menu (script.js)");
       closeNav();
     }
   });
 
-  // Close menu on window resize
+  // Close menu on window resize to desktop
   window.addEventListener(
     "resize",
     throttle(() => {
       if (window.innerWidth >= 768 && isMenuOpen) {
-        console.log("📐 Resized to desktop - closing menu (script.js)");
         closeNav();
       }
     }, 150),
@@ -807,30 +756,15 @@ function initMobileNav() {
   window.addEventListener("orientationchange", () => {
     setTimeout(() => {
       if (window.innerWidth >= 768 && isMenuOpen) {
-        console.log("🔄 Orientation changed - closing menu (script.js)");
         closeNav();
       }
     }, 250);
   });
-
-  console.log("✅ Mobile navigation initialized successfully (script.js)!");
 }
 
 // ---------- 2. ACTIVE NAVIGATION (URL-BASED) ----------
 function setActiveNavigation() {
   if (typeof window === "undefined") return;
-
-  const navOrder = [
-    "index.html",
-    "services.html",
-    "website.html",
-    "fundraising.html",
-    "training.html",
-    "clients.html",
-    "news.html",
-    "about.html",
-    "contact.html",
-  ];
 
   let path = window.location.pathname.split("/").pop() || "index.html";
   path = path.split("?")[0].split("#")[0];
@@ -933,14 +867,13 @@ function initContactForm() {
   const form = qs(".contact-form form") || qs("form.contact-form");
   if (!form) return;
 
-  // Initialize premium validator
   new PremiumFormValidator(".contact-form form");
 }
 
 // ---------- 6. INTERSECTION OBSERVER ANIMATIONS ----------
 function initRevealAnimations() {
   const elements = qsa(
-    ".card, .value, .section-title, .service-card, .case-card, .news-card, .website-card, .feature-card, .stat-card, .metric-card, .testimonial-card",
+    ".card, .value, .section-title, .service-card, .case-card, .news-card, .website-card, .feature-card, .stat-card, .metric-card, .testimonial-card, .sector-card, .process-step, .data-item, .portal-img-card, .portal-mockup",
   );
   if (!elements.length) return;
 
@@ -958,7 +891,7 @@ function initRevealAnimations() {
         }
       });
     },
-    { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
+    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
   );
 
   elements.forEach((el) => io.observe(el));
@@ -1044,20 +977,20 @@ function initPageFade() {
     body.page-loaded { opacity: 1; }
     body.page-exit { opacity: 0; transition: opacity .25s ease-in; }
     .no-scroll { overflow: hidden; position: fixed; width: 100%; }
-    
+
     .animate-fade-in {
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 0.6s ease forwards;
     }
-    
+
     @keyframes fadeInUp {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-    
+
     .header-bar.scrolled {
       box-shadow: 0 4px 30px rgba(8, 145, 178, 0.18);
     }
@@ -1312,6 +1245,23 @@ function initPageFade() {
       letter-spacing: 0.5px;
     }
 
+    /* Service card expanded smooth transition */
+    .service-card-full {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .service-card.expanded .service-card-full {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    .service-card.expanded .service-card-preview {
+      display: none;
+    }
+
     /* Responsive Adjustments */
     @media (max-width: 768px) {
       .notification-container {
@@ -1328,6 +1278,24 @@ function initPageFade() {
       .premium-modal {
         margin: 10px;
         max-height: calc(100vh - 20px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .premium-notification {
+        padding: 12px;
+        gap: 8px;
+        min-width: 0;
+      }
+
+      .notification-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+      }
+
+      .notification-content {
+        font-size: 0.875rem;
       }
     }
   `;
@@ -1363,6 +1331,7 @@ function initEscClose() {
         toggle.classList.remove("active");
         toggle.classList.remove("open");
         toggle.setAttribute("aria-expanded", "false");
+        toggle.innerHTML = "&#9776;";
         toggle.focus();
       }
     }
@@ -1373,19 +1342,37 @@ function initEscClose() {
 function initFocusStyles() {
   const focusStyle = document.createElement("style");
   focusStyle.textContent = `
-    a:focus-visible, 
-    button:focus-visible, 
-    input:focus-visible, 
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
     textarea:focus-visible,
     select:focus-visible {
       outline: 3px solid #0891b2;
       outline-offset: 3px;
       transition: outline .15s ease;
     }
-    
+
     .mobile-menu:focus-visible {
       outline: 2px solid #0891b2;
       outline-offset: 2px;
+    }
+
+    /* Ensure read-more buttons are clearly tappable on touch devices */
+    .touch-device .read-more-btn {
+      min-height: 44px;
+      min-width: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Safe area insets for modern phones */
+    .has-notch footer {
+      padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+    }
+
+    .has-notch .header-bar {
+      padding-top: env(safe-area-inset-top);
     }
   `;
   document.head.appendChild(focusStyle);
@@ -1500,7 +1487,7 @@ function initLazyImages() {
         obs.unobserve(img);
       });
     },
-    { threshold: 0.1, rootMargin: "100px 0px" },
+    { threshold: 0.1, rootMargin: "200px 0px" },
   );
 
   imgs.forEach((img) => io.observe(img));
@@ -1530,6 +1517,7 @@ function initResponsiveHelpers() {
           toggle.classList.remove("active");
           toggle.classList.remove("open");
           toggle.setAttribute("aria-expanded", "false");
+          toggle.innerHTML = "&#9776;";
         }
       }
 
@@ -1556,30 +1544,62 @@ function initViewportHeightFix() {
   });
 }
 
-// ---------- 18. SERVICE CARD READ MORE FUNCTIONALITY ----------
+// ---------- 18. SERVICE CARD READ MORE (DELEGATED + GLOBAL FALLBACK) ----------
+// This uses event delegation on the document so it works regardless of whether
+// buttons use onclick="toggleServiceCard(this)" or are dynamically added.
 function initServiceCards() {
-  const readMoreButtons = qsa(".read-more-btn");
+  // Event delegation: catches ALL .read-more-btn clicks site-wide
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".read-more-btn");
+    if (!btn) return;
 
-  readMoreButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const card = btn.closest(".service-card");
-      if (!card) return;
+    e.preventDefault();
+    e.stopPropagation();
 
-      const isExpanded = card.classList.contains("expanded");
+    const card = btn.closest(".service-card");
+    if (!card) return;
 
-      if (isExpanded) {
-        card.classList.remove("expanded");
-        btn.textContent = "Read more →";
-        btn.setAttribute("aria-expanded", "false");
-      } else {
-        card.classList.add("expanded");
-        btn.textContent = "Read less ←";
-        btn.setAttribute("aria-expanded", "true");
-      }
-    });
+    const isExpanded = card.classList.contains("expanded");
+
+    if (isExpanded) {
+      card.classList.remove("expanded");
+      btn.textContent = "Read More";
+      btn.setAttribute("aria-expanded", "false");
+    } else {
+      card.classList.add("expanded");
+      btn.textContent = "Read Less";
+      btn.setAttribute("aria-expanded", "true");
+    }
+  });
+
+  // Set initial ARIA attributes on all read-more buttons
+  qsa(".read-more-btn").forEach((btn) => {
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("role", "button");
+    // Remove inline onclick to prevent double-firing
+    btn.removeAttribute("onclick");
   });
 }
+
+// GLOBAL FALLBACK: Define toggleServiceCard on window so inline onclick still works
+// if the delegated handler hasn't loaded yet (belt-and-braces approach)
+window.toggleServiceCard = function (button) {
+  if (!button) return;
+  const card = button.closest(".service-card");
+  if (!card) return;
+
+  const isExpanded = card.classList.contains("expanded");
+
+  if (isExpanded) {
+    card.classList.remove("expanded");
+    button.textContent = "Read More";
+    button.setAttribute("aria-expanded", "false");
+  } else {
+    card.classList.add("expanded");
+    button.textContent = "Read Less";
+    button.setAttribute("aria-expanded", "true");
+  }
+};
 
 // ---------- 19. EXPAND/COLLAPSE TOGGLE ----------
 function initExpandToggles() {
@@ -1658,7 +1678,7 @@ function initBackToTop() {
   const existing = qs("#back-to-top");
   const btn = existing || document.createElement("button");
   btn.id = "back-to-top";
-  btn.innerHTML = "↑";
+  btn.innerHTML = "&#8593;";
   btn.setAttribute("aria-label", "Back to top");
   btn.setAttribute("title", "Back to top");
 
@@ -1736,19 +1756,82 @@ function initParallaxEffect() {
   handleScroll();
 }
 
+// ---------- 24. SVG DIAGRAM RESPONSIVE SCALING ----------
+function initSVGResponsive() {
+  const svgContainers = qsa(".data-visual");
+  if (!svgContainers.length) return;
+
+  const scaleSVGs = () => {
+    svgContainers.forEach((container) => {
+      const svg = qs("svg", container);
+      if (!svg) return;
+
+      const width = container.offsetWidth;
+
+      // On very small screens, allow horizontal scroll or scale down
+      if (width < 360) {
+        svg.style.transform = "scale(0.85)";
+        svg.style.transformOrigin = "center center";
+      } else {
+        svg.style.transform = "";
+        svg.style.transformOrigin = "";
+      }
+    });
+  };
+
+  scaleSVGs();
+  window.addEventListener("resize", throttle(scaleSVGs, 200));
+}
+
+// ---------- 25. TOUCH-FRIENDLY CARD INTERACTIONS ----------
+function initTouchCardInteractions() {
+  const isTouch =
+    "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+  if (!isTouch) return;
+
+  // Prevent :hover sticking on touch devices by adding active-touch class
+  qsa(".service-card, .sector-card, .case-card, .card, .portal-img-card").forEach((card) => {
+    card.addEventListener("touchstart", () => {
+      card.classList.add("touch-active");
+    }, { passive: true });
+
+    card.addEventListener("touchend", () => {
+      setTimeout(() => card.classList.remove("touch-active"), 300);
+    }, { passive: true });
+  });
+}
+
+// ---------- 26. PRINT-FRIENDLY PREPARATION ----------
+function initPrintHandler() {
+  window.addEventListener("beforeprint", () => {
+    // Expand all service cards for print
+    qsa(".service-card").forEach((card) => {
+      card.classList.add("expanded");
+    });
+
+    // Show all expand toggles
+    qsa(".expanded").forEach((el) => {
+      el.style.maxHeight = "none";
+    });
+  });
+
+  window.addEventListener("afterprint", () => {
+    qsa(".service-card").forEach((card) => {
+      card.classList.remove("expanded");
+    });
+  });
+}
+
 // ========== INIT ALL ==========
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("🚀 Versed Global Script Loading...");
-  console.log("📱 Screen Width:", window.innerWidth);
-  console.log("🖥️  User Agent:", navigator.userAgent);
-
   // Premium Features
   initDeviceDetection();
   initPremiumTooltips();
   new PremiumModal();
 
   // Core navigation and functionality
-  initMobileNav(); // ← SKIPS IF INLINE SCRIPT IS ACTIVE
+  initMobileNav();
   initSmoothScroll();
   initHeaderEffects();
   initContactForm();
@@ -1775,6 +1858,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initResponsiveHelpers();
   initViewportHeightFix();
 
+  // Responsive helpers
+  initSVGResponsive();
+  initTouchCardInteractions();
+  initPrintHandler();
+
   // Page load effects
   if (!prefersReducedMotion()) {
     initPageFade();
@@ -1791,13 +1879,10 @@ document.addEventListener("DOMContentLoaded", () => {
     notifications.success(
       "Thank you! Your message has been sent successfully. We'll respond within one working day.",
     );
-    // Clean URL
     if (window.history && window.history.replaceState) {
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }
-
-  console.log("✅ All scripts initialized successfully!");
 });
 
 // Backup: Set active navigation on any navigation event
