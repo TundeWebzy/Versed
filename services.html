@@ -744,7 +744,7 @@
           #e0f2fe 100%
         );
         border-radius: 16px;
-        padding: 3rem 2rem;
+        padding: 2rem 1.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -757,6 +757,7 @@
       .data-visual svg {
         max-width: 100%;
         height: auto;
+        display: block;
       }
 
       @media (max-width: 768px) {
@@ -767,7 +768,7 @@
 
         .data-visual {
           min-height: 300px;
-          padding: 2rem;
+          padding: 1.5rem 1rem;
         }
       }
 
@@ -948,6 +949,195 @@
 
         .process-step h3 {
           font-size: 0.95rem;
+        }
+      }
+
+      /* ============================================================
+         CLIENT PORTAL PREVIEW SECTION
+         ============================================================ */
+
+      .portal-preview-section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .portal-preview-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        margin-top: 2.5rem;
+      }
+
+      .portal-preview-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .portal-preview-content h3 {
+        font-size: 1.4rem;
+        color: #0c4a6e;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      .portal-preview-content p {
+        color: #475569;
+        line-height: 1.8;
+        font-size: 0.95rem;
+      }
+
+      .portal-feature-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+      }
+
+      .portal-feature-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        font-size: 0.95rem;
+        color: #334155;
+        line-height: 1.6;
+      }
+
+      .portal-feature-list li i {
+        color: #0891b2;
+        font-size: 1rem;
+        margin-top: 0.2rem;
+        flex-shrink: 0;
+      }
+
+      .portal-preview-visual {
+        position: relative;
+      }
+
+      .portal-mockup {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 16px 48px rgba(14, 116, 144, 0.15);
+        overflow: hidden;
+      }
+
+      .portal-mockup-header {
+        background: linear-gradient(135deg, #0c4a6e 0%, #0891b2 100%);
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .portal-mockup-header i {
+        color: #ffffff;
+        font-size: 1.2rem;
+      }
+
+      .portal-mockup-header span {
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .portal-mockup-body {
+        padding: 1.5rem;
+      }
+
+      .portal-mockup-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #f1f5f9;
+      }
+
+      .portal-mockup-row:last-child {
+        border-bottom: none;
+      }
+
+      .portal-mockup-label {
+        font-size: 0.85rem;
+        color: #64748b;
+        font-weight: 500;
+      }
+
+      .portal-mockup-value {
+        font-size: 0.85rem;
+        color: #0c4a6e;
+        font-weight: 600;
+      }
+
+      .portal-mockup-badge {
+        display: inline-block;
+        padding: 0.15rem 0.6rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .portal-mockup-badge.green {
+        background: #dcfce7;
+        color: #166534;
+      }
+
+      .portal-mockup-badge.amber {
+        background: #fef3c7;
+        color: #92400e;
+      }
+
+      .portal-images-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .portal-img-card {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
+        transition: all 0.3s ease;
+      }
+
+      .portal-img-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(8, 145, 178, 0.15);
+      }
+
+      .portal-img-card img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .portal-img-card .img-caption {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.8rem;
+        color: #475569;
+        font-weight: 500;
+        text-align: center;
+        background: #f8fafc;
+      }
+
+      @media (max-width: 768px) {
+        .portal-preview-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .portal-images-row {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .portal-img-card img {
+          height: 180px;
         }
       }
 
@@ -1329,17 +1519,17 @@
             </div>
 
             <div class="data-visual">
-              <!-- Data Flow SVG Diagram -->
+              <!-- Data Flow SVG Diagram – FIXED: expanded viewBox to prevent overlap -->
               <svg
-                viewBox="0 0 350 300"
+                viewBox="0 0 380 320"
                 xmlns="http://www.w3.org/2000/svg"
                 style="max-width: 100%; height: auto"
               >
                 <text
-                  x="175"
-                  y="25"
+                  x="190"
+                  y="22"
                   text-anchor="middle"
-                  font-size="16"
+                  font-size="15"
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
@@ -1349,8 +1539,8 @@
                 <!-- Source Data Box -->
                 <rect
                   x="20"
-                  y="50"
-                  width="90"
+                  y="45"
+                  width="95"
                   height="60"
                   fill="#ecfeff"
                   stroke="#0891b2"
@@ -1358,29 +1548,29 @@
                   rx="8"
                 />
                 <text
-                  x="65"
-                  y="75"
+                  x="67.5"
+                  y="70"
                   text-anchor="middle"
-                  font-size="12"
+                  font-size="11"
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
                   Legacy Data
                 </text>
                 <text
-                  x="65"
-                  y="92"
+                  x="67.5"
+                  y="85"
                   text-anchor="middle"
-                  font-size="11"
+                  font-size="10"
                   fill="#475569"
                 >
                   Spreadsheets
                 </text>
                 <text
-                  x="65"
-                  y="105"
+                  x="67.5"
+                  y="98"
                   text-anchor="middle"
-                  font-size="11"
+                  font-size="10"
                   fill="#475569"
                 >
                   Old Systems
@@ -1388,17 +1578,17 @@
 
                 <!-- Arrow 1 -->
                 <path
-                  d="M 110 80 L 140 80"
+                  d="M 115 75 L 145 75"
                   stroke="#0891b2"
                   stroke-width="2"
                   fill="none"
                   marker-end="url(#arrowhead)"
                 />
                 <text
-                  x="125"
-                  y="75"
+                  x="130"
+                  y="68"
                   text-anchor="middle"
-                  font-size="10"
+                  font-size="9"
                   fill="#0891b2"
                   font-weight="bold"
                 >
@@ -1407,9 +1597,9 @@
 
                 <!-- Processing Box -->
                 <rect
-                  x="140"
-                  y="50"
-                  width="90"
+                  x="145"
+                  y="45"
+                  width="95"
                   height="60"
                   fill="#cffafe"
                   stroke="#06b6d4"
@@ -1417,29 +1607,29 @@
                   rx="8"
                 />
                 <text
-                  x="185"
-                  y="75"
+                  x="192.5"
+                  y="70"
                   text-anchor="middle"
-                  font-size="12"
+                  font-size="11"
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
                   Processing
                 </text>
                 <text
-                  x="185"
-                  y="92"
+                  x="192.5"
+                  y="85"
                   text-anchor="middle"
-                  font-size="11"
+                  font-size="10"
                   fill="#475569"
                 >
                   Deduplication
                 </text>
                 <text
-                  x="185"
-                  y="105"
+                  x="192.5"
+                  y="98"
                   text-anchor="middle"
-                  font-size="11"
+                  font-size="10"
                   fill="#475569"
                 >
                   Validation
@@ -1447,17 +1637,17 @@
 
                 <!-- Arrow 2 -->
                 <path
-                  d="M 230 80 L 260 80"
+                  d="M 240 75 L 270 75"
                   stroke="#06b6d4"
                   stroke-width="2"
                   fill="none"
                   marker-end="url(#arrowhead2)"
                 />
                 <text
-                  x="245"
-                  y="75"
+                  x="255"
+                  y="68"
                   text-anchor="middle"
-                  font-size="10"
+                  font-size="9"
                   fill="#06b6d4"
                   font-weight="bold"
                 >
@@ -1466,9 +1656,9 @@
 
                 <!-- Salesforce Box -->
                 <rect
-                  x="260"
-                  y="50"
-                  width="70"
+                  x="270"
+                  y="45"
+                  width="90"
                   height="60"
                   fill="#a5f3fc"
                   stroke="#22d3ee"
@@ -1476,29 +1666,29 @@
                   rx="8"
                 />
                 <text
-                  x="295"
-                  y="75"
+                  x="315"
+                  y="70"
                   text-anchor="middle"
-                  font-size="12"
+                  font-size="11"
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
                   Salesforce
                 </text>
                 <text
-                  x="295"
-                  y="92"
+                  x="315"
+                  y="85"
                   text-anchor="middle"
-                  font-size="11"
+                  font-size="10"
                   fill="#475569"
                 >
                   Quality
                 </text>
                 <text
-                  x="295"
-                  y="105"
+                  x="315"
+                  y="98"
                   text-anchor="middle"
-                  font-size="11"
+                  font-size="10"
                   fill="#475569"
                 >
                   Data
@@ -1506,7 +1696,7 @@
 
                 <!-- Arrow 3 Down -->
                 <path
-                  d="M 295 110 L 295 140"
+                  d="M 315 105 L 315 135"
                   stroke="#22d3ee"
                   stroke-width="2"
                   fill="none"
@@ -1515,9 +1705,9 @@
 
                 <!-- Reporting Box -->
                 <rect
-                  x="245"
+                  x="255"
                   y="140"
-                  width="100"
+                  width="110"
                   height="60"
                   fill="#ecfeff"
                   stroke="#0891b2"
@@ -1525,29 +1715,29 @@
                   rx="8"
                 />
                 <text
-                  x="295"
-                  y="165"
+                  x="310"
+                  y="163"
                   text-anchor="middle"
-                  font-size="12"
+                  font-size="11"
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
                   Reporting
                 </text>
                 <text
-                  x="295"
-                  y="182"
+                  x="310"
+                  y="178"
                   text-anchor="middle"
-                  font-size="11"
+                  font-size="10"
                   fill="#475569"
                 >
                   Dashboards
                 </text>
                 <text
-                  x="295"
-                  y="195"
+                  x="310"
+                  y="191"
                   text-anchor="middle"
-                  font-size="11"
+                  font-size="10"
                   fill="#475569"
                 >
                   Insights
@@ -1555,7 +1745,7 @@
 
                 <!-- Arrow 4 Left -->
                 <path
-                  d="M 245 170 L 205 170"
+                  d="M 255 170 L 220 170"
                   stroke="#0891b2"
                   stroke-width="2"
                   fill="none"
@@ -1564,9 +1754,9 @@
 
                 <!-- Support Box -->
                 <rect
-                  x="100"
+                  x="105"
                   y="140"
-                  width="105"
+                  width="115"
                   height="60"
                   fill="#f0fdfa"
                   stroke="#0e7490"
@@ -1574,29 +1764,29 @@
                   rx="8"
                 />
                 <text
-                  x="152.5"
-                  y="165"
+                  x="162.5"
+                  y="163"
                   text-anchor="middle"
-                  font-size="12"
+                  font-size="11"
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
                   Support
                 </text>
                 <text
-                  x="152.5"
-                  y="182"
+                  x="162.5"
+                  y="178"
                   text-anchor="middle"
-                  font-size="11"
+                  font-size="10"
                   fill="#475569"
                 >
                   Optimization
                 </text>
                 <text
-                  x="152.5"
-                  y="195"
+                  x="162.5"
+                  y="191"
                   text-anchor="middle"
-                  font-size="11"
+                  font-size="10"
                   fill="#475569"
                 >
                   Evolution
@@ -1604,7 +1794,7 @@
 
                 <!-- Arrow 5 Up -->
                 <path
-                  d="M 152.5 140 L 152.5 110"
+                  d="M 162.5 140 L 162.5 110"
                   stroke="#0e7490"
                   stroke-width="2"
                   fill="none"
@@ -1615,8 +1805,8 @@
                 <rect
                   x="20"
                   y="230"
-                  width="310"
-                  height="60"
+                  width="340"
+                  height="70"
                   fill="#f8fafc"
                   stroke="#cbd5e1"
                   stroke-width="1"
@@ -1625,16 +1815,16 @@
                 <text
                   x="35"
                   y="255"
-                  font-size="12"
+                  font-size="11"
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
                   ✓ Data Integrity
                 </text>
                 <text
-                  x="180"
+                  x="200"
                   y="255"
-                  font-size="12"
+                  font-size="11"
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
@@ -1642,17 +1832,17 @@
                 </text>
                 <text
                   x="35"
-                  y="275"
-                  font-size="12"
+                  y="280"
+                  font-size="11"
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
                   ✓ Continuous Improvement
                 </text>
                 <text
-                  x="180"
-                  y="275"
-                  font-size="12"
+                  x="200"
+                  y="280"
+                  font-size="11"
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
@@ -1796,6 +1986,166 @@
                 from "super user" training through to admin-level guidance – so
                 you are not dependent on external support for basic changes.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEW: Client Portal Preview Section -->
+      <section class="section alt portal-preview-section">
+        <div class="container">
+          <h2 class="section-title">
+            Track your Salesforce project in real time
+          </h2>
+          <p class="section-intro">
+            Transparency is central to how we work. As a Versed Global client,
+            you now have direct access to a secure online portal where you can
+            monitor the progress of your Salesforce implementation at any time.
+          </p>
+
+          <div class="portal-preview-grid">
+            <div class="portal-preview-content">
+              <h3>Your project dashboard, one click away</h3>
+              <p>
+                Navigate to the <strong>Client</strong> tab on this website and
+                log in using the contact email address you registered with
+                Versed Global Ltd. Once authenticated, you will see a
+                personalised dashboard showing the current status of every phase
+                of your Salesforce project – from discovery and configuration
+                through to testing, training and go-live.
+              </p>
+              <ul class="portal-feature-list">
+                <li>
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    ><strong>Live project status</strong> – see which phases are
+                    complete, in progress or upcoming at a glance.</span
+                  >
+                </li>
+                <li>
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    ><strong>Milestone tracking</strong> – follow key
+                    deliverables, sign-off dates and next steps without waiting
+                    for an email update.</span
+                  >
+                </li>
+                <li>
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    ><strong>Secure, role-based access</strong> – only
+                    authorised contacts on your account can view project
+                    details, ensuring data privacy and governance.</span
+                  >
+                </li>
+                <li>
+                  <i class="fas fa-check-circle"></i>
+                  <span
+                    ><strong>Document &amp; resource hub</strong> – access
+                    shared project documents, training materials and
+                    configuration notes in one place.</span
+                  >
+                </li>
+              </ul>
+              <div style="margin-top: 1.5rem">
+                <a href="clients.html" class="btn btn-primary">
+                  <i class="fas fa-sign-in-alt"></i> Go to Client Portal
+                </a>
+              </div>
+            </div>
+
+            <div class="portal-preview-visual">
+              <!-- Portal Mockup -->
+              <div class="portal-mockup">
+                <div class="portal-mockup-header">
+                  <i class="fas fa-cloud"></i>
+                  <span>Versed Global – Client Portal</span>
+                </div>
+                <div class="portal-mockup-body">
+                  <div class="portal-mockup-row">
+                    <span class="portal-mockup-label">Project</span>
+                    <span class="portal-mockup-value"
+                      >Salesforce NPSP Implementation</span
+                    >
+                  </div>
+                  <div class="portal-mockup-row">
+                    <span class="portal-mockup-label"
+                      >Discovery &amp; Design</span
+                    >
+                    <span class="portal-mockup-badge green">Complete</span>
+                  </div>
+                  <div class="portal-mockup-row">
+                    <span class="portal-mockup-label"
+                      >Build &amp; Configuration</span
+                    >
+                    <span class="portal-mockup-badge green">Complete</span>
+                  </div>
+                  <div class="portal-mockup-row">
+                    <span class="portal-mockup-label">Data Migration</span>
+                    <span class="portal-mockup-badge amber">In Progress</span>
+                  </div>
+                  <div class="portal-mockup-row">
+                    <span class="portal-mockup-label">Testing &amp; UAT</span>
+                    <span
+                      class="portal-mockup-badge"
+                      style="background: #f1f5f9; color: #64748b"
+                      >Upcoming</span
+                    >
+                  </div>
+                  <div class="portal-mockup-row">
+                    <span class="portal-mockup-label"
+                      >Training &amp; Go-Live</span
+                    >
+                    <span
+                      class="portal-mockup-badge"
+                      style="background: #f1f5f9; color: #64748b"
+                      >Upcoming</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Illustrative Images Row -->
+          <div class="portal-images-row">
+            <div class="portal-img-card">
+              <img
+                src="images/portal-salesforce-dashboard.jpg"
+                alt="Salesforce dashboard showing project analytics and KPIs"
+                onerror="
+                  this.src =
+                    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=280&fit=crop';
+                  this.onerror = null;
+                "
+              />
+              <div class="img-caption">
+                Salesforce Dashboard &amp; Analytics
+              </div>
+            </div>
+            <div class="portal-img-card">
+              <img
+                src="images/portal-team-collaboration.jpg"
+                alt="Team collaborating on a Salesforce CRM project"
+                onerror="
+                  this.src =
+                    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=280&fit=crop';
+                  this.onerror = null;
+                "
+              />
+              <div class="img-caption">Collaborative Project Delivery</div>
+            </div>
+            <div class="portal-img-card">
+              <img
+                src="images/portal-data-security.jpg"
+                alt="Secure data environment with role-based access controls"
+                onerror="
+                  this.src =
+                    'https://images.unsplash.com/photo-1563986768609-322da13575f2?w=400&h=280&fit=crop';
+                  this.onerror = null;
+                "
+              />
+              <div class="img-caption">Secure, Role-Based Access</div>
             </div>
           </div>
         </div>
@@ -1953,7 +2303,6 @@
       if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener("click", () => {
           navLinks.classList.toggle("active");
-          // Change hamburger icon
           mobileMenuToggle.textContent = navLinks.classList.contains("active")
             ? "✕"
             : "☰";
@@ -1989,7 +2338,7 @@
         }
       });
 
-      // Browser History Navigation - Closes mobile menu on back/forward
+      // Browser History Navigation
       window.addEventListener("popstate", () => {
         if (navLinks.classList.contains("active")) {
           navLinks.classList.remove("active");
