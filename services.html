@@ -59,1286 +59,6 @@
         ]
       }
     </script>
-
-    <style>
-      /* ============================================================
-         ROOT / RESET / BASE TYPOGRAPHY
-         ============================================================ */
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      body {
-        font-family:
-          "Inter",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #ffffff;
-        color: #1e293b;
-        line-height: 1.6;
-      }
-
-      /* ============================================================
-         HEADER – UPDATED WITH LOGO-MATCHED TEAL/NAVY THEME
-         ============================================================ */
-
-      .header-bar {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        background: linear-gradient(135deg, #ffffff 0%, #e6f7f7 100%);
-        box-shadow: 0 2px 12px rgba(14, 116, 144, 0.12);
-        transition: all 0.3s ease;
-        width: 100%;
-        border-bottom: 2px solid rgba(14, 116, 144, 0.2);
-      }
-
-      .header-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.85rem 1.5rem;
-        max-width: 1400px;
-        margin: 0 auto;
-        width: 100%;
-        position: relative;
-      }
-
-      .logo-area {
-        display: flex;
-        align-items: center;
-        gap: 0.85rem;
-        flex-shrink: 0;
-      }
-
-      .logo-link {
-        display: flex;
-        align-items: center;
-        gap: 0.85rem;
-        text-decoration: none;
-      }
-
-      .logo-image {
-        height: 50px;
-        width: auto;
-        display: block;
-        filter: drop-shadow(0 2px 4px rgba(14, 116, 144, 0.25));
-      }
-
-      .logo-text {
-        font-size: 1.4rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        background: linear-gradient(
-          135deg,
-          #0e7490 0%,
-          #0891b2 50%,
-          #06b6d4 100%
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0 2px 4px rgba(14, 116, 144, 0.15);
-      }
-
-      .tagline {
-        font-size: 0.775rem;
-        color: #155e75;
-        font-weight: 600;
-        letter-spacing: 0.03em;
-        margin-left: 0.65rem;
-        padding-left: 0.65rem;
-        border-left: 2px solid #0891b2;
-        line-height: 1.3;
-        max-width: 220px;
-      }
-
-      .main-nav {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 0.35rem;
-        align-items: center;
-        list-style: none;
-      }
-
-      .nav-links a {
-        padding: 0.55rem 0.95rem;
-        text-decoration: none;
-        color: #155e75;
-        font-weight: 600;
-        font-size: 0.93rem;
-        border-radius: 8px;
-        transition: all 0.25s ease;
-        white-space: nowrap;
-        position: relative;
-      }
-
-      .nav-links a:hover {
-        color: #0891b2;
-        background: rgba(8, 145, 178, 0.1);
-        transform: translateY(-1px);
-      }
-
-      .nav-links a.active {
-        color: #ffffff;
-        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
-        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
-      }
-
-      .nav-links a.nav-cta {
-        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
-        color: white;
-        padding: 0.55rem 1.35rem;
-        border-radius: 8px;
-        margin-left: 0.5rem;
-        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
-      }
-
-      .nav-links a.nav-cta:hover {
-        background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(8, 145, 178, 0.45);
-      }
-
-      .mobile-menu {
-        display: none;
-        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: #ffffff;
-        padding: 0.6rem 0.8rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
-        transition: all 0.25s ease;
-      }
-
-      .mobile-menu:hover {
-        background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(8, 145, 178, 0.45);
-      }
-
-      .mobile-menu:focus {
-        outline: 3px solid rgba(8, 145, 178, 0.4);
-        outline-offset: 2px;
-      }
-
-      /* ============================================================
-         RESPONSIVE HEADER – MOBILE & TABLET
-         ============================================================ */
-
-      @media (max-width: 1100px) {
-        .tagline {
-          display: none;
-        }
-
-        .nav-links {
-          gap: 0.25rem;
-        }
-
-        .nav-links a {
-          padding: 0.5rem 0.75rem;
-          font-size: 0.88rem;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .header-inner {
-          flex-wrap: wrap;
-          padding: 0.7rem 1rem;
-          gap: 0.5rem;
-        }
-
-        .logo-image {
-          height: 44px;
-        }
-
-        .logo-text {
-          font-size: 1.25rem;
-        }
-
-        .tagline {
-          display: none;
-        }
-
-        .mobile-menu {
-          display: block;
-          order: 2;
-        }
-
-        .main-nav {
-          width: 100%;
-          order: 3;
-        }
-
-        .nav-links {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: linear-gradient(180deg, #ffffff 0%, #e6f7f7 100%);
-          border-top: 2px solid rgba(14, 116, 144, 0.25);
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.4s ease;
-          flex-direction: column;
-          gap: 0;
-          z-index: 1000;
-          box-shadow: 0 8px 24px rgba(14, 116, 144, 0.18);
-        }
-
-        .nav-links.active {
-          max-height: 600px;
-        }
-
-        .nav-links a {
-          width: 100%;
-          padding: 1.1rem 1.5rem;
-          border-radius: 0;
-          border-bottom: 1px solid rgba(14, 116, 144, 0.15);
-          white-space: normal;
-          text-align: left;
-        }
-
-        .nav-links a:hover {
-          background: rgba(8, 145, 178, 0.12);
-          transform: translateX(4px);
-        }
-
-        .nav-links a.active {
-          background: linear-gradient(
-            90deg,
-            rgba(8, 145, 178, 0.18) 0%,
-            transparent 100%
-          );
-          color: #0e7490;
-          border-left: 4px solid #0891b2;
-        }
-
-        .nav-links a.nav-cta {
-          margin-left: 0;
-          border-radius: 0;
-          background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
-          color: white;
-          border-bottom: none;
-        }
-
-        .nav-links a.nav-cta:hover {
-          background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
-          transform: translateX(4px);
-        }
-      }
-
-      @media (max-width: 480px) {
-        .header-inner {
-          padding: 0.6rem 0.85rem;
-        }
-
-        .logo-image {
-          height: 40px;
-        }
-
-        .logo-text {
-          font-size: 1.15rem;
-        }
-
-        .nav-links a {
-          padding: 1rem 1.25rem;
-          font-size: 0.95rem;
-        }
-      }
-
-      /* ============================================================
-         SECTIONS & LAYOUT
-         ============================================================ */
-
-      .section {
-        position: relative;
-        padding: 3.5rem 0 3rem;
-      }
-
-      .section.alt {
-        background: radial-gradient(
-          circle at 5% 5%,
-          #f0fdfa,
-          #ecfeff 50%,
-          #f0f9ff
-        );
-      }
-
-      .container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-        width: 100%;
-      }
-
-      .section-title {
-        font-size: clamp(1.8rem, 4vw, 2.4rem);
-        font-weight: 700;
-        color: #0c4a6e;
-        margin-bottom: 0.5rem;
-        letter-spacing: -0.02em;
-      }
-
-      .section-intro {
-        font-size: 1rem;
-        color: #475569;
-        line-height: 1.8;
-        margin-bottom: 2rem;
-        max-width: 900px;
-      }
-
-      @media (max-width: 768px) {
-        .section {
-          padding: 2.5rem 0 2rem;
-        }
-
-        .container {
-          padding: 0 1.25rem;
-        }
-
-        .section-title {
-          font-size: clamp(1.5rem, 3vw, 2rem);
-        }
-      }
-
-      /* ============================================================
-         BUTTONS – LOGO COLORS
-         ============================================================ */
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-        font-weight: 600;
-        border-radius: 8px;
-        text-decoration: none;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        gap: 0.5rem;
-      }
-
-      .btn:focus-visible {
-        outline: 2px solid #0891b2;
-        outline-offset: 2px;
-      }
-
-      .btn-primary {
-        background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
-        color: white;
-        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
-      }
-
-      .btn-primary:hover {
-        background: linear-gradient(135deg, #0e7490 0%, #155e75 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(8, 145, 178, 0.45);
-      }
-
-      .btn-secondary {
-        background: transparent;
-        color: #0891b2;
-        border: 2px solid #0891b2;
-      }
-
-      .btn-secondary:hover {
-        background: rgba(8, 145, 178, 0.1);
-      }
-
-      @media (max-width: 640px) {
-        .btn {
-          padding: 0.65rem 1.25rem;
-          font-size: 0.95rem;
-        }
-      }
-
-      /* ============================================================
-         SERVICE CARDS – LOGO COLORS
-         ============================================================ */
-
-      .service-ecosystem {
-        position: relative;
-        padding: 3.5rem 0 3rem;
-      }
-
-      .service-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-top: 2.5rem;
-      }
-
-      .service-card {
-        position: relative;
-        background: white;
-        border-radius: 16px;
-        padding: 2rem;
-        box-shadow: 0 8px 25px rgba(14, 116, 144, 0.1);
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        border: 1px solid #cffafe;
-        overflow: hidden;
-        text-align: center;
-      }
-
-      .service-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #0891b2, #06b6d4, #22d3ee);
-        opacity: 0;
-        transition: opacity 0.4s ease;
-      }
-
-      .service-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 16px 40px rgba(8, 145, 178, 0.18);
-        border-color: rgba(8, 145, 178, 0.35);
-      }
-
-      .service-card:hover::before {
-        opacity: 1;
-      }
-
-      .service-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        height: auto;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .service-card h3 {
-        font-size: 1.2rem;
-        color: #0c4a6e;
-        margin: 1rem 0 0.75rem;
-        font-weight: 700;
-        line-height: 1.4;
-      }
-
-      .service-card-preview {
-        color: #475569;
-        line-height: 1.7;
-        font-size: 0.9rem;
-        margin: 0 0 1rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
-
-      .read-more-btn {
-        background: transparent;
-        color: #0891b2;
-        border: none;
-        font-weight: 600;
-        cursor: pointer;
-        padding: 0.5rem 1rem;
-        text-decoration: underline;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-      }
-
-      .read-more-btn:hover {
-        color: #0e7490;
-      }
-
-      .service-card-full {
-        display: none;
-        color: #475569;
-        line-height: 1.7;
-        font-size: 0.9rem;
-        margin: 1rem 0;
-        text-align: left;
-      }
-
-      .service-card.expanded .service-card-preview {
-        display: none;
-      }
-
-      .service-card.expanded .service-card-full {
-        display: block;
-      }
-
-      .service-card.expanded .read-more-btn {
-        text-decoration: none;
-      }
-
-      @media (max-width: 768px) {
-        .service-grid {
-          grid-template-columns: 1fr;
-          gap: 1.5rem;
-        }
-
-        .service-card {
-          padding: 1.5rem;
-        }
-
-        .service-icon {
-          font-size: 2.5rem;
-        }
-
-        .service-card h3 {
-          font-size: 1.1rem;
-        }
-      }
-
-      /* ============================================================
-         FEATURED SECTION – LOGO COLORS
-         ============================================================ */
-
-      .featured-section {
-        background: linear-gradient(135deg, #0c4a6e 0%, #082f49 100%);
-        color: #f0f9ff;
-        padding: 2.5rem 2rem;
-        border-radius: 20px;
-        margin: 3rem 0;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .featured-section::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        right: -10%;
-        width: 400px;
-        height: 400px;
-        background: radial-gradient(
-          circle,
-          rgba(8, 145, 178, 0.2) 0%,
-          transparent 70%
-        );
-        border-radius: 50%;
-      }
-
-      .featured-section::after {
-        content: "";
-        position: absolute;
-        bottom: -40%;
-        left: -5%;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(
-          circle,
-          rgba(6, 182, 212, 0.15) 0%,
-          transparent 70%
-        );
-        border-radius: 50%;
-      }
-
-      .featured-content {
-        position: relative;
-        z-index: 2;
-      }
-
-      .featured-content h2 {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-        font-weight: 700;
-        color: #f0f9ff;
-      }
-
-      .featured-content p {
-        font-size: 1rem;
-        line-height: 1.8;
-        color: #bae6fd;
-        margin-bottom: 1.5rem;
-      }
-
-      @media (max-width: 768px) {
-        .featured-section {
-          padding: 2rem 1.5rem;
-          margin: 2rem 0;
-        }
-
-        .featured-content h2 {
-          font-size: 1.4rem;
-        }
-
-        .featured-content p {
-          font-size: 0.95rem;
-        }
-      }
-
-      /* ============================================================
-         DATA SECTION – LOGO COLORS
-         ============================================================ */
-
-      .data-section {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-        align-items: start;
-        margin-top: 3rem;
-      }
-
-      .data-content {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-
-      .data-item {
-        padding: 1.5rem;
-        background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 100%);
-        border-radius: 12px;
-        border-left: 4px solid #0891b2;
-        transition: all 0.3s ease;
-      }
-
-      .data-item:hover {
-        border-left-color: #06b6d4;
-        box-shadow: 0 8px 24px rgba(8, 145, 178, 0.12);
-        transform: translateX(4px);
-      }
-
-      .data-item h4 {
-        font-size: 1.05rem;
-        color: #0c4a6e;
-        margin: 0 0 0.75rem 0;
-        font-weight: 700;
-      }
-
-      .data-item p {
-        color: #475569;
-        margin: 0;
-        font-size: 0.9rem;
-        line-height: 1.6;
-      }
-
-      .data-visual {
-        background: linear-gradient(
-          135deg,
-          #ecfeff 0%,
-          #f0fdfa 50%,
-          #e0f2fe 100%
-        );
-        border-radius: 16px;
-        padding: 2rem 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 400px;
-        position: relative;
-        overflow: hidden;
-        border: 1px solid #a5f3fc;
-      }
-
-      .data-visual svg {
-        max-width: 100%;
-        height: auto;
-        display: block;
-      }
-
-      @media (max-width: 768px) {
-        .data-section {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-        }
-
-        .data-visual {
-          min-height: 300px;
-          padding: 1.5rem 1rem;
-        }
-      }
-
-      /* ============================================================
-         SECTOR CARDS – LOGO COLORS
-         ============================================================ */
-
-      .sector-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-top: 2.5rem;
-      }
-
-      .sector-card {
-        position: relative;
-        padding: 2rem;
-        border-radius: 16px;
-        background: white;
-        border: 2px solid transparent;
-        transition: all 0.4s ease;
-        overflow: hidden;
-        text-align: left;
-        box-shadow: 0 8px 25px rgba(14, 116, 144, 0.1);
-      }
-
-      .sector-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          135deg,
-          transparent 0%,
-          transparent 50%,
-          rgba(255, 255, 255, 0.1) 100%
-        );
-        pointer-events: none;
-      }
-
-      .sector-card.charity {
-        border-top: 4px solid #0891b2;
-      }
-
-      .sector-card.charity:hover {
-        box-shadow: 0 16px 48px rgba(8, 145, 178, 0.25);
-        transform: translateY(-4px);
-      }
-
-      .sector-card.corporate {
-        border-top: 4px solid #06b6d4;
-      }
-
-      .sector-card.corporate:hover {
-        box-shadow: 0 16px 48px rgba(6, 182, 212, 0.25);
-        transform: translateY(-4px);
-      }
-
-      .sector-card.public {
-        border-top: 4px solid #22d3ee;
-      }
-
-      .sector-card.public:hover {
-        box-shadow: 0 16px 48px rgba(34, 211, 238, 0.25);
-        transform: translateY(-4px);
-      }
-
-      .sector-card h3 {
-        font-size: 1.1rem;
-        color: #0c4a6e;
-        margin: 0 0 0.75rem 0;
-        font-weight: 700;
-        position: relative;
-        z-index: 1;
-      }
-
-      .sector-card p {
-        color: #475569;
-        line-height: 1.7;
-        font-size: 0.9rem;
-        margin: 0;
-        position: relative;
-        z-index: 1;
-      }
-
-      @media (max-width: 768px) {
-        .sector-grid {
-          grid-template-columns: 1fr;
-          gap: 1.5rem;
-        }
-
-        .sector-card {
-          padding: 1.5rem;
-        }
-
-        .sector-card h3 {
-          font-size: 1rem;
-        }
-
-        .sector-card p {
-          font-size: 0.85rem;
-        }
-      }
-
-      /* ============================================================
-         PROCESS TIMELINE – LOGO COLORS
-         ============================================================ */
-
-      .approach-section {
-        margin-top: 2rem;
-      }
-
-      .process-timeline {
-        position: relative;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 2rem;
-        margin-top: 2.5rem;
-      }
-
-      .process-step {
-        position: relative;
-        padding: 2rem;
-        background: white;
-        border-radius: 12px;
-        border: 1px solid #cffafe;
-        transition: all 0.3s ease;
-      }
-
-      .process-step:hover {
-        border-color: #0891b2;
-        box-shadow: 0 8px 24px rgba(8, 145, 178, 0.15);
-      }
-
-      .step-number {
-        position: absolute;
-        top: -16px;
-        left: 2rem;
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, #0891b2, #06b6d4);
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        font-size: 1.2rem;
-        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
-      }
-
-      .process-step h3 {
-        font-size: 1.05rem;
-        color: #0c4a6e;
-        margin: 1rem 0 0.75rem;
-        font-weight: 700;
-      }
-
-      .process-step p {
-        color: #475569;
-        margin: 0;
-        font-size: 0.9rem;
-        line-height: 1.6;
-      }
-
-      @media (max-width: 768px) {
-        .process-timeline {
-          grid-template-columns: 1fr;
-          gap: 1.5rem;
-        }
-
-        .process-step {
-          padding: 1.5rem;
-        }
-
-        .step-number {
-          left: 1.5rem;
-        }
-
-        .process-step h3 {
-          font-size: 0.95rem;
-        }
-      }
-
-      /* ============================================================
-         CLIENT PORTAL PREVIEW SECTION
-         ============================================================ */
-
-      .portal-preview-section {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .portal-preview-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-        align-items: center;
-        margin-top: 2.5rem;
-      }
-
-      .portal-preview-content {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-      }
-
-      .portal-preview-content h3 {
-        font-size: 1.4rem;
-        color: #0c4a6e;
-        font-weight: 700;
-        line-height: 1.3;
-      }
-
-      .portal-preview-content p {
-        color: #475569;
-        line-height: 1.8;
-        font-size: 0.95rem;
-      }
-
-      .portal-feature-list {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-        margin-top: 0.5rem;
-      }
-
-      .portal-feature-list li {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.75rem;
-        font-size: 0.95rem;
-        color: #334155;
-        line-height: 1.6;
-      }
-
-      .portal-feature-list li i {
-        color: #0891b2;
-        font-size: 1rem;
-        margin-top: 0.2rem;
-        flex-shrink: 0;
-      }
-
-      .portal-preview-visual {
-        position: relative;
-      }
-
-      .portal-mockup {
-        background: #ffffff;
-        border-radius: 16px;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 16px 48px rgba(14, 116, 144, 0.15);
-        overflow: hidden;
-      }
-
-      .portal-mockup-header {
-        background: linear-gradient(135deg, #0c4a6e 0%, #0891b2 100%);
-        padding: 1rem 1.5rem;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-
-      .portal-mockup-header i {
-        color: #ffffff;
-        font-size: 1.2rem;
-      }
-
-      .portal-mockup-header span {
-        color: #ffffff;
-        font-weight: 600;
-        font-size: 0.95rem;
-      }
-
-      .portal-mockup-body {
-        padding: 1.5rem;
-      }
-
-      .portal-mockup-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid #f1f5f9;
-      }
-
-      .portal-mockup-row:last-child {
-        border-bottom: none;
-      }
-
-      .portal-mockup-label {
-        font-size: 0.85rem;
-        color: #64748b;
-        font-weight: 500;
-      }
-
-      .portal-mockup-value {
-        font-size: 0.85rem;
-        color: #0c4a6e;
-        font-weight: 600;
-      }
-
-      .portal-mockup-badge {
-        display: inline-block;
-        padding: 0.15rem 0.6rem;
-        border-radius: 999px;
-        font-size: 0.75rem;
-        font-weight: 600;
-      }
-
-      .portal-mockup-badge.green {
-        background: #dcfce7;
-        color: #166534;
-      }
-
-      .portal-mockup-badge.amber {
-        background: #fef3c7;
-        color: #92400e;
-      }
-
-      .portal-images-row {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        margin-top: 2rem;
-      }
-
-      .portal-img-card {
-        border-radius: 12px;
-        overflow: hidden;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
-        transition: all 0.3s ease;
-      }
-
-      .portal-img-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(8, 145, 178, 0.15);
-      }
-
-      .portal-img-card img {
-        width: 100%;
-        height: 140px;
-        object-fit: cover;
-        display: block;
-      }
-
-      .portal-img-card .img-caption {
-        padding: 0.6rem 0.75rem;
-        font-size: 0.8rem;
-        color: #475569;
-        font-weight: 500;
-        text-align: center;
-        background: #f8fafc;
-      }
-
-      @media (max-width: 768px) {
-        .portal-preview-grid {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-        }
-
-        .portal-images-row {
-          grid-template-columns: 1fr;
-          gap: 1rem;
-        }
-
-        .portal-img-card img {
-          height: 180px;
-        }
-      }
-
-      /* ============================================================
-         FOOTER – LOGO COLORS
-         ============================================================ */
-
-      footer {
-        background: linear-gradient(135deg, #0c4a6e 0%, #082f49 100%);
-        color: #e0f2fe;
-        padding: 3rem 0 1.5rem;
-        margin-top: 4rem;
-      }
-
-      .footer-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-        width: 100%;
-      }
-
-      .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 3rem;
-        margin-bottom: 2rem;
-      }
-
-      .footer-section h4 {
-        color: #f0f9ff;
-        font-size: 0.95rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 1.25rem;
-        font-weight: 700;
-      }
-
-      .footer-section p {
-        font-size: 0.95rem;
-        line-height: 1.8;
-        margin-bottom: 0.75rem;
-      }
-
-      .footer-section a {
-        color: #bae6fd;
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .footer-section a:hover {
-        color: #f0f9ff;
-      }
-
-      .footer-address {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .footer-contact {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .footer-contact a {
-        display: inline-block;
-        width: fit-content;
-      }
-
-      .footer-logo {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-      }
-
-      .footer-logo img {
-        height: 48px;
-        width: 48px;
-        background: white;
-        border-radius: 8px;
-        padding: 4px;
-        object-fit: contain;
-      }
-
-      .footer-logo span {
-        color: #f0f9ff;
-        font-weight: 700;
-        font-size: 1rem;
-      }
-
-      .social-links {
-        display: flex;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-      }
-
-      .social-link {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        background: #0891b2;
-        color: white;
-        border-radius: 50%;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        font-size: 1.1rem;
-      }
-
-      .social-link:hover {
-        background: #06b6d4;
-        transform: translateY(-3px);
-      }
-
-      .social-link.linkedin {
-        background: #0891b2;
-      }
-
-      .social-link.linkedin:hover {
-        background: #06b6d4;
-      }
-
-      .social-link.instagram {
-        background: #0e7490;
-      }
-
-      .social-link.instagram:hover {
-        background: #0891b2;
-      }
-
-      .social-link.facebook {
-        background: #155e75;
-      }
-
-      .social-link.facebook:hover {
-        background: #0e7490;
-      }
-
-      .footer-divider {
-        border-top: 1px solid rgba(103, 232, 249, 0.3);
-        padding-top: 1.5rem;
-        margin-top: 2rem;
-      }
-
-      .footer-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        font-size: 0.9rem;
-        color: #a5f3fc;
-      }
-
-      .footer-bottom a {
-        color: #bae6fd;
-      }
-
-      .trustpilot-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        color: #bae6fd;
-        text-decoration: none;
-        font-size: 0.95rem;
-        transition: color 0.3s ease;
-      }
-
-      .trustpilot-link:hover {
-        color: #f0f9ff;
-      }
-
-      .company-info {
-        font-size: 0.85rem;
-        color: #a5f3fc;
-        line-height: 1.6;
-      }
-
-      @media (max-width: 768px) {
-        footer {
-          padding: 2.5rem 0 1.5rem;
-          margin-top: 3rem;
-        }
-
-        .footer-content {
-          grid-template-columns: 1fr;
-        }
-
-        .footer-bottom {
-          flex-direction: column;
-          text-align: center;
-        }
-
-        .footer-container {
-          padding: 0 1.25rem;
-        }
-      }
-    </style>
   </head>
   <body>
     <!-- Header -->
@@ -1363,7 +83,7 @@
           id="mobileMenuToggle"
           aria-label="Toggle navigation"
         >
-          ☰
+          &#9776;
         </button>
 
         <nav class="main-nav">
@@ -1396,8 +116,8 @@
             Salesforce-based CRM systems for charities, corporates and
             public-sector bodies. The focus is on clean architecture, practical
             automation and reporting that supports fundraising, stakeholder
-            management and service delivery – not just a technically impressive
-            system.
+            management and service delivery &ndash; not just a technically
+            impressive system.
           </p>
         </div>
       </section>
@@ -1408,7 +128,7 @@
           <h2 class="section-title">Core Salesforce service areas</h2>
           <div class="service-grid">
             <div class="service-card">
-              <div class="service-icon">🔍</div>
+              <div class="service-icon">&#128269;</div>
               <h3>Discovery &amp; solution design</h3>
               <p class="service-card-preview">
                 Structured discovery to understand your programmes, fundraising,
@@ -1427,7 +147,7 @@
             </div>
 
             <div class="service-card">
-              <div class="service-icon">⚙️</div>
+              <div class="service-icon">&#9881;&#65039;</div>
               <h3>Salesforce build &amp; configuration</h3>
               <p class="service-card-preview">
                 Configuration of Salesforce (including Nonprofit Success Pack
@@ -1438,8 +158,8 @@
                 where appropriate) to match your data model and workflows:
                 custom objects and fields, record types, page layouts,
                 validation rules, security and sharing, profiles and permission
-                sets – aligned with best practice for charities, corporates and
-                public-sector institutions.
+                sets &ndash; aligned with best practice for charities,
+                corporates and public-sector institutions.
               </p>
               <button class="read-more-btn" onclick="toggleServiceCard(this)">
                 Read More
@@ -1447,7 +167,7 @@
             </div>
 
             <div class="service-card">
-              <div class="service-icon">⚡</div>
+              <div class="service-icon">&#9889;</div>
               <h3>Automation &amp; workflow</h3>
               <p class="service-card-preview">
                 Design and implementation of Flows and other automation to
@@ -1479,8 +199,8 @@
                 CRM that delivers real value. We design data architectures,
                 migration processes and dashboards that turn Salesforce data
                 into actionable insights for leadership, fundraising teams and
-                boards – and we stay engaged to ensure your system evolves with
-                your organisation.
+                boards &ndash; and we stay engaged to ensure your system evolves
+                with your organisation.
               </p>
             </div>
           </div>
@@ -1517,9 +237,8 @@
                 </p>
               </div>
             </div>
-
             <div class="data-visual">
-              <!-- Data Flow SVG Diagram – FIXED: expanded viewBox to prevent overlap -->
+              <!-- Data Flow SVG Diagram -->
               <svg
                 viewBox="0 0 380 320"
                 xmlns="http://www.w3.org/2000/svg"
@@ -1819,7 +538,7 @@
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
-                  ✓ Data Integrity
+                  &#10003; Data Integrity
                 </text>
                 <text
                   x="200"
@@ -1828,7 +547,7 @@
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
-                  ✓ Automated Validation
+                  &#10003; Automated Validation
                 </text>
                 <text
                   x="35"
@@ -1837,7 +556,7 @@
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
-                  ✓ Continuous Improvement
+                  &#10003; Continuous Improvement
                 </text>
                 <text
                   x="200"
@@ -1846,7 +565,7 @@
                   font-weight="bold"
                   fill="#0c4a6e"
                 >
-                  ✓ Actionable Insights
+                  &#10003; Actionable Insights
                 </text>
 
                 <!-- Arrow markers -->
@@ -1922,8 +641,8 @@
               <p>
                 Systems configured to support service delivery, volunteer
                 management, grant reporting, trust and foundation funding,
-                individual giving and major donor work – with governance and
-                safeguarding considerations built in from the start.
+                individual giving and major donor work &ndash; with governance
+                and safeguarding considerations built in from the start.
               </p>
             </div>
             <div class="sector-card corporate">
@@ -1982,16 +701,17 @@
               <div class="step-number">3</div>
               <h3>Skills transfer</h3>
               <p>
-                Training and handover designed to grow your internal capacity –
-                from "super user" training through to admin-level guidance – so
-                you are not dependent on external support for basic changes.
+                Training and handover designed to grow your internal capacity
+                &ndash; from &ldquo;super user&rdquo; training through to
+                admin-level guidance &ndash; so you are not dependent on
+                external support for basic changes.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- NEW: Client Portal Preview Section -->
+      <!-- Client Portal Preview Section -->
       <section class="section alt portal-preview-section">
         <div class="container">
           <h2 class="section-title">
@@ -2011,21 +731,22 @@
                 log in using the contact email address you registered with
                 Versed Global Ltd. Once authenticated, you will see a
                 personalised dashboard showing the current status of every phase
-                of your Salesforce project – from discovery and configuration
-                through to testing, training and go-live.
+                of your Salesforce project &ndash; from discovery and
+                configuration through to testing, training and go-live.
               </p>
               <ul class="portal-feature-list">
                 <li>
                   <i class="fas fa-check-circle"></i>
                   <span
-                    ><strong>Live project status</strong> – see which phases are
-                    complete, in progress or upcoming at a glance.</span
+                    ><strong>Live project status</strong> &ndash; see which
+                    phases are complete, in progress or upcoming at a
+                    glance.</span
                   >
                 </li>
                 <li>
                   <i class="fas fa-check-circle"></i>
                   <span
-                    ><strong>Milestone tracking</strong> – follow key
+                    ><strong>Milestone tracking</strong> &ndash; follow key
                     deliverables, sign-off dates and next steps without waiting
                     for an email update.</span
                   >
@@ -2033,7 +754,7 @@
                 <li>
                   <i class="fas fa-check-circle"></i>
                   <span
-                    ><strong>Secure, role-based access</strong> – only
+                    ><strong>Secure, role-based access</strong> &ndash; only
                     authorised contacts on your account can view project
                     details, ensuring data privacy and governance.</span
                   >
@@ -2041,7 +762,7 @@
                 <li>
                   <i class="fas fa-check-circle"></i>
                   <span
-                    ><strong>Document &amp; resource hub</strong> – access
+                    ><strong>Document &amp; resource hub</strong> &ndash; access
                     shared project documents, training materials and
                     configuration notes in one place.</span
                   >
@@ -2053,13 +774,12 @@
                 </a>
               </div>
             </div>
-
             <div class="portal-preview-visual">
               <!-- Portal Mockup -->
               <div class="portal-mockup">
                 <div class="portal-mockup-header">
                   <i class="fas fa-cloud"></i>
-                  <span>Versed Global – Client Portal</span>
+                  <span>Versed Global &ndash; Client Portal</span>
                 </div>
                 <div class="portal-mockup-body">
                   <div class="portal-mockup-row">
@@ -2141,7 +861,7 @@
                 alt="Secure data environment with role-based access controls"
                 onerror="
                   this.src =
-                    'https://images.unsplash.com/photo-1563986768609-322da13575f2?w=400&h=280&fit=crop';
+                    'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=400&h=280&fit=crop';
                   this.onerror = null;
                 "
               />
@@ -2304,8 +1024,8 @@
         mobileMenuToggle.addEventListener("click", () => {
           navLinks.classList.toggle("active");
           mobileMenuToggle.textContent = navLinks.classList.contains("active")
-            ? "✕"
-            : "☰";
+            ? "\u2715"
+            : "\u2630";
         });
       }
 
@@ -2314,7 +1034,7 @@
       navItems.forEach((item) => {
         item.addEventListener("click", () => {
           navLinks.classList.remove("active");
-          mobileMenuToggle.textContent = "☰";
+          mobileMenuToggle.textContent = "\u2630";
         });
       });
 
@@ -2322,7 +1042,7 @@
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && navLinks.classList.contains("active")) {
           navLinks.classList.remove("active");
-          mobileMenuToggle.textContent = "☰";
+          mobileMenuToggle.textContent = "\u2630";
         }
       });
 
@@ -2334,7 +1054,7 @@
           !mobileMenuToggle.contains(e.target)
         ) {
           navLinks.classList.remove("active");
-          mobileMenuToggle.textContent = "☰";
+          mobileMenuToggle.textContent = "\u2630";
         }
       });
 
@@ -2342,7 +1062,7 @@
       window.addEventListener("popstate", () => {
         if (navLinks.classList.contains("active")) {
           navLinks.classList.remove("active");
-          mobileMenuToggle.textContent = "☰";
+          mobileMenuToggle.textContent = "\u2630";
         }
       });
 
