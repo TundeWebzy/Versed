@@ -62,6 +62,70 @@
         ]
       }
     </script>
+
+    <style>
+      /* Responsive two-column layout for contact hero */
+      .contact-hero-grid {
+        display: grid;
+        grid-template-columns: 3fr 2.5fr;
+        gap: 3rem;
+        align-items: flex-start;
+      }
+
+      .contact-cards-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .contact-card {
+        background: #ffffff;
+        border: 1px solid #cffafe;
+        border-radius: 12px;
+        padding: 1.25rem;
+        box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
+      }
+
+      .contact-form-shell {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 8px 24px rgba(8, 145, 178, 0.1);
+      }
+
+      .contact-form-two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      @media (max-width: 960px) {
+        .contact-hero-grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+
+        .contact-form-shell {
+          order: -1; /* show the form first on smaller screens */
+        }
+      }
+
+      @media (max-width: 640px) {
+        .contact-cards-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-form-shell {
+          padding: 1.5rem;
+        }
+
+        .contact-form-two-col {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Header -->
@@ -109,14 +173,124 @@
       <!-- Hero intro -->
       <section class="section alt" style="padding: 4rem 0 3.5rem">
         <div class="container">
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              gap: 3rem;
-              align-items: start;
-            "
-          >
+          <div class="contact-hero-grid">
+            <!-- Right Column – Contact Form (shown first on mobile via CSS) -->
+            <div class="contact-form-shell">
+              <h2
+                style="font-size: 1.2rem; color: #0c4a6e; margin: 0 0 0.25rem"
+              >
+                <i
+                  class="fas fa-paper-plane"
+                  style="color: #0891b2; margin-right: 0.4rem"
+                ></i>
+                Send a message
+              </h2>
+              <p style="font-size: 0.85rem; color: #64748b; margin: 0 0 1.5rem">
+                We typically respond within 24 hours on weekdays.
+              </p>
+
+              <form action="send_mail.php" method="POST">
+                <!-- HONEYPOT -->
+                <input
+                  type="text"
+                  name="_honey"
+                  style="display: none"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+
+                <!-- Disable FormSubmit CAPTCHA (kept harmlessly) -->
+                <input type="hidden" name="_captcha" value="false" />
+
+                <!-- Redirect after success -->
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://versedglobal.com/contact.html?submitted"
+                />
+
+                <!-- Email subject -->
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New Contact Form Submission - Versed Global"
+                />
+
+                <div class="form-group">
+                  <label for="name">Your name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    placeholder="Full name"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    placeholder="you@example.com"
+                  />
+                </div>
+
+                <div class="contact-form-two-col">
+                  <div class="form-group">
+                    <label for="organisation">Organisation</label>
+                    <input
+                      type="text"
+                      id="organisation"
+                      name="organisation"
+                      placeholder="Your organisation"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="interest">Area of interest</label>
+                    <select id="interest" name="interest" required>
+                      <option value="" disabled selected>Select&hellip;</option>
+                      <option value="Salesforce CRM">Salesforce CRM</option>
+                      <option value="Web Design">Web Design</option>
+                      <option value="Trust & Foundation Fundraising">
+                        Trust &amp; Foundation Fundraising
+                      </option>
+                      <option value="Integrated Solutions">
+                        Integrated Solutions
+                      </option>
+                      <option value="Training & Support">
+                        Training &amp; Support
+                      </option>
+                      <option value="General enquiry">General enquiry</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Your message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    placeholder="Tell us about your project or question..."
+                    rows="5"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="width: 100%"
+                >
+                  <i class="fas fa-paper-plane"></i>
+                  Send message
+                </button>
+              </form>
+            </div>
+
             <!-- Left Column – Intro + Contact Cards -->
             <div>
               <div
@@ -151,23 +325,8 @@
               </p>
 
               <!-- Quick contact cards -->
-              <div
-                style="
-                  display: grid;
-                  grid-template-columns: 1fr 1fr;
-                  gap: 1rem;
-                  margin-bottom: 2rem;
-                "
-              >
-                <div
-                  style="
-                    background: white;
-                    border: 1px solid #cffafe;
-                    border-radius: 12px;
-                    padding: 1.25rem;
-                    box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
-                  "
-                >
+              <div class="contact-cards-grid">
+                <div class="contact-card">
                   <i
                     class="fas fa-phone"
                     style="
@@ -198,15 +357,7 @@
                     >07554 623171</a
                   >
                 </div>
-                <div
-                  style="
-                    background: white;
-                    border: 1px solid #cffafe;
-                    border-radius: 12px;
-                    padding: 1.25rem;
-                    box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
-                  "
-                >
+                <div class="contact-card">
                   <i
                     class="fas fa-envelope"
                     style="
@@ -237,15 +388,7 @@
                     >info@versedglobal.com</a
                   >
                 </div>
-                <div
-                  style="
-                    background: white;
-                    border: 1px solid #cffafe;
-                    border-radius: 12px;
-                    padding: 1.25rem;
-                    box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
-                  "
-                >
+                <div class="contact-card">
                   <i
                     class="fab fa-linkedin-in"
                     style="
@@ -278,15 +421,7 @@
                     >Connect with us</a
                   >
                 </div>
-                <div
-                  style="
-                    background: white;
-                    border: 1px solid #cffafe;
-                    border-radius: 12px;
-                    padding: 1.25rem;
-                    box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
-                  "
-                >
+                <div class="contact-card">
                   <i
                     class="fas fa-map-marker-alt"
                     style="
@@ -361,137 +496,6 @@
                   next steps.
                 </p>
               </div>
-            </div>
-
-            <!-- Right Column – Contact Form -->
-            <div
-              style="
-                background: white;
-                border: 1px solid #e2e8f0;
-                border-radius: 16px;
-                padding: 2rem;
-                box-shadow: 0 8px 24px rgba(8, 145, 178, 0.1);
-              "
-            >
-              <h2
-                style="font-size: 1.2rem; color: #0c4a6e; margin: 0 0 0.25rem"
-              >
-                <i
-                  class="fas fa-paper-plane"
-                  style="color: #0891b2; margin-right: 0.4rem"
-                ></i>
-                Send a message
-              </h2>
-              <p style="font-size: 0.85rem; color: #64748b; margin: 0 0 1.5rem">
-                We typically respond within 24 hours on weekdays.
-              </p>
-
-              <form action="send_mail.php" method="POST">
-                <!-- HONEYPOT -->
-                <input
-                  type="text"
-                  name="_honey"
-                  style="display: none"
-                  tabindex="-1"
-                  autocomplete="off"
-                />
-
-                <!-- Disable FormSubmit CAPTCHA -->
-                <input type="hidden" name="_captcha" value="false" />
-
-                <!-- Redirect after success -->
-                <input
-                  type="hidden"
-                  name="_next"
-                  value="https://versedglobal.com/contact.html?submitted"
-                />
-
-                <!-- Email subject -->
-                <input
-                  type="hidden"
-                  name="_subject"
-                  value="New Contact Form Submission - Versed Global"
-                />
-
-                <div class="form-group">
-                  <label for="name">Your name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    placeholder="Full name"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="email">Email address</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    placeholder="you@example.com"
-                  />
-                </div>
-
-                <div
-                  style="
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 1rem;
-                  "
-                >
-                  <div class="form-group">
-                    <label for="organisation">Organisation</label>
-                    <input
-                      type="text"
-                      id="organisation"
-                      name="organisation"
-                      placeholder="Your organisation"
-                    />
-                  </div>
-
-                  <div class="form-group">
-                    <label for="interest">Area of interest</label>
-                    <select id="interest" name="interest" required>
-                      <option value="" disabled selected>Select&hellip;</option>
-                      <option value="Salesforce CRM">Salesforce CRM</option>
-                      <option value="Web Design">Web Design</option>
-                      <option value="Trust & Foundation Fundraising">
-                        Trust &amp; Foundation Fundraising
-                      </option>
-                      <option value="Integrated Solutions">
-                        Integrated Solutions
-                      </option>
-                      <option value="Training & Support">
-                        Training &amp; Support
-                      </option>
-                      <option value="General enquiry">General enquiry</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="message">Your message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    placeholder="Tell us about your project or question..."
-                    rows="5"
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  class="btn btn-primary"
-                  style="width: 100%"
-                >
-                  <i class="fas fa-paper-plane"></i>
-                  Send message
-                </button>
-              </form>
             </div>
           </div>
         </div>
