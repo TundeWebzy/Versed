@@ -101,7 +101,7 @@
           &#9776;
         </button>
 
-        <nav class="main-nav">
+        <nav class="main-nav" aria-label="Primary navigation">
           <div class="nav-links" id="navLinks">
             <a href="index.html" class="active">Home</a>
             <a href="services.html">Salesforce</a>
@@ -1080,7 +1080,7 @@
         const toggleMenu = () => {
           const isOpen = navLinks.classList.contains("active");
           navLinks.classList.toggle("active");
-          mobileMenuToggle.setAttribute("aria-expanded", !isOpen);
+          mobileMenuToggle.setAttribute("aria-expanded", String(!isOpen));
           mobileMenuToggle.textContent = isOpen ? "\u2630" : "\u2715";
         };
 
@@ -1180,6 +1180,10 @@
             faqItem.classList.add("active");
             if (toggle) toggle.textContent = "\u2212";
             this.setAttribute("aria-expanded", "true");
+          } else {
+            faqItem.classList.remove("active");
+            if (toggle) toggle.textContent = "+";
+            this.setAttribute("aria-expanded", "false");
           }
         });
 
