@@ -1,7 +1,7 @@
 /* ============================================================
    VERSED GLOBAL - COMPLETE STYLESHEET
-   Version: 5.0 - Unified Teal Theme (All Pages)
-   Updated: 24 February 2026
+   Version: 5.1 - Responsive Header Fix + Portal Button Fix
+   Updated: 12 March 2026
    ============================================================ */
 
 /* ============================================================
@@ -241,6 +241,7 @@ body {
   box-shadow: 0 6px 16px rgba(8, 145, 178, 0.45);
 }
 
+/* Mobile menu button — hidden on desktop */
 .mobile-menu {
   display: none;
   background: linear-gradient(
@@ -259,6 +260,8 @@ body {
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance: none;
   appearance: none;
+  line-height: 1;
+  z-index: 1001;
 }
 
 .mobile-menu:hover {
@@ -285,7 +288,8 @@ body {
   box-shadow: 0 6px 16px rgba(8, 145, 178, 0.45);
 }
 
-/* Responsive header */
+/* ── Responsive header breakpoints ── */
+
 @media (max-width: 1100px) {
   .tagline {
     display: none;
@@ -300,61 +304,92 @@ body {
 }
 
 @media (max-width: 768px) {
+  /* Wrapper becomes a flex row: logo | hamburger */
   .header-inner {
-    flex-wrap: wrap;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
     padding: 0.7rem 1rem;
-    gap: 0.5rem;
     position: relative;
   }
+
   .logo-area {
-    flex: 1;
+    flex: 1 1 auto;
     min-width: 0;
   }
+
   .logo-image {
     height: 44px;
   }
+
   .logo-text {
     font-size: 1.25rem;
   }
+
   .tagline {
     display: none;
   }
+
+  /* Hamburger visible */
   .mobile-menu {
     display: flex;
     align-items: center;
     justify-content: center;
-    order: 2;
     flex-shrink: 0;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
   }
+
+  /* Nav fills full width below the logo/hamburger row */
   .main-nav {
-    width: 100%;
-    order: 3;
-  }
-  .nav-links {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: linear-gradient(180deg, #ffffff 0%, #e6f7f7 100%);
-    border-top: 2px solid rgba(14, 116, 144, 0.25);
+    width: 100%;
+    z-index: 999;
+    /* Collapsed state */
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    flex-direction: column;
-    gap: 0;
-    z-index: 1000;
+    background: linear-gradient(180deg, #ffffff 0%, #e6f7f7 100%);
+    border-top: 2px solid rgba(14, 116, 144, 0.25);
     box-shadow: 0 8px 24px rgba(14, 116, 144, 0.18);
-    -webkit-overflow-scrolling: touch;
-    margin: 0;
-    padding: 0;
   }
-  .nav-links.active,
-  .nav-links.open {
+
+  /* Expanded state — toggled by JS adding .open to .main-nav */
+  .main-nav.open {
     max-height: 100vh;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
+
+  /* nav-links becomes a vertical column inside main-nav */
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* Reset any absolute positioning from desktop */
+    position: static;
+    max-height: none;
+    overflow: visible;
+    box-shadow: none;
+    border-top: none;
+    background: transparent;
+  }
+
+  /* Keep legacy .active / .open on nav-links working too */
+  .nav-links.active,
+  .nav-links.open {
+    max-height: none;
+  }
+
   .nav-links a {
     width: 100%;
     padding: 1.1rem 1.5rem;
@@ -365,10 +400,12 @@ body {
     display: block;
     margin: 0;
   }
+
   .nav-links a:hover {
     background: rgba(8, 145, 178, 0.12);
     transform: translateX(4px);
   }
+
   .nav-links a.active {
     background: linear-gradient(
       90deg,
@@ -378,6 +415,7 @@ body {
     color: var(--teal-dark);
     border-left: 4px solid var(--teal-primary);
   }
+
   .nav-links a.nav-cta {
     margin-left: 0;
     border-radius: 0;
@@ -389,6 +427,7 @@ body {
     color: white;
     border-bottom: none;
   }
+
   .nav-links a.nav-cta:hover {
     background: linear-gradient(
       135deg,
@@ -403,19 +442,18 @@ body {
   .header-inner {
     padding: 0.6rem 0.85rem;
   }
+
   .logo-image {
     height: 40px;
   }
+
   .logo-text {
     font-size: 1.15rem;
   }
+
   .nav-links a {
     padding: 1rem 1.25rem;
     font-size: 0.95rem;
-  }
-  .nav-links.active,
-  .nav-links.open {
-    max-height: 100vh;
   }
 }
 
@@ -3319,6 +3357,54 @@ body {
   gap: 0.75rem;
 }
 
+/* ── Portal header button overrides for visibility on dark bg ── */
+.portal-header .btn,
+.portal-header-inner .btn,
+.portal-header-inner > div:last-child .btn,
+.portal-header-inner > div:last-child a.btn {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  font-weight: 600;
+}
+.portal-header .btn:hover,
+.portal-header-inner .btn:hover,
+.portal-header-inner > div:last-child .btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Primary action button inside portal header — brighter cyan */
+.portal-header .btn-primary,
+.portal-header-inner .btn-primary {
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(8, 145, 178, 0.5);
+}
+.portal-header .btn-primary:hover,
+.portal-header-inner .btn-primary:hover {
+  background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+  box-shadow: 0 6px 20px rgba(8, 145, 178, 0.65);
+}
+
+/* Danger / logout button inside portal header */
+.portal-header .btn-danger,
+.portal-header-inner .btn-danger,
+.portal-header-inner > div:last-child .btn-danger {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.45);
+}
+.portal-header .btn-danger:hover,
+.portal-header-inner .btn-danger:hover {
+  background: rgba(239, 68, 68, 0.35);
+  color: #ffffff;
+  border-color: rgba(239, 68, 68, 0.65);
+}
+
 @media (max-width: 900px) {
   .portal-logo-img {
     height: 60px;
@@ -3420,6 +3506,40 @@ body {
 }
 .portal-container .card p {
   font-size: 0.88rem;
+}
+
+/* Portal container button overrides — ensure contrast on white cards */
+.portal-container .btn-primary {
+  background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(8, 145, 178, 0.35);
+}
+.portal-container .btn-primary:hover {
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  box-shadow: 0 6px 18px rgba(8, 145, 178, 0.5);
+}
+
+.portal-container .btn-secondary {
+  background: transparent;
+  color: #0891b2;
+  border: 2px solid #0891b2;
+}
+.portal-container .btn-secondary:hover {
+  background: rgba(8, 145, 178, 0.08);
+  border-color: #0e7490;
+  color: #0e7490;
+}
+
+.portal-container .btn-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+.portal-container .btn-danger:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.45);
 }
 
 .portal-table {
