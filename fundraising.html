@@ -50,6 +50,550 @@
         "description": "Targeted trust and foundation fundraising support – strategy, pipeline development, grant writing and relationship management – for charities and mission-driven organisations, integrated with Salesforce where needed."
       }
     </script>
+
+    <style>
+      /* ============================================================
+         REDESIGNED: FUNDRAISING HERO — SPLIT LAYOUT WITH IMAGE
+         ============================================================ */
+
+      .fr-hero {
+        padding: 0;
+        background: #f8fafc;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .fr-hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 480px;
+      }
+
+      /* Left text panel */
+      .fr-hero-left {
+        padding: 4rem 3rem 4rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      .fr-hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #0891b2;
+        margin-bottom: 1rem;
+      }
+
+      .fr-hero-eyebrow::before {
+        content: "";
+        width: 18px;
+        height: 1.5px;
+        background: #0891b2;
+        display: block;
+        flex-shrink: 0;
+      }
+
+      .fr-hero-title {
+        font-size: clamp(1.75rem, 3vw, 2.6rem);
+        font-weight: 700;
+        color: #0c0f14;
+        line-height: 1.15;
+        margin: 0 0 1.25rem;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      .fr-hero-title span {
+        color: #0891b2;
+      }
+
+      .fr-hero-body {
+        font-size: 0.92rem;
+        color: #475569;
+        line-height: 1.75;
+        margin: 0 0 1.75rem;
+        max-width: 480px;
+      }
+
+      /* Inline stat badges */
+      .fr-hero-stats {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .fr-hero-stat {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.85rem;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #334155;
+        white-space: nowrap;
+      }
+
+      .fr-hero-stat i {
+        color: #0891b2;
+        font-size: 0.72rem;
+      }
+
+      /* Right image panel */
+      .fr-hero-right {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .fr-hero-right img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        filter: brightness(0.88) saturate(0.9);
+        transition:
+          transform 0.8s ease,
+          filter 0.4s ease;
+      }
+
+      .fr-hero-right:hover img {
+        transform: scale(1.03);
+        filter: brightness(0.82) saturate(0.85);
+      }
+
+      /* Accent band at left edge of image */
+      .fr-hero-right::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(
+          180deg,
+          #0891b2 0%,
+          #22d3ee 50%,
+          #0891b2 100%
+        );
+        z-index: 2;
+      }
+
+      /* Floating label on image */
+      .fr-hero-badge {
+        position: absolute;
+        bottom: 1.75rem;
+        left: 1.75rem;
+        z-index: 3;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(8, 145, 178, 0.2);
+        border-radius: 10px;
+        padding: 0.75rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      }
+
+      .fr-hero-badge-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: #0891b2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 0.75rem;
+        flex-shrink: 0;
+      }
+
+      .fr-hero-badge-text strong {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #0c0f14;
+        line-height: 1.2;
+      }
+
+      .fr-hero-badge-text span {
+        font-size: 0.72rem;
+        color: #64748b;
+      }
+
+      @media (max-width: 768px) {
+        .fr-hero-inner {
+          grid-template-columns: 1fr;
+        }
+        .fr-hero-right {
+          height: 240px;
+        }
+        .fr-hero-left {
+          padding: 2.5rem 1.5rem;
+        }
+      }
+
+      /* ============================================================
+         REDESIGNED: WHAT WE OFFER — COMPACT HORIZONTAL ICON GRID
+         ============================================================ */
+
+      .fr-offer-section {
+        padding: 4rem 0;
+        background: #fff;
+        position: relative;
+      }
+
+      .fr-offer-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .fr-offer-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .fr-offer-header-left {
+        flex: 1;
+        min-width: 220px;
+      }
+
+      .fr-offer-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #0891b2;
+        margin-bottom: 0.5rem;
+      }
+
+      .fr-offer-kicker::before {
+        content: "";
+        width: 14px;
+        height: 1.5px;
+        background: #0891b2;
+        display: block;
+      }
+
+      .fr-offer-title {
+        font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+        font-weight: 700;
+        color: #0c0f14;
+        line-height: 1.2;
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      .fr-offer-sub {
+        font-size: 0.87rem;
+        color: #64748b;
+        line-height: 1.7;
+        max-width: 380px;
+        margin: 0;
+        align-self: flex-end;
+      }
+
+      /* 3×2 compact card grid */
+      .fr-offer-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: #e2e8f0;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        overflow: hidden;
+      }
+
+      .fr-offer-card {
+        background: #fff;
+        padding: 1.5rem 1.5rem 1.4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        transition: background 0.2s ease;
+        position: relative;
+      }
+
+      .fr-offer-card:hover {
+        background: #f0f9ff;
+      }
+
+      /* Top row: icon + number */
+      .fr-offer-card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 0.85rem;
+      }
+
+      .fr-offer-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+        background: #e0f2fe;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0891b2;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+        transition:
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .fr-offer-card:hover .fr-offer-icon {
+        background: #0891b2;
+        color: #fff;
+      }
+
+      .fr-offer-num {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        color: #cbd5e1;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      .fr-offer-card h3 {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0 0 0.45rem;
+        line-height: 1.3;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      .fr-offer-card p {
+        font-size: 0.78rem;
+        color: #64748b;
+        line-height: 1.65;
+        margin: 0;
+      }
+
+      /* Subtle bottom accent on hover */
+      .fr-offer-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #0891b2;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+
+      .fr-offer-card:hover::after {
+        opacity: 1;
+      }
+
+      @media (max-width: 900px) {
+        .fr-offer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .fr-offer-header {
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+        .fr-offer-sub {
+          max-width: 100%;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .fr-offer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============================================================
+         REDESIGNED: CTA — COMPACT HORIZONTAL STRIP
+         ============================================================ */
+
+      .fr-cta-section {
+        padding: 3.5rem 0;
+        background: #f0f9ff;
+        border-top: 1px solid #e0f2fe;
+        border-bottom: 1px solid #e0f2fe;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Subtle grid pattern */
+      .fr-cta-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(8, 145, 178, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 145, 178, 0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+        pointer-events: none;
+      }
+
+      .fr-cta-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+
+      .fr-cta-left {
+        flex: 1;
+        min-width: 260px;
+      }
+
+      /* Accent mark */
+      .fr-cta-mark {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #0891b2;
+        margin-bottom: 0.65rem;
+      }
+
+      .fr-cta-mark i {
+        font-size: 0.65rem;
+      }
+
+      .fr-cta-title {
+        font-size: clamp(1.2rem, 2vw, 1.6rem);
+        font-weight: 700;
+        color: #0c0f14;
+        line-height: 1.25;
+        margin: 0 0 0.6rem;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      .fr-cta-body {
+        font-size: 0.87rem;
+        color: #475569;
+        line-height: 1.7;
+        margin: 0;
+        max-width: 480px;
+      }
+
+      .fr-cta-right {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        flex-shrink: 0;
+      }
+
+      .fr-cta-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.75rem 1.5rem;
+        background: #0891b2;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition:
+          background 0.2s ease,
+          transform 0.15s ease;
+        white-space: nowrap;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      .fr-cta-btn-primary:hover {
+        background: #0e7490;
+        transform: translateY(-1px);
+      }
+
+      .fr-cta-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.75rem 1.5rem;
+        background: #fff;
+        color: #0891b2;
+        border: 1px solid rgba(8, 145, 178, 0.35);
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition:
+          background 0.2s ease,
+          border-color 0.2s ease,
+          transform 0.15s ease;
+        white-space: nowrap;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      .fr-cta-btn-secondary:hover {
+        background: #f0f9ff;
+        border-color: #0891b2;
+        transform: translateY(-1px);
+      }
+
+      /* Trust signals row */
+      .fr-cta-trust {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .fr-cta-trust-item {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.75rem;
+        color: #64748b;
+        font-weight: 500;
+      }
+
+      .fr-cta-trust-item i {
+        color: #0891b2;
+        font-size: 0.7rem;
+      }
+
+      @media (max-width: 768px) {
+        .fr-cta-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1.5rem;
+        }
+        .fr-cta-right {
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Header -->
@@ -94,128 +638,205 @@
     </header>
 
     <main>
-      <!-- Intro -->
-      <section class="section">
-        <div class="container">
-          <div class="fundraising-hero-layout">
-            <div class="fundraising-hero-text">
-              <h1 class="section-title">Trust &amp; foundation fundraising</h1>
-              <p class="section-intro">
-                Versed Global provides targeted trust and foundation fundraising
-                support – from strategy development and prospect research
-                through to grant writing and funder stewardship – for charities
-                and mission‑driven organisations. Where relevant, this work
-                integrates with Salesforce to create joined-up systems and
-                workflows.
-              </p>
+      <!-- ============================================================
+           REDESIGNED: TRUST & FOUNDATION FUNDRAISING HERO
+           ============================================================ -->
+      <section class="fr-hero" aria-label="Trust and foundation fundraising">
+        <div class="fr-hero-inner">
+          <!-- Left: text content -->
+          <div class="fr-hero-left">
+            <div class="fr-hero-eyebrow">
+              Trust &amp; Foundation Fundraising
             </div>
-            <div class="fundraising-hero-image">
-              <img
-                src="https://media.istockphoto.com/id/467578974/photo/london-maraphon-runners-on-the-road.jpg?s=612x612&w=0&k=20&c=HL_ugTWeuSLqLSM7FlLXgWYflHot6HdoV-wSn_CqVVY="
-                alt="Charity marathon fundraising event in London"
-                onerror="this.style.display = 'none'"
-              />
+            <h1 class="fr-hero-title">
+              Funding strategies<br />built on <span>evidence</span><br />and
+              clarity
+            </h1>
+            <p class="fr-hero-body">
+              Versed Global provides targeted trust and foundation fundraising
+              support – from strategy development and prospect research through
+              to grant writing and funder stewardship – for charities and
+              mission‑driven organisations. Where relevant, this work integrates
+              with Salesforce to create joined-up systems and workflows.
+            </p>
+            <div class="fr-hero-stats">
+              <div class="fr-hero-stat">
+                <i class="fas fa-pound-sign"></i> £1M+ funding supported
+              </div>
+              <div class="fr-hero-stat">
+                <i class="fas fa-seedling"></i> Trust &amp; foundation
+                specialists
+              </div>
+              <div class="fr-hero-stat">
+                <i class="fas fa-database"></i> Salesforce integrated
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: image with floating badge -->
+          <div class="fr-hero-right">
+            <img
+              src="https://media.istockphoto.com/id/467578974/photo/london-maraphon-runners-on-the-road.jpg?s=612x612&w=0&k=20&c=HL_ugTWeuSLqLSM7FlLXgWYflHot6HdoV-wSn_CqVVY="
+              alt="Charity marathon fundraising event in London"
+              onerror="this.style.display = 'none'"
+            />
+            <div class="fr-hero-badge">
+              <div class="fr-hero-badge-icon">
+                <i class="fas fa-hand-holding-heart"></i>
+              </div>
+              <div class="fr-hero-badge-text">
+                <strong>Realistic &amp; deliverable</strong>
+                <span>Grounded in your organisation's capacity</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Services -->
-      <section class="section alt">
-        <div class="container">
-          <h2 class="section-title">What we offer</h2>
-          <p class="section-intro">
-            Each engagement is tailored to your organisation's capacity, context
-            and goals. Services can be delivered as standalone support or as
-            part of an integrated Salesforce and fundraising project.
-          </p>
+      <!-- ============================================================
+           REDESIGNED: WHAT WE OFFER — COMPACT ICON GRID
+           ============================================================ -->
+      <section class="fr-offer-section" aria-label="What we offer">
+        <div class="fr-offer-inner">
+          <div class="fr-offer-header">
+            <div class="fr-offer-header-left">
+              <div class="fr-offer-kicker">Our services</div>
+              <h2 class="fr-offer-title">What we offer</h2>
+            </div>
+            <p class="fr-offer-sub">
+              Each engagement is tailored to your organisation's capacity,
+              context and goals — delivered standalone or as part of an
+              integrated Salesforce and fundraising project.
+            </p>
+          </div>
 
-          <div class="three-grid">
-            <div class="card">
+          <div class="fr-offer-grid">
+            <div class="fr-offer-card">
+              <div class="fr-offer-card-top">
+                <div class="fr-offer-icon"><i class="fas fa-route"></i></div>
+                <span class="fr-offer-num">01</span>
+              </div>
               <h3>Fundraising strategy</h3>
               <p>
-                Development of a clear, realistic trust and foundation
-                fundraising strategy aligned with your mission, programmes and
-                income targets – including pipeline planning and resource
-                mapping.
+                A clear, realistic trust and foundation fundraising strategy
+                aligned with your mission, programmes and income targets —
+                including pipeline planning and resource mapping.
               </p>
             </div>
 
-            <div class="card">
+            <div class="fr-offer-card">
+              <div class="fr-offer-card-top">
+                <div class="fr-offer-icon"><i class="fas fa-search"></i></div>
+                <span class="fr-offer-num">02</span>
+              </div>
               <h3>Prospect research</h3>
               <p>
                 Identification and qualification of trusts, foundations and
-                statutory funders aligned with your work – including
-                prioritisation based on fit, capacity and likelihood of success.
+                statutory funders — prioritised by fit, capacity and likelihood
+                of success.
               </p>
             </div>
 
-            <div class="card">
+            <div class="fr-offer-card">
+              <div class="fr-offer-card-top">
+                <div class="fr-offer-icon"><i class="fas fa-pen-nib"></i></div>
+                <span class="fr-offer-num">03</span>
+              </div>
               <h3>Grant writing</h3>
               <p>
-                Compelling, evidence-based grant applications and proposals
-                tailored to funder priorities – from initial expressions of
-                interest through to full applications.
+                Compelling, evidence-based grant applications tailored to funder
+                priorities — from initial expressions of interest through to
+                full applications.
               </p>
             </div>
 
-            <div class="card">
+            <div class="fr-offer-card">
+              <div class="fr-offer-card-top">
+                <div class="fr-offer-icon"><i class="fas fa-stream"></i></div>
+                <span class="fr-offer-num">04</span>
+              </div>
               <h3>Pipeline management</h3>
               <p>
-                Support with managing your fundraising pipeline – tracking
-                prospects, applications and relationships in a structured way,
-                ideally within Salesforce.
+                Support managing your fundraising pipeline — tracking prospects,
+                applications and relationships in a structured way, ideally
+                within Salesforce.
               </p>
             </div>
 
-            <div class="card">
+            <div class="fr-offer-card">
+              <div class="fr-offer-card-top">
+                <div class="fr-offer-icon">
+                  <i class="fas fa-handshake"></i>
+                </div>
+                <span class="fr-offer-num">05</span>
+              </div>
               <h3>Funder stewardship</h3>
               <p>
-                Guidance on building and maintaining strong funder relationships
-                – from reporting and impact communication to renewals and
-                cultivation.
+                Building and maintaining strong funder relationships — from
+                reporting and impact communication to renewals and cultivation.
               </p>
             </div>
 
-            <div class="card">
+            <div class="fr-offer-card">
+              <div class="fr-offer-card-top">
+                <div class="fr-offer-icon">
+                  <i class="fas fa-project-diagram"></i>
+                </div>
+                <span class="fr-offer-num">06</span>
+              </div>
               <h3>Systems integration</h3>
               <p>
-                Where needed, alignment of your fundraising workflows with
-                Salesforce – so that prospect tracking, reporting and
-                stewardship are supported by your CRM.
+                Alignment of your fundraising workflows with Salesforce — so
+                that prospect tracking, reporting and stewardship are supported
+                by your CRM.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- CTA Section -->
-      <section class="section">
-        <div class="container" style="text-align: center">
-          <h2 class="section-title">
-            Talk through your fundraising priorities
-          </h2>
-          <p
-            class="section-intro"
-            style="margin: 0 auto 2rem; max-width: 600px"
-          >
-            Share your current approach, capacity and targets, and explore what
-            realistic, phased support could look like for your organisation.
-          </p>
-          <div
-            style="
-              display: flex;
-              flex-wrap: wrap;
-              gap: 1rem;
-              justify-content: center;
-            "
-          >
-            <a href="contact.html" class="btn btn-primary"
-              >Book fundraising conversation</a
-            >
-            <a href="services.html" class="btn btn-secondary"
-              >Explore Salesforce integration</a
-            >
+      <!-- ============================================================
+           REDESIGNED: CTA — HORIZONTAL STRIP
+           ============================================================ -->
+      <section
+        class="fr-cta-section"
+        aria-label="Talk through your fundraising priorities"
+      >
+        <div class="fr-cta-inner">
+          <div class="fr-cta-left">
+            <div class="fr-cta-mark">
+              <i class="fas fa-comments"></i> Get in touch
+            </div>
+            <h2 class="fr-cta-title">
+              Talk through your fundraising priorities
+            </h2>
+            <p class="fr-cta-body">
+              Share your current approach, capacity and targets, and explore
+              what realistic, phased support could look like for your
+              organisation.
+            </p>
+            <div class="fr-cta-trust">
+              <div class="fr-cta-trust-item">
+                <i class="fas fa-check-circle"></i> No commitment required
+              </div>
+              <div class="fr-cta-trust-item">
+                <i class="fas fa-check-circle"></i> Tailored to your capacity
+              </div>
+              <div class="fr-cta-trust-item">
+                <i class="fas fa-check-circle"></i> UK-based consultancy
+              </div>
+            </div>
+          </div>
+
+          <div class="fr-cta-right">
+            <a href="contact.html" class="fr-cta-btn-primary">
+              <i class="fas fa-calendar-check"></i>
+              Book a fundraising conversation
+            </a>
+            <a href="services.html" class="fr-cta-btn-secondary">
+              <i class="fas fa-database"></i>
+              Explore Salesforce integration
+            </a>
           </div>
         </div>
       </section>
@@ -350,10 +971,8 @@
     <script src="script.js"></script>
 
     <script>
-      // Set current year in footer
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Mobile menu toggle
       const mobileMenuToggle = document.getElementById("mobileMenuToggle");
       const navLinks = document.getElementById("navLinks");
 
@@ -363,7 +982,6 @@
         });
       }
 
-      // Close mobile menu when link is clicked
       const navItems = navLinks.querySelectorAll("a");
       navItems.forEach((item) => {
         item.addEventListener("click", () => {
@@ -371,7 +989,6 @@
         });
       });
 
-      // Browser History Navigation - Closes mobile menu on back/forward
       window.addEventListener("popstate", () => {
         if (navLinks.classList.contains("active")) {
           navLinks.classList.remove("active");
