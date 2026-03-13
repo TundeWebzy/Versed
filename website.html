@@ -5,37 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web Design | Versed Global</title>
 
-    <!-- FAVICON -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- ALGOLIA SITE VERIFICATION -->
     <meta name="algolia-site-verification" content="1E71BF4B63127FEC" />
-
     <meta
       name="description"
       content="Versed Global creates bespoke, professional websites for charities, businesses, corporates and social enterprises. Custom web design and development that reflects your brand and integrates with your systems."
     />
 
-    <!-- Main stylesheet -->
     <link rel="stylesheet" href="styles.css" />
-
-    <!-- Google Fonts for professional typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Font Awesome for icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
-    <!-- Organization Schema -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -51,77 +42,791 @@
       }
     </script>
 
-    <!-- Website-page-specific styles (tech stack, pricing, integration, portal CTA) -->
     <style>
       /* ============================================================
-         CUSTOM WEBSITE PAGE STYLES – LOGO COLORS
+         WEB PAGE – ALL CUSTOM STYLES
          ============================================================ */
 
-      .tech-stack-grid {
-        background: white;
-        border-radius: 20px;
-        padding: 2.5rem;
-        box-shadow: 0 12px 30px rgba(14, 116, 144, 0.1);
+      /* ── HERO ── */
+      .web-hero {
+        position: relative;
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e293b 55%,
+          #0c4a6e 100%
+        );
+        overflow: hidden;
+        padding: 5rem 0 4rem;
       }
 
-      .tech-stack-grid > div {
+      .web-hero-grid-bg {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(8, 145, 178, 0.07) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 145, 178, 0.07) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+      }
+
+      .web-hero-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(70px);
+        pointer-events: none;
+      }
+      .web-hero-orb-1 {
+        width: 380px;
+        height: 380px;
+        background: rgba(8, 145, 178, 0.18);
+        top: -10%;
+        right: -5%;
+        animation: wHeroFloat 9s ease-in-out infinite;
+      }
+      .web-hero-orb-2 {
+        width: 250px;
+        height: 250px;
+        background: rgba(234, 88, 12, 0.1);
+        bottom: -5%;
+        left: 5%;
+        animation: wHeroFloat 11s ease-in-out infinite reverse;
+      }
+      .web-hero-orb-3 {
+        width: 180px;
+        height: 180px;
+        background: rgba(34, 211, 238, 0.1);
+        top: 40%;
+        right: 38%;
+        animation: wHeroFloat 13s ease-in-out infinite;
+      }
+
+      @keyframes wHeroFloat {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-22px) scale(1.04);
+        }
+      }
+
+      .web-hero-inner {
+        position: relative;
+        z-index: 2;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 3.5rem;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
       }
 
-      .tech-item h3 {
-        font-size: 1.1rem;
-        color: #0c4a6e;
-        margin-bottom: 0.75rem;
+      /* Left */
+      .web-hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(8, 145, 178, 0.18);
+        border: 1px solid rgba(8, 145, 178, 0.3);
+        color: #67e8f9;
+        padding: 0.4rem 1rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
         font-weight: 600;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+      }
+      .web-hero-eyebrow-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #22d3ee;
+        animation: wHeroPulse 2s ease-in-out infinite;
+      }
+      @keyframes wHeroPulse {
+        0%,
+        100% {
+          opacity: 1;
+          box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.4);
+        }
+        50% {
+          opacity: 0.7;
+          box-shadow: 0 0 0 6px rgba(34, 211, 238, 0);
+        }
       }
 
-      .tech-item ul {
-        list-style: none;
-        padding: 0;
+      .web-hero-title {
+        font-size: clamp(2rem, 4vw, 2.9rem);
+        font-weight: 700;
+        color: #f0f9ff;
+        line-height: 1.18;
+        letter-spacing: -0.025em;
+        margin-bottom: 1.1rem;
+      }
+      .web-hero-title .ht-teal {
+        color: #22d3ee;
+      }
+      .web-hero-title .ht-warm {
+        color: #fb923c;
+      }
+
+      .web-hero-sub {
+        font-size: 1rem;
+        color: #94a3b8;
+        line-height: 1.8;
+        margin-bottom: 1.75rem;
+        max-width: 500px;
+      }
+
+      .web-hero-checks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem 1.25rem;
+        margin-bottom: 2rem;
+      }
+      .web-hero-check {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: #cbd5e1;
+      }
+      .web-hero-check i {
+        color: #22d3ee;
+        font-size: 0.8rem;
+      }
+
+      .web-hero-btns {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 2.25rem;
+      }
+      .web-hero-btns .wh-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, #0891b2, #06b6d4);
+        color: #fff;
+        border-radius: 10px;
+        font-size: 0.92rem;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 4px 18px rgba(8, 145, 178, 0.4);
+        transition: all 0.25s ease;
+      }
+      .web-hero-btns .wh-btn-primary:hover {
+        background: linear-gradient(135deg, #06b6d4, #22d3ee);
+        box-shadow: 0 8px 28px rgba(8, 145, 178, 0.5);
+        transform: translateY(-2px);
+      }
+      .web-hero-btns .wh-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: transparent;
+        color: #67e8f9;
+        border: 1px solid rgba(8, 145, 178, 0.45);
+        border-radius: 10px;
+        font-size: 0.92rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.25s ease;
+      }
+      .web-hero-btns .wh-btn-secondary:hover {
+        background: rgba(8, 145, 178, 0.15);
+        border-color: #22d3ee;
+        transform: translateY(-2px);
+      }
+
+      .web-hero-stats {
+        display: flex;
+        gap: 0;
+        align-items: center;
+        border: 1px solid rgba(8, 145, 178, 0.2);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(8px);
+        overflow: hidden;
+        max-width: 440px;
+      }
+      .web-hero-stat {
+        flex: 1;
+        text-align: center;
+        padding: 0.85rem 0.5rem;
+      }
+      .web-hero-stat-val {
+        display: block;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #22d3ee;
+        line-height: 1;
+      }
+      .web-hero-stat-lbl {
+        display: block;
+        font-size: 0.7rem;
+        color: #64748b;
+        margin-top: 0.25rem;
+        white-space: nowrap;
+      }
+      .web-hero-stat-div {
+        width: 1px;
+        height: 36px;
+        background: rgba(8, 145, 178, 0.2);
+        flex-shrink: 0;
+      }
+
+      /* Right – code window mockup */
+      .web-hero-right {
+        position: relative;
+      }
+
+      .web-code-window {
+        background: #0d1117;
+        border-radius: 16px;
+        border: 1px solid rgba(8, 145, 178, 0.22);
+        overflow: hidden;
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+        transform: perspective(900px) rotateY(-4deg) rotateX(2deg);
+        transition: transform 0.5s ease;
+      }
+      .web-code-window:hover {
+        transform: perspective(900px) rotateY(0deg) rotateX(0deg);
+      }
+
+      .web-code-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.6rem 1rem;
+        background: rgba(15, 23, 42, 0.9);
+        border-bottom: 1px solid rgba(8, 145, 178, 0.15);
+      }
+      .web-code-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .web-code-filename {
+        margin-left: 0.75rem;
+        font-size: 0.75rem;
+        color: #64748b;
+        font-family: "Fira Code", "Courier New", monospace;
+        letter-spacing: 0.02em;
+      }
+      .web-code-status {
+        margin-left: auto;
+        font-size: 0.7rem;
+        color: #22d3ee;
+        font-weight: 600;
+        padding: 0.15rem 0.55rem;
+        background: rgba(34, 211, 238, 0.1);
+        border: 1px solid rgba(34, 211, 238, 0.25);
+        border-radius: 999px;
+      }
+
+      .web-code-body {
+        padding: 1.25rem 1.25rem 1.5rem;
+        font-family: "Fira Code", "Courier New", monospace;
+        font-size: 0.78rem;
+        line-height: 1.7;
+      }
+      .cl {
+        display: block;
+      }
+      .cl-num {
+        color: #374151;
+        margin-right: 1rem;
+        user-select: none;
+        min-width: 1.5rem;
+        display: inline-block;
+        text-align: right;
+      }
+      .cl-tag {
+        color: #f472b6;
+      }
+      .cl-attr {
+        color: #60a5fa;
+      }
+      .cl-val {
+        color: #34d399;
+      }
+      .cl-text {
+        color: #e2e8f0;
+      }
+      .cl-comment {
+        color: #4b5563;
+        font-style: italic;
+      }
+      .cl-class {
+        color: #c084fc;
+      }
+      .cl-prop {
+        color: #60a5fa;
+      }
+      .cl-px {
+        color: #fcd34d;
+      }
+
+      /* Floating tech badges */
+      .web-hero-badge {
+        position: absolute;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(8, 145, 178, 0.3);
+        color: #e2e8f0;
+        padding: 0.4rem 0.8rem;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        animation: badgeFloat 4s ease-in-out infinite;
+      }
+      .web-hero-badge i {
+        color: #22d3ee;
+      }
+      .web-hero-badge-1 {
+        top: -1rem;
+        right: -1rem;
+        animation-delay: 0s;
+      }
+      .web-hero-badge-2 {
+        bottom: 5rem;
+        left: -1.5rem;
+        animation-delay: 1.5s;
+      }
+      @keyframes badgeFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+
+      /* ── WHAT WE BUILD – icon card grid ── */
+      .wb-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+        margin-top: 2rem;
+      }
+      .wb-card {
+        position: relative;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 1.75rem 1.5rem 1.5rem;
+        overflow: hidden;
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s,
+          transform 0.25s;
+      }
+      .wb-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #0891b2, #22d3ee);
+        opacity: 0;
+        transition: opacity 0.25s;
+      }
+      .wb-card:hover {
+        border-color: #0891b2;
+        box-shadow: 0 8px 28px rgba(8, 145, 178, 0.12);
+        transform: translateY(-4px);
+      }
+      .wb-card:hover::before {
+        opacity: 1;
+      }
+
+      .wb-card-num {
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #0891b2;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 0.85rem;
+        opacity: 0.7;
+      }
+      .wb-card-icon {
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(
+          135deg,
+          rgba(8, 145, 178, 0.1),
+          rgba(34, 211, 238, 0.08)
+        );
+        border: 1px solid rgba(8, 145, 178, 0.15);
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        color: #0891b2;
+        font-size: 1.1rem;
+        transition:
+          background 0.25s,
+          color 0.25s;
+      }
+      .wb-card:hover .wb-card-icon {
+        background: linear-gradient(135deg, #0891b2, #06b6d4);
+        color: #fff;
+        border-color: transparent;
+      }
+      .wb-card-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #0c4a6e;
+        margin-bottom: 0.6rem;
+        line-height: 1.3;
+      }
+      .wb-card-text {
+        font-size: 0.82rem;
+        color: #475569;
+        line-height: 1.65;
+        margin-bottom: 0.75rem;
+      }
+      .wb-card-sub {
+        font-size: 0.76rem;
+        color: #94a3b8;
+        line-height: 1.6;
+        border-top: 1px solid #f1f5f9;
+        padding-top: 0.65rem;
+      }
+
+      /* ── WHY VERSED – compact phase stepper ── */
+      .why-web-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+        margin-top: 1.5rem;
+      }
+
+      .why-web-intro {
+        font-size: 0.95rem;
         color: #475569;
         line-height: 1.8;
+        margin-bottom: 1.75rem;
       }
 
-      .tech-item li {
-        margin-bottom: 0.5rem;
+      /* Horizontal phase stepper */
+      .phase-stepper {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
       }
-
-      .tech-item li::before {
-        content: "✓ ";
+      .phase-step {
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        gap: 0 1rem;
+        position: relative;
+      }
+      .phase-step:not(:last-child) .phase-left::after {
+        content: "";
+        position: absolute;
+        left: 17px;
+        top: 36px;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, #0891b2, rgba(8, 145, 178, 0.1));
+      }
+      .phase-left {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 2px;
+      }
+      .phase-dot {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0891b2, #22d3ee);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.72rem;
+        font-weight: 700;
+        flex-shrink: 0;
+        box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.12);
+        z-index: 1;
+      }
+      .phase-right {
+        padding-bottom: 1.5rem;
+      }
+      .phase-label {
+        font-size: 0.7rem;
+        font-weight: 700;
         color: #0891b2;
-        font-weight: 600;
-        margin-right: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.2rem;
+      }
+      .phase-title {
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: #0c4a6e;
+        margin-bottom: 0.3rem;
+        line-height: 1.3;
+      }
+      .phase-body {
+        font-size: 0.82rem;
+        color: #475569;
+        line-height: 1.65;
+        margin: 0;
       }
 
+      /* right aside */
+      .why-web-aside {
+        background: linear-gradient(135deg, #f0f9ff, #e6f7f7);
+        border: 1px solid rgba(8, 145, 178, 0.15);
+        border-radius: 20px;
+        padding: 2rem;
+      }
+      .why-web-aside-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(8, 145, 178, 0.1);
+        color: #0891b2;
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      .why-web-aside-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #0c4a6e;
+        margin-bottom: 1.25rem;
+        line-height: 1.3;
+      }
+      .why-web-aside-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .wwa-item {
+        background: #fff;
+        border: 1px solid rgba(8, 145, 178, 0.12);
+        border-radius: 12px;
+        padding: 1rem;
+      }
+      .wwa-item-label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: #0891b2;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.3rem;
+      }
+      .wwa-item-title {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #0c4a6e;
+        margin-bottom: 0.35rem;
+      }
+      .wwa-item-text {
+        font-size: 0.78rem;
+        color: #475569;
+        line-height: 1.55;
+        margin: 0;
+      }
+
+      /* ── FEATURES & CAPABILITIES – compact icon-list ── */
+      .feat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 1.75rem;
+      }
+      .feat-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.85rem;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 13px;
+        padding: 1.1rem 1.1rem 1rem;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .feat-card:hover {
+        border-color: #0891b2;
+        box-shadow: 0 4px 18px rgba(8, 145, 178, 0.1);
+      }
+      .feat-icon {
+        width: 38px;
+        height: 38px;
+        background: linear-gradient(
+          135deg,
+          rgba(8, 145, 178, 0.1),
+          rgba(34, 211, 238, 0.07)
+        );
+        border: 1px solid rgba(8, 145, 178, 0.15);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0891b2;
+        font-size: 0.95rem;
+        flex-shrink: 0;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .feat-card:hover .feat-icon {
+        background: linear-gradient(135deg, #0891b2, #22d3ee);
+        color: #fff;
+        border-color: transparent;
+      }
+      .feat-info {
+        min-width: 0;
+      }
+      .feat-title {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #0c4a6e;
+        margin-bottom: 0.25rem;
+        line-height: 1.2;
+      }
+      .feat-text {
+        font-size: 0.78rem;
+        color: #475569;
+        line-height: 1.55;
+        margin: 0;
+      }
+
+      /* ── TECH STACK – dark terminal cards ── */
+      .tech-terminal-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+        margin-top: 1.75rem;
+      }
+      .tech-terminal {
+        background: #0d1117;
+        border: 1px solid rgba(8, 145, 178, 0.2);
+        border-radius: 14px;
+        overflow: hidden;
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s;
+      }
+      .tech-terminal:hover {
+        border-color: #0891b2;
+        box-shadow: 0 6px 24px rgba(8, 145, 178, 0.15);
+      }
+      .tech-term-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.5rem 0.8rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-bottom: 1px solid rgba(8, 145, 178, 0.12);
+      }
+      .tech-term-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .tech-term-title {
+        margin-left: 0.5rem;
+        font-size: 0.72rem;
+        color: #64748b;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .tech-term-body {
+        padding: 1rem;
+      }
+      .tech-term-icon {
+        font-size: 1.2rem;
+        color: #0891b2;
+        margin-bottom: 0.6rem;
+      }
+      .tech-term-head {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: #e2e8f0;
+        margin-bottom: 0.6rem;
+      }
+      .tech-term-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .tech-term-list li {
+        font-size: 0.74rem;
+        color: #64748b;
+        line-height: 1.7;
+        padding: 0.15rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .tech-term-list li::before {
+        content: "›";
+        color: #22d3ee;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .tech-term-list li:last-child {
+        border-bottom: none;
+      }
+
+      /* ── INTEGRATION SECTION ── */
       .integration-grid {
         background: linear-gradient(135deg, #e6f7f7, #f0fdfa);
         border-radius: 20px;
         padding: 2.5rem;
         margin-top: 2rem;
       }
-
+      .integration-inner {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2rem;
+      }
       .integration-card {
         background: white;
         border-radius: 16px;
         padding: 1.5rem;
         box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
       }
-
       .integration-icon {
         color: #0891b2;
         font-size: 1.8rem;
         margin-bottom: 0.75rem;
       }
-
       .integration-card h3 {
         font-size: 1.05rem;
         color: #0c4a6e;
         margin-bottom: 0.5rem;
         font-weight: 600;
       }
-
       .integration-card p {
         color: #475569;
         font-size: 0.95rem;
@@ -129,117 +834,157 @@
         margin: 0;
       }
 
-      .pricing-card {
-        background: white;
+      /* ── PRICING – compact horizontal band ── */
+      .pricing-band {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border: 1px solid #e2e8f0;
         border-radius: 18px;
-        padding: 2rem;
-        box-shadow: 0 8px 25px rgba(14, 116, 144, 0.1);
+        overflow: hidden;
+        margin-top: 2rem;
+        box-shadow: 0 8px 32px rgba(14, 116, 144, 0.08);
+      }
+      .pricing-band-card {
+        padding: 1.75rem 1.5rem;
+        background: #fff;
+        border-right: 1px solid #e2e8f0;
+        position: relative;
+        transition: background 0.2s;
+      }
+      .pricing-band-card:last-child {
+        border-right: none;
+      }
+      .pricing-band-card.pb-featured {
+        background: linear-gradient(160deg, #0c4a6e 0%, #0f172a 100%);
+        border-right-color: rgba(8, 145, 178, 0.3);
       }
 
-      .pricing-card.featured {
-        border: 2px solid #0891b2;
-      }
-
-      .pricing-badge {
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
+      .pb-tier {
+        font-size: 0.68rem;
+        font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.12em;
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+        display: inline-block;
+        margin-bottom: 0.9rem;
       }
-
-      .pricing-badge.starter {
+      .pb-tier.starter {
         background: #e6f7f7;
         color: #0e7490;
       }
-
-      .pricing-badge.professional {
-        background: #0891b2;
-        color: white;
+      .pb-tier.pro {
+        background: rgba(8, 145, 178, 0.25);
+        color: #22d3ee;
       }
-
-      .pricing-badge.enterprise {
+      .pb-tier.enterprise {
         background: #cffafe;
         color: #0e7490;
       }
 
-      .pricing-card h3 {
-        font-size: 1.5rem;
+      .pb-name {
+        font-size: 1.05rem;
+        font-weight: 700;
         color: #0c4a6e;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.3rem;
+      }
+      .pb-featured .pb-name {
+        color: #f0f9ff;
       }
 
-      .pricing-card > p {
-        color: #475569;
-        line-height: 1.7;
-        margin-bottom: 1.5rem;
+      .pb-price {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #0891b2;
+        line-height: 1;
+        margin-bottom: 0.2rem;
+      }
+      .pb-featured .pb-price {
+        color: #22d3ee;
       }
 
-      .pricing-card ul {
+      .pb-price-note {
+        font-size: 0.74rem;
+        color: #94a3b8;
+        margin-bottom: 1.1rem;
+      }
+
+      .pb-divider {
+        height: 1px;
+        background: #e2e8f0;
+        margin-bottom: 1rem;
+      }
+      .pb-featured .pb-divider {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .pb-list {
         list-style: none;
         padding: 0;
+        margin: 0 0 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+      }
+      .pb-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        font-size: 0.8rem;
         color: #475569;
-        line-height: 1.9;
+        line-height: 1.45;
+      }
+      .pb-featured .pb-list li {
+        color: #cbd5e1;
+      }
+      .pb-list li i {
+        color: #0891b2;
+        margin-top: 0.1rem;
+        flex-shrink: 0;
+        font-size: 0.7rem;
+      }
+      .pb-featured .pb-list li i {
+        color: #22d3ee;
       }
 
-      .pricing-card li {
-        margin-bottom: 0.5rem;
+      .pb-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #0891b2;
+        text-decoration: none;
+        transition: gap 0.2s;
       }
-
-      .pricing-card li::before {
-        content: "✓";
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        background: #0891b2;
-        color: white;
-        border-radius: 50%;
-        text-align: center;
-        font-size: 0.75rem;
-        line-height: 1.4;
-        margin-right: 0.5rem;
-        vertical-align: middle;
+      .pb-cta:hover {
+        gap: 0.65rem;
       }
-
-      .pricing-footer {
-        margin-top: 1.5rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid #e2e8f0;
-      }
-
-      .pricing-footer p {
-        color: #64748b;
-        font-size: 0.9rem;
-        margin: 0;
+      .pb-featured .pb-cta {
+        color: #67e8f9;
       }
 
       .info-box {
         background: #fef3c7;
         border-left: 4px solid #f59e0b;
-        padding: 1.5rem;
+        padding: 1rem 1.5rem;
         border-radius: 8px;
-        margin-top: 2.5rem;
+        margin-top: 1.5rem;
       }
-
       .info-box p {
         margin: 0;
         color: #78350f;
         line-height: 1.7;
+        font-size: 0.9rem;
       }
-
       .info-box strong {
         color: #92400e;
       }
 
-      /* ============================================================
-         WEB DESIGN CLIENT PORTAL CTA
-         ============================================================ */
-
+      /* ── PORTAL ── */
       .web-portal-section {
-        padding: 3rem 0;
+        padding: 2.5rem 0;
       }
 
       .portal-cta-wrapper {
@@ -261,8 +1006,6 @@
           0 24px 60px rgba(15, 23, 42, 0.3),
           0 0 0 1px rgba(8, 145, 178, 0.15);
       }
-
-      /* Animated grid background */
       .portal-bg-grid {
         position: absolute;
         inset: 0;
@@ -271,20 +1014,16 @@
         opacity: 0.06;
         pointer-events: none;
       }
-
       .portal-grid-line {
         border-right: 1px solid #22d3ee;
         height: 100%;
       }
-
-      /* Floating orbs */
       .portal-orb {
         position: absolute;
         border-radius: 50%;
         filter: blur(60px);
         pointer-events: none;
       }
-
       .portal-orb-1 {
         width: 300px;
         height: 300px;
@@ -293,7 +1032,6 @@
         right: -5%;
         animation: portalFloat 8s ease-in-out infinite;
       }
-
       .portal-orb-2 {
         width: 200px;
         height: 200px;
@@ -302,7 +1040,6 @@
         left: 10%;
         animation: portalFloat 10s ease-in-out infinite reverse;
       }
-
       .portal-orb-3 {
         width: 150px;
         height: 150px;
@@ -311,7 +1048,6 @@
         right: 35%;
         animation: portalFloat 12s ease-in-out infinite;
       }
-
       @keyframes portalFloat {
         0%,
         100% {
@@ -322,12 +1058,10 @@
         }
       }
 
-      /* Content */
       .portal-cta-content {
         position: relative;
         z-index: 2;
       }
-
       .portal-cta-badge {
         display: inline-flex;
         align-items: center;
@@ -342,7 +1076,6 @@
         margin-bottom: 1.5rem;
         letter-spacing: 0.02em;
       }
-
       .portal-cta-badge-dot {
         width: 8px;
         height: 8px;
@@ -350,7 +1083,6 @@
         background: #22d3ee;
         animation: portalPulse 2s ease-in-out infinite;
       }
-
       @keyframes portalPulse {
         0%,
         100% {
@@ -362,7 +1094,6 @@
           box-shadow: 0 0 0 6px rgba(34, 211, 238, 0);
         }
       }
-
       .portal-cta-heading {
         font-size: clamp(1.6rem, 3.5vw, 2.2rem);
         font-weight: 700;
@@ -371,7 +1102,6 @@
         letter-spacing: -0.02em;
         line-height: 1.2;
       }
-
       .portal-cta-text {
         font-size: 1rem;
         color: #94a3b8;
@@ -379,14 +1109,12 @@
         margin-bottom: 1.75rem;
         max-width: 520px;
       }
-
       .portal-cta-features {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0.75rem;
         margin-bottom: 2rem;
       }
-
       .portal-cta-feature {
         display: flex;
         align-items: center;
@@ -395,48 +1123,40 @@
         color: #cbd5e1;
         font-weight: 500;
       }
-
       .portal-cta-feature i {
         color: #22d3ee;
         font-size: 0.95rem;
         width: 18px;
         text-align: center;
       }
-
       .portal-cta-buttons {
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
       }
-
       .portal-cta-btn.btn-primary {
-        background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+        background: linear-gradient(135deg, #0891b2, #06b6d4);
         box-shadow: 0 4px 20px rgba(8, 145, 178, 0.4);
       }
-
       .portal-cta-btn.btn-primary:hover {
-        background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%);
+        background: linear-gradient(135deg, #06b6d4, #22d3ee);
         box-shadow: 0 8px 30px rgba(8, 145, 178, 0.5);
       }
-
       .portal-cta-btn.btn-secondary {
         background: transparent;
         color: #67e8f9;
         border-color: rgba(8, 145, 178, 0.5);
       }
-
       .portal-cta-btn.btn-secondary:hover {
         background: rgba(8, 145, 178, 0.15);
         border-color: #22d3ee;
         color: #a5f3fc;
       }
 
-      /* Dashboard mockup */
       .portal-cta-visual {
         position: relative;
         z-index: 2;
       }
-
       .portal-mockup {
         background: #1e293b;
         border-radius: 16px;
@@ -448,11 +1168,9 @@
         transform: perspective(800px) rotateY(-3deg) rotateX(2deg);
         transition: transform 0.5s ease;
       }
-
       .portal-mockup:hover {
         transform: perspective(800px) rotateY(0deg) rotateX(0deg);
       }
-
       .portal-mockup-bar {
         display: flex;
         align-items: center;
@@ -461,14 +1179,12 @@
         background: rgba(15, 23, 42, 0.8);
         border-bottom: 1px solid rgba(8, 145, 178, 0.15);
       }
-
       .portal-mockup-dot {
         width: 10px;
         height: 10px;
         border-radius: 50%;
         display: inline-block;
       }
-
       .portal-mockup-title {
         margin-left: 0.75rem;
         font-size: 0.8rem;
@@ -476,11 +1192,9 @@
         font-weight: 600;
         letter-spacing: 0.02em;
       }
-
       .portal-mockup-body {
         padding: 1.25rem;
       }
-
       .portal-mockup-row {
         display: flex;
         align-items: center;
@@ -488,11 +1202,9 @@
         padding: 0.55rem 0;
         border-bottom: 1px solid rgba(148, 163, 184, 0.1);
       }
-
       .portal-mockup-row:last-of-type {
         border-bottom: none;
       }
-
       .portal-mockup-label {
         font-size: 0.75rem;
         color: #64748b;
@@ -501,26 +1213,22 @@
         letter-spacing: 0.1em;
         min-width: 60px;
       }
-
       .portal-mockup-value {
         font-size: 0.88rem;
         color: #e2e8f0;
         font-weight: 500;
       }
-
       .portal-mockup-status {
         font-size: 0.78rem;
         font-weight: 600;
         padding: 0.2rem 0.65rem;
         border-radius: 999px;
       }
-
       .portal-mockup-status.status-active {
         background: rgba(8, 145, 178, 0.2);
         color: #67e8f9;
         border: 1px solid rgba(8, 145, 178, 0.35);
       }
-
       .portal-mockup-progress {
         flex: 1;
         height: 6px;
@@ -528,14 +1236,11 @@
         border-radius: 999px;
         overflow: hidden;
       }
-
       .portal-mockup-progress-bar {
         height: 100%;
         background: linear-gradient(90deg, #0891b2, #22d3ee);
         border-radius: 999px;
-        transition: width 1s ease;
       }
-
       .portal-mockup-pct {
         font-size: 0.78rem;
         color: #67e8f9;
@@ -543,14 +1248,12 @@
         min-width: 32px;
         text-align: right;
       }
-
       .portal-mockup-tasks {
         margin-top: 1rem;
         display: flex;
         flex-direction: column;
         gap: 0.4rem;
       }
-
       .portal-mockup-task {
         font-size: 0.8rem;
         color: #475569;
@@ -559,75 +1262,233 @@
         gap: 0.5rem;
         padding: 0.35rem 0;
       }
-
       .portal-mockup-task i {
         font-size: 0.85rem;
         width: 16px;
         text-align: center;
       }
-
       .portal-mockup-task.done {
         color: #64748b;
       }
-
       .portal-mockup-task.done i {
         color: #22d3ee;
       }
-
       .portal-mockup-task.active {
         color: #e2e8f0;
         font-weight: 600;
       }
-
       .portal-mockup-task.active i {
         color: #0891b2;
       }
 
-      /* Responsive portal CTA */
+      /* ── FAQ COMPACT (same as index.html) ── */
+      .faq-compact-section {
+        padding: 2rem 0 1.75rem;
+      }
+      .faq-compact-header {
+        display: flex;
+        align-items: baseline;
+        gap: 1.25rem;
+        margin-bottom: 1.25rem;
+        flex-wrap: wrap;
+      }
+      .faq-compact-header .section-title {
+        margin-bottom: 0;
+      }
+      .faq-compact-sub {
+        font-size: 0.88rem;
+        color: #64748b;
+        margin: 0;
+      }
+
+      .faq-pill-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+      }
+      .faq-pill {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        overflow: hidden;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .faq-pill:hover {
+        border-color: #0891b2;
+        box-shadow: 0 2px 10px rgba(8, 145, 178, 0.08);
+      }
+      .faq-pill.open {
+        border-color: #0891b2;
+        background: #fff;
+        box-shadow: 0 2px 14px rgba(8, 145, 178, 0.1);
+      }
+      .faq-pill-q {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0.65rem 0.85rem;
+        cursor: pointer;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .faq-pill-q span {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #0c4a6e;
+        line-height: 1.35;
+      }
+      .faq-pill-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: rgba(8, 145, 178, 0.1);
+        color: #0891b2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        flex-shrink: 0;
+        transition:
+          background 0.2s,
+          transform 0.25s;
+      }
+      .faq-pill.open .faq-pill-icon {
+        background: #0891b2;
+        color: #fff;
+        transform: rotate(45deg);
+      }
+      .faq-pill-a {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.3s ease,
+          padding 0.2s ease;
+        padding: 0 0.85rem;
+      }
+      .faq-pill.open .faq-pill-a {
+        max-height: 200px;
+        padding: 0 0.85rem 0.75rem;
+      }
+      .faq-pill-a p {
+        font-size: 0.8rem;
+        color: #475569;
+        line-height: 1.6;
+        margin: 0;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 0.6rem;
+      }
+
+      .faq-nudge {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+        padding: 0.65rem 1rem;
+        background: rgba(8, 145, 178, 0.05);
+        border: 1px solid rgba(8, 145, 178, 0.18);
+        border-radius: 10px;
+        font-size: 0.82rem;
+        color: #0891b2;
+        font-weight: 500;
+      }
+      .faq-nudge i {
+        color: #ea580c;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+      }
+      .faq-nudge a {
+        color: #0891b2;
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .faq-nudge a:hover {
+        text-decoration: underline;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1100px) {
+        .wb-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .tech-terminal-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
       @media (max-width: 960px) {
+        .web-hero-inner {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .web-code-window {
+          transform: none;
+        }
+        .web-code-window:hover {
+          transform: none;
+        }
+        .why-web-wrap {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
         .portal-cta-wrapper {
           grid-template-columns: 1fr;
           padding: 2.5rem 2rem;
           gap: 2.5rem;
         }
-
         .portal-mockup {
           transform: none;
           max-width: 420px;
           margin: 0 auto;
         }
-
         .portal-mockup:hover {
           transform: none;
         }
-      }
-
-      @media (max-width: 640px) {
-        .portal-cta-wrapper {
-          padding: 2rem 1.5rem;
-          gap: 2rem;
-        }
-
-        .portal-cta-heading {
-          font-size: 1.4rem;
-        }
-
-        .portal-cta-features {
+        .pricing-band {
           grid-template-columns: 1fr;
-          gap: 0.6rem;
         }
-
-        .portal-cta-buttons {
+        .pricing-band-card {
+          border-right: none;
+          border-bottom: 1px solid #e2e8f0;
+        }
+        .pricing-band-card:last-child {
+          border-bottom: none;
+        }
+      }
+      @media (max-width: 768px) {
+        .wb-grid {
+          grid-template-columns: 1fr;
+        }
+        .feat-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .faq-pill-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .why-web-aside-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        .feat-grid {
+          grid-template-columns: 1fr;
+        }
+        .faq-pill-grid {
+          grid-template-columns: 1fr;
+        }
+        .tech-terminal-grid {
+          grid-template-columns: 1fr;
+        }
+        .web-hero-stats {
           flex-direction: column;
+          max-width: 100%;
         }
-
-        .portal-cta-buttons .btn {
-          width: 100%;
-          justify-content: center;
-        }
-
-        .portal-mockup-body {
-          padding: 1rem;
+        .web-hero-stat-div {
+          width: 80%;
+          height: 1px;
+          margin: 0 auto;
         }
       }
     </style>
@@ -649,7 +1510,6 @@
             >Salesforce CRM, Web Design &amp; Fundraising</span
           >
         </div>
-
         <button
           class="mobile-menu"
           id="mobileMenuToggle"
@@ -657,7 +1517,6 @@
         >
           &#9776;
         </button>
-
         <nav class="main-nav" aria-label="Primary navigation">
           <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
@@ -676,380 +1535,208 @@
 
     <main>
       <!-- ============================================================
-           HERO SECTION – Redesigned with inline styles (no custom CSS)
+           HERO – DARK ANIMATED
            ============================================================ -->
-      <section class="section alt" style="padding: 4rem 0 3.5rem">
-        <div class="container">
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              gap: 3rem;
-              align-items: center;
-            "
-          >
-            <!-- Left Column – Text -->
-            <div>
-              <div
-                style="
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 0.5rem;
-                  background: rgba(8, 145, 178, 0.1);
-                  color: #0891b2;
-                  padding: 0.4rem 1rem;
-                  border-radius: 999px;
-                  font-size: 0.82rem;
-                  font-weight: 600;
-                  letter-spacing: 0.05em;
-                  text-transform: uppercase;
-                  margin-bottom: 1.25rem;
-                "
-              >
-                <i class="fas fa-code"></i>
-                <span>Custom Web Development</span>
-              </div>
+      <section class="web-hero" aria-label="Web Design Hero">
+        <div class="web-hero-grid-bg"></div>
+        <div class="web-hero-orb web-hero-orb-1"></div>
+        <div class="web-hero-orb web-hero-orb-2"></div>
+        <div class="web-hero-orb web-hero-orb-3"></div>
 
-              <h1 class="section-title" style="margin-bottom: 1rem">
-                Professional websites that
-                <span style="color: #0891b2">drive results</span>
-              </h1>
-
-              <p class="section-intro" style="margin-bottom: 1.5rem">
-                Versed Global creates bespoke, responsive websites for
-                charities, businesses, corporates and social enterprises &ndash;
-                designed to reflect your brand, engage your audience and
-                integrate seamlessly with your Salesforce CRM.
-              </p>
-
-              <div
-                style="
-                  display: flex;
-                  flex-wrap: wrap;
-                  gap: 1rem;
-                  margin-bottom: 2rem;
-                "
-              >
-                <span
-                  style="
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 0.4rem;
-                    font-size: 0.9rem;
-                    font-weight: 500;
-                    color: #334155;
-                  "
-                >
-                  <i class="fas fa-check-circle" style="color: #0891b2"></i>
-                  Fully Responsive
-                </span>
-                <span
-                  style="
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 0.4rem;
-                    font-size: 0.9rem;
-                    font-weight: 500;
-                    color: #334155;
-                  "
-                >
-                  <i class="fas fa-check-circle" style="color: #0891b2"></i> SEO
-                  Optimised
-                </span>
-                <span
-                  style="
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 0.4rem;
-                    font-size: 0.9rem;
-                    font-weight: 500;
-                    color: #334155;
-                  "
-                >
-                  <i class="fas fa-check-circle" style="color: #0891b2"></i> CRM
-                  Integration
-                </span>
-                <span
-                  style="
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 0.4rem;
-                    font-size: 0.9rem;
-                    font-weight: 500;
-                    color: #334155;
-                  "
-                >
-                  <i class="fas fa-check-circle" style="color: #0891b2"></i>
-                  Fast &amp; Secure
-                </span>
-              </div>
-
-              <div style="display: flex; flex-wrap: wrap; gap: 1rem">
-                <a href="contact.html" class="btn btn-primary">
-                  <i class="fas fa-rocket"></i> Start Your Project
-                </a>
-                <a href="#website-approach" class="btn btn-secondary">
-                  <i class="fas fa-layer-group"></i> Our Approach
-                </a>
-              </div>
+        <div class="web-hero-inner">
+          <!-- LEFT -->
+          <div class="web-hero-left">
+            <div class="web-hero-eyebrow">
+              <span class="web-hero-eyebrow-dot"></span>
+              Custom Web Development
             </div>
 
-            <!-- Right Column – Image + Stats -->
-            <div style="position: relative">
-              <img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=560&fit=crop"
-                alt="Modern website design on a professional monitor showing analytics and responsive layouts"
-                style="
-                  width: 100%;
-                  height: auto;
-                  border-radius: 16px;
-                  box-shadow: 0 16px 48px rgba(14, 116, 144, 0.18);
-                  display: block;
-                  object-fit: cover;
-                "
-              />
-              <!-- Floating badge -->
-              <div
-                style="
-                  position: absolute;
-                  bottom: 1.25rem;
-                  left: 1.25rem;
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 0.5rem;
-                  background: rgba(255, 255, 255, 0.95);
-                  backdrop-filter: blur(8px);
-                  padding: 0.6rem 1.1rem;
-                  border-radius: 10px;
-                  font-size: 0.85rem;
-                  font-weight: 600;
-                  color: #0c4a6e;
-                  box-shadow: 0 4px 16px rgba(14, 116, 144, 0.15);
-                "
-              >
-                <i class="fas fa-palette" style="color: #0891b2"></i>
-                Bespoke design &amp; development
-              </div>
+            <h1 class="web-hero-title">
+              Websites that<br />
+              <span class="ht-teal">communicate</span><br />
+              and <span class="ht-warm">convert</span>
+            </h1>
 
-              <!-- Stats row beneath image -->
-              <div
-                style="
-                  display: grid;
-                  grid-template-columns: repeat(4, 1fr);
-                  gap: 0.75rem;
-                  margin-top: 1.25rem;
-                "
+            <p class="web-hero-sub">
+              Bespoke, responsive websites for charities, businesses, corporates
+              and social enterprises — designed around your brand and integrated
+              with your Salesforce CRM.
+            </p>
+
+            <div class="web-hero-checks">
+              <span class="web-hero-check"
+                ><i class="fas fa-check-circle"></i> Fully Responsive</span
               >
-                <div
-                  style="
-                    background: white;
-                    border: 1px solid #cffafe;
-                    border-radius: 12px;
-                    padding: 0.85rem 0.5rem;
-                    text-align: center;
-                    box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
-                  "
-                >
-                  <div
-                    style="
-                      font-size: 1.35rem;
-                      font-weight: 700;
-                      color: #0891b2;
-                      line-height: 1;
-                    "
-                  >
-                    5+
-                  </div>
-                  <div
-                    style="
-                      font-size: 0.72rem;
-                      color: #64748b;
-                      margin-top: 0.25rem;
-                    "
-                  >
-                    Years Experience
-                  </div>
-                </div>
-                <div
-                  style="
-                    background: white;
-                    border: 1px solid #cffafe;
-                    border-radius: 12px;
-                    padding: 0.85rem 0.5rem;
-                    text-align: center;
-                    box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
-                  "
-                >
-                  <div
-                    style="
-                      font-size: 1.35rem;
-                      font-weight: 700;
-                      color: #0891b2;
-                      line-height: 1;
-                    "
-                  >
-                    100%
-                  </div>
-                  <div
-                    style="
-                      font-size: 0.72rem;
-                      color: #64748b;
-                      margin-top: 0.25rem;
-                    "
-                  >
-                    Bespoke Design
-                  </div>
-                </div>
-                <div
-                  style="
-                    background: white;
-                    border: 1px solid #cffafe;
-                    border-radius: 12px;
-                    padding: 0.85rem 0.5rem;
-                    text-align: center;
-                    box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
-                  "
-                >
-                  <div
-                    style="
-                      font-size: 1.35rem;
-                      font-weight: 700;
-                      color: #0891b2;
-                      line-height: 1;
-                    "
-                  >
-                    24/7
-                  </div>
-                  <div
-                    style="
-                      font-size: 0.72rem;
-                      color: #64748b;
-                      margin-top: 0.25rem;
-                    "
-                  >
-                    Support Available
-                  </div>
-                </div>
-                <div
-                  style="
-                    background: white;
-                    border: 1px solid #cffafe;
-                    border-radius: 12px;
-                    padding: 0.85rem 0.5rem;
-                    text-align: center;
-                    box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
-                  "
-                >
-                  <div
-                    style="
-                      font-size: 1.35rem;
-                      font-weight: 700;
-                      color: #0891b2;
-                      line-height: 1;
-                    "
-                  >
-                    Fast
-                  </div>
-                  <div
-                    style="
-                      font-size: 0.72rem;
-                      color: #64748b;
-                      margin-top: 0.25rem;
-                    "
-                  >
-                    Delivery
-                  </div>
-                </div>
+              <span class="web-hero-check"
+                ><i class="fas fa-check-circle"></i> SEO Optimised</span
+              >
+              <span class="web-hero-check"
+                ><i class="fas fa-check-circle"></i> CRM Integration</span
+              >
+              <span class="web-hero-check"
+                ><i class="fas fa-check-circle"></i> Fast &amp; Secure</span
+              >
+            </div>
+
+            <div class="web-hero-btns">
+              <a href="contact.html" class="wh-btn-primary">
+                <i class="fas fa-rocket"></i> Start Your Project
+              </a>
+              <a href="#website-approach" class="wh-btn-secondary">
+                <i class="fas fa-layer-group"></i> Our Approach
+              </a>
+            </div>
+
+            <div class="web-hero-stats">
+              <div class="web-hero-stat">
+                <span class="web-hero-stat-val">5+</span>
+                <span class="web-hero-stat-lbl">Years Experience</span>
+              </div>
+              <div class="web-hero-stat-div"></div>
+              <div class="web-hero-stat">
+                <span class="web-hero-stat-val">100%</span>
+                <span class="web-hero-stat-lbl">Bespoke Design</span>
+              </div>
+              <div class="web-hero-stat-div"></div>
+              <div class="web-hero-stat">
+                <span class="web-hero-stat-val">24/7</span>
+                <span class="web-hero-stat-lbl">Support Available</span>
+              </div>
+              <div class="web-hero-stat-div"></div>
+              <div class="web-hero-stat">
+                <span class="web-hero-stat-val">Fast</span>
+                <span class="web-hero-stat-lbl">Delivery</span>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Responsive hero grid stacking -->
-      <style>
-        @media (max-width: 768px) {
-          .container > [style*="grid-template-columns: 1fr 1fr"] {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-          }
-        }
-      </style>
+          <!-- RIGHT – Code window mockup -->
+          <div class="web-hero-right">
+            <div class="web-hero-badge web-hero-badge-1">
+              <i class="fas fa-check-circle"></i> WCAG 2.1 AA Compliant
+            </div>
+            <div class="web-hero-badge web-hero-badge-2">
+              <i class="fas fa-bolt"></i> Core Web Vitals: Passed
+            </div>
 
-      <!-- ============================================================
-           WHAT WE BUILD
-           ============================================================ -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">What we build</h2>
-          <p class="section-intro">
-            Every website project is tailored to your organisation&rsquo;s
-            unique needs, brand identity and audience. From informational sites
-            to integrated platforms, we create web experiences that support your
-            mission and drive engagement.
-          </p>
-
-          <div class="capability-rail">
-            <div class="capability-track">
-              <div class="capability-pill">
-                <div class="capability-label">Website Type 1</div>
-                <div class="capability-title">
-                  Charity &amp; nonprofit websites
-                </div>
-                <p class="capability-text">
-                  Professional, accessible websites that tell your story,
-                  showcase impact and support fundraising and volunteer
-                  recruitment.
-                </p>
-                <p class="capability-subtext">
-                  Includes donation integration, event calendars, volunteer
-                  portals, impact reports and accessibility compliance.
-                </p>
+            <div class="web-code-window" aria-hidden="true">
+              <div class="web-code-bar">
+                <span class="web-code-dot" style="background: #ff5f57"></span>
+                <span class="web-code-dot" style="background: #ffbd2e"></span>
+                <span class="web-code-dot" style="background: #28c840"></span>
+                <span class="web-code-filename"
+                  >index.html &mdash; Versed Global</span
+                >
+                <span class="web-code-status">● Live</span>
               </div>
-
-              <div class="capability-pill">
-                <div class="capability-label">Website Type 2</div>
-                <div class="capability-title">
-                  Corporate &amp; business websites
-                </div>
-                <p class="capability-text">
-                  Clean, professional sites that establish credibility, showcase
-                  services and drive business enquiries and conversions.
-                </p>
-                <p class="capability-subtext">
-                  Includes service pages, case studies, contact forms, blog
-                  integration and lead capture systems.
-                </p>
-              </div>
-
-              <div class="capability-pill">
-                <div class="capability-label">Website Type 3</div>
-                <div class="capability-title">
-                  Salesforce-integrated portals
-                </div>
-                <p class="capability-text">
-                  Custom web portals that connect directly to your Salesforce
-                  CRM, enabling real-time data exchange and automation.
-                </p>
-                <p class="capability-subtext">
-                  Includes member portals, grant application systems,
-                  stakeholder dashboards and custom integrations.
-                </p>
-              </div>
-
-              <div class="capability-pill">
-                <div class="capability-label">Website Type 4</div>
-                <div class="capability-title">
-                  Campaign &amp; event microsites
-                </div>
-                <p class="capability-text">
-                  Focused, high-impact websites for specific campaigns, events
-                  or initiatives with clear calls to action.
-                </p>
-                <p class="capability-subtext">
-                  Includes event registration, campaign tracking, social media
-                  integration and analytics setup.
-                </p>
+              <div class="web-code-body">
+                <span class="cl"
+                  ><span class="cl-num">1</span
+                  ><span class="cl-comment"
+                    >&lt;!-- Versed Global — Bespoke Web Build --&gt;</span
+                  ></span
+                >
+                <span class="cl"
+                  ><span class="cl-num">2</span
+                  ><span class="cl-tag">&lt;section</span>
+                  <span class="cl-attr">class</span>=<span class="cl-val"
+                    >"hero"</span
+                  ><span class="cl-tag">&gt;</span></span
+                >
+                <span class="cl"
+                  ><span class="cl-num">3</span>&nbsp;&nbsp;<span class="cl-tag"
+                    >&lt;h1</span
+                  >
+                  <span class="cl-attr">class</span>=<span class="cl-val"
+                    >"title"</span
+                  ><span class="cl-tag">&gt;</span
+                  ><span class="cl-text">Your mission, amplified</span
+                  ><span class="cl-tag">&lt;/h1&gt;</span></span
+                >
+                <span class="cl"
+                  ><span class="cl-num">4</span>&nbsp;&nbsp;<span class="cl-tag"
+                    >&lt;p</span
+                  >
+                  <span class="cl-attr">class</span>=<span class="cl-val"
+                    >"sub"</span
+                  ><span class="cl-tag">&gt;</span
+                  ><span class="cl-text">Built around your workflow</span
+                  ><span class="cl-tag">&lt;/p&gt;</span></span
+                >
+                <span class="cl"
+                  ><span class="cl-num">5</span>&nbsp;&nbsp;<span class="cl-tag"
+                    >&lt;a</span
+                  >
+                  <span class="cl-attr">href</span>=<span class="cl-val"
+                    >"contact.html"</span
+                  >
+                  <span class="cl-attr">class</span>=<span class="cl-val"
+                    >"btn"</span
+                  ><span class="cl-tag">&gt;</span
+                  ><span class="cl-text">Get started</span
+                  ><span class="cl-tag">&lt;/a&gt;</span></span
+                >
+                <span class="cl"
+                  ><span class="cl-num">6</span
+                  ><span class="cl-tag">&lt;/section&gt;</span></span
+                >
+                <span class="cl"><span class="cl-num">7</span></span>
+                <span class="cl"
+                  ><span class="cl-num">8</span
+                  ><span class="cl-comment">/* styles.css */</span></span
+                >
+                <span class="cl"
+                  ><span class="cl-num">9</span
+                  ><span class="cl-class">.hero</span> {</span
+                >
+                <span class="cl"
+                  ><span class="cl-num">10</span>&nbsp;&nbsp;<span
+                    class="cl-prop"
+                    >display</span
+                  >: <span class="cl-px">grid</span>;</span
+                >
+                <span class="cl"
+                  ><span class="cl-num">11</span>&nbsp;&nbsp;<span
+                    class="cl-prop"
+                    >background</span
+                  >: <span class="cl-px">var(--brand)</span>;</span
+                >
+                <span class="cl"
+                  ><span class="cl-num">12</span>&nbsp;&nbsp;<span
+                    class="cl-prop"
+                    >border-radius</span
+                  >: <span class="cl-px">16px</span>;</span
+                >
+                <span class="cl"
+                  ><span class="cl-num">13</span>&nbsp;&nbsp;<span
+                    class="cl-prop"
+                    >padding</span
+                  >: <span class="cl-px">4rem 3rem</span>;</span
+                >
+                <span class="cl"><span class="cl-num">14</span>}</span>
+                <span class="cl"><span class="cl-num">15</span></span>
+                <span class="cl"
+                  ><span class="cl-num">16</span
+                  ><span class="cl-comment"
+                    >// Salesforce integration</span
+                  ></span
+                >
+                <span class="cl"
+                  ><span class="cl-num">17</span
+                  ><span class="cl-tag">const</span>
+                  <span class="cl-attr">sfData</span> =
+                  <span class="cl-tag">await</span>
+                  <span class="cl-val">fetchSF</span>(<span class="cl-px"
+                    >'contacts'</span
+                  >);</span
+                >
+                <span class="cl"
+                  ><span class="cl-num">18</span
+                  ><span class="cl-tag">renderDashboard</span>(<span
+                    class="cl-attr"
+                    >sfData</span
+                  >);</span
+                >
               </div>
             </div>
           </div>
@@ -1057,12 +1744,11 @@
       </section>
 
       <!-- ============================================================
-           WEB DESIGN CLIENT PORTAL (moved up – now right after What We Build)
+           CLIENT PORTAL – immediately after hero
            ============================================================ -->
       <section class="section web-portal-section" id="web-portal">
         <div class="container">
           <div class="portal-cta-wrapper">
-            <!-- Animated background grid -->
             <div class="portal-bg-grid" aria-hidden="true">
               <div class="portal-grid-line"></div>
               <div class="portal-grid-line"></div>
@@ -1071,65 +1757,51 @@
               <div class="portal-grid-line"></div>
               <div class="portal-grid-line"></div>
             </div>
-
-            <!-- Floating tech orbs -->
             <div class="portal-orb portal-orb-1" aria-hidden="true"></div>
             <div class="portal-orb portal-orb-2" aria-hidden="true"></div>
             <div class="portal-orb portal-orb-3" aria-hidden="true"></div>
 
-            <!-- Content -->
             <div class="portal-cta-content">
               <div class="portal-cta-badge">
                 <span class="portal-cta-badge-dot"></span>
                 <span>Client Portal &mdash; Live</span>
               </div>
-
               <h2 class="portal-cta-heading">Web Design Client Portal</h2>
-
               <p class="portal-cta-text">
                 Already a web design client? Log in to check your project
                 status, complete your design brief, and track progress from
                 discovery to launch.
               </p>
-
               <div class="portal-cta-features">
                 <div class="portal-cta-feature">
-                  <i class="fas fa-tasks"></i>
-                  <span>Live project tracking</span>
+                  <i class="fas fa-tasks"></i><span>Live project tracking</span>
                 </div>
                 <div class="portal-cta-feature">
-                  <i class="fas fa-palette"></i>
-                  <span>Design brief builder</span>
+                  <i class="fas fa-palette"></i
+                  ><span>Design brief builder</span>
                 </div>
                 <div class="portal-cta-feature">
-                  <i class="fas fa-comments"></i>
-                  <span>Direct feedback</span>
+                  <i class="fas fa-comments"></i><span>Direct feedback</span>
                 </div>
                 <div class="portal-cta-feature">
-                  <i class="fas fa-file-invoice"></i>
-                  <span>Milestone updates</span>
+                  <i class="fas fa-file-invoice"></i
+                  ><span>Milestone updates</span>
                 </div>
               </div>
-
               <div class="portal-cta-buttons">
                 <a
                   href="/webportal/login.php"
                   class="btn btn-primary portal-cta-btn"
+                  ><i class="fas fa-sign-in-alt"></i> Client Login</a
                 >
-                  <i class="fas fa-sign-in-alt"></i>
-                  Client Login
-                </a>
                 <a
                   href="/webportal/register.php"
                   class="btn btn-secondary portal-cta-btn"
+                  ><i class="fas fa-user-plus"></i> Create Account</a
                 >
-                  <i class="fas fa-user-plus"></i>
-                  Create Account
-                </a>
               </div>
             </div>
 
-            <!-- Visual dashboard mockup -->
             <div class="portal-cta-visual" aria-hidden="true">
               <div class="portal-mockup">
                 <div class="portal-mockup-bar">
@@ -1197,140 +1869,204 @@
       </section>
 
       <!-- ============================================================
-           WHY CHOOSE VERSED GLOBAL FOR YOUR WEBSITE
+           WHAT WE BUILD – icon card grid
            ============================================================ -->
-      <section class="section alt">
+      <section class="section">
+        <div class="container">
+          <h2 class="section-title">What we build</h2>
+          <p class="section-intro">
+            Every website project is tailored to your organisation&rsquo;s
+            unique needs, brand identity and audience — from informational sites
+            to fully integrated platforms.
+          </p>
+          <div class="wb-grid">
+            <div class="wb-card">
+              <div class="wb-card-num">01</div>
+              <div class="wb-card-icon"><i class="fas fa-heart"></i></div>
+              <div class="wb-card-title">Charity &amp; Nonprofit Websites</div>
+              <p class="wb-card-text">
+                Professional, accessible websites that tell your story, showcase
+                impact and support fundraising and volunteer recruitment.
+              </p>
+              <p class="wb-card-sub">
+                Donation integration, event calendars, volunteer portals, impact
+                reports &amp; accessibility compliance.
+              </p>
+            </div>
+            <div class="wb-card">
+              <div class="wb-card-num">02</div>
+              <div class="wb-card-icon"><i class="fas fa-briefcase"></i></div>
+              <div class="wb-card-title">Corporate &amp; Business Websites</div>
+              <p class="wb-card-text">
+                Clean, professional sites that establish credibility, showcase
+                services and drive business enquiries and conversions.
+              </p>
+              <p class="wb-card-sub">
+                Service pages, case studies, contact forms, blog integration
+                &amp; lead capture systems.
+              </p>
+            </div>
+            <div class="wb-card">
+              <div class="wb-card-num">03</div>
+              <div class="wb-card-icon"><i class="fas fa-plug"></i></div>
+              <div class="wb-card-title">Salesforce-Integrated Portals</div>
+              <p class="wb-card-text">
+                Custom web portals that connect directly to your Salesforce CRM,
+                enabling real-time data exchange and automation.
+              </p>
+              <p class="wb-card-sub">
+                Member portals, grant application systems, stakeholder
+                dashboards &amp; custom integrations.
+              </p>
+            </div>
+            <div class="wb-card">
+              <div class="wb-card-num">04</div>
+              <div class="wb-card-icon"><i class="fas fa-bullhorn"></i></div>
+              <div class="wb-card-title">Campaign &amp; Event Microsites</div>
+              <p class="wb-card-text">
+                Focused, high-impact websites for specific campaigns, events or
+                initiatives with clear calls to action.
+              </p>
+              <p class="wb-card-sub">
+                Event registration, campaign tracking, social media integration
+                &amp; analytics setup.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           WHY CHOOSE VERSED GLOBAL – compact phase stepper
+           ============================================================ -->
+      <section class="section alt" id="website-approach">
         <div class="container">
           <h2 class="section-title">
             Why choose Versed Global for your website?
           </h2>
-          <div class="why-flow-layout">
+          <div class="why-web-wrap">
+            <!-- Phase stepper -->
             <div>
-              <p class="why-flow-intro">
+              <p class="why-web-intro">
                 Versed Global combines technical expertise with strategic
-                thinking to create websites that don&rsquo;t just look good
-                &ndash; they work intelligently, integrate seamlessly and
-                support your organisation&rsquo;s long-term digital goals.
+                thinking to create websites that don&rsquo;t just look good —
+                they work intelligently, integrate seamlessly and support your
+                organisation&rsquo;s long-term digital goals.
               </p>
-              <div class="why-flow-timeline" aria-label="Website process">
-                <div class="why-flow-step">
-                  <div class="why-flow-step-dot"></div>
-                  <div class="why-flow-step-label">
-                    Phase 1 &middot; Discovery
+              <div class="phase-stepper">
+                <div class="phase-step">
+                  <div class="phase-left"><div class="phase-dot">01</div></div>
+                  <div class="phase-right">
+                    <div class="phase-label">Discovery</div>
+                    <div class="phase-title">
+                      Understanding your brand and audience
+                    </div>
+                    <p class="phase-body">
+                      We start by understanding your mission, target audience,
+                      brand guidelines and strategic objectives. This shapes
+                      every design and development decision.
+                    </p>
                   </div>
-                  <div class="why-flow-step-title">
-                    Understanding your brand and audience
-                  </div>
-                  <p class="why-flow-step-body">
-                    We start by understanding your organisation&rsquo;s mission,
-                    target audience, brand guidelines and strategic objectives.
-                    This shapes every design and development decision.
-                  </p>
                 </div>
-
-                <div class="why-flow-step">
-                  <div class="why-flow-step-dot"></div>
-                  <div class="why-flow-step-label">Phase 2 &middot; Design</div>
-                  <div class="why-flow-step-title">
-                    Custom design that reflects your identity
+                <div class="phase-step">
+                  <div class="phase-left"><div class="phase-dot">02</div></div>
+                  <div class="phase-right">
+                    <div class="phase-label">Design</div>
+                    <div class="phase-title">
+                      Custom design that reflects your identity
+                    </div>
+                    <p class="phase-body">
+                      Bespoke visual design, UX planning and content
+                      architecture — tailored to your brand and optimised for
+                      conversion and accessibility.
+                    </p>
                   </div>
-                  <p class="why-flow-step-body">
-                    Bespoke visual design, user experience planning and content
-                    architecture &ndash; all tailored to your brand and
-                    optimised for conversion and accessibility.
-                  </p>
                 </div>
-
-                <div class="why-flow-step">
-                  <div class="why-flow-step-dot"></div>
-                  <div class="why-flow-step-label">
-                    Phase 3 &middot; Development
+                <div class="phase-step">
+                  <div class="phase-left"><div class="phase-dot">03</div></div>
+                  <div class="phase-right">
+                    <div class="phase-label">Development</div>
+                    <div class="phase-title">
+                      Modern, secure and responsive build
+                    </div>
+                    <p class="phase-body">
+                      Clean code, responsive design, fast performance and robust
+                      security. Built with modern standards and tested across
+                      all devices and browsers.
+                    </p>
                   </div>
-                  <div class="why-flow-step-title">
-                    Modern, secure and responsive build
-                  </div>
-                  <p class="why-flow-step-body">
-                    Clean code, responsive design, fast performance and robust
-                    security. Built with modern standards and tested across all
-                    devices and browsers.
-                  </p>
                 </div>
-
-                <div class="why-flow-step">
-                  <div class="why-flow-step-dot"></div>
-                  <div class="why-flow-step-label">
-                    Phase 4 &middot; Integration
+                <div class="phase-step">
+                  <div class="phase-left"><div class="phase-dot">04</div></div>
+                  <div class="phase-right">
+                    <div class="phase-label">Integration</div>
+                    <div class="phase-title">
+                      Connect to your existing systems
+                    </div>
+                    <p class="phase-body">
+                      Seamless integration with Salesforce, payment gateways,
+                      email platforms, analytics tools and any other systems
+                      your organisation uses.
+                    </p>
                   </div>
-                  <div class="why-flow-step-title">
-                    Connect to your existing systems
-                  </div>
-                  <p class="why-flow-step-body">
-                    Seamless integration with Salesforce, payment gateways,
-                    email platforms, analytics tools and any other systems your
-                    organisation uses.
-                  </p>
                 </div>
-
-                <div class="why-flow-step">
-                  <div class="why-flow-step-dot"></div>
-                  <div class="why-flow-step-label">Phase 5 &middot; Launch</div>
-                  <div class="why-flow-step-title">
-                    Smooth deployment and handover
+                <div class="phase-step">
+                  <div class="phase-left"><div class="phase-dot">05</div></div>
+                  <div class="phase-right">
+                    <div class="phase-label">Launch</div>
+                    <div class="phase-title">
+                      Smooth deployment and handover
+                    </div>
+                    <p class="phase-body">
+                      Careful deployment, comprehensive testing, team training
+                      and clear documentation so you can confidently manage and
+                      update your site.
+                    </p>
                   </div>
-                  <p class="why-flow-step-body">
-                    Careful deployment, comprehensive testing, team training and
-                    clear documentation so you can confidently manage and update
-                    your site.
-                  </p>
                 </div>
               </div>
             </div>
 
-            <aside class="why-flow-pillboard">
-              <div class="why-pillboard-inner">
-                <div class="why-pillboard-badge">
-                  <i class="fas fa-globe" aria-hidden="true"></i>
-                  <span>End-to-end web solutions</span>
+            <!-- Aside -->
+            <aside class="why-web-aside">
+              <div class="why-web-aside-badge">
+                <i class="fas fa-globe"></i> End-to-end web solutions
+              </div>
+              <div class="why-web-aside-title">
+                What makes our websites different
+              </div>
+              <div class="why-web-aside-grid">
+                <div class="wwa-item">
+                  <div class="wwa-item-label">Design</div>
+                  <div class="wwa-item-title">Truly bespoke</div>
+                  <p class="wwa-item-text">
+                    No templates. Every site is designed from scratch to match
+                    your brand, audience and objectives.
+                  </p>
                 </div>
-                <div class="why-pillboard-title">
-                  What makes our websites different
+                <div class="wwa-item">
+                  <div class="wwa-item-label">Technology</div>
+                  <div class="wwa-item-title">Modern &amp; secure</div>
+                  <p class="wwa-item-text">
+                    Built with current best practices, responsive design, fast
+                    loading speeds and robust security measures.
+                  </p>
                 </div>
-                <div class="why-pillboard-grid">
-                  <div>
-                    <div class="why-pill-item-label">Design</div>
-                    <div class="why-pill-item-title">Truly bespoke</div>
-                    <p class="why-pill-item-text">
-                      No templates. Every site is designed from scratch to match
-                      your brand, audience and objectives.
-                    </p>
-                  </div>
-
-                  <div>
-                    <div class="why-pill-item-label">Technology</div>
-                    <div class="why-pill-item-title">Modern &amp; secure</div>
-                    <p class="why-pill-item-text">
-                      Built with current best practices, responsive design, fast
-                      loading speeds and robust security measures.
-                    </p>
-                  </div>
-
-                  <div>
-                    <div class="why-pill-item-label">Integration</div>
-                    <div class="why-pill-item-title">Connected systems</div>
-                    <p class="why-pill-item-text">
-                      Seamless connection to Salesforce, payment processors,
-                      email marketing and analytics platforms.
-                    </p>
-                  </div>
-
-                  <div>
-                    <div class="why-pill-item-label">Support</div>
-                    <div class="why-pill-item-title">Ongoing partnership</div>
-                    <p class="why-pill-item-text">
-                      Training, documentation and optional maintenance packages
-                      so your site stays current and secure.
-                    </p>
-                  </div>
+                <div class="wwa-item">
+                  <div class="wwa-item-label">Integration</div>
+                  <div class="wwa-item-title">Connected systems</div>
+                  <p class="wwa-item-text">
+                    Seamless connection to Salesforce, payment processors, email
+                    marketing and analytics platforms.
+                  </p>
+                </div>
+                <div class="wwa-item">
+                  <div class="wwa-item-label">Support</div>
+                  <div class="wwa-item-title">Ongoing partnership</div>
+                  <p class="wwa-item-text">
+                    Training, documentation and optional maintenance packages so
+                    your site stays current and secure.
+                  </p>
                 </div>
               </div>
             </aside>
@@ -1339,7 +2075,7 @@
       </section>
 
       <!-- ============================================================
-           FEATURES & CAPABILITIES
+           FEATURES & CAPABILITIES – compact icon-list cards
            ============================================================ -->
       <section class="section">
         <div class="container">
@@ -1347,190 +2083,182 @@
           <p class="section-intro">
             Every website we build includes core features for performance,
             accessibility and user experience, with additional capabilities
-            tailored to your specific requirements.
+            tailored to your requirements.
           </p>
-          <div class="values-grid">
-            <div class="value">
-              <i
-                class="fas fa-mobile-alt"
-                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
-              ></i>
-              <h3>Responsive Design</h3>
-              <p>
-                Flawless experience across all devices &ndash; desktop, tablet
-                and mobile. Your site adapts intelligently to every screen size.
-              </p>
+          <div class="feat-grid">
+            <div class="feat-card">
+              <div class="feat-icon"><i class="fas fa-mobile-alt"></i></div>
+              <div class="feat-info">
+                <div class="feat-title">Responsive Design</div>
+                <p class="feat-text">
+                  Flawless experience across all devices — desktop, tablet and
+                  mobile. Your site adapts intelligently to every screen size.
+                </p>
+              </div>
             </div>
-
-            <div class="value">
-              <i
-                class="fas fa-search"
-                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
-              ></i>
-              <h3>SEO Optimised</h3>
-              <p>
-                Search engine optimisation built into every page, with clean
-                code, fast loading, proper meta tags and structured data.
-              </p>
+            <div class="feat-card">
+              <div class="feat-icon"><i class="fas fa-search"></i></div>
+              <div class="feat-info">
+                <div class="feat-title">SEO Optimised</div>
+                <p class="feat-text">
+                  Search engine optimisation built into every page, with clean
+                  code, fast loading, proper meta tags and structured data.
+                </p>
+              </div>
             </div>
-
-            <div class="value">
-              <i
-                class="fas fa-universal-access"
-                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
-              ></i>
-              <h3>Accessibility</h3>
-              <p>
-                WCAG 2.1 accessibility standards compliance ensuring your site
-                is usable by everyone, including those with disabilities.
-              </p>
+            <div class="feat-card">
+              <div class="feat-icon">
+                <i class="fas fa-universal-access"></i>
+              </div>
+              <div class="feat-info">
+                <div class="feat-title">Accessibility</div>
+                <p class="feat-text">
+                  WCAG 2.1 accessibility standards ensuring your site is usable
+                  by everyone, including those with disabilities.
+                </p>
+              </div>
             </div>
-
-            <div class="value">
-              <i
-                class="fas fa-lock"
-                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
-              ></i>
-              <h3>Security</h3>
-              <p>
-                SSL certificates, secure hosting, regular updates and
-                best-practice security measures to protect your site and user
-                data.
-              </p>
+            <div class="feat-card">
+              <div class="feat-icon"><i class="fas fa-lock"></i></div>
+              <div class="feat-info">
+                <div class="feat-title">Security</div>
+                <p class="feat-text">
+                  SSL certificates, secure hosting, regular updates and
+                  best-practice security measures to protect your site and user
+                  data.
+                </p>
+              </div>
             </div>
-
-            <div class="value">
-              <i
-                class="fas fa-tachometer-alt"
-                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
-              ></i>
-              <h3>Performance</h3>
-              <p>
-                Optimised code, compressed images and efficient hosting for fast
-                loading times and excellent Core Web Vitals scores.
-              </p>
+            <div class="feat-card">
+              <div class="feat-icon"><i class="fas fa-tachometer-alt"></i></div>
+              <div class="feat-info">
+                <div class="feat-title">Performance</div>
+                <p class="feat-text">
+                  Optimised code, compressed images and efficient hosting for
+                  fast loading times and excellent Core Web Vitals scores.
+                </p>
+              </div>
             </div>
-
-            <div class="value">
-              <i
-                class="fas fa-chart-line"
-                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
-              ></i>
-              <h3>Analytics Integration</h3>
-              <p>
-                Google Analytics and other tracking tools configured to measure
-                traffic, conversions and user behaviour insights.
-              </p>
+            <div class="feat-card">
+              <div class="feat-icon"><i class="fas fa-chart-line"></i></div>
+              <div class="feat-info">
+                <div class="feat-title">Analytics Integration</div>
+                <p class="feat-text">
+                  Google Analytics and other tracking tools configured to
+                  measure traffic, conversions and user behaviour insights.
+                </p>
+              </div>
             </div>
-
-            <div class="value">
-              <i
-                class="fas fa-edit"
-                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
-              ></i>
-              <h3>Content Management</h3>
-              <p>
-                Easy-to-use content management systems or custom admin panels so
-                you can update content without technical expertise.
-              </p>
+            <div class="feat-card">
+              <div class="feat-icon"><i class="fas fa-edit"></i></div>
+              <div class="feat-info">
+                <div class="feat-title">Content Management</div>
+                <p class="feat-text">
+                  Easy-to-use CMS or custom admin panels so you can update
+                  content without technical expertise.
+                </p>
+              </div>
             </div>
-
-            <div class="value">
-              <i
-                class="fas fa-plug"
-                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
-              ></i>
-              <h3>System Integration</h3>
-              <p>
-                Connect your website to Salesforce, payment gateways, email
-                platforms, booking systems and third-party APIs.
-              </p>
+            <div class="feat-card">
+              <div class="feat-icon"><i class="fas fa-plug"></i></div>
+              <div class="feat-info">
+                <div class="feat-title">System Integration</div>
+                <p class="feat-text">
+                  Connect your website to Salesforce, payment gateways, email
+                  platforms, booking systems and third-party APIs.
+                </p>
+              </div>
             </div>
-
-            <div class="value">
-              <i
-                class="fas fa-graduation-cap"
-                style="font-size: 2rem; color: #0891b2; margin-bottom: 1rem"
-              ></i>
-              <h3>Training &amp; Documentation</h3>
-              <p>
-                Comprehensive training sessions and clear documentation so your
-                team can confidently manage and update the website.
-              </p>
+            <div class="feat-card">
+              <div class="feat-icon"><i class="fas fa-graduation-cap"></i></div>
+              <div class="feat-info">
+                <div class="feat-title">Training &amp; Documentation</div>
+                <p class="feat-text">
+                  Comprehensive training and clear documentation so your team
+                  can confidently manage and update the website.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ============================================================
-           TECHNOLOGY STACK / OUR APPROACH
+           OUR APPROACH – dark terminal cards
            ============================================================ -->
-      <section class="section alt" id="website-approach">
+      <section class="section alt">
         <div class="container">
           <h2 class="section-title">Our approach to web development</h2>
           <p class="section-intro">
             We use modern, proven technologies and frameworks to build websites
             that are fast, secure, maintainable and future-proof.
           </p>
-          <div class="tech-stack-grid">
-            <div>
-              <div class="tech-item">
-                <h3>
-                  <i
-                    class="fas fa-code"
-                    style="color: #0891b2; margin-right: 0.5rem"
-                  ></i>
-                  Frontend Technologies
-                </h3>
-                <ul>
+          <div class="tech-terminal-grid">
+            <div class="tech-terminal">
+              <div class="tech-term-bar">
+                <span class="tech-term-dot" style="background: #ff5f57"></span>
+                <span class="tech-term-dot" style="background: #ffbd2e"></span>
+                <span class="tech-term-dot" style="background: #28c840"></span>
+                <span class="tech-term-title">Frontend</span>
+              </div>
+              <div class="tech-term-body">
+                <div class="tech-term-icon"><i class="fas fa-code"></i></div>
+                <div class="tech-term-head">Frontend Technologies</div>
+                <ul class="tech-term-list">
                   <li>HTML5, CSS3, JavaScript (ES6+)</li>
-                  <li>Modern frameworks (React, Vue, etc.)</li>
+                  <li>Modern frameworks (React, Vue)</li>
                   <li>Responsive CSS frameworks</li>
                   <li>Progressive Web App capabilities</li>
                 </ul>
               </div>
-
-              <div class="tech-item">
-                <h3>
-                  <i
-                    class="fas fa-server"
-                    style="color: #0891b2; margin-right: 0.5rem"
-                  ></i>
-                  Backend &amp; Infrastructure
-                </h3>
-                <ul>
+            </div>
+            <div class="tech-terminal">
+              <div class="tech-term-bar">
+                <span class="tech-term-dot" style="background: #ff5f57"></span>
+                <span class="tech-term-dot" style="background: #ffbd2e"></span>
+                <span class="tech-term-dot" style="background: #28c840"></span>
+                <span class="tech-term-title">Backend</span>
+              </div>
+              <div class="tech-term-body">
+                <div class="tech-term-icon"><i class="fas fa-server"></i></div>
+                <div class="tech-term-head">Backend &amp; Infrastructure</div>
+                <ul class="tech-term-list">
                   <li>Node.js, Python, PHP</li>
                   <li>Secure hosting and SSL</li>
                   <li>Database management</li>
                   <li>API development &amp; integration</li>
                 </ul>
               </div>
-
-              <div class="tech-item">
-                <h3>
-                  <i
-                    class="fas fa-palette"
-                    style="color: #0891b2; margin-right: 0.5rem"
-                  ></i>
-                  Design &amp; UX
-                </h3>
-                <ul>
+            </div>
+            <div class="tech-terminal">
+              <div class="tech-term-bar">
+                <span class="tech-term-dot" style="background: #ff5f57"></span>
+                <span class="tech-term-dot" style="background: #ffbd2e"></span>
+                <span class="tech-term-dot" style="background: #28c840"></span>
+                <span class="tech-term-title">Design</span>
+              </div>
+              <div class="tech-term-body">
+                <div class="tech-term-icon"><i class="fas fa-palette"></i></div>
+                <div class="tech-term-head">Design &amp; UX</div>
+                <ul class="tech-term-list">
                   <li>Adobe Creative Suite</li>
                   <li>Figma for wireframing</li>
                   <li>User experience research</li>
                   <li>Accessibility testing</li>
                 </ul>
               </div>
-
-              <div class="tech-item">
-                <h3>
-                  <i
-                    class="fas fa-rocket"
-                    style="color: #0891b2; margin-right: 0.5rem"
-                  ></i>
-                  Tools &amp; Platforms
-                </h3>
-                <ul>
+            </div>
+            <div class="tech-terminal">
+              <div class="tech-term-bar">
+                <span class="tech-term-dot" style="background: #ff5f57"></span>
+                <span class="tech-term-dot" style="background: #ffbd2e"></span>
+                <span class="tech-term-dot" style="background: #28c840"></span>
+                <span class="tech-term-title">Tools</span>
+              </div>
+              <div class="tech-term-body">
+                <div class="tech-term-icon"><i class="fas fa-rocket"></i></div>
+                <div class="tech-term-head">Tools &amp; Platforms</div>
+                <ul class="tech-term-list">
                   <li>Git version control</li>
                   <li>WordPress, custom CMS</li>
                   <li>Google Analytics, Tag Manager</li>
@@ -1555,19 +2283,10 @@
             website directly to your Salesforce CRM, creating a seamless flow of
             data between public-facing web experiences and internal systems.
           </p>
-
           <div class="integration-grid">
-            <div
-              style="
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-                gap: 2rem;
-              "
-            >
+            <div class="integration-inner">
               <div class="integration-card">
-                <div class="integration-icon">
-                  <i class="fas fa-users"></i>
-                </div>
+                <div class="integration-icon"><i class="fas fa-users"></i></div>
                 <h3>Lead Capture &amp; Contact Forms</h3>
                 <p>
                   Automatically create Leads or Contacts in Salesforce when
@@ -1575,7 +2294,6 @@
                   validation.
                 </p>
               </div>
-
               <div class="integration-card">
                 <div class="integration-icon">
                   <i class="fas fa-calendar-check"></i>
@@ -1587,7 +2305,6 @@
                   tracking.
                 </p>
               </div>
-
               <div class="integration-card">
                 <div class="integration-icon">
                   <i class="fas fa-hand-holding-heart"></i>
@@ -1599,7 +2316,6 @@
                   receipts.
                 </p>
               </div>
-
               <div class="integration-card">
                 <div class="integration-icon">
                   <i class="fas fa-user-circle"></i>
@@ -1611,7 +2327,6 @@
                   Salesforce.
                 </p>
               </div>
-
               <div class="integration-card">
                 <div class="integration-icon">
                   <i class="fas fa-file-alt"></i>
@@ -1623,16 +2338,15 @@
                   triggers.
                 </p>
               </div>
-
               <div class="integration-card">
                 <div class="integration-icon">
                   <i class="fas fa-chart-bar"></i>
                 </div>
                 <h3>Dynamic Content Display</h3>
                 <p>
-                  Pull data from Salesforce to display on your website &ndash;
-                  impact statistics, case studies, team profiles and real-time
-                  campaign updates.
+                  Pull data from Salesforce to display on your website — impact
+                  statistics, case studies, team profiles and real-time campaign
+                  updates.
                 </p>
               </div>
             </div>
@@ -1641,82 +2355,86 @@
       </section>
 
       <!-- ============================================================
-           PRICING
+           PRICING – compact horizontal band
            ============================================================ -->
       <section class="section alt">
         <div class="container">
           <h2 class="section-title">Transparent, flexible pricing</h2>
           <p class="section-intro">
-            Every website project is unique, and pricing depends on scope,
-            complexity and specific requirements. We provide detailed proposals
-            with clear costs and deliverables.
+            Every website project is unique. We provide detailed proposals with
+            clear costs and deliverables — no surprises.
           </p>
 
-          <div
-            style="
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-              gap: 2rem;
-              margin-top: 2rem;
-            "
-          >
-            <div class="pricing-card">
-              <div class="pricing-badge starter">Starter</div>
-              <h3>Small Business Sites</h3>
-              <p>
-                Perfect for small organisations, startups and campaigns needing
-                a professional web presence.
-              </p>
-              <ul>
-                <li>5&ndash;10 pages</li>
-                <li>Responsive design</li>
-                <li>Contact forms</li>
-                <li>Basic SEO setup</li>
-                <li>Content management</li>
-              </ul>
-              <div class="pricing-footer">
-                <p>Project-based pricing from <strong>&pound;2,500</strong></p>
+          <div class="pricing-band">
+            <!-- Starter -->
+            <div class="pricing-band-card">
+              <span class="pb-tier starter">Starter</span>
+              <div class="pb-name">Small Business Sites</div>
+              <div class="pb-price">
+                £2,500<span
+                  style="font-size: 0.9rem; font-weight: 400; color: #94a3b8"
+                  >+</span
+                >
               </div>
+              <div class="pb-price-note">Project-based from</div>
+              <div class="pb-divider"></div>
+              <ul class="pb-list">
+                <li><i class="fas fa-check"></i> 5&ndash;10 pages</li>
+                <li><i class="fas fa-check"></i> Responsive design</li>
+                <li><i class="fas fa-check"></i> Contact forms</li>
+                <li><i class="fas fa-check"></i> Basic SEO setup</li>
+                <li><i class="fas fa-check"></i> Content management</li>
+              </ul>
+              <a href="contact.html" class="pb-cta"
+                >Get a quote <i class="fas fa-arrow-right"></i
+              ></a>
             </div>
 
-            <div class="pricing-card featured">
-              <div class="pricing-badge professional">Professional</div>
-              <h3>Full-Featured Websites</h3>
-              <p>
-                Comprehensive websites for charities, corporates and
-                organisations with complex requirements.
-              </p>
-              <ul>
-                <li>10&ndash;30+ pages</li>
-                <li>Custom design</li>
-                <li>Advanced features</li>
-                <li>Third-party integrations</li>
-                <li>Full SEO &amp; analytics</li>
-                <li>Training &amp; documentation</li>
-              </ul>
-              <div class="pricing-footer">
-                <p>Project-based pricing from <strong>&pound;5,000</strong></p>
+            <!-- Professional (featured) -->
+            <div class="pricing-band-card pb-featured">
+              <span class="pb-tier pro">Professional</span>
+              <div class="pb-name">Full-Featured Websites</div>
+              <div class="pb-price">
+                £5,000<span
+                  style="font-size: 0.9rem; font-weight: 400; color: #64748b"
+                  >+</span
+                >
               </div>
+              <div class="pb-price-note">Project-based from</div>
+              <div class="pb-divider"></div>
+              <ul class="pb-list">
+                <li><i class="fas fa-check"></i> 10&ndash;30+ pages</li>
+                <li><i class="fas fa-check"></i> Custom design</li>
+                <li><i class="fas fa-check"></i> Advanced features</li>
+                <li><i class="fas fa-check"></i> Third-party integrations</li>
+                <li><i class="fas fa-check"></i> Full SEO &amp; analytics</li>
+                <li>
+                  <i class="fas fa-check"></i> Training &amp; documentation
+                </li>
+              </ul>
+              <a href="contact.html" class="pb-cta"
+                >Get a quote <i class="fas fa-arrow-right"></i
+              ></a>
             </div>
 
-            <div class="pricing-card">
-              <div class="pricing-badge enterprise">Enterprise</div>
-              <h3>Salesforce-Integrated Platforms</h3>
-              <p>
-                Complex web platforms with full Salesforce CRM integration and
-                custom functionality.
-              </p>
-              <ul>
-                <li>Custom portals</li>
-                <li>Salesforce integration</li>
-                <li>User authentication</li>
-                <li>Advanced automation</li>
-                <li>Custom development</li>
-                <li>Ongoing support options</li>
+            <!-- Enterprise -->
+            <div class="pricing-band-card">
+              <span class="pb-tier enterprise">Enterprise</span>
+              <div class="pb-name">Salesforce-Integrated Platforms</div>
+              <div class="pb-price">Custom</div>
+              <div class="pb-price-note">Scoped to your requirements</div>
+              <div class="pb-divider"></div>
+              <ul class="pb-list">
+                <li><i class="fas fa-check"></i> Custom portals</li>
+                <li><i class="fas fa-check"></i> Salesforce integration</li>
+                <li><i class="fas fa-check"></i> User authentication</li>
+                <li><i class="fas fa-check"></i> Advanced automation</li>
+                <li><i class="fas fa-check"></i> Custom development</li>
+                <li><i class="fas fa-check"></i> Ongoing support options</li>
               </ul>
-              <div class="pricing-footer">
-                <p>Custom pricing based on scope</p>
-              </div>
+              <a href="contact.html" class="pb-cta"
+                >Discuss your scope <i class="fas fa-arrow-right"></i
+              ></a>
             </div>
           </div>
 
@@ -1733,142 +2451,197 @@
       </section>
 
       <!-- ============================================================
-           FAQ
+           FAQ – COMPACT PILL GRID (matches index.html)
            ============================================================ -->
-      <section class="section">
+      <section class="section faq-compact-section">
         <div class="container">
-          <h2 class="section-title">Frequently asked questions</h2>
-          <p class="section-intro">
-            Common questions about our website design and development services.
-          </p>
-          <div class="faq-section">
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
+          <div class="faq-compact-header">
+            <h2 class="section-title">Frequently asked questions</h2>
+            <p class="faq-compact-sub">Click any question to expand.</p>
+          </div>
+
+          <div class="faq-pill-grid" role="list">
+            <div class="faq-pill" role="listitem">
+              <div
+                class="faq-pill-q"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
                 <span>How long does it take to build a website?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  Timeline depends on project scope and complexity. A small
-                  business site typically takes 4&ndash;6 weeks from initial
-                  discovery to launch. Larger, more complex sites with custom
-                  features and Salesforce integration typically take 8&ndash;12
-                  weeks. We provide detailed timelines during the proposal
-                  phase.
+                  Small business sites typically take 4&ndash;6 weeks from
+                  discovery to launch. Larger sites with custom features or
+                  Salesforce integration typically take 8&ndash;12 weeks.
+                  Detailed timelines are provided at proposal stage.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
+            <div class="faq-pill" role="listitem">
+              <div
+                class="faq-pill-q"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
                 <span>Do you provide content writing services?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  Yes. We can provide professional copywriting services to
-                  create compelling, SEO-optimised content for your website. We
+                  Yes — professional, SEO-optimised copywriting is available. We
                   can also work with your existing content or collaborate with
-                  your in-house team. Content strategy and structure planning is
-                  included in all projects.
+                  your in-house team. Content strategy planning is included in
+                  all projects.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
+            <div class="faq-pill" role="listitem">
+              <div
+                class="faq-pill-q"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
                 <span>Will I be able to update the website myself?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  Absolutely. We build websites with user-friendly content
-                  management systems (WordPress or custom admin panels) so you
-                  can easily update text, images, news and other content. We
-                  provide comprehensive training and documentation to ensure
-                  your team feels confident managing the site.
+                  Absolutely. We build with user-friendly CMS (WordPress or
+                  custom admin panels) so you can easily update content.
+                  Comprehensive training and documentation ensure your team
+                  feels confident.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
+            <div class="faq-pill" role="listitem">
+              <div
+                class="faq-pill-q"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
                 <span>Can you integrate our website with Salesforce?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  Yes, this is one of our core strengths. We can connect your
-                  website to Salesforce for lead capture, contact form
-                  submissions, event registrations, donation processing, member
-                  portals and more. All data flows seamlessly between your
-                  website and Salesforce CRM.
+                  Yes — this is one of our core strengths. Lead capture, event
+                  registrations, donation processing, member portals and more
+                  can all flow seamlessly between your website and Salesforce
+                  CRM.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Do you offer website hosting and maintenance?</span>
-                <div class="faq-toggle">+</div>
+            <div class="faq-pill" role="listitem">
+              <div
+                class="faq-pill-q"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
+                <span>Do you offer hosting and maintenance?</span>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  We can arrange secure, reliable hosting as part of your
-                  project, or work with your preferred hosting provider. We
-                  offer optional ongoing maintenance and support packages
-                  covering security updates, backups, performance monitoring and
+                  We can arrange secure, reliable hosting or work with your
+                  preferred provider. Optional ongoing maintenance packages
+                  cover security updates, backups, performance monitoring and
                   content updates.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
-                <span>Will my website be accessible and WCAG compliant?</span>
-                <div class="faq-toggle">+</div>
+            <div class="faq-pill" role="listitem">
+              <div
+                class="faq-pill-q"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
+                <span>Will my website be WCAG compliant?</span>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  Yes. We build all websites to meet WCAG 2.1 Level AA
-                  accessibility standards as a minimum, ensuring your site is
-                  usable by people with disabilities. This includes proper
-                  semantic markup, keyboard navigation, screen reader
-                  compatibility and sufficient colour contrast.
+                  Yes. All websites are built to WCAG 2.1 Level AA as a minimum
+                  — proper semantic markup, keyboard navigation, screen reader
+                  compatibility and sufficient colour contrast included.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
+            <div class="faq-pill" role="listitem">
+              <div
+                class="faq-pill-q"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
                 <span>Can you redesign our existing website?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  Yes. We offer website redesign services, either as a complete
-                  rebuild or incremental improvements to your existing site. We
-                  can migrate content, preserve SEO rankings and ensure a smooth
+                  Yes — complete rebuilds or incremental improvements. We can
+                  migrate content, preserve SEO rankings and ensure a smooth
                   transition with minimal disruption to your operations.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFAQ(this)">
+            <div class="faq-pill" role="listitem">
+              <div
+                class="faq-pill-q"
+                role="button"
+                tabindex="0"
+                aria-expanded="false"
+              >
                 <span>What happens after the website launches?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  After launch, we provide a settling-in period (typically 30
-                  days) to address any bugs or minor adjustments. We deliver
-                  full documentation, training and handover materials. You can
-                  then manage the site independently or opt for ongoing support
-                  and maintenance packages.
+                  A 30-day settling-in period covers any bugs or minor
+                  adjustments. Full documentation, training and handover
+                  materials are delivered. Ongoing support and maintenance
+                  packages are available.
                 </p>
               </div>
             </div>
+          </div>
+
+          <div class="faq-nudge">
+            <i class="fas fa-comment-dots"></i>
+            <span
+              >Still have a question? <a href="contact.html">Get in touch</a> —
+              we&rsquo;re happy to help.</span
+            >
           </div>
         </div>
       </section>
@@ -1886,8 +2659,7 @@
             detailed proposal.
           </p>
           <a href="contact.html" class="btn btn-primary">
-            <i class="fas fa-comments"></i>
-            Start a conversation
+            <i class="fas fa-comments"></i> Start a conversation
           </a>
         </div>
       </section>
@@ -1897,7 +2669,6 @@
     <footer>
       <div class="footer-container">
         <div class="footer-content">
-          <!-- About Section -->
           <div class="footer-section">
             <div class="footer-logo">
               <img src="images/versed-global-logo.png" alt="Versed Global" />
@@ -1915,31 +2686,27 @@
                 title="LinkedIn"
                 rel="noopener noreferrer"
                 target="_blank"
-              >
-                <i class="fab fa-linkedin-in"></i>
-              </a>
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
               <a
                 href="https://www.instagram.com/versedglobal"
                 class="social-link instagram"
                 title="Instagram"
                 rel="noopener noreferrer"
                 target="_blank"
-              >
-                <i class="fab fa-instagram"></i>
-              </a>
+                ><i class="fab fa-instagram"></i
+              ></a>
               <a
                 href="https://www.facebook.com/share/14U4YEg25nN/?mibextid=wwXIfr"
                 class="social-link facebook"
                 title="Facebook"
                 rel="noopener noreferrer"
                 target="_blank"
-              >
-                <i class="fab fa-facebook-f"></i>
-              </a>
+                ><i class="fab fa-facebook-f"></i
+              ></a>
             </div>
           </div>
 
-          <!-- Contact Section -->
           <div class="footer-section">
             <h4>Contact</h4>
             <div class="footer-contact">
@@ -1952,15 +2719,14 @@
               <div>
                 <strong style="color: #f0f9ff">Email</strong>
                 <p style="margin: 0.5rem 0 0">
-                  <a href="mailto:info@versedglobal.com">
-                    info@versedglobal.com
-                  </a>
+                  <a href="mailto:info@versedglobal.com"
+                    >info@versedglobal.com</a
+                  >
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- Address Section -->
           <div class="footer-section">
             <h4>Office Address</h4>
             <div class="footer-address">
@@ -1979,7 +2745,6 @@
             </div>
           </div>
 
-          <!-- Review & Links Section -->
           <div class="footer-section">
             <h4>Leave a Review</h4>
             <p>Help us improve by sharing your experience on Trustpilot.</p>
@@ -1987,10 +2752,8 @@
               href="mailto:versedglobal.com+1dd03088a8@invite.trustpilot.com"
               class="trustpilot-link"
             >
-              <i class="fas fa-star"></i>
-              Review on Trustpilot
+              <i class="fas fa-star"></i> Review on Trustpilot
             </a>
-
             <h4 style="margin-top: 2rem">Quick Links</h4>
             <div style="display: flex; flex-direction: column; gap: 0.75rem">
               <a href="services.html">Salesforce Services</a>
@@ -2002,7 +2765,6 @@
           </div>
         </div>
 
-        <!-- Footer Divider -->
         <div class="footer-divider">
           <div class="footer-bottom">
             <div>
@@ -2018,76 +2780,101 @@
       </div>
     </footer>
 
-    <!-- Main script -->
     <script src="script.js"></script>
 
     <script>
-      // Set current year in footer
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Mobile menu toggle
+      // Mobile menu
       const mobileMenuToggle = document.getElementById("mobileMenuToggle");
       const navLinks = document.getElementById("navLinks");
-
       if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener("click", () => {
+        const toggleMenu = () => {
+          const isOpen = navLinks.classList.contains("active");
           navLinks.classList.toggle("active");
-          mobileMenuToggle.textContent = navLinks.classList.contains("active")
-            ? "\u2715"
-            : "\u2630";
+          mobileMenuToggle.setAttribute("aria-expanded", String(!isOpen));
+          mobileMenuToggle.textContent = isOpen ? "\u2630" : "\u2715";
+        };
+        mobileMenuToggle.addEventListener(
+          "touchstart",
+          (e) => {
+            e.preventDefault();
+            toggleMenu();
+          },
+          { passive: false },
+        );
+        mobileMenuToggle.addEventListener("click", (e) => {
+          e.preventDefault();
+          toggleMenu();
+        });
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+            mobileMenuToggle.textContent = "\u2630";
+          });
+        });
+        document.addEventListener("click", (e) => {
+          if (
+            navLinks.classList.contains("active") &&
+            !navLinks.contains(e.target) &&
+            !mobileMenuToggle.contains(e.target)
+          ) {
+            navLinks.classList.remove("active");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+            mobileMenuToggle.textContent = "\u2630";
+          }
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && navLinks.classList.contains("active")) {
+            navLinks.classList.remove("active");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+            mobileMenuToggle.textContent = "\u2630";
+          }
+        });
+        window.addEventListener("resize", () => {
+          if (
+            window.innerWidth >= 768 &&
+            navLinks.classList.contains("active")
+          ) {
+            navLinks.classList.remove("active");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+            mobileMenuToggle.textContent = "\u2630";
+          }
         });
       }
 
-      // Close mobile menu when link is clicked
-      const navItems = navLinks.querySelectorAll("a");
-      navItems.forEach((item) => {
-        item.addEventListener("click", () => {
-          navLinks.classList.remove("active");
-          mobileMenuToggle.textContent = "\u2630";
+      // FAQ pill toggle
+      document.querySelectorAll(".faq-pill-q").forEach((btn) => {
+        const toggle = () => {
+          const pill = btn.closest(".faq-pill");
+          const answer = pill.querySelector(".faq-pill-a");
+          const isOpen = pill.classList.contains("open");
+          document.querySelectorAll(".faq-pill.open").forEach((p) => {
+            if (p !== pill) {
+              p.classList.remove("open");
+              p.querySelector(".faq-pill-q").setAttribute(
+                "aria-expanded",
+                "false",
+              );
+              p.querySelector(".faq-pill-a").setAttribute(
+                "aria-hidden",
+                "true",
+              );
+            }
+          });
+          pill.classList.toggle("open", !isOpen);
+          btn.setAttribute("aria-expanded", String(!isOpen));
+          answer.setAttribute("aria-hidden", String(isOpen));
+        };
+        btn.addEventListener("click", toggle);
+        btn.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggle();
+          }
         });
       });
-
-      // Close menu on escape key
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && navLinks.classList.contains("active")) {
-          navLinks.classList.remove("active");
-          mobileMenuToggle.textContent = "\u2630";
-        }
-      });
-
-      // Close menu when clicking outside
-      document.addEventListener("click", (e) => {
-        if (
-          navLinks.classList.contains("active") &&
-          !navLinks.contains(e.target) &&
-          !mobileMenuToggle.contains(e.target)
-        ) {
-          navLinks.classList.remove("active");
-          mobileMenuToggle.textContent = "\u2630";
-        }
-      });
-
-      // Browser History Navigation
-      window.addEventListener("popstate", () => {
-        if (navLinks.classList.contains("active")) {
-          navLinks.classList.remove("active");
-          mobileMenuToggle.textContent = "\u2630";
-        }
-      });
-
-      // FAQ toggle
-      function toggleFAQ(element) {
-        const faqItem = element.parentElement;
-        const isActive = faqItem.classList.contains("active");
-
-        document.querySelectorAll(".faq-item").forEach((item) => {
-          item.classList.remove("active");
-        });
-
-        if (!isActive) {
-          faqItem.classList.add("active");
-        }
-      }
     </script>
   </body>
 </html>
