@@ -21,7 +21,7 @@
     <!-- Main stylesheet -->
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Google Fonts for professional typography -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,7 +29,7 @@
       rel="stylesheet"
     />
 
-    <!-- Font Awesome for icons -->
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -43,23 +43,591 @@
         "name": "Versed Global",
         "url": "https://versedglobal.com/",
         "logo": "https://versedglobal.com/images/versed-global-logo.png",
-        "description": "Versed Global designs, integrates and manages Salesforce CRM systems and delivers high-impact trust and foundation fundraising support for charities, corporates and public-sector organisations.",
+        "description": "Versed Global designs, integrates and manages Salesforce CRM systems and delivers high-impact trust and foundation fundraising support.",
         "sameAs": [
           "https://www.linkedin.com/company/versed-global",
           "https://www.instagram.com/versedglobal",
           "https://www.facebook.com/share/14U4YEg25nN/?mibextid=wwXIfr"
-        ],
-        "contactPoint": [
-          {
-            "@type": "ContactPoint",
-            "telephone": "+44 7554 623171",
-            "contactType": "customer service",
-            "areaServed": "GB",
-            "availableLanguage": ["en"]
-          }
         ]
       }
     </script>
+
+    <style>
+      /* ============================================================
+         CLIENTS PAGE — TECH-FORWARD REDESIGN
+         ============================================================ */
+
+      /* ── HERO: PORTAL + INTRO COMBINED ── */
+      .clients-hero {
+        position: relative;
+        background: linear-gradient(
+          135deg,
+          #0c1a2e 0%,
+          #0e2a40 60%,
+          #0c1a2e 100%
+        );
+        overflow: hidden;
+        padding: 4rem 0 3.5rem;
+      }
+      .clients-hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(8, 145, 178, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 145, 178, 0.06) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+      }
+      .clients-hero-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        pointer-events: none;
+      }
+      .clients-hero-orb-1 {
+        width: 380px;
+        height: 380px;
+        background: radial-gradient(
+          circle,
+          rgba(8, 145, 178, 0.16),
+          transparent 70%
+        );
+        top: -80px;
+        right: -60px;
+      }
+      .clients-hero-orb-2 {
+        width: 260px;
+        height: 260px;
+        background: radial-gradient(
+          circle,
+          rgba(234, 88, 12, 0.09),
+          transparent 70%
+        );
+        bottom: -40px;
+        left: 8%;
+      }
+      .clients-hero-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        align-items: center;
+      }
+      /* LEFT: intro */
+      .clients-hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #22d3ee;
+        margin-bottom: 1rem;
+      }
+      .clients-hero-eyebrow .dot {
+        width: 6px;
+        height: 6px;
+        background: #22d3ee;
+        border-radius: 50%;
+        animation: pulse-dot 2s infinite;
+      }
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(0.7);
+        }
+      }
+      .clients-hero-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: clamp(2rem, 3.5vw, 2.8rem);
+        font-weight: 700;
+        color: #f0f9ff;
+        line-height: 1.15;
+        margin-bottom: 1rem;
+      }
+      .clients-hero-title .accent-teal {
+        color: #22d3ee;
+      }
+      .clients-hero-title .accent-warm {
+        color: #fb923c;
+      }
+      .clients-hero-sub {
+        font-size: 0.92rem;
+        color: #94a3b8;
+        line-height: 1.75;
+        margin-bottom: 1.5rem;
+        max-width: 480px;
+      }
+      .clients-hero-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+      }
+      .clients-hero-chip {
+        background: rgba(8, 145, 178, 0.12);
+        border: 1px solid rgba(8, 145, 178, 0.28);
+        color: #7dd3fc;
+        font-size: 0.75rem;
+        font-weight: 500;
+        padding: 0.3rem 0.75rem;
+        border-radius: 100px;
+      }
+
+      /* RIGHT: portal card */
+      .portal-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(8, 145, 178, 0.22);
+        border-radius: 18px;
+        padding: 1.75rem;
+        backdrop-filter: blur(12px);
+        position: relative;
+        overflow: hidden;
+      }
+      .portal-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #0891b2, #22d3ee, #fb923c);
+      }
+      .portal-card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+      .portal-card-icon {
+        width: 36px;
+        height: 36px;
+        background: rgba(8, 145, 178, 0.15);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #22d3ee;
+        font-size: 0.9rem;
+      }
+      .portal-card-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #64748b;
+      }
+      .portal-card-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #e2e8f0;
+      }
+      .portal-hint {
+        font-size: 0.78rem;
+        color: #64748b;
+        margin-bottom: 1rem;
+        line-height: 1.55;
+      }
+      .portal-input-row {
+        display: flex;
+        gap: 0.6rem;
+        margin-bottom: 0.9rem;
+      }
+      .portal-input {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(8, 145, 178, 0.25);
+        border-radius: 8px;
+        padding: 0.6rem 0.9rem;
+        font-size: 0.82rem;
+        color: #e2e8f0;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .portal-input::placeholder {
+        color: #475569;
+      }
+      .portal-input:focus {
+        border-color: #0891b2;
+      }
+      .portal-btn {
+        background: linear-gradient(135deg, #0891b2, #0e7490);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 0.6rem 1.1rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        white-space: nowrap;
+        transition: opacity 0.2s;
+      }
+      .portal-btn:hover {
+        opacity: 0.88;
+      }
+      .portal-info-strip {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        background: rgba(8, 145, 178, 0.07);
+        border: 1px solid rgba(8, 145, 178, 0.18);
+        border-radius: 8px;
+        padding: 0.65rem 0.85rem;
+        font-size: 0.75rem;
+        color: #7dd3fc;
+        line-height: 1.55;
+      }
+      .portal-info-strip i {
+        color: #0891b2;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+
+      @media (max-width: 860px) {
+        .clients-hero-inner {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+
+      /* ── CASE STUDIES — FILTERABLE GRID ── */
+      .cases-section {
+        padding: 3.5rem 0;
+        background: #f8fafc;
+      }
+      .cases-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      .cases-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.75rem;
+      }
+      .cases-header-left .cases-kicker {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #0891b2;
+        margin-bottom: 0.4rem;
+      }
+      .cases-header-left h2 {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+        font-weight: 700;
+        color: #0c1a2e;
+        margin: 0;
+      }
+      /* Filter pills */
+      .case-filters {
+        display: flex;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+      }
+      .case-filter-btn {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        color: #64748b;
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.35rem 0.85rem;
+        border-radius: 100px;
+        cursor: pointer;
+        transition: all 0.18s;
+      }
+      .case-filter-btn:hover,
+      .case-filter-btn.active {
+        background: #0891b2;
+        border-color: #0891b2;
+        color: #fff;
+      }
+      /* Masonry-style 4-col grid */
+      .case-mosaic {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.75rem;
+      }
+      .case-tile {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 1.1rem 1.2rem;
+        position: relative;
+        overflow: hidden;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s,
+          transform 0.2s;
+        display: flex;
+        flex-direction: column;
+      }
+      .case-tile:hover {
+        border-color: #0891b2;
+        box-shadow: 0 4px 20px rgba(8, 145, 178, 0.1);
+        transform: translateY(-2px);
+      }
+      .case-tile-accent {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 100%;
+        border-radius: 3px 0 0 3px;
+      }
+      .case-tile-accent.salesforce {
+        background: #0891b2;
+      }
+      .case-tile-accent.fundraising {
+        background: #fb923c;
+      }
+      .case-tile-accent.web {
+        background: #4ade80;
+      }
+      .case-tile-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 0.2rem 0.55rem;
+        border-radius: 100px;
+        margin-bottom: 0.6rem;
+        width: fit-content;
+      }
+      .case-tile-tag.salesforce {
+        background: rgba(8, 145, 178, 0.1);
+        color: #0891b2;
+      }
+      .case-tile-tag.fundraising {
+        background: rgba(234, 88, 12, 0.1);
+        color: #ea580c;
+      }
+      .case-tile-tag.web {
+        background: rgba(74, 222, 128, 0.1);
+        color: #16a34a;
+      }
+      .case-tile h3 {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #0c1a2e;
+        margin-bottom: 0.45rem;
+        line-height: 1.3;
+      }
+      .case-tile p {
+        font-size: 0.77rem;
+        color: #64748b;
+        line-height: 1.6;
+        margin: 0;
+        flex: 1;
+      }
+      /* Wide tile spans 2 cols */
+      .case-tile.wide {
+        grid-column: span 2;
+      }
+
+      @media (max-width: 1024px) {
+        .case-mosaic {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .case-tile.wide {
+          grid-column: span 1;
+        }
+      }
+      @media (max-width: 680px) {
+        .case-mosaic {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 420px) {
+        .case-mosaic {
+          grid-template-columns: 1fr;
+        }
+        .case-tile.wide {
+          grid-column: span 1;
+        }
+      }
+
+      /* hidden tiles */
+      .case-tile.hidden {
+        display: none;
+      }
+
+      /* ── ORG SLIDER — ENHANCED ── */
+      .orgs-section {
+        padding: 3rem 0;
+        background: linear-gradient(135deg, #0c1a2e 0%, #0e2a40 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .orgs-section .orgs-grid-bg {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(8, 145, 178, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 145, 178, 0.05) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+      }
+      .orgs-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      .orgs-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+      }
+      .orgs-kicker {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #22d3ee;
+        margin-bottom: 0.3rem;
+      }
+      .orgs-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+        font-weight: 700;
+        color: #f0f9ff;
+        margin: 0;
+      }
+      .orgs-count {
+        font-size: 0.78rem;
+        color: #64748b;
+        font-weight: 500;
+      }
+
+      /* Dual-track marquee */
+      .orgs-marquee-wrap {
+        position: relative;
+        overflow: hidden;
+      }
+      .orgs-marquee-wrap::before,
+      .orgs-marquee-wrap::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 80px;
+        z-index: 3;
+        pointer-events: none;
+      }
+      .orgs-marquee-wrap::before {
+        left: 0;
+        background: linear-gradient(90deg, #0e2a40, transparent);
+      }
+      .orgs-marquee-wrap::after {
+        right: 0;
+        background: linear-gradient(-90deg, #0e2a40, transparent);
+      }
+      .orgs-track {
+        display: flex;
+        gap: 1rem;
+        width: max-content;
+        padding: 0.5rem 0;
+      }
+      .orgs-track-1 {
+        animation: marquee-left 28s linear infinite;
+        margin-bottom: 1rem;
+      }
+      .orgs-track-2 {
+        animation: marquee-right 32s linear infinite;
+      }
+      @keyframes marquee-left {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      @keyframes marquee-right {
+        0% {
+          transform: translateX(-50%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      .orgs-marquee-wrap:hover .orgs-track {
+        animation-play-state: paused;
+      }
+
+      .org-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(8, 145, 178, 0.18);
+        border-radius: 12px;
+        padding: 0.9rem 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        min-width: 200px;
+        max-width: 240px;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          border-color 0.2s,
+          transform 0.2s;
+        cursor: pointer;
+      }
+      .org-card:hover {
+        background: rgba(8, 145, 178, 0.12);
+        border-color: rgba(8, 145, 178, 0.4);
+        transform: translateY(-2px);
+      }
+      .org-card-img {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        object-fit: contain;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 4px;
+        flex-shrink: 0;
+      }
+      .org-card-name {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #cbd5e1;
+        line-height: 1.35;
+      }
+      .org-card-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #0891b2;
+        flex-shrink: 0;
+        margin-left: auto;
+        box-shadow: 0 0 6px #0891b2;
+      }
+    </style>
   </head>
   <body>
     <!-- Header -->
@@ -104,472 +672,753 @@
     </header>
 
     <main>
-      <!-- Client Portal Login -->
-      <section class="section">
-        <div class="container">
-          <div class="login-wrapper">
-            <div class="login-card">
-              <div class="login-content">
-                <div class="login-eyebrow">
-                  <i class="fa-solid fa-cloud"></i>
-                  Salesforce client portal
-                </div>
+      <!-- ============================================================
+           HERO — CLIENT STORIES INTRO + PORTAL COMBINED
+           ============================================================ -->
+      <section class="clients-hero" aria-label="Clients overview">
+        <div class="clients-hero-grid"></div>
+        <div class="clients-hero-orb clients-hero-orb-1"></div>
+        <div class="clients-hero-orb clients-hero-orb-2"></div>
 
-                <h2 class="section-title" style="margin-bottom: 0.6rem">
-                  Client login
-                </h2>
-                <p class="section-intro" style="margin-bottom: 1.2rem">
-                  Existing Salesforce implementation clients can log in here to
-                  view the status of their projects and phases.
-                </p>
+        <div class="clients-hero-inner">
+          <!-- LEFT: intro -->
+          <div>
+            <div class="clients-hero-eyebrow">
+              <span class="dot"></span>
+              Client Stories
+            </div>
+            <h1 class="clients-hero-title">
+              Real work.<br />
+              <span class="accent-teal">Measurable</span><br />
+              <span class="accent-warm">outcomes.</span>
+            </h1>
+            <p class="clients-hero-sub">
+              Versed Global has supported a growing portfolio of organisations
+              across the charity, corporate and public sectors — with
+              Salesforce, web design and fundraising solutions shaped around how
+              each team actually works.
+            </p>
+            <div class="clients-hero-chips">
+              <span class="clients-hero-chip"
+                ><i class="fas fa-database" style="margin-right: 0.3rem"></i
+                >Salesforce CRM</span
+              >
+              <span class="clients-hero-chip"
+                ><i
+                  class="fas fa-hand-holding-heart"
+                  style="margin-right: 0.3rem"
+                ></i
+                >Fundraising</span
+              >
+              <span class="clients-hero-chip"
+                ><i class="fas fa-globe" style="margin-right: 0.3rem"></i>Web
+                &amp; Integrated</span
+              >
+              <span class="clients-hero-chip">UK &amp; International</span>
+            </div>
+          </div>
 
-                <form action="/portal/login.php" method="post">
-                  <div class="login-form-row">
-                    <div>
-                      <label for="portal-email" class="login-label">
-                        Email address we hold on record
-                      </label>
-                      <input
-                        type="email"
-                        id="portal-email"
-                        name="email"
-                        required
-                        class="login-input"
-                      />
-                    </div>
-                    <div>
-                      <button
-                        type="submit"
-                        class="btn btn-primary"
-                        style="
-                          width: 100%;
-                          justify-content: center;
-                          height: 48px;
-                        "
-                      >
-                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                        <span>View my Salesforce projects</span>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-
-                <div class="login-helper">
-                  <span>i</span>
-                  <div>
-                    Use the same email address that Versed Global holds for your
-                    organisation’s Salesforce project records.
-                  </div>
-                </div>
-
-                <p class="login-error">
-                  <script>
-                    const params = new URLSearchParams(window.location.search);
-                    if (params.get("login_error") === "1") {
-                      document.write(
-                        "We could not find a client account with that email. Please check and try again or contact info@versedglobal.com.",
-                      );
-                    }
-                  </script>
-                </p>
+          <!-- RIGHT: portal -->
+          <div class="portal-card">
+            <div class="portal-card-header">
+              <div class="portal-card-icon"><i class="fas fa-cloud"></i></div>
+              <div>
+                <div class="portal-card-label">Salesforce Client Portal</div>
+                <div class="portal-card-title">View your project status</div>
               </div>
+            </div>
+            <p class="portal-hint">
+              Existing implementation clients — log in to track project phases
+              and progress in real time.
+            </p>
+            <form action="/portal/login.php" method="post">
+              <div class="portal-input-row">
+                <input
+                  type="email"
+                  id="portal-email"
+                  name="email"
+                  required
+                  class="portal-input"
+                  placeholder="Your registered email address"
+                />
+                <button type="submit" class="portal-btn">
+                  <i class="fas fa-arrow-right-to-bracket"></i>
+                  Log in
+                </button>
+              </div>
+            </form>
+            <div class="portal-info-strip">
+              <i class="fas fa-circle-info"></i>
+              Use the same email address Versed Global holds for your Salesforce
+              project records.
+            </div>
+            <p style="margin: 0; font-size: 0; height: 0">
+              <script>
+                const params = new URLSearchParams(window.location.search);
+                if (params.get("login_error") === "1") {
+                  document.write(
+                    '<p style="margin-top:0.75rem;font-size:0.78rem;color:#f87171;">We could not find a client account with that email. Please check and try again or contact info@versedglobal.com.</p>',
+                  );
+                }
+              </script>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           CASE STUDIES — FILTERABLE MOSAIC
+           ============================================================ -->
+      <section class="cases-section">
+        <div class="cases-inner">
+          <div class="cases-header">
+            <div class="cases-header-left">
+              <p class="cases-kicker">Recent engagements</p>
+              <h2>12 projects across 3 disciplines</h2>
+            </div>
+            <div
+              class="case-filters"
+              role="group"
+              aria-label="Filter case studies"
+            >
+              <button class="case-filter-btn active" data-filter="all">
+                All
+              </button>
+              <button class="case-filter-btn" data-filter="salesforce">
+                Salesforce
+              </button>
+              <button class="case-filter-btn" data-filter="fundraising">
+                Fundraising
+              </button>
+              <button class="case-filter-btn" data-filter="web">
+                Web &amp; Integrated
+              </button>
+            </div>
+          </div>
+
+          <div class="case-mosaic" id="caseMosaic">
+            <div class="case-tile wide" data-category="salesforce">
+              <div class="case-tile-accent salesforce"></div>
+              <span class="case-tile-tag salesforce"
+                ><i class="fas fa-database"></i>Salesforce</span
+              >
+              <h3>Charity CRM rebuild</h3>
+              <p>
+                Redesigned and rebuilt a Salesforce NPSP implementation for a UK
+                charity — resolving data quality issues, streamlining donation
+                tracking and enabling accurate reporting for trustees and
+                funders.
+              </p>
+            </div>
+
+            <div class="case-tile" data-category="fundraising">
+              <div class="case-tile-accent fundraising"></div>
+              <span class="case-tile-tag fundraising"
+                ><i class="fas fa-seedling"></i>Fundraising</span
+              >
+              <h3>Trust fundraising strategy</h3>
+              <p>
+                Developed a trust and foundation fundraising strategy for a
+                social enterprise, including prospect research, pipeline
+                prioritisation and a tailored case for support.
+              </p>
+            </div>
+
+            <div class="case-tile" data-category="salesforce">
+              <div class="case-tile-accent salesforce"></div>
+              <span class="case-tile-tag salesforce"
+                ><i class="fas fa-database"></i>Salesforce</span
+              >
+              <h3>CSR stakeholder management</h3>
+              <p>
+                Configured Salesforce for a corporate CSR team to manage charity
+                partnerships, employee engagement and impact reporting —
+                replacing fragmented spreadsheets.
+              </p>
+            </div>
+
+            <div class="case-tile" data-category="fundraising">
+              <div class="case-tile-accent fundraising"></div>
+              <span class="case-tile-tag fundraising"
+                ><i class="fas fa-seedling"></i>Fundraising</span
+              >
+              <h3>Grant application support</h3>
+              <p>
+                Provided grant writing support for a CIC, securing funding from
+                a major trust to expand programme delivery into new regions.
+              </p>
+            </div>
+
+            <div class="case-tile" data-category="salesforce">
+              <div class="case-tile-accent salesforce"></div>
+              <span class="case-tile-tag salesforce"
+                ><i class="fas fa-database"></i>Salesforce</span
+              >
+              <h3>Public-sector CRM scoping</h3>
+              <p>
+                Led discovery workshops mapping requirements for a
+                Salesforce-based grants management system aligned with
+                government reporting obligations.
+              </p>
+            </div>
+
+            <div class="case-tile wide" data-category="web">
+              <div class="case-tile-accent web"></div>
+              <span class="case-tile-tag web"
+                ><i class="fas fa-globe"></i>Web &amp; Salesforce</span
+              >
+              <h3>Website and CRM alignment</h3>
+              <p>
+                Developed a new website and integrated enquiry forms directly
+                with Salesforce, ensuring every lead is captured and tracked
+                from first contact through to programme engagement.
+              </p>
+            </div>
+
+            <div class="case-tile" data-category="salesforce">
+              <div class="case-tile-accent salesforce"></div>
+              <span class="case-tile-tag salesforce"
+                ><i class="fas fa-database"></i>Salesforce</span
+              >
+              <h3>Corporate volunteering pipeline</h3>
+              <p>
+                Implemented a volunteering and skills-based CSR pipeline for a
+                corporate partner, enabling better matching of employee skills
+                with charity needs.
+              </p>
+            </div>
+
+            <div class="case-tile" data-category="salesforce">
+              <div class="case-tile-accent salesforce"></div>
+              <span class="case-tile-tag salesforce"
+                ><i class="fas fa-database"></i>Salesforce</span
+              >
+              <h3>Donor stewardship workflow</h3>
+              <p>
+                Created automated stewardship journeys in Salesforce for
+                individual donors, including thank-you emails, impact updates
+                and high-value supporter prompts.
+              </p>
+            </div>
+
+            <div class="case-tile" data-category="salesforce">
+              <div class="case-tile-accent salesforce"></div>
+              <span class="case-tile-tag salesforce"
+                ><i class="fas fa-database"></i>Salesforce</span
+              >
+              <h3>Multi-country programme tracking</h3>
+              <p>
+                Designed a Salesforce data model for an international NGO
+                capturing activities, outcomes and learning across multiple
+                countries and programme streams.
+              </p>
+            </div>
+
+            <div class="case-tile" data-category="fundraising">
+              <div class="case-tile-accent fundraising"></div>
+              <span class="case-tile-tag fundraising"
+                ><i class="fas fa-seedling"></i>Fundraising</span
+              >
+              <h3>Fundraising operations review</h3>
+              <p>
+                Identified gaps in pipeline management, reporting and
+                integration between digital channels and CRM for a national
+                charity's fundraising operations.
+              </p>
+            </div>
+
+            <div class="case-tile" data-category="salesforce">
+              <div class="case-tile-accent salesforce"></div>
+              <span class="case-tile-tag salesforce"
+                ><i class="fas fa-database"></i>Salesforce</span
+              >
+              <h3>Small charity CRM starter</h3>
+              <p>
+                Implemented a lightweight Salesforce setup for a small charity
+                moving from spreadsheets — contact management, donation tracking
+                and maintainable reporting.
+              </p>
+            </div>
+
+            <div class="case-tile" data-category="salesforce">
+              <div class="case-tile-accent salesforce"></div>
+              <span class="case-tile-tag salesforce"
+                ><i class="fas fa-database"></i>Salesforce</span
+              >
+              <h3>Data migration &amp; cleanup</h3>
+              <p>
+                Managed a complex migration from a legacy CRM into Salesforce,
+                including data cleansing, deduplication and validation for a
+                clean launch.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Intro -->
-      <section class="section">
-        <div class="container">
-          <h1 class="section-title">Client stories</h1>
-          <p class="section-intro">
-            Versed Global has supported a growing portfolio of organisations
-            across the charity, corporate and public sectors. Below are examples
-            of recent work and the kinds of challenges addressed.
-          </p>
-        </div>
-      </section>
-
-      <!-- Case studies -->
-      <section class="section alt">
-        <div class="container">
-          <h2 class="section-title">Recent engagements</h2>
-          <p class="section-intro">
-            Each project is shaped around the client's context, capacity and
-            goals. Here are summaries of a few recent pieces of work.
-          </p>
-
-          <div class="case-grid">
-            <div class="case-card">
-              <div class="case-card-header">
-                <h3>Charity CRM rebuild</h3>
-                <span class="case-tag">Salesforce</span>
-              </div>
-              <div class="case-card-body">
-                <p>
-                  Redesigned and rebuilt a Salesforce Nonprofit Success Pack
-                  implementation for a UK charity, resolving data quality
-                  issues, streamlining donation tracking and enabling accurate
-                  reporting for trustees and funders.
-                </p>
-              </div>
+      <!-- ============================================================
+           ORGANISATIONS SUPPORTED — DUAL MARQUEE
+           ============================================================ -->
+      <section class="orgs-section">
+        <div class="orgs-grid-bg"></div>
+        <div class="orgs-inner">
+          <div class="orgs-header">
+            <div>
+              <p class="orgs-kicker">Trusted by</p>
+              <h2 class="orgs-title">Organisations we have supported</h2>
             </div>
-
-            <div class="case-card">
-              <div class="case-card-header">
-                <h3>Trust fundraising strategy</h3>
-                <span class="case-tag">Fundraising</span>
-              </div>
-              <div class="case-card-body">
-                <p>
-                  Developed a trust and foundation fundraising strategy for a
-                  social enterprise, including prospect research, pipeline
-                  prioritisation and the creation of a tailored case for
-                  support.
-                </p>
-              </div>
-            </div>
-
-            <div class="case-card">
-              <div class="case-card-header">
-                <h3>CSR stakeholder management</h3>
-                <span class="case-tag">Salesforce</span>
-              </div>
-              <div class="case-card-body">
-                <p>
-                  Configured Salesforce for a corporate CSR team to manage
-                  charity partnerships, employee engagement programmes and
-                  impact reporting – replacing fragmented spreadsheets with a
-                  single source of truth.
-                </p>
-              </div>
-            </div>
-
-            <div class="case-card">
-              <div class="case-card-header">
-                <h3>Grant application support</h3>
-                <span class="case-tag">Fundraising</span>
-              </div>
-              <div class="case-card-body">
-                <p>
-                  Provided grant writing support for a community interest
-                  company, securing funding from a major trust to expand
-                  programme delivery into new regions.
-                </p>
-              </div>
-            </div>
-
-            <div class="case-card">
-              <div class="case-card-header">
-                <h3>Public-sector CRM scoping</h3>
-                <span class="case-tag">Salesforce</span>
-              </div>
-              <div class="case-card-body">
-                <p>
-                  Led discovery workshops for a public-sector programme team,
-                  mapping requirements for a Salesforce-based grants management
-                  system aligned with government reporting obligations.
-                </p>
-              </div>
-            </div>
-
-            <div class="case-card">
-              <div class="case-card-header">
-                <h3>Website and CRM alignment</h3>
-                <span class="case-tag">Web &amp; Salesforce</span>
-              </div>
-              <div class="case-card-body">
-                <p>
-                  Developed a new website and integrated enquiry forms directly
-                  with Salesforce, ensuring that every lead is captured and
-                  tracked from first contact through to programme engagement.
-                </p>
-              </div>
-            </div>
-
-            <div class="case-card">
-              <div class="case-card-header">
-                <h3>Corporate volunteering pipeline</h3>
-                <span class="case-tag">Salesforce</span>
-              </div>
-              <div class="case-card-body">
-                <p>
-                  Implemented a volunteering and skills-based CSR pipeline for a
-                  corporate partner, enabling better matching of employee skills
-                  with charity needs and clearer reporting on impact.
-                </p>
-              </div>
-            </div>
-
-            <div class="case-card">
-              <div class="case-card-header">
-                <h3>Donor stewardship workflow</h3>
-                <span class="case-tag">Salesforce</span>
-              </div>
-              <div class="case-card-body">
-                <p>
-                  Created an automated stewardship journey in Salesforce for
-                  individual donors, including thank-you emails, impact updates
-                  and prompts for staff to follow up on high-value supporters.
-                </p>
-              </div>
-            </div>
-
-            <div class="case-card">
-              <div class="case-card-header">
-                <h3>Multi-country programme tracking</h3>
-                <span class="case-tag">Salesforce</span>
-              </div>
-              <div class="case-card-body">
-                <p>
-                  Supported an international NGO to design a Salesforce data
-                  model capturing activities, outcomes and learning across
-                  multiple countries and programme streams.
-                </p>
-              </div>
-            </div>
-
-            <div class="case-card">
-              <div class="case-card-header">
-                <h3>Fundraising operations review</h3>
-                <span class="case-tag">Fundraising</span>
-              </div>
-              <div class="case-card-body">
-                <p>
-                  Conducted a review of fundraising operations for a national
-                  charity, identifying gaps in pipeline management, reporting
-                  and integration between digital channels and CRM.
-                </p>
-              </div>
-            </div>
-
-            <div class="case-card">
-              <div class="case-card-header">
-                <h3>Small charity CRM starter</h3>
-                <span class="case-tag">Salesforce</span>
-              </div>
-              <div class="case-card-body">
-                <p>
-                  Implemented a lightweight Salesforce setup for a small charity
-                  moving from spreadsheets, focusing on contact management,
-                  basic donation tracking and simple reporting that staff could
-                  maintain.
-                </p>
-              </div>
-            </div>
-
-            <div class="case-card">
-              <div class="case-card-header">
-                <h3>Data migration &amp; cleanup</h3>
-                <span class="case-tag">Salesforce</span>
-              </div>
-              <div class="case-card-body">
-                <p>
-                  Managed a complex data migration from a legacy CRM into
-                  Salesforce for a mid-sized charity, including data cleansing,
-                  deduplication and validation to ensure a clean launch.
-                </p>
-              </div>
-            </div>
+            <span class="orgs-count"
+              >8 organisations &middot; charity, corporate &amp; public
+              sector</span
+            >
           </div>
-        </div>
-      </section>
 
-      <!-- Organisations supported -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Organisations supported</h2>
-          <p class="section-intro">
-            Versed Global has worked with and alongside a range of
-            organisations, from small charities to established corporates and
-            Salesforce partners.
-          </p>
-        </div>
+          <div class="orgs-marquee-wrap">
+            <!-- Track 1: left -->
+            <div class="orgs-track orgs-track-1">
+              <a
+                href="https://naturalneighbours.org/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://www.avivacommunityfund.co.uk/uploads/project_images/69/c0/1676158/1765450374_1765450374270.png"
+                  alt="Natural Neighbours"
+                />
+                <span class="org-card-name">Natural Neighbours</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://zambianrainbow.org/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjv79s3GYcLgm9kqICMI7kr4UILW_2zRkpsg&s"
+                  alt="Zambian Rainbow Development Foundation"
+                />
+                <span class="org-card-name"
+                  >Zambian Rainbow Development Foundation</span
+                >
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://wessexcancer.org.uk/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://www.wessexcancer.org.uk/wp-content/uploads/2023/08/Wessex-Cancer-Support-generic-banner.jpg"
+                  alt="Wessex Cancer Support"
+                />
+                <span class="org-card-name">Wessex Cancer Support</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://opoka.org.uk/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuKYrTWJcO_wszQh3blx-pZ0Z7mtUY42hz0g&s"
+                  alt="Opoka CIO"
+                />
+                <span class="org-card-name">Opoka CIO</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://chrysalisgroup.org/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://www.chrysalisgroupservices.co.uk/assets/img/chrysalis-supported-association.png"
+                  alt="Chrysalis Group"
+                />
+                <span class="org-card-name">Chrysalis Group</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://nimbuspoint.com/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://mma.prnewswire.com/media/2473768/NIMBUSLOGO_STRAPLINE2024.jpg"
+                  alt="NimbusPoint"
+                />
+                <span class="org-card-name">NimbusPoint</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://time-technology.com/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://appexchange.salesforce.com/partners/servlet/servlet.FileDownload?file=00P4V00000reVXvUAM"
+                  alt="Time Technology"
+                />
+                <span class="org-card-name">Time Technology</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a href="#" class="org-card">
+                <img
+                  class="org-card-img"
+                  src="https://cnhc-cms-production.s3.eu-west-1.amazonaws.com/uploads/vacancy/logo/88/Olive_Tree_Logo.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXZLGXM7QL2MLSBEH%2F20260308%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260308T225537Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=fb4e5dcedfe048108eeee4d8d830757a97d432ee41c2ea1740f0375a1be56227"
+                  alt="Olive Tree Cancer Support"
+                />
+                <span class="org-card-name">Olive Tree Cancer Support</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <!-- duplicate for seamless loop -->
+              <a
+                href="https://naturalneighbours.org/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://www.avivacommunityfund.co.uk/uploads/project_images/69/c0/1676158/1765450374_1765450374270.png"
+                  alt="Natural Neighbours"
+                />
+                <span class="org-card-name">Natural Neighbours</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://zambianrainbow.org/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjv79s3GYcLgm9kqICMI7kr4UILW_2zRkpsg&s"
+                  alt="Zambian Rainbow Development Foundation"
+                />
+                <span class="org-card-name"
+                  >Zambian Rainbow Development Foundation</span
+                >
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://wessexcancer.org.uk/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://www.wessexcancer.org.uk/wp-content/uploads/2023/08/Wessex-Cancer-Support-generic-banner.jpg"
+                  alt="Wessex Cancer Support"
+                />
+                <span class="org-card-name">Wessex Cancer Support</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://opoka.org.uk/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuKYrTWJcO_wszQh3blx-pZ0Z7mtUY42hz0g&s"
+                  alt="Opoka CIO"
+                />
+                <span class="org-card-name">Opoka CIO</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://chrysalisgroup.org/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://www.chrysalisgroupservices.co.uk/assets/img/chrysalis-supported-association.png"
+                  alt="Chrysalis Group"
+                />
+                <span class="org-card-name">Chrysalis Group</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://nimbuspoint.com/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://mma.prnewswire.com/media/2473768/NIMBUSLOGO_STRAPLINE2024.jpg"
+                  alt="NimbusPoint"
+                />
+                <span class="org-card-name">NimbusPoint</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://time-technology.com/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://appexchange.salesforce.com/partners/servlet/servlet.FileDownload?file=00P4V00000reVXvUAM"
+                  alt="Time Technology"
+                />
+                <span class="org-card-name">Time Technology</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a href="#" class="org-card">
+                <img
+                  class="org-card-img"
+                  src="https://cnhc-cms-production.s3.eu-west-1.amazonaws.com/uploads/vacancy/logo/88/Olive_Tree_Logo.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXZLGXM7QL2MLSBEH%2F20260308%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260308T225537Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=fb4e5dcedfe048108eeee4d8d830757a97d432ee41c2ea1740f0375a1be56227"
+                  alt="Olive Tree Cancer Support"
+                />
+                <span class="org-card-name">Olive Tree Cancer Support</span>
+                <span class="org-card-dot"></span>
+              </a>
+            </div>
 
-        <div class="org-slider">
-          <div class="org-slide-track">
-            <a
-              href="https://naturalneighbours.org/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://www.avivacommunityfund.co.uk/uploads/project_images/69/c0/1676158/1765450374_1765450374270.png"
-                alt="Natural Neighbours logo"
-              />
-              <span>Natural Neighbours</span>
-            </a>
-
-            <a
-              href="https://zambianrainbow.org/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjv79s3GYcLgm9kqICMI7kr4UILW_2zRkpsg&s"
-                alt="Zambian Rainbow Development Foundation logo"
-              />
-              <span>Zambian Rainbow Development Foundation</span>
-            </a>
-
-            <a
-              href="https://wessexcancer.org.uk/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://www.wessexcancer.org.uk/wp-content/uploads/2023/08/Wessex-Cancer-Support-generic-banner.jpg"
-                alt="Wessex Cancer Support logo"
-              />
-              <span>Wessex Cancer Support</span>
-            </a>
-
-            <a
-              href="https://opoka.org.uk/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuKYrTWJcO_wszQh3blx-pZ0Z7mtUY42hz0g&s"
-                alt="Opoka CIO logo"
-              />
-              <span>Opoka CIO</span>
-            </a>
-
-            <a
-              href="https://chrysalisgroup.org/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://www.chrysalisgroupservices.co.uk/assets/img/chrysalis-supported-association.png"
-                alt="Chrysalis Group logo"
-              />
-              <span>Chrysalis Group</span>
-            </a>
-
-            <a
-              href="https://nimbuspoint.com/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://mma.prnewswire.com/media/2473768/NIMBUSLOGO_STRAPLINE2024.jpg"
-                alt="NimbusPoint logo"
-              />
-              <span>NimbusPoint</span>
-            </a>
-
-            <a
-              href="https://time-technology.com/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://appexchange.salesforce.com/partners/servlet/servlet.FileDownload?file=00P4V00000reVXvUAM"
-                alt="Time Technology Salesforce Partner logo"
-              />
-              <span>Time Technology</span>
-            </a>
-
-            <!-- Duplicate set for seamless loop -->
-            <a
-              href="https://naturalneighbours.org/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://www.avivacommunityfund.co.uk/uploads/project_images/69/c0/1676158/1765450374_1765450374270.png"
-                alt="Natural Neighbours logo"
-              />
-              <span>Natural Neighbours</span>
-            </a>
-
-            <a
-              href="https://zambianrainbow.org/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjv79s3GYcLgm9kqICMI7kr4UILW_2zRkpsg&s"
-                alt="Zambian Rainbow Development Foundation logo"
-              />
-              <span>Zambian Rainbow Development Foundation</span>
-            </a>
-
-            <a
-              href="https://wessexcancer.org.uk/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://www.wessexcancer.org.uk/wp-content/uploads/2023/08/Wessex-Cancer-Support-generic-banner.jpg"
-                alt="Wessex Cancer Support logo"
-              />
-              <span>Wessex Cancer Support</span>
-            </a>
-
-            <a
-              href="https://opoka.org.uk/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuKYrTWJcO_wszQh3blx-pZ0Z7mtUY42hz0g&s"
-                alt="Opoka CIO logo"
-              />
-              <span>Opoka CIO</span>
-            </a>
-
-            <a
-              href="https://chrysalisgroup.org/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://www.chrysalisgroupservices.co.uk/assets/img/chrysalis-supported-association.png"
-                alt="Chrysalis Group logo"
-              />
-              <span>Chrysalis Group</span>
-            </a>
-
-            <a
-              href="https://nimbuspoint.com/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://mma.prnewswire.com/media/2473768/NIMBUSLOGO_STRAPLINE2024.jpg"
-                alt="NimbusPoint logo"
-              />
-              <span>NimbusPoint</span>
-            </a>
-
-            <a
-              href="https://time-technology.com/"
-              target="_blank"
-              rel="noopener"
-              class="org-slide"
-            >
-              <img
-                src="https://appexchange.salesforce.com/partners/servlet/servlet.FileDownload?file=00P4V00000reVXvUAM"
-                alt="Time Technology Salesforce Partner logo"
-              />
-              <span>Time Technology</span>
-            </a>
+            <!-- Track 2: right (offset start) -->
+            <div class="orgs-track orgs-track-2">
+              <a
+                href="https://time-technology.com/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://appexchange.salesforce.com/partners/servlet/servlet.FileDownload?file=00P4V00000reVXvUAM"
+                  alt="Time Technology"
+                />
+                <span class="org-card-name">Time Technology</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://nimbuspoint.com/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://mma.prnewswire.com/media/2473768/NIMBUSLOGO_STRAPLINE2024.jpg"
+                  alt="NimbusPoint"
+                />
+                <span class="org-card-name">NimbusPoint</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://chrysalisgroup.org/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://www.chrysalisgroupservices.co.uk/assets/img/chrysalis-supported-association.png"
+                  alt="Chrysalis Group"
+                />
+                <span class="org-card-name">Chrysalis Group</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://opoka.org.uk/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuKYrTWJcO_wszQh3blx-pZ0Z7mtUY42hz0g&s"
+                  alt="Opoka CIO"
+                />
+                <span class="org-card-name">Opoka CIO</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://wessexcancer.org.uk/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://www.wessexcancer.org.uk/wp-content/uploads/2023/08/Wessex-Cancer-Support-generic-banner.jpg"
+                  alt="Wessex Cancer Support"
+                />
+                <span class="org-card-name">Wessex Cancer Support</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://zambianrainbow.org/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjv79s3GYcLgm9kqICMI7kr4UILW_2zRkpsg&s"
+                  alt="Zambian Rainbow Development Foundation"
+                />
+                <span class="org-card-name"
+                  >Zambian Rainbow Development Foundation</span
+                >
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://naturalneighbours.org/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://www.avivacommunityfund.co.uk/uploads/project_images/69/c0/1676158/1765450374_1765450374270.png"
+                  alt="Natural Neighbours"
+                />
+                <span class="org-card-name">Natural Neighbours</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a href="#" class="org-card">
+                <img
+                  class="org-card-img"
+                  src="https://cnhc-cms-production.s3.eu-west-1.amazonaws.com/uploads/vacancy/logo/88/Olive_Tree_Logo.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXZLGXM7QL2MLSBEH%2F20260308%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260308T225537Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=fb4e5dcedfe048108eeee4d8d830757a97d432ee41c2ea1740f0375a1be56227"
+                  alt="Olive Tree Cancer Support"
+                />
+                <span class="org-card-name">Olive Tree Cancer Support</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <!-- duplicate -->
+              <a
+                href="https://time-technology.com/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://appexchange.salesforce.com/partners/servlet/servlet.FileDownload?file=00P4V00000reVXvUAM"
+                  alt="Time Technology"
+                />
+                <span class="org-card-name">Time Technology</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://nimbuspoint.com/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://mma.prnewswire.com/media/2473768/NIMBUSLOGO_STRAPLINE2024.jpg"
+                  alt="NimbusPoint"
+                />
+                <span class="org-card-name">NimbusPoint</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://chrysalisgroup.org/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://www.chrysalisgroupservices.co.uk/assets/img/chrysalis-supported-association.png"
+                  alt="Chrysalis Group"
+                />
+                <span class="org-card-name">Chrysalis Group</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://opoka.org.uk/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuKYrTWJcO_wszQh3blx-pZ0Z7mtUY42hz0g&s"
+                  alt="Opoka CIO"
+                />
+                <span class="org-card-name">Opoka CIO</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://wessexcancer.org.uk/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://www.wessexcancer.org.uk/wp-content/uploads/2023/08/Wessex-Cancer-Support-generic-banner.jpg"
+                  alt="Wessex Cancer Support"
+                />
+                <span class="org-card-name">Wessex Cancer Support</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://zambianrainbow.org/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjv79s3GYcLgm9kqICMI7kr4UILW_2zRkpsg&s"
+                  alt="Zambian Rainbow Development Foundation"
+                />
+                <span class="org-card-name"
+                  >Zambian Rainbow Development Foundation</span
+                >
+                <span class="org-card-dot"></span>
+              </a>
+              <a
+                href="https://naturalneighbours.org/"
+                target="_blank"
+                rel="noopener"
+                class="org-card"
+              >
+                <img
+                  class="org-card-img"
+                  src="https://www.avivacommunityfund.co.uk/uploads/project_images/69/c0/1676158/1765450374_1765450374270.png"
+                  alt="Natural Neighbours"
+                />
+                <span class="org-card-name">Natural Neighbours</span>
+                <span class="org-card-dot"></span>
+              </a>
+              <a href="#" class="org-card">
+                <img
+                  class="org-card-img"
+                  src="https://cnhc-cms-production.s3.eu-west-1.amazonaws.com/uploads/vacancy/logo/88/Olive_Tree_Logo.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXZLGXM7QL2MLSBEH%2F20260308%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20260308T225537Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=fb4e5dcedfe048108eeee4d8d830757a97d432ee41c2ea1740f0375a1be56227"
+                  alt="Olive Tree Cancer Support"
+                />
+                <span class="org-card-name">Olive Tree Cancer Support</span>
+                <span class="org-card-dot"></span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -663,9 +1512,9 @@
               <div>
                 <strong style="color: #f0f9ff">Email</strong>
                 <p style="margin: 0.5rem 0 0">
-                  <a href="mailto:info@versedglobal.com">
-                    info@versedglobal.com
-                  </a>
+                  <a href="mailto:info@versedglobal.com"
+                    >info@versedglobal.com</a
+                  >
                 </p>
               </div>
             </div>
@@ -734,32 +1583,49 @@
     <script src="script.js"></script>
 
     <script>
-      // Set current year in footer
+      // Year
       document.getElementById("year").textContent = new Date().getFullYear();
 
       // Mobile menu toggle
       const mobileMenuToggle = document.getElementById("mobileMenuToggle");
       const navLinks = document.getElementById("navLinks");
-
       if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener("click", () => {
           navLinks.classList.toggle("active");
         });
       }
-
-      // Close mobile menu when link is clicked
       const navItems = navLinks.querySelectorAll("a");
       navItems.forEach((item) => {
-        item.addEventListener("click", () => {
+        item.addEventListener("click", () =>
+          navLinks.classList.remove("active"),
+        );
+      });
+      window.addEventListener("popstate", () => {
+        if (navLinks.classList.contains("active"))
           navLinks.classList.remove("active");
-        });
       });
 
-      // Browser History Navigation - Closes mobile menu on back/forward
-      window.addEventListener("popstate", () => {
-        if (navLinks.classList.contains("active")) {
-          navLinks.classList.remove("active");
-        }
+      // Case study filter
+      const filterBtns = document.querySelectorAll(".case-filter-btn");
+      const caseTiles = document.querySelectorAll(".case-tile");
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const filter = btn.dataset.filter;
+
+          // update active button
+          filterBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          // show/hide tiles
+          caseTiles.forEach((tile) => {
+            if (filter === "all" || tile.dataset.category === filter) {
+              tile.classList.remove("hidden");
+            } else {
+              tile.classList.add("hidden");
+            }
+          });
+        });
       });
     </script>
   </body>
