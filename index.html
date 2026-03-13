@@ -64,7 +64,7 @@
 
     <style>
       /* ============================================================
-         COMPACT FAQ â€“ INLINE PILL GRID
+         COMPACT FAQ — INLINE PILL GRID
          ============================================================ */
 
       .faq-compact-section {
@@ -214,6 +214,590 @@
           gap: 0.25rem;
         }
       }
+
+      /* ============================================================
+         REDESIGNED: WHAT WE DELIVER — CINEMATIC CARD GRID
+         ============================================================ */
+
+      .deliver-section {
+        padding: 5rem 0;
+        background: #020c14;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .deliver-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 60% 50% at 20% 50%,
+            rgba(8, 145, 178, 0.08) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 40% 60% at 80% 20%,
+            rgba(234, 88, 12, 0.06) 0%,
+            transparent 70%
+          );
+        pointer-events: none;
+      }
+
+      .deliver-grid-lines {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(8, 145, 178, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 145, 178, 0.04) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+      }
+
+      .deliver-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .deliver-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .deliver-header-left {
+        flex: 1;
+        min-width: 260px;
+      }
+
+      .deliver-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #22d3ee;
+        margin-bottom: 0.85rem;
+      }
+
+      .deliver-eyebrow::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 1px;
+        background: #22d3ee;
+      }
+
+      .deliver-title {
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        font-weight: 700;
+        color: #f0f9ff;
+        line-height: 1.15;
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      .deliver-sub {
+        font-size: 0.9rem;
+        color: #64748b;
+        line-height: 1.7;
+        max-width: 340px;
+        margin: 0;
+        align-self: flex-end;
+      }
+
+      /* Card grid — 2x2 */
+      .deliver-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5px;
+        background: rgba(8, 145, 178, 0.12);
+        border: 1px solid rgba(8, 145, 178, 0.12);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .deliver-card {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16/10;
+        display: block;
+        text-decoration: none;
+        background: #060f18;
+        cursor: pointer;
+      }
+
+      .deliver-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition:
+          transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          filter 0.5s ease;
+        filter: brightness(0.45) saturate(0.7);
+      }
+
+      .deliver-card:hover img {
+        transform: scale(1.06);
+        filter: brightness(0.35) saturate(0.5);
+      }
+
+      /* Scanline overlay */
+      .deliver-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.08) 2px,
+          rgba(0, 0, 0, 0.08) 4px
+        );
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* Gradient overlay */
+      .deliver-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          160deg,
+          transparent 30%,
+          rgba(2, 12, 20, 0.7) 60%,
+          rgba(2, 12, 20, 0.95) 100%
+        );
+        z-index: 2;
+        transition: opacity 0.4s ease;
+      }
+
+      .deliver-card:hover .deliver-card-overlay {
+        background: linear-gradient(
+          160deg,
+          rgba(2, 12, 20, 0.2) 0%,
+          rgba(2, 12, 20, 0.75) 50%,
+          rgba(2, 12, 20, 0.97) 100%
+        );
+      }
+
+      /* Content inside card */
+      .deliver-card-body {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 1.75rem 1.75rem 1.5rem;
+        z-index: 3;
+      }
+
+      .deliver-card-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.65rem;
+        border-radius: 4px;
+        margin-bottom: 0.75rem;
+        border: 1px solid;
+        transition: all 0.3s ease;
+      }
+
+      .deliver-card-tag.teal {
+        color: #22d3ee;
+        border-color: rgba(34, 211, 238, 0.3);
+        background: rgba(34, 211, 238, 0.06);
+      }
+      .deliver-card-tag.warm {
+        color: #fb923c;
+        border-color: rgba(251, 146, 60, 0.3);
+        background: rgba(251, 146, 60, 0.06);
+      }
+      .deliver-card-tag.green {
+        color: #4ade80;
+        border-color: rgba(74, 222, 128, 0.3);
+        background: rgba(74, 222, 128, 0.06);
+      }
+      .deliver-card-tag.purple {
+        color: #a78bfa;
+        border-color: rgba(167, 139, 250, 0.3);
+        background: rgba(167, 139, 250, 0.06);
+      }
+
+      .deliver-card-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #f0f9ff;
+        margin: 0 0 0.5rem;
+        line-height: 1.3;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        transition: color 0.3s ease;
+      }
+
+      .deliver-card:hover .deliver-card-title {
+        color: #fff;
+      }
+
+      .deliver-card-text {
+        font-size: 0.8rem;
+        color: #94a3b8;
+        line-height: 1.6;
+        margin: 0;
+        max-width: 360px;
+        opacity: 0;
+        transform: translateY(6px);
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
+      }
+
+      .deliver-card:hover .deliver-card-text {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Arrow indicator */
+      .deliver-card-arrow {
+        position: absolute;
+        top: 1.25rem;
+        right: 1.25rem;
+        z-index: 3;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 0.7rem;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(4px);
+      }
+
+      .deliver-card:hover .deliver-card-arrow {
+        border-color: rgba(255, 255, 255, 0.35);
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        transform: translate(2px, -2px);
+      }
+
+      /* Number badge */
+      .deliver-card-num {
+        position: absolute;
+        top: 1.25rem;
+        left: 1.75rem;
+        z-index: 3;
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.2);
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      @media (max-width: 768px) {
+        .deliver-cards {
+          grid-template-columns: 1fr;
+        }
+        .deliver-card {
+          aspect-ratio: 16/9;
+        }
+        .deliver-header {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .deliver-sub {
+          max-width: 100%;
+        }
+        .deliver-card-text {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ============================================================
+         REDESIGNED: HOW WE WORK — COMPACT INLINE STEPS
+         ============================================================ */
+
+      .howwework-section {
+        padding: 4rem 0;
+        background: #fff;
+        position: relative;
+      }
+
+      .howwework-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .howwework-top {
+        display: flex;
+        align-items: flex-start;
+        gap: 3rem;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+      }
+
+      .howwework-top-left {
+        flex: 1;
+        min-width: 220px;
+      }
+
+      .howwework-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #0891b2;
+        margin-bottom: 0.6rem;
+      }
+
+      .howwework-kicker::before {
+        content: "";
+        width: 14px;
+        height: 1.5px;
+        background: #0891b2;
+        display: block;
+      }
+
+      .howwework-heading {
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: 700;
+        color: #0c0f14;
+        line-height: 1.2;
+        margin: 0;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      .howwework-intro {
+        flex: 2;
+        min-width: 280px;
+        font-size: 0.88rem;
+        color: #475569;
+        line-height: 1.75;
+        margin: 0;
+        align-self: flex-end;
+        padding-bottom: 2px;
+      }
+
+      /* Horizontal step strip */
+      .howwework-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        position: relative;
+        gap: 0;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #f8fafc;
+      }
+
+      /* Connector line between steps */
+      .howwework-steps::before {
+        content: "";
+        position: absolute;
+        top: 2.6rem;
+        left: calc(25% + 1.5rem);
+        right: calc(25% + 1.5rem);
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          #0891b2 0%,
+          #22d3ee 50%,
+          #0891b2 100%
+        );
+        opacity: 0.25;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .hww-step {
+        padding: 1.75rem 1.5rem 1.5rem;
+        position: relative;
+        z-index: 1;
+        border-right: 1px solid #e2e8f0;
+        transition: background 0.25s ease;
+        cursor: default;
+      }
+
+      .hww-step:last-child {
+        border-right: none;
+      }
+
+      .hww-step:hover {
+        background: #fff;
+      }
+
+      /* Step number circle */
+      .hww-step-num {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1.5px solid #e2e8f0;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #0891b2;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        letter-spacing: 0.02em;
+        margin-bottom: 1rem;
+        position: relative;
+        transition: all 0.3s ease;
+        z-index: 1;
+      }
+
+      .hww-step:hover .hww-step-num {
+        border-color: #0891b2;
+        background: #0891b2;
+        color: #fff;
+        box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.1);
+      }
+
+      /* Active dot on circle */
+      .hww-step-num::after {
+        content: "";
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #22d3ee;
+        border: 2px solid #f8fafc;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .hww-step:hover .hww-step-num::after {
+        opacity: 1;
+      }
+
+      .hww-step-phase {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #94a3b8;
+        margin-bottom: 0.35rem;
+        transition: color 0.3s ease;
+      }
+
+      .hww-step:hover .hww-step-phase {
+        color: #0891b2;
+      }
+
+      .hww-step-title {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0 0 0.5rem;
+        line-height: 1.3;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      .hww-step-body {
+        font-size: 0.78rem;
+        color: #64748b;
+        line-height: 1.65;
+        margin: 0;
+      }
+
+      /* Values strip below steps */
+      .howwework-values {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+
+      .hww-value-pill {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.65rem 0.85rem;
+        background: #f0f9ff;
+        border: 1px solid rgba(8, 145, 178, 0.15);
+        border-radius: 8px;
+        font-size: 0.76rem;
+        font-weight: 600;
+        color: #0c4a6e;
+        transition: all 0.25s ease;
+      }
+
+      .hww-value-pill:hover {
+        background: #e0f2fe;
+        border-color: rgba(8, 145, 178, 0.3);
+        transform: translateY(-1px);
+      }
+
+      .hww-value-pill i {
+        font-size: 0.72rem;
+        color: #0891b2;
+        flex-shrink: 0;
+      }
+
+      @media (max-width: 900px) {
+        .howwework-steps {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .howwework-steps::before {
+          display: none;
+        }
+        .hww-step:nth-child(2) {
+          border-right: none;
+        }
+        .hww-step:nth-child(3),
+        .hww-step:nth-child(4) {
+          border-top: 1px solid #e2e8f0;
+        }
+        .howwework-values {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .howwework-steps {
+          grid-template-columns: 1fr;
+        }
+        .hww-step {
+          border-right: none;
+          border-bottom: 1px solid #e2e8f0;
+        }
+        .hww-step:last-child {
+          border-bottom: none;
+        }
+        .hww-step:nth-child(3),
+        .hww-step:nth-child(4) {
+          border-top: none;
+        }
+        .howwework-values {
+          grid-template-columns: 1fr 1fr;
+        }
+        .howwework-top {
+          flex-direction: column;
+          gap: 1rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -261,7 +845,7 @@
 
     <main>
       <!-- ============================================================
-           HERO V2 â€“ ANIMATED SPLIT HERO
+           HERO V2 — ANIMATED SPLIT HERO
            ============================================================ -->
       <section class="hero-v2" aria-label="Hero">
         <!-- background layers -->
@@ -289,7 +873,7 @@
             </h1>
 
             <p class="hero-v2-sub">
-              Salesforce CRM, professional web design and trust fundraising â€”
+              Salesforce CRM, professional web design and trust fundraising —
               aligned and built around how your organisation actually works.
             </p>
 
@@ -311,12 +895,12 @@
               </div>
               <div class="hero-v2-stat-sep"></div>
               <div class="hero-v2-stat">
-                <span class="hero-v2-stat-val">Â£1<span>M+</span></span>
+                <span class="hero-v2-stat-val">£1<span>M+</span></span>
                 <span class="hero-v2-stat-lbl">Funding Supported</span>
               </div>
               <div class="hero-v2-stat-sep"></div>
               <div class="hero-v2-stat">
-                <span class="hero-v2-stat-val">UK<span>ðŸ‡¬ðŸ‡§</span></span>
+                <span class="hero-v2-stat-val">UK<span>🇬🇧</span></span>
                 <span class="hero-v2-stat-lbl">Remote-first</span>
               </div>
             </div>
@@ -330,7 +914,7 @@
                   <span></span><span></span><span></span>
                 </div>
                 <span class="hero-db-title"
-                  >Versed Global â€” Live Dashboard</span
+                  >Versed Global — Live Dashboard</span
                 >
                 <span class="hero-db-status">Active</span>
               </div>
@@ -419,7 +1003,7 @@
               </div>
               <p class="cap-tile-text">
                 Objects, fields and automation built around your actual
-                workflows â€” not generic templates.
+                workflows — not generic templates.
               </p>
             </div>
             <div class="cap-tile">
@@ -633,71 +1217,99 @@
         </div>
       </section>
 
-      <!-- What We Deliver â€“ Visual Showcase -->
-      <section class="section alt">
-        <div class="container">
-          <h2 class="section-title">What we deliver</h2>
-          <p class="section-intro">
-            From CRM strategy to live websites, fundraising pipelines to
-            hands-on training &ndash; here is what working with Versed Global
-            looks like in practice.
-          </p>
+      <!-- ============================================================
+           REDESIGNED: WHAT WE DELIVER — CINEMATIC DARK CARD GRID
+           ============================================================ -->
+      <section class="deliver-section" aria-label="What we deliver">
+        <div class="deliver-grid-lines"></div>
+        <div class="deliver-inner">
+          <div class="deliver-header">
+            <div class="deliver-header-left">
+              <div class="deliver-eyebrow">Our work</div>
+              <h2 class="deliver-title">What we deliver</h2>
+            </div>
+            <p class="deliver-sub">
+              From CRM strategy to live websites, fundraising pipelines to
+              hands-on training — here is what working with Versed Global looks
+              like in practice.
+            </p>
+          </div>
 
-          <div class="showcase-grid">
-            <a href="services.html" class="showcase-card">
-              <div class="showcase-image">
-                <img
-                  src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/823e6c2c-50a8-4b31-ba1a-c471199d1cf4.png"
-                  alt="Professional working on a Salesforce CRM dashboard with analytics visualisations"
-                  loading="lazy"
-                />
+          <div class="deliver-cards">
+            <!-- Card 1: Salesforce CRM -->
+            <a href="services.html" class="deliver-card">
+              <img
+                src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/823e6c2c-50a8-4b31-ba1a-c471199d1cf4.png"
+                alt="Professional working on a Salesforce CRM dashboard with analytics visualisations"
+                loading="lazy"
+              />
+              <div class="deliver-card-overlay"></div>
+              <span class="deliver-card-num">01 / 04</span>
+              <div class="deliver-card-arrow">
+                <i class="fas fa-arrow-up-right-from-square"></i>
               </div>
-              <div class="showcase-overlay">
-                <span class="showcase-label">Salesforce CRM</span>
-                <h3 class="showcase-title">
+              <div class="deliver-card-body">
+                <div class="deliver-card-tag teal">
+                  <i class="fas fa-database"></i> Salesforce CRM
+                </div>
+                <h3 class="deliver-card-title">
                   Systems built around your workflows
                 </h3>
-                <p class="showcase-text">
+                <p class="deliver-card-text">
                   Salesforce implementations designed to reflect how your
-                  organisation actually operates &ndash; from pipeline
-                  management to outcome reporting.
+                  organisation actually operates — from pipeline management to
+                  outcome reporting.
                 </p>
               </div>
             </a>
 
-            <a href="website.html" class="showcase-card">
-              <div class="showcase-image">
-                <img
-                  src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/b07deae4-f486-4abd-91b9-df94629a378b.png"
-                  alt="Creative professional designing a modern responsive website on a large monitor"
-                  loading="lazy"
-                />
+            <!-- Card 2: Web Design -->
+            <a href="website.html" class="deliver-card">
+              <img
+                src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/b07deae4-f486-4abd-91b9-df94629a378b.png"
+                alt="Creative professional designing a modern responsive website on a large monitor"
+                loading="lazy"
+              />
+              <div class="deliver-card-overlay"></div>
+              <span class="deliver-card-num">02 / 04</span>
+              <div class="deliver-card-arrow">
+                <i class="fas fa-arrow-up-right-from-square"></i>
               </div>
-              <div class="showcase-overlay">
-                <span class="showcase-label">Web Design</span>
-                <h3 class="showcase-title">
+              <div class="deliver-card-body">
+                <div class="deliver-card-tag warm">
+                  <i class="fas fa-globe"></i> Web Design
+                </div>
+                <h3 class="deliver-card-title">
                   Websites that communicate and convert
                 </h3>
-                <p class="showcase-text">
+                <p class="deliver-card-text">
                   Professional, responsive websites that present your brand,
-                  services and impact with clarity &ndash; built to modern
-                  standards and designed to grow with you.
+                  services and impact with clarity — built to modern standards
+                  and designed to grow with you.
                 </p>
               </div>
             </a>
 
-            <a href="fundraising.html" class="showcase-card">
-              <div class="showcase-image">
-                <img
-                  src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/35d71276-3f69-4f42-a9e9-33ebc1844029.png"
-                  alt="Team collaborating on fundraising strategy with pipeline charts and grant data"
-                  loading="lazy"
-                />
+            <!-- Card 3: Fundraising -->
+            <a href="fundraising.html" class="deliver-card">
+              <img
+                src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/35d71276-3f69-4f42-a9e9-33ebc1844029.png"
+                alt="Team collaborating on fundraising strategy with pipeline charts and grant data"
+                loading="lazy"
+              />
+              <div class="deliver-card-overlay"></div>
+              <span class="deliver-card-num">03 / 04</span>
+              <div class="deliver-card-arrow">
+                <i class="fas fa-arrow-up-right-from-square"></i>
               </div>
-              <div class="showcase-overlay">
-                <span class="showcase-label">Fundraising</span>
-                <h3 class="showcase-title">Pipelines grounded in evidence</h3>
-                <p class="showcase-text">
+              <div class="deliver-card-body">
+                <div class="deliver-card-tag green">
+                  <i class="fas fa-hand-holding-heart"></i> Fundraising
+                </div>
+                <h3 class="deliver-card-title">
+                  Pipelines grounded in evidence
+                </h3>
+                <p class="deliver-card-text">
                   Trust and foundation fundraising strategy, bid writing and
                   pipeline management built on realistic prospects, strong
                   governance and clear reporting.
@@ -705,18 +1317,26 @@
               </div>
             </a>
 
-            <a href="training.html" class="showcase-card">
-              <div class="showcase-image">
-                <img
-                  src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/8888c914-2817-4957-ad81-e9ef55f4dc65.png"
-                  alt="Professional trainer leading a Salesforce training workshop with engaged learners"
-                  loading="lazy"
-                />
+            <!-- Card 4: Training -->
+            <a href="training.html" class="deliver-card">
+              <img
+                src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/8888c914-2817-4957-ad81-e9ef55f4dc65.png"
+                alt="Professional trainer leading a Salesforce training workshop with engaged learners"
+                loading="lazy"
+              />
+              <div class="deliver-card-overlay"></div>
+              <span class="deliver-card-num">04 / 04</span>
+              <div class="deliver-card-arrow">
+                <i class="fas fa-arrow-up-right-from-square"></i>
               </div>
-              <div class="showcase-overlay">
-                <span class="showcase-label">Training</span>
-                <h3 class="showcase-title">Teams equipped, not dependent</h3>
-                <p class="showcase-text">
+              <div class="deliver-card-body">
+                <div class="deliver-card-tag purple">
+                  <i class="fas fa-graduation-cap"></i> Training
+                </div>
+                <h3 class="deliver-card-title">
+                  Teams equipped, not dependent
+                </h3>
+                <p class="deliver-card-text">
                   Role-specific training, documentation and handover sessions
                   that build internal confidence and reduce reliance on external
                   consultants.
@@ -727,73 +1347,105 @@
         </div>
       </section>
 
-      <!-- How We Work / Values -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">How we work</h2>
-          <p class="section-intro">
-            Our work combines technical precision with fundraising expertise and
-            design excellence, grounded in clear values that keep impact, ethics
-            and equity at the centre of every project.
-          </p>
-          <div class="values-grid">
-            <div class="value">
-              <i class="fas fa-chart-line" aria-hidden="true"></i>
-              <h3>Impact</h3>
-              <p>
-                Every system, website, training and strategy is designed to
-                contribute to meaningful outcomes for people and communities,
-                not just internal metrics.
+      <!-- ============================================================
+           REDESIGNED: HOW WE WORK — COMPACT HORIZONTAL STEPS
+           ============================================================ -->
+      <section class="howwework-section" aria-label="How we work">
+        <div class="howwework-inner">
+          <div class="howwework-top">
+            <div class="howwework-top-left">
+              <div class="howwework-kicker">Our approach</div>
+              <h2 class="howwework-heading">How we work</h2>
+            </div>
+            <p class="howwework-intro">
+              Our work combines technical precision with fundraising expertise
+              and design excellence, grounded in clear values that keep impact,
+              ethics and equity at the centre of every project.
+            </p>
+          </div>
+
+          <!-- 4-step horizontal strip -->
+          <div class="howwework-steps" role="list">
+            <div class="hww-step" role="listitem">
+              <div class="hww-step-num">01</div>
+              <div class="hww-step-phase">Understand</div>
+              <h3 class="hww-step-title">Start with how you actually work</h3>
+              <p class="hww-step-body">
+                Workshops and light-touch reviews reveal where Salesforce and
+                your website help, where they hinder, and where data is being
+                duplicated or missed.
               </p>
             </div>
-            <div class="value">
-              <i class="fas fa-balance-scale" aria-hidden="true"></i>
-              <h3>Integrity</h3>
-              <p>
-                Honest advice, ethical fundraising and strong respect for data
-                privacy and governance shape how every engagement is delivered.
+
+            <div class="hww-step" role="listitem">
+              <div class="hww-step-num">02</div>
+              <div class="hww-step-phase">Design</div>
+              <h3 class="hww-step-title">
+                Shape systems around real workflows
+              </h3>
+              <p class="hww-step-body">
+                Objects, automations, reports and website structures are
+                designed to mirror real processes — not generic out-of-the-box
+                templates.
               </p>
             </div>
-            <div class="value">
-              <i class="fas fa-people-arrows" aria-hidden="true"></i>
-              <h3>Equity</h3>
-              <p>
-                A commitment to supporting organisations working with
-                underserved communities and addressing systemic barriers is
-                built into our practice.
+
+            <div class="hww-step" role="listitem">
+              <div class="hww-step-num">03</div>
+              <div class="hww-step-phase">Integrate</div>
+              <h3 class="hww-step-title">
+                Join systems, presence &amp; fundraising
+              </h3>
+              <p class="hww-step-body">
+                Strategy, governance and reporting are threaded through the
+                build so income plans and funder obligations are visible across
+                your whole organisation.
               </p>
             </div>
-            <div class="value">
-              <i class="fas fa-award" aria-hidden="true"></i>
-              <h3>Excellence</h3>
-              <p>
-                High standards in solution design, data quality, writing and
-                delivery mean careful, sustainable solutions rather than quick
-                fixes.
+
+            <div class="hww-step" role="listitem">
+              <div class="hww-step-num">04</div>
+              <div class="hww-step-phase">Equip</div>
+              <h3 class="hww-step-title">Build confidence, not dependency</h3>
+              <p class="hww-step-body">
+                Documentation, handover sessions and role-specific training help
+                your team adapt systems confidently as programmes grow.
               </p>
             </div>
-            <div class="value">
-              <i class="fas fa-handshake" aria-hidden="true"></i>
-              <h3>Collaboration</h3>
-              <p>
-                Working alongside client teams, transferring skills and building
-                internal capacity instead of creating dependency.
-              </p>
+          </div>
+
+          <!-- Core values pills -->
+          <div class="howwework-values" aria-label="Our values">
+            <div class="hww-value-pill">
+              <i class="fas fa-chart-line"></i> Impact
             </div>
-            <div class="value">
-              <i class="fas fa-book-reader" aria-hidden="true"></i>
-              <h3>Learning</h3>
-              <p>
-                Continuous learning in technology, fundraising practice and
-                policy ensures clients benefit from current best practice.
-              </p>
+            <div class="hww-value-pill">
+              <i class="fas fa-balance-scale"></i> Integrity
+            </div>
+            <div class="hww-value-pill">
+              <i class="fas fa-people-arrows"></i> Equity
+            </div>
+            <div class="hww-value-pill">
+              <i class="fas fa-award"></i> Excellence
+            </div>
+            <div class="hww-value-pill">
+              <i class="fas fa-handshake"></i> Collaboration
+            </div>
+            <div class="hww-value-pill">
+              <i class="fas fa-book-reader"></i> Learning
+            </div>
+            <div class="hww-value-pill">
+              <i class="fas fa-shield-alt"></i> Transparency
+            </div>
+            <div class="hww-value-pill">
+              <i class="fas fa-users"></i> Partnership
             </div>
           </div>
         </div>
       </section>
 
       <!-- ============================================================
-           FAQ â€“ COMPACT PILL GRID
+           FAQ — COMPACT PILL GRID
            ============================================================ -->
       <section class="section alt faq-compact-section">
         <div class="container">
@@ -821,7 +1473,7 @@
                 <p>
                   Our implementations include needs analysis, system design,
                   data migration, configuration, user training and ongoing
-                  support â€” all scoped to your requirements and budget.
+                  support — all scoped to your requirements and budget.
                 </p>
               </div>
             </div>
@@ -840,7 +1492,7 @@
               </div>
               <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  Yes â€” for businesses, charities and public-sector
+                  Yes — for businesses, charities and public-sector
                   organisations. From single landing pages to complete business
                   websites, all responsive and accessible.
                 </p>
@@ -924,7 +1576,7 @@
               </div>
               <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  Yes, we specialise in NPSP configuration â€” accounts, contacts,
+                  Yes, we specialise in NPSP configuration — accounts, contacts,
                   donations, relationships and all functionality tailored to
                   nonprofit fundraising.
                 </p>
@@ -946,7 +1598,7 @@
               <div class="faq-pill-a" aria-hidden="true">
                 <p>
                   Comprehensive post-launch support: user training, system
-                  optimisation, troubleshooting and strategic advice â€” available
+                  optimisation, troubleshooting and strategic advice — available
                   as retainers or project-based packages.
                 </p>
               </div>
@@ -968,9 +1620,9 @@
               </div>
               <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  We design your CRM to support fundraising workflows â€” from
+                  We design your CRM to support fundraising workflows — from
                   prospect research and pipeline management to grant tracking
-                  and reporting â€” so the system enables rather than hinders.
+                  and reporting — so the system enables rather than hinders.
                 </p>
               </div>
             </div>
@@ -1001,7 +1653,7 @@
           <div class="faq-nudge">
             <i class="fas fa-comment-dots"></i>
             <span
-              >Still have a question? <a href="contact.html">Get in touch</a> â€”
+              >Still have a question? <a href="contact.html">Get in touch</a> —
               we're happy to help.</span
             >
           </div>
