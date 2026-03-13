@@ -21,7 +21,7 @@
     <!-- Main stylesheet -->
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Google Fonts for professional typography -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,13 +29,12 @@
       rel="stylesheet"
     />
 
-    <!-- Font Awesome for icons -->
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
-    <!-- Organization Schema -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -50,6 +49,743 @@
         "description": "Flexible Salesforce and fundraising training and support, tailored to your roles, configuration and programmes, with remote and on-site delivery options."
       }
     </script>
+
+    <style>
+      /* ============================================================
+         TRAINING PAGE — TECH-FORWARD REDESIGN
+         ============================================================ */
+
+      /* ── HERO ── */
+      .training-hero {
+        position: relative;
+        background: linear-gradient(
+          135deg,
+          #0c1a2e 0%,
+          #0e2a40 60%,
+          #0c1a2e 100%
+        );
+        overflow: hidden;
+        padding: 4.5rem 0 4rem;
+      }
+      .training-hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(8, 145, 178, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 145, 178, 0.06) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+      }
+      .th-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        pointer-events: none;
+      }
+      .th-orb-1 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(8, 145, 178, 0.16),
+          transparent 70%
+        );
+        top: -100px;
+        right: -80px;
+      }
+      .th-orb-2 {
+        width: 260px;
+        height: 260px;
+        background: radial-gradient(
+          circle,
+          rgba(234, 88, 12, 0.09),
+          transparent 70%
+        );
+        bottom: -40px;
+        left: 8%;
+      }
+      .training-hero-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+      /* LEFT */
+      .th-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #22d3ee;
+        margin-bottom: 1.1rem;
+      }
+      .th-eyebrow .dot {
+        width: 6px;
+        height: 6px;
+        background: #22d3ee;
+        border-radius: 50%;
+        animation: pulse-dot 2s infinite;
+      }
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(0.7);
+        }
+      }
+      .th-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: clamp(2rem, 3.5vw, 2.9rem);
+        font-weight: 700;
+        color: #f0f9ff;
+        line-height: 1.15;
+        margin-bottom: 1.1rem;
+      }
+      .th-title .accent-teal {
+        color: #22d3ee;
+      }
+      .th-title .accent-warm {
+        color: #fb923c;
+      }
+      .th-sub {
+        font-size: 0.93rem;
+        color: #94a3b8;
+        line-height: 1.75;
+        margin-bottom: 1.75rem;
+        max-width: 480px;
+      }
+      .th-feature-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+      }
+      .th-feature-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(8, 145, 178, 0.1);
+        border: 1px solid rgba(8, 145, 178, 0.25);
+        color: #7dd3fc;
+        font-size: 0.77rem;
+        font-weight: 600;
+        padding: 0.3rem 0.8rem;
+        border-radius: 100px;
+      }
+      .th-feature-chip i {
+        font-size: 0.7rem;
+        color: #22d3ee;
+      }
+      .th-cta-row {
+        display: flex;
+        gap: 0.85rem;
+        flex-wrap: wrap;
+      }
+      .th-btn-primary {
+        background: linear-gradient(135deg, #0891b2, #0e7490);
+        color: #fff;
+        border: none;
+        border-radius: 9px;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+      }
+      .th-btn-primary:hover {
+        opacity: 0.88;
+        transform: translateY(-1px);
+      }
+      .th-btn-ghost {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(8, 145, 178, 0.3);
+        color: #7dd3fc;
+        border-radius: 9px;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .th-btn-ghost:hover {
+        background: rgba(8, 145, 178, 0.1);
+        border-color: rgba(8, 145, 178, 0.5);
+      }
+
+      /* RIGHT: dashboard card */
+      .th-dash-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(8, 145, 178, 0.22);
+        border-radius: 18px;
+        overflow: hidden;
+        position: relative;
+      }
+      .th-dash-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #0891b2, #22d3ee, #fb923c);
+      }
+      .th-dash-topbar {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.85rem 1.25rem;
+        border-bottom: 1px solid rgba(8, 145, 178, 0.15);
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .th-dash-dots span {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 3px;
+      }
+      .th-dash-dots span:nth-child(1) {
+        background: #ef4444;
+      }
+      .th-dash-dots span:nth-child(2) {
+        background: #f59e0b;
+      }
+      .th-dash-dots span:nth-child(3) {
+        background: #22c55e;
+      }
+      .th-dash-label {
+        font-size: 0.72rem;
+        color: #64748b;
+        font-weight: 500;
+        flex: 1;
+        text-align: center;
+      }
+      .th-dash-status {
+        font-size: 0.65rem;
+        font-weight: 700;
+        background: rgba(34, 197, 94, 0.15);
+        color: #4ade80;
+        border-radius: 100px;
+        padding: 0.15rem 0.6rem;
+      }
+      .th-dash-body {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .th-progress-row {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .th-progress-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        flex-shrink: 0;
+      }
+      .th-progress-icon.teal {
+        background: rgba(8, 145, 178, 0.15);
+        color: #22d3ee;
+      }
+      .th-progress-icon.warm {
+        background: rgba(234, 88, 12, 0.12);
+        color: #fb923c;
+      }
+      .th-progress-icon.green {
+        background: rgba(74, 222, 128, 0.12);
+        color: #4ade80;
+      }
+      .th-progress-icon.purple {
+        background: rgba(167, 139, 250, 0.12);
+        color: #a78bfa;
+      }
+      .th-progress-icon.rose {
+        background: rgba(251, 113, 133, 0.12);
+        color: #fb7185;
+      }
+      .th-progress-icon.amber {
+        background: rgba(251, 191, 36, 0.12);
+        color: #fbbf24;
+      }
+      .th-progress-name {
+        font-size: 0.77rem;
+        color: #cbd5e1;
+        font-weight: 500;
+        min-width: 130px;
+      }
+      .th-progress-bar-wrap {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 100px;
+        height: 6px;
+        overflow: hidden;
+      }
+      .th-progress-bar {
+        height: 100%;
+        border-radius: 100px;
+        transition: width 1.2s ease;
+      }
+      .th-progress-bar.teal {
+        background: linear-gradient(90deg, #0891b2, #22d3ee);
+      }
+      .th-progress-bar.warm {
+        background: linear-gradient(90deg, #ea580c, #fb923c);
+      }
+      .th-progress-bar.green {
+        background: linear-gradient(90deg, #16a34a, #4ade80);
+      }
+      .th-progress-bar.purple {
+        background: linear-gradient(90deg, #7c3aed, #a78bfa);
+      }
+      .th-progress-bar.rose {
+        background: linear-gradient(90deg, #e11d48, #fb7185);
+      }
+      .th-progress-bar.amber {
+        background: linear-gradient(90deg, #d97706, #fbbf24);
+      }
+      .th-progress-pct {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #94a3b8;
+        min-width: 30px;
+        text-align: right;
+      }
+      /* Stats row under dashboard */
+      .th-stats-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.6rem;
+        margin-top: 0.75rem;
+        padding: 0 1.25rem 1.25rem;
+      }
+      .th-stat-mini {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(8, 145, 178, 0.15);
+        border-radius: 10px;
+        padding: 0.75rem;
+        text-align: center;
+      }
+      .th-stat-mini-val {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #22d3ee;
+        line-height: 1;
+        display: block;
+      }
+      .th-stat-mini-lbl {
+        font-size: 0.65rem;
+        color: #64748b;
+        margin-top: 0.25rem;
+      }
+
+      @media (max-width: 860px) {
+        .training-hero-inner {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+
+      /* ── TRAINING OPTIONS ── */
+      .training-options-section {
+        padding: 4rem 0;
+        background: #f8fafc;
+      }
+      .to-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      .to-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: end;
+        margin-bottom: 2rem;
+      }
+      .to-kicker {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #0891b2;
+        margin-bottom: 0.4rem;
+      }
+      .to-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: 700;
+        color: #0c1a2e;
+        margin: 0;
+        line-height: 1.2;
+      }
+      .to-sub {
+        font-size: 0.88rem;
+        color: #64748b;
+        line-height: 1.7;
+        margin: 0;
+        align-self: end;
+      }
+      /* 3-col grid with hover-expand feel */
+      .to-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+      .to-tile {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 1.5rem;
+        position: relative;
+        overflow: hidden;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s,
+          transform 0.2s;
+        display: flex;
+        flex-direction: column;
+      }
+      .to-tile:hover {
+        border-color: #0891b2;
+        box-shadow: 0 6px 24px rgba(8, 145, 178, 0.1);
+        transform: translateY(-3px);
+      }
+      .to-tile::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .to-tile:hover::before {
+        opacity: 1;
+      }
+      .to-tile.color-teal::before {
+        background: linear-gradient(90deg, #0891b2, #22d3ee);
+      }
+      .to-tile.color-warm::before {
+        background: linear-gradient(90deg, #ea580c, #fb923c);
+      }
+      .to-tile.color-green::before {
+        background: linear-gradient(90deg, #16a34a, #4ade80);
+      }
+      .to-tile.color-purple::before {
+        background: linear-gradient(90deg, #7c3aed, #a78bfa);
+      }
+      .to-tile.color-rose::before {
+        background: linear-gradient(90deg, #e11d48, #fb7185);
+      }
+      .to-tile.color-amber::before {
+        background: linear-gradient(90deg, #d97706, #fbbf24);
+      }
+
+      .to-tile-num {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        font-family: monospace;
+        margin-bottom: 0.75rem;
+      }
+      .to-tile.color-teal .to-tile-num {
+        color: #0891b2;
+      }
+      .to-tile.color-warm .to-tile-num {
+        color: #ea580c;
+      }
+      .to-tile.color-green .to-tile-num {
+        color: #16a34a;
+      }
+      .to-tile.color-purple .to-tile-num {
+        color: #7c3aed;
+      }
+      .to-tile.color-rose .to-tile-num {
+        color: #e11d48;
+      }
+      .to-tile.color-amber .to-tile-num {
+        color: #d97706;
+      }
+
+      .to-tile-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        flex-shrink: 0;
+      }
+      .to-tile.color-teal .to-tile-icon {
+        background: rgba(8, 145, 178, 0.08);
+        color: #0891b2;
+      }
+      .to-tile.color-warm .to-tile-icon {
+        background: rgba(234, 88, 12, 0.08);
+        color: #ea580c;
+      }
+      .to-tile.color-green .to-tile-icon {
+        background: rgba(74, 222, 128, 0.1);
+        color: #16a34a;
+      }
+      .to-tile.color-purple .to-tile-icon {
+        background: rgba(167, 139, 250, 0.1);
+        color: #7c3aed;
+      }
+      .to-tile.color-rose .to-tile-icon {
+        background: rgba(251, 113, 133, 0.1);
+        color: #e11d48;
+      }
+      .to-tile.color-amber .to-tile-icon {
+        background: rgba(251, 191, 36, 0.1);
+        color: #d97706;
+      }
+
+      .to-tile h3 {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 0.93rem;
+        font-weight: 700;
+        color: #0c1a2e;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+      }
+      .to-tile p {
+        font-size: 0.8rem;
+        color: #64748b;
+        line-height: 1.65;
+        margin: 0;
+        flex: 1;
+      }
+      .to-tile-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        margin-top: 1rem;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: #94a3b8;
+      }
+      .to-tile-tag i {
+        font-size: 0.65rem;
+      }
+
+      @media (max-width: 900px) {
+        .to-header {
+          grid-template-columns: 1fr;
+        }
+        .to-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 520px) {
+        .to-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── CTA / TALK THROUGH SECTION ── */
+      .training-cta-section {
+        padding: 4rem 0;
+        background: linear-gradient(135deg, #0c1a2e 0%, #0e2a40 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .training-cta-grid-bg {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(8, 145, 178, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 145, 178, 0.05) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+      }
+      .training-cta-orb {
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(
+          circle,
+          rgba(8, 145, 178, 0.12),
+          transparent 70%
+        );
+        filter: blur(70px);
+        top: -80px;
+        right: -60px;
+        pointer-events: none;
+      }
+      .training-cta-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+      .tcta-left {
+      }
+      .tcta-kicker {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #22d3ee;
+        margin-bottom: 0.6rem;
+      }
+      .tcta-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: 700;
+        color: #f0f9ff;
+        line-height: 1.2;
+        margin-bottom: 0.85rem;
+      }
+      .tcta-sub {
+        font-size: 0.88rem;
+        color: #94a3b8;
+        line-height: 1.75;
+        margin-bottom: 1.75rem;
+        max-width: 480px;
+      }
+      .tcta-btn-row {
+        display: flex;
+        gap: 0.85rem;
+        flex-wrap: wrap;
+      }
+      .tcta-btn-primary {
+        background: linear-gradient(135deg, #0891b2, #0e7490);
+        color: #fff;
+        border: none;
+        border-radius: 9px;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+      }
+      .tcta-btn-primary:hover {
+        opacity: 0.88;
+        transform: translateY(-1px);
+      }
+      .tcta-btn-ghost {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(8, 145, 178, 0.3);
+        color: #7dd3fc;
+        border-radius: 9px;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s;
+      }
+      .tcta-btn-ghost:hover {
+        background: rgba(8, 145, 178, 0.1);
+      }
+
+      /* Right: process steps */
+      .tcta-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .tcta-step {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        position: relative;
+      }
+      .tcta-step:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        left: 15px;
+        top: 34px;
+        bottom: -12px;
+        width: 1px;
+        background: rgba(8, 145, 178, 0.25);
+      }
+      .tcta-step-dot-wrap {
+        flex-shrink: 0;
+        padding-top: 2px;
+      }
+      .tcta-step-dot {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: rgba(8, 145, 178, 0.12);
+        border: 1px solid rgba(8, 145, 178, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #22d3ee;
+        font-family: monospace;
+      }
+      .tcta-step-body {
+        padding-bottom: 1.5rem;
+      }
+      .tcta-step-title {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #e2e8f0;
+        margin-bottom: 0.25rem;
+      }
+      .tcta-step-text {
+        font-size: 0.78rem;
+        color: #64748b;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      @media (max-width: 860px) {
+        .training-cta-inner {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Header -->
@@ -94,244 +830,143 @@
     </header>
 
     <main>
-      <!-- Hero Section: Training & Support -->
-      <section class="section alt" style="padding: 4rem 0 3.5rem">
-        <div class="container">
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              gap: 3rem;
-              align-items: center;
-            "
-          >
-            <!-- Left Column – Text Content -->
-            <div>
-              <div
-                style="
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 0.5rem;
-                  background: rgba(8, 145, 178, 0.1);
-                  color: #0891b2;
-                  padding: 0.4rem 1rem;
-                  border-radius: 999px;
-                  font-size: 0.82rem;
-                  font-weight: 600;
-                  letter-spacing: 0.05em;
-                  text-transform: uppercase;
-                  margin-bottom: 1.25rem;
-                "
-              >
-                <i class="fas fa-chalkboard-teacher"></i>
-                <span>Training &amp; Support</span>
-              </div>
+      <!-- ============================================================
+           HERO — BUILD CONFIDENT, CAPABLE TEAMS
+           ============================================================ -->
+      <section class="training-hero" aria-label="Training and Support">
+        <div class="training-hero-grid"></div>
+        <div class="th-orb th-orb-1"></div>
+        <div class="th-orb th-orb-2"></div>
 
-              <h1 class="section-title" style="margin-bottom: 1rem">
-                Build confident, capable teams
-              </h1>
-
-              <p class="section-intro" style="margin-bottom: 1.5rem">
-                Versed Global provides flexible Salesforce and fundraising
-                training and support, tailored to your roles, configuration and
-                programmes. Training can be delivered remotely or on-site,
-                depending on your needs.
-              </p>
-
-              <div
-                style="
-                  display: flex;
-                  flex-wrap: wrap;
-                  gap: 1rem;
-                  margin-bottom: 2rem;
-                "
-              >
-                <span
-                  style="
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 0.4rem;
-                    font-size: 0.9rem;
-                    font-weight: 500;
-                    color: #334155;
-                  "
-                >
-                  <i class="fas fa-users" style="color: #0891b2"></i>
-                  Role-specific sessions
-                </span>
-                <span
-                  style="
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 0.4rem;
-                    font-size: 0.9rem;
-                    font-weight: 500;
-                    color: #334155;
-                  "
-                >
-                  <i class="fas fa-laptop-house" style="color: #0891b2"></i>
-                  Remote &amp; on-site
-                </span>
-                <span
-                  style="
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 0.4rem;
-                    font-size: 0.9rem;
-                    font-weight: 500;
-                    color: #334155;
-                  "
-                >
-                  <i class="fas fa-book-open" style="color: #0891b2"></i>
-                  Practical, hands-on focus
-                </span>
-              </div>
-
-              <div style="display: flex; flex-wrap: wrap; gap: 1rem">
-                <a href="contact.html" class="btn btn-primary">
-                  <i class="fas fa-calendar-check"></i> Request training
-                </a>
-                <a href="services.html" class="btn btn-secondary">
-                  <i class="fas fa-cogs"></i> Salesforce services
-                </a>
-              </div>
+        <div class="training-hero-inner">
+          <!-- LEFT -->
+          <div>
+            <div class="th-eyebrow">
+              <span class="dot"></span>
+              Training &amp; Support
             </div>
-
-            <!-- Right Column – Image with Badge Overlay -->
-            <div style="position: relative">
-              <img
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=560&fit=crop"
-                alt="Professional business training session with team collaboration"
-                style="
-                  width: 100%;
-                  height: auto;
-                  border-radius: 16px;
-                  box-shadow: 0 16px 48px rgba(14, 116, 144, 0.18);
-                  display: block;
-                  object-fit: cover;
-                "
-              />
-              <!-- Floating badge on the image -->
-              <div
-                style="
-                  position: absolute;
-                  bottom: 1.25rem;
-                  left: 1.25rem;
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 0.5rem;
-                  background: rgba(255, 255, 255, 0.95);
-                  backdrop-filter: blur(8px);
-                  padding: 0.6rem 1.1rem;
-                  border-radius: 10px;
-                  font-size: 0.85rem;
-                  font-weight: 600;
-                  color: #0c4a6e;
-                  box-shadow: 0 4px 16px rgba(14, 116, 144, 0.15);
-                "
+            <h1 class="th-title">
+              Build <span class="accent-teal">confident</span>,<br />
+              capable <span class="accent-warm">teams</span>
+            </h1>
+            <p class="th-sub">
+              Flexible Salesforce and fundraising training tailored to your
+              roles, configuration and programmes — designed to build lasting
+              internal capability, not ongoing dependency.
+            </p>
+            <div class="th-feature-row">
+              <span class="th-feature-chip"
+                ><i class="fas fa-users"></i> Role-specific sessions</span
               >
-                <i class="fas fa-chalkboard-teacher" style="color: #0891b2"></i>
-                Live &amp; remote delivery
+              <span class="th-feature-chip"
+                ><i class="fas fa-laptop-house"></i> Remote &amp; on-site</span
+              >
+              <span class="th-feature-chip"
+                ><i class="fas fa-book-open"></i> Hands-on focus</span
+              >
+              <span class="th-feature-chip"
+                ><i class="fas fa-headset"></i> Ongoing support</span
+              >
+            </div>
+            <div class="th-cta-row">
+              <a href="contact.html" class="th-btn-primary">
+                <i class="fas fa-calendar-check"></i> Request training
+              </a>
+              <a href="services.html" class="th-btn-ghost">
+                <i class="fas fa-cogs"></i> Salesforce services
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT: training progress dashboard -->
+          <div>
+            <div class="th-dash-card">
+              <div class="th-dash-topbar">
+                <div class="th-dash-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <span class="th-dash-label"
+                  >Training Programme — Team Overview</span
+                >
+                <span class="th-dash-status">Live</span>
               </div>
-
-              <!-- Stats row beneath image -->
-              <div
-                style="
-                  display: grid;
-                  grid-template-columns: repeat(3, 1fr);
-                  gap: 1rem;
-                  margin-top: 1.25rem;
-                "
-              >
-                <div
-                  style="
-                    background: white;
-                    border: 1px solid #cffafe;
-                    border-radius: 12px;
-                    padding: 1rem;
-                    text-align: center;
-                    box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
-                  "
-                >
-                  <div
-                    style="
-                      font-size: 1.5rem;
-                      font-weight: 700;
-                      color: #0891b2;
-                      line-height: 1;
-                    "
-                  >
-                    7+
+              <div class="th-dash-body">
+                <div class="th-progress-row">
+                  <div class="th-progress-icon teal">
+                    <i class="fas fa-cloud"></i>
                   </div>
-                  <div
-                    style="
-                      font-size: 0.78rem;
-                      color: #64748b;
-                      margin-top: 0.25rem;
-                    "
-                  >
-                    Years experience
+                  <span class="th-progress-name">Salesforce User Training</span>
+                  <div class="th-progress-bar-wrap">
+                    <div class="th-progress-bar teal" style="width: 88%"></div>
                   </div>
+                  <span class="th-progress-pct">88%</span>
                 </div>
-                <div
-                  style="
-                    background: white;
-                    border: 1px solid #cffafe;
-                    border-radius: 12px;
-                    padding: 1rem;
-                    text-align: center;
-                    box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
-                  "
-                >
-                  <div
-                    style="
-                      font-size: 1.5rem;
-                      font-weight: 700;
-                      color: #0891b2;
-                      line-height: 1;
-                    "
-                  >
-                    100%
+                <div class="th-progress-row">
+                  <div class="th-progress-icon warm">
+                    <i class="fas fa-tools"></i>
                   </div>
-                  <div
-                    style="
-                      font-size: 0.78rem;
-                      color: #64748b;
-                      margin-top: 0.25rem;
-                    "
-                  >
-                    Tailored content
+                  <span class="th-progress-name">Admin Configuration</span>
+                  <div class="th-progress-bar-wrap">
+                    <div class="th-progress-bar warm" style="width: 74%"></div>
                   </div>
+                  <span class="th-progress-pct">74%</span>
                 </div>
-                <div
-                  style="
-                    background: white;
-                    border: 1px solid #cffafe;
-                    border-radius: 12px;
-                    padding: 1rem;
-                    text-align: center;
-                    box-shadow: 0 4px 12px rgba(14, 116, 144, 0.08);
-                  "
-                >
-                  <div
-                    style="
-                      font-size: 1.5rem;
-                      font-weight: 700;
-                      color: #0891b2;
-                      line-height: 1;
-                    "
-                  >
-                    24/7
+                <div class="th-progress-row">
+                  <div class="th-progress-icon green">
+                    <i class="fas fa-hand-holding-usd"></i>
                   </div>
-                  <div
-                    style="
-                      font-size: 0.78rem;
-                      color: #64748b;
-                      margin-top: 0.25rem;
-                    "
-                  >
-                    Support available
+                  <span class="th-progress-name">Fundraising Pipeline</span>
+                  <div class="th-progress-bar-wrap">
+                    <div class="th-progress-bar green" style="width: 92%"></div>
                   </div>
+                  <span class="th-progress-pct">92%</span>
+                </div>
+                <div class="th-progress-row">
+                  <div class="th-progress-icon purple">
+                    <i class="fas fa-redo-alt"></i>
+                  </div>
+                  <span class="th-progress-name">Refresher Sessions</span>
+                  <div class="th-progress-bar-wrap">
+                    <div
+                      class="th-progress-bar purple"
+                      style="width: 61%"
+                    ></div>
+                  </div>
+                  <span class="th-progress-pct">61%</span>
+                </div>
+                <div class="th-progress-row">
+                  <div class="th-progress-icon rose">
+                    <i class="fas fa-file-alt"></i>
+                  </div>
+                  <span class="th-progress-name">Documentation</span>
+                  <div class="th-progress-bar-wrap">
+                    <div class="th-progress-bar rose" style="width: 79%"></div>
+                  </div>
+                  <span class="th-progress-pct">79%</span>
+                </div>
+                <div class="th-progress-row">
+                  <div class="th-progress-icon amber">
+                    <i class="fas fa-headset"></i>
+                  </div>
+                  <span class="th-progress-name">Ongoing Support</span>
+                  <div class="th-progress-bar-wrap">
+                    <div class="th-progress-bar amber" style="width: 95%"></div>
+                  </div>
+                  <span class="th-progress-pct">95%</span>
+                </div>
+              </div>
+              <div class="th-stats-row">
+                <div class="th-stat-mini">
+                  <span class="th-stat-mini-val">7+</span>
+                  <div class="th-stat-mini-lbl">Yrs experience</div>
+                </div>
+                <div class="th-stat-mini">
+                  <span class="th-stat-mini-val">100%</span>
+                  <div class="th-stat-mini-lbl">Tailored content</div>
+                </div>
+                <div class="th-stat-mini">
+                  <span class="th-stat-mini-val">24/7</span>
+                  <div class="th-stat-mini-lbl">Support available</div>
                 </div>
               </div>
             </div>
@@ -339,145 +974,199 @@
         </div>
       </section>
 
-      <!-- Responsive override for hero grid – single media query only -->
-      <style>
-        @media (max-width: 768px) {
-          .container > [style*="grid-template-columns: 1fr 1fr"] {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-          }
-        }
-      </style>
+      <!-- ============================================================
+           TRAINING OPTIONS
+           ============================================================ -->
+      <section class="training-options-section">
+        <div class="to-inner">
+          <div class="to-header">
+            <div>
+              <p class="to-kicker">What we offer</p>
+              <h2 class="to-title">Six training &amp; support options</h2>
+            </div>
+            <p class="to-sub">
+              Every session is shaped around your configuration, your team's
+              language and the workflows your organisation actually uses — not
+              generic off-the-shelf content.
+            </p>
+          </div>
 
-      <!-- Training Options -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Training options</h2>
-          <p class="section-intro">
-            Training is designed to build confidence and capability within your
-            team, so you're not dependent on external support for day-to-day
-            tasks.
-          </p>
-
-          <div class="three-grid">
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-cloud"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                Salesforce user training
-              </h3>
+          <div class="to-grid">
+            <div class="to-tile color-teal">
+              <div class="to-tile-num">01</div>
+              <div class="to-tile-icon"><i class="fas fa-cloud"></i></div>
+              <h3>Salesforce user training</h3>
               <p>
-                Practical training for end users on how to navigate and use
-                Salesforce effectively &ndash; tailored to your configuration
-                and workflows.
+                Practical, hands-on training for end users on how to navigate
+                and use Salesforce effectively — tailored to your exact
+                configuration and day-to-day workflows.
               </p>
+              <div class="to-tile-tag">
+                <i class="fas fa-laptop"></i> Remote or on-site
+              </div>
             </div>
 
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-tools"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                Admin training
-              </h3>
+            <div class="to-tile color-warm">
+              <div class="to-tile-num">02</div>
+              <div class="to-tile-icon"><i class="fas fa-tools"></i></div>
+              <h3>Admin training</h3>
               <p>
                 Training for Salesforce administrators on configuration,
-                reports, dashboards and basic customisation &ndash; building
-                internal capacity.
+                reports, dashboards and basic customisation — building the
+                internal capacity to manage your own system confidently.
               </p>
+              <div class="to-tile-tag">
+                <i class="fas fa-shield-alt"></i> Builds independence
+              </div>
             </div>
 
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-hand-holding-usd"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                Fundraising training
-              </h3>
+            <div class="to-tile color-green">
+              <div class="to-tile-num">03</div>
+              <div class="to-tile-icon">
+                <i class="fas fa-hand-holding-usd"></i>
+              </div>
+              <h3>Fundraising training</h3>
               <p>
-                Training on trust and foundation fundraising &ndash; including
-                prospect research, grant writing and pipeline management.
+                Practical training on trust and foundation fundraising —
+                covering prospect research, grant writing techniques and
+                pipeline management for charity and third-sector teams.
               </p>
+              <div class="to-tile-tag">
+                <i class="fas fa-seedling"></i> Sector-specific
+              </div>
             </div>
 
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-redo-alt"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                Refresher sessions
-              </h3>
+            <div class="to-tile color-purple">
+              <div class="to-tile-num">04</div>
+              <div class="to-tile-icon"><i class="fas fa-redo-alt"></i></div>
+              <h3>Refresher sessions</h3>
               <p>
-                Short, focused sessions to refresh skills or onboard new team
-                members to existing systems and processes.
+                Short, focused sessions to refresh existing skills or
+                confidently onboard new team members to established systems and
+                processes without disrupting ongoing work.
               </p>
+              <div class="to-tile-tag">
+                <i class="fas fa-clock"></i> Half-day options
+              </div>
             </div>
 
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-file-alt"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                Documentation
-              </h3>
+            <div class="to-tile color-rose">
+              <div class="to-tile-num">05</div>
+              <div class="to-tile-icon"><i class="fas fa-file-alt"></i></div>
+              <h3>Documentation</h3>
               <p>
                 Creation of user guides, process documentation and training
-                materials tailored to your specific setup.
+                materials tailored to your specific Salesforce setup — so
+                knowledge stays in the organisation, not just in people's heads.
               </p>
+              <div class="to-tile-tag">
+                <i class="fas fa-bookmark"></i> Lasting reference
+              </div>
             </div>
 
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-headset"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                Ongoing support
-              </h3>
+            <div class="to-tile color-amber">
+              <div class="to-tile-num">06</div>
+              <div class="to-tile-icon"><i class="fas fa-headset"></i></div>
+              <h3>Ongoing support</h3>
               <p>
                 Flexible support packages for organisations that need regular
-                help with configuration, troubleshooting or advice.
+                help with configuration changes, troubleshooting, strategic
+                advice or system health checks over time.
               </p>
+              <div class="to-tile-tag">
+                <i class="fas fa-calendar-alt"></i> Retainer or ad hoc
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- CTA Section -->
-      <section class="section alt">
-        <div class="container" style="text-align: center">
-          <h2 class="section-title">
-            Talk through your training &amp; support needs
-          </h2>
-          <p
-            class="section-intro"
-            style="margin: 0 auto 2rem; max-width: 600px"
-          >
-            Share how your Salesforce org is currently used, who needs the most
-            help and what &ldquo;good&rdquo; would look like in 6&ndash;12
-            months. From there, a realistic training and support plan can be
-            shaped together.
-          </p>
-          <div
-            style="
-              display: flex;
-              flex-wrap: wrap;
-              gap: 1rem;
-              justify-content: center;
-            "
-          >
-            <a href="contact.html" class="btn btn-primary">
-              Request training conversation
-            </a>
-            <a href="services.html" class="btn btn-secondary">
-              Explore Salesforce services
-            </a>
+      <!-- ============================================================
+           CTA — TALK THROUGH YOUR NEEDS
+           ============================================================ -->
+      <section class="training-cta-section">
+        <div class="training-cta-grid-bg"></div>
+        <div class="training-cta-orb"></div>
+
+        <div class="training-cta-inner">
+          <!-- LEFT: text + buttons -->
+          <div class="tcta-left">
+            <p class="tcta-kicker">Let's shape a plan</p>
+            <h2 class="tcta-title">
+              Talk through your training &amp; support needs
+            </h2>
+            <p class="tcta-sub">
+              Share how your Salesforce org is currently used, who needs the
+              most help and what &ldquo;good&rdquo; looks like in 6&ndash;12
+              months. From there, a realistic training and support plan can be
+              shaped together.
+            </p>
+            <div class="tcta-btn-row">
+              <a href="contact.html" class="tcta-btn-primary">
+                <i class="fas fa-comments"></i> Request a conversation
+              </a>
+              <a href="services.html" class="tcta-btn-ghost">
+                <i class="fas fa-cogs"></i> Salesforce services
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT: how it works steps -->
+          <div>
+            <div class="tcta-steps">
+              <div class="tcta-step">
+                <div class="tcta-step-dot-wrap">
+                  <div class="tcta-step-dot">01</div>
+                </div>
+                <div class="tcta-step-body">
+                  <div class="tcta-step-title">Tell us about your team</div>
+                  <p class="tcta-step-text">
+                    Share who uses Salesforce, what roles they hold and where
+                    the biggest frustrations or knowledge gaps currently sit.
+                  </p>
+                </div>
+              </div>
+              <div class="tcta-step">
+                <div class="tcta-step-dot-wrap">
+                  <div class="tcta-step-dot">02</div>
+                </div>
+                <div class="tcta-step-body">
+                  <div class="tcta-step-title">
+                    We design a tailored programme
+                  </div>
+                  <p class="tcta-step-text">
+                    A realistic training plan is shaped around your
+                    configuration, capacity and goals — not a generic
+                    off-the-shelf package.
+                  </p>
+                </div>
+              </div>
+              <div class="tcta-step">
+                <div class="tcta-step-dot-wrap">
+                  <div class="tcta-step-dot">03</div>
+                </div>
+                <div class="tcta-step-body">
+                  <div class="tcta-step-title">Delivery on your terms</div>
+                  <p class="tcta-step-text">
+                    Sessions run remotely or on-site, individually or in groups,
+                    across as many sessions as your team needs to feel genuinely
+                    confident.
+                  </p>
+                </div>
+              </div>
+              <div class="tcta-step">
+                <div class="tcta-step-dot-wrap">
+                  <div class="tcta-step-dot">04</div>
+                </div>
+                <div class="tcta-step-body" style="padding-bottom: 0">
+                  <div class="tcta-step-title">Ongoing support if needed</div>
+                  <p class="tcta-step-text">
+                    Retainer or ad-hoc support packages keep your team covered
+                    as your systems, programmes and people evolve.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -542,9 +1231,9 @@
               <div>
                 <strong style="color: #f0f9ff">Email</strong>
                 <p style="margin: 0.5rem 0 0">
-                  <a href="mailto:info@versedglobal.com">
-                    info@versedglobal.com
-                  </a>
+                  <a href="mailto:info@versedglobal.com"
+                    >info@versedglobal.com</a
+                  >
                 </p>
               </div>
             </div>
@@ -603,10 +1292,8 @@
     <script src="script.js"></script>
 
     <script>
-      // Set current year in footer
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Mobile menu toggle
       const mobileMenuToggle = document.getElementById("mobileMenuToggle");
       const navLinks = document.getElementById("navLinks");
 
@@ -619,16 +1306,13 @@
         });
       }
 
-      // Close mobile menu when link is clicked
-      const navItems = navLinks.querySelectorAll("a");
-      navItems.forEach((item) => {
+      navLinks.querySelectorAll("a").forEach((item) => {
         item.addEventListener("click", () => {
           navLinks.classList.remove("active");
           mobileMenuToggle.textContent = "\u2630";
         });
       });
 
-      // Close menu on escape key
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && navLinks.classList.contains("active")) {
           navLinks.classList.remove("active");
@@ -636,7 +1320,6 @@
         }
       });
 
-      // Close menu when clicking outside
       document.addEventListener("click", (e) => {
         if (
           navLinks.classList.contains("active") &&
@@ -648,7 +1331,6 @@
         }
       });
 
-      // Browser History Navigation
       window.addEventListener("popstate", () => {
         if (navLinks.classList.contains("active")) {
           navLinks.classList.remove("active");
