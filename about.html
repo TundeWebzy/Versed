@@ -62,6 +62,625 @@
         ]
       }
     </script>
+
+    <style>
+      /* ============================================================
+         ABOUT PAGE – TECH-FORWARD REDESIGN
+         ============================================================ */
+
+      /* ── ABOUT HERO ── */
+      .about-hero {
+        position: relative;
+        background: linear-gradient(
+          135deg,
+          #0c1a2e 0%,
+          #0e2a40 50%,
+          #0c1a2e 100%
+        );
+        overflow: hidden;
+        padding: 5rem 0 4rem;
+      }
+      .about-hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(8, 145, 178, 0.07) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 145, 178, 0.07) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+      }
+      .about-hero-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+      }
+      .about-hero-orb-1 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(8, 145, 178, 0.18),
+          transparent 70%
+        );
+        top: -100px;
+        right: -100px;
+      }
+      .about-hero-orb-2 {
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(234, 88, 12, 0.1),
+          transparent 70%
+        );
+        bottom: -50px;
+        left: 10%;
+      }
+      .about-hero-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+      .about-hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #22d3ee;
+        margin-bottom: 1.25rem;
+      }
+      .about-hero-eyebrow .dot {
+        width: 6px;
+        height: 6px;
+        background: #22d3ee;
+        border-radius: 50%;
+        animation: pulse-dot 2s infinite;
+      }
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(0.7);
+        }
+      }
+      .about-hero-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: clamp(2.2rem, 4vw, 3.2rem);
+        font-weight: 700;
+        color: #f0f9ff;
+        line-height: 1.15;
+        margin-bottom: 1.25rem;
+      }
+      .about-hero-title .accent-teal {
+        color: #22d3ee;
+      }
+      .about-hero-title .accent-warm {
+        color: #fb923c;
+      }
+      .about-hero-sub {
+        font-size: 1rem;
+        color: #94a3b8;
+        line-height: 1.75;
+        margin-bottom: 2rem;
+        max-width: 500px;
+      }
+      .about-hero-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .about-hero-chip {
+        background: rgba(8, 145, 178, 0.15);
+        border: 1px solid rgba(8, 145, 178, 0.3);
+        color: #7dd3fc;
+        font-size: 0.78rem;
+        font-weight: 500;
+        padding: 0.35rem 0.85rem;
+        border-radius: 100px;
+      }
+
+      /* RIGHT: story card */
+      .about-story-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(8, 145, 178, 0.2);
+        border-radius: 18px;
+        padding: 2rem;
+        backdrop-filter: blur(12px);
+        position: relative;
+        overflow: hidden;
+      }
+      .about-story-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #0891b2, #22d3ee, #fb923c);
+      }
+      .story-card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+      .story-card-icon {
+        width: 36px;
+        height: 36px;
+        background: rgba(8, 145, 178, 0.15);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #22d3ee;
+        font-size: 0.85rem;
+      }
+      .story-card-label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #64748b;
+      }
+      .story-card-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #e2e8f0;
+      }
+      .story-card-quote {
+        font-size: 0.9rem;
+        color: #94a3b8;
+        line-height: 1.75;
+        font-style: italic;
+        border-left: 2px solid #0891b2;
+        padding-left: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .story-card-promise {
+        background: rgba(8, 145, 178, 0.08);
+        border: 1px solid rgba(8, 145, 178, 0.2);
+        border-radius: 10px;
+        padding: 0.9rem 1rem;
+        font-size: 0.82rem;
+        color: #7dd3fc;
+        font-weight: 500;
+      }
+      .story-card-promise i {
+        color: #fb923c;
+        margin-right: 0.4rem;
+      }
+
+      @media (max-width: 860px) {
+        .about-hero-inner {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+
+      /* ── PROBLEM / WHY WE EXIST ── */
+      .problems-section {
+        padding: 4rem 0;
+        background: #f8fafc;
+      }
+      .problems-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      .problems-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+      .problems-kicker {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #0891b2;
+        margin-bottom: 0.5rem;
+      }
+      .problems-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        font-weight: 700;
+        color: #0c1a2e;
+        margin-bottom: 0.75rem;
+      }
+      .problems-sub {
+        font-size: 0.95rem;
+        color: #64748b;
+        max-width: 580px;
+        margin: 0 auto;
+        line-height: 1.7;
+      }
+      .problems-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+      .problem-tile {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        padding: 1.5rem;
+        position: relative;
+        overflow: hidden;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s,
+          transform 0.2s;
+      }
+      .problem-tile:hover {
+        border-color: #0891b2;
+        box-shadow: 0 6px 24px rgba(8, 145, 178, 0.1);
+        transform: translateY(-2px);
+      }
+      .problem-tile::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #0891b2, #22d3ee);
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .problem-tile:hover::after {
+        opacity: 1;
+      }
+      .problem-tile-num {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: #0891b2;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+        font-family: monospace;
+      }
+      .problem-tile-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(8, 145, 178, 0.08);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0891b2;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+      .problem-tile h3 {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #0c1a2e;
+        margin-bottom: 0.6rem;
+        line-height: 1.3;
+      }
+      .problem-tile p {
+        font-size: 0.83rem;
+        color: #64748b;
+        line-height: 1.65;
+        margin: 0;
+      }
+      .problem-tile-solution {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        margin-top: 1rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #0891b2;
+      }
+      @media (max-width: 768px) {
+        .problems-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── SERVICES + VALUES COMBINED ── */
+      .services-values-section {
+        padding: 4rem 0;
+        background: linear-gradient(135deg, #0c1a2e 0%, #0e2a40 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .services-values-section .sv-grid-bg {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(8, 145, 178, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 145, 178, 0.05) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+      }
+      .sv-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      .sv-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+      }
+      .sv-section-kicker {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #22d3ee;
+        margin-bottom: 0.5rem;
+      }
+      .sv-section-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+        font-weight: 700;
+        color: #f0f9ff;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+      }
+      /* Services list */
+      .services-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .service-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(8, 145, 178, 0.15);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .service-row:hover {
+        background: rgba(8, 145, 178, 0.08);
+        border-color: rgba(8, 145, 178, 0.35);
+      }
+      .service-row-icon {
+        width: 34px;
+        height: 34px;
+        background: rgba(8, 145, 178, 0.15);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #22d3ee;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .service-row-content {
+      }
+      .service-row-title {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #e2e8f0;
+        margin-bottom: 0.25rem;
+      }
+      .service-row-desc {
+        font-size: 0.78rem;
+        color: #94a3b8;
+        line-height: 1.55;
+        margin: 0;
+      }
+      /* Values grid */
+      .values-compact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+      .value-compact {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(8, 145, 178, 0.15);
+        border-radius: 12px;
+        padding: 1rem;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .value-compact:hover {
+        background: rgba(8, 145, 178, 0.08);
+        border-color: rgba(8, 145, 178, 0.35);
+      }
+      .value-compact-icon {
+        color: #22d3ee;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+      }
+      .value-compact h4 {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #e2e8f0;
+        margin-bottom: 0.3rem;
+      }
+      .value-compact p {
+        font-size: 0.75rem;
+        color: #94a3b8;
+        line-height: 1.55;
+        margin: 0;
+      }
+      @media (max-width: 860px) {
+        .sv-layout {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .values-compact-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 500px) {
+        .values-compact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── COMMITMENT + STATS COMBINED ── */
+      .commitment-stats-section {
+        padding: 4rem 0;
+        background: #fff;
+      }
+      .cs-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      .cs-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+        margin-bottom: 3rem;
+      }
+      .cs-left-kicker {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #0891b2;
+        margin-bottom: 0.5rem;
+      }
+      .cs-left-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+        font-weight: 700;
+        color: #0c1a2e;
+        margin-bottom: 1.25rem;
+        line-height: 1.2;
+      }
+      .commitment-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .commitment-item {
+        display: flex;
+        gap: 0.85rem;
+        align-items: flex-start;
+      }
+      .commitment-item-icon {
+        width: 32px;
+        height: 32px;
+        background: rgba(8, 145, 178, 0.08);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0891b2;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .commitment-item-title {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #0c1a2e;
+        margin-bottom: 0.2rem;
+      }
+      .commitment-item-text {
+        font-size: 0.8rem;
+        color: #64748b;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      /* Stats on the right */
+      .stats-panel {
+        background: linear-gradient(135deg, #0c1a2e, #0e2a40);
+        border-radius: 18px;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .stats-panel::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #0891b2, #22d3ee, #fb923c);
+      }
+      .stats-panel-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #22d3ee;
+        margin-bottom: 1.5rem;
+      }
+      .stats-panel-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+      }
+      .stat-panel-item {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(8, 145, 178, 0.2);
+        border-radius: 12px;
+        padding: 1.25rem 0.75rem;
+      }
+      .stat-panel-number {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #22d3ee;
+        line-height: 1;
+        margin-bottom: 0.35rem;
+      }
+      .stat-panel-label {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #e2e8f0;
+        margin-bottom: 0.2rem;
+      }
+      .stat-panel-desc {
+        font-size: 0.7rem;
+        color: #64748b;
+      }
+      @media (max-width: 860px) {
+        .cs-header {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+    </style>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Versed Global",
+        "url": "https://versedglobal.com/"
+      }
+    </script>
   </head>
   <body>
     <!-- Header -->
@@ -106,498 +725,403 @@
     </header>
 
     <main>
-      <!-- Hero / Intro -->
-      <section class="section">
-        <div class="container">
-          <h1 class="section-title">About Versed Global</h1>
-          <p class="section-intro">
-            Versed Global is a specialist consultancy that designs, implements
-            and supports Salesforce-based CRM systems, delivers targeted trust
-            and foundation fundraising, and builds strategic websites that
-            enhance visibility and drive organisational growth for charities,
-            corporates and public-sector organisations.
-          </p>
+      <!-- ============================================================
+           HERO — ABOUT + THE HEART BEHIND (combined)
+           ============================================================ -->
+      <section class="about-hero" aria-label="About Versed Global">
+        <div class="about-hero-grid"></div>
+        <div class="about-hero-orb about-hero-orb-1"></div>
+        <div class="about-hero-orb about-hero-orb-2"></div>
 
-          <div class="three-grid" style="margin-top: 2rem">
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-seedling"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                How we started
-              </h3>
-              <p>
-                Versed Global Ltd was founded to close a gap many organisations
-                experience: the disconnect between technical systems, digital
-                presence and the strategic goals they are meant to support. We
-                saw too many charities and businesses with powerful tools
-                sitting idle &ndash; not because the technology was wrong, but
-                because nobody had taken the time to understand how people
-                actually work before building the solution.
-              </p>
+        <div class="about-hero-inner">
+          <!-- LEFT: headline -->
+          <div>
+            <div class="about-hero-eyebrow">
+              <span class="dot"></span>
+              About Versed Global
             </div>
-
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-hands-helping"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                What drives us
-              </h3>
-              <p>
-                We believe that every organisation doing meaningful work
-                deserves systems that genuinely support its mission &ndash; not
-                just technically, but humanly. Behind every CRM record is a real
-                person. Behind every grant application is a community waiting
-                for change. That understanding shapes everything we build, from
-                data architecture to the words on a webpage.
-              </p>
-            </div>
-
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-puzzle-piece"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                How we work
-              </h3>
-              <p>
-                This consultancy brings together deep experience in Salesforce
-                CRM architecture, professional web design and hands-on
-                fundraising, ensuring that clients receive practical, integrated
-                solutions built for real-world use &ndash; not theoretical
-                frameworks or generic implementations.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Our story -->
-      <section class="section alt">
-        <div class="container">
-          <h2 class="section-title">The heart behind Versed Global</h2>
-          <p class="section-intro">
-            Versed Global was not born in a boardroom. It grew from a deeply
-            held conviction that technology should serve people &ndash; not the
-            other way around.
-          </p>
-
-          <div class="narrative-section">
-            <div class="narrative-image">
-              <img
-                src="https://media.istockphoto.com/id/1335792939/photo/global-communication-network-concept-worldwide-business.jpg?s=612x612&w=0&k=20&c=q_lX2Z3UA2j5dEJ0gcdLaa-7tCWekfPEZcDI3Kyu25E="
-                alt="Global communication network concept, worldwide business"
-                onerror="this.style.display = 'none'"
-              />
-            </div>
-            <div class="narrative-content">
-              <p>
-                We have seen, first-hand, what happens when a charity finally
-                gets a system that works the way its team thinks. The relief in
-                a fundraiser&rsquo;s voice when they can pull a pipeline report
-                in seconds instead of hours. The confidence of an administrator
-                who no longer dreads the annual funder review because the data
-                is clean, complete and tells the story it needs to tell.
-              </p>
-              <p>
-                Those moments matter to us &ndash; deeply. They are not just
-                project milestones; they are the reason this company exists.
-              </p>
-              <p>
-                We also understand what it feels like to be the organisation
-                that has been let down before: the CRM implementation that was
-                delivered on time but never used, the website that looked
-                polished but didn&rsquo;t convert a single enquiry, the
-                fundraising strategy that sat in a drawer gathering dust. We
-                have sat across the table from those teams, listened to their
-                frustration, and made a quiet promise to do things differently.
-              </p>
-              <p>
-                That promise is simple: we will take the time to understand
-                before we build. We will be honest about what is achievable. And
-                we will stay until the solution genuinely works &ndash; not just
-                technically, but for the people who use it every day.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Why we exist -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Why Versed Global exists</h2>
-          <p class="section-intro">
-            Too often, organisations invest in systems and strategies that never
-            quite deliver on their promise. We exist to change that.
-          </p>
-
-          <div class="three-grid">
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-database"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                CRM systems that go unused
-              </h3>
-              <p>
-                Organisations invest in expensive CRM systems only to find that
-                the system does not support how teams actually work. Reports do
-                not answer the questions funders ask. Data quality degrades.
-                Staff stop using the system. We build CRM solutions that fit
-                your team from day one.
-              </p>
-            </div>
-
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-globe"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                Websites that fail to connect
-              </h3>
-              <p>
-                Many organisations have websites that fail to communicate their
-                value clearly, convert visitors effectively, or adapt to how
-                stakeholders engage digitally. An ineffective online presence
-                means missed opportunities for visibility, engagement and income
-                generation.
-              </p>
-            </div>
-
-            <div class="card">
-              <h3>
-                <i
+            <h1 class="about-hero-title">
+              Built to close<br />
+              the gap between<br />
+              <span class="accent-teal">systems</span> and
+              <span class="accent-warm">mission</span>
+            </h1>
+            <p class="about-hero-sub">
+              Versed Global was founded to solve a persistent problem: powerful
+              tools that sit idle because nobody took the time to understand how
+              people actually work before building the solution. We do things
+              differently.
+            </p>
+            <div class="about-hero-chips">
+              <span class="about-hero-chip"
+                ><i class="fas fa-cloud" style="margin-right: 0.3rem"></i
+                >Salesforce CRM</span
+              >
+              <span class="about-hero-chip"
+                ><i class="fas fa-paint-brush" style="margin-right: 0.3rem"></i
+                >Web Design</span
+              >
+              <span class="about-hero-chip"
+                ><i
                   class="fas fa-hand-holding-heart"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                Fundraising without infrastructure
-              </h3>
-              <p>
-                Fundraising teams frequently operate without the systems
-                infrastructure or strategic digital presence needed to manage
-                complex pipelines, steward relationships properly, or
-                demonstrate impact to funders and supporters. We bring systems
-                and strategy together.
-              </p>
+                  style="margin-right: 0.3rem"
+                ></i
+                >Fundraising</span
+              >
+              <span class="about-hero-chip">UK Registered · No. 16933204</span>
+            </div>
+          </div>
+
+          <!-- RIGHT: story card -->
+          <div class="about-story-card">
+            <div class="story-card-header">
+              <div class="story-card-icon"><i class="fas fa-heart"></i></div>
+              <div>
+                <div class="story-card-label">The heart behind us</div>
+                <div class="story-card-title">Why this company exists</div>
+              </div>
+            </div>
+            <p class="story-card-quote">
+              We have seen the relief in a fundraiser's voice when they can pull
+              a pipeline report in seconds instead of hours. Those moments are
+              not just milestones &mdash; they are the reason this company
+              exists.
+            </p>
+            <p
+              style="
+                font-size: 0.82rem;
+                color: #94a3b8;
+                line-height: 1.7;
+                margin-bottom: 1.25rem;
+              "
+            >
+              We understand what it feels like to be let down before: the CRM
+              that was delivered but never used, the website that looked
+              polished but converted nothing, the fundraising strategy that sat
+              in a drawer. We have sat across the table from those teams,
+              listened, and made a promise to do things differently.
+            </p>
+            <div class="story-card-promise">
+              <i class="fas fa-shield-alt"></i>
+              <strong>Our promise:</strong> We will understand before we build.
+              We will be honest about what's achievable. And we will stay until
+              the solution genuinely works &mdash; not just technically, but for
+              the people using it every day.
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Services overview -->
-      <section class="section alt">
-        <div class="container">
-          <h2 class="section-title">What we do</h2>
-          <p class="section-intro">
-            Versed Global offers three interconnected service areas, designed to
-            work together or independently depending on your
-            organisation&rsquo;s needs and strategic priorities.
-          </p>
-          <div class="four-grid">
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-cloud"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                Salesforce CRM
-              </h3>
+      <!-- ============================================================
+           WHY WE EXIST — PROBLEM TILES
+           ============================================================ -->
+      <section class="problems-section">
+        <div class="problems-inner">
+          <div class="problems-header">
+            <p class="problems-kicker">Why Versed Global exists</p>
+            <h2 class="problems-title">
+              Three problems we were built to solve
+            </h2>
+            <p class="problems-sub">
+              Too often, organisations invest in systems and strategies that
+              never quite deliver. We exist to change that across three
+              interconnected areas.
+            </p>
+          </div>
+
+          <div class="problems-grid">
+            <div class="problem-tile">
+              <div class="problem-tile-num">Problem 01</div>
+              <div class="problem-tile-icon">
+                <i class="fas fa-database"></i>
+              </div>
+              <h3>CRM systems that go unused</h3>
               <p>
-                Design, implementation, optimisation and ongoing support for
-                Salesforce-based systems &ndash; configured specifically for
-                charities, social enterprises, CSR teams and public-sector
-                programmes. From data architecture to custom workflows and
-                reporting dashboards.
+                Expensive Salesforce implementations that don't support how
+                teams actually work. Reports that don't answer funder questions.
+                Data quality that degrades. Staff who stop logging in.
               </p>
+              <div class="problem-tile-solution">
+                <i class="fas fa-arrow-right"></i> We build systems that fit
+                from day one
+              </div>
             </div>
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-paint-brush"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                Professional Web Design
-              </h3>
+            <div class="problem-tile">
+              <div class="problem-tile-num">Problem 02</div>
+              <div class="problem-tile-icon"><i class="fas fa-globe"></i></div>
+              <h3>Websites that fail to connect</h3>
               <p>
-                Strategic website design and development that enhances your
-                digital visibility, communicates your impact effectively, and
-                converts visitors into supporters, donors or customers. Built
-                with responsive design, accessibility, SEO best practices and
-                clear calls to action.
+                Organisations with websites that don't communicate their value
+                clearly, convert visitors effectively, or adapt to how
+                stakeholders engage digitally — missing visibility, engagement
+                and income.
               </p>
+              <div class="problem-tile-solution">
+                <i class="fas fa-arrow-right"></i> We build sites that work for
+                your goals
+              </div>
             </div>
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-hand-holding-usd"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                Trust &amp; Foundation Fundraising
-              </h3>
+            <div class="problem-tile">
+              <div class="problem-tile-num">Problem 03</div>
+              <div class="problem-tile-icon">
+                <i class="fas fa-hand-holding-heart"></i>
+              </div>
+              <h3>Fundraising without infrastructure</h3>
               <p>
-                Targeted support for trust, foundation and statutory fundraising
-                &ndash; from strategy development and prospect research through
-                to grant writing, application management and funder stewardship.
-                Grounded in data and aligned with your organisational capacity.
+                Teams operating without the systems or strategic digital
+                presence to manage complex pipelines, steward relationships
+                properly, or demonstrate impact to funders and supporters.
               </p>
-            </div>
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-link"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                Integrated Solutions
-              </h3>
-              <p>
-                Where systems, digital presence and fundraising need to work as
-                one &ndash; aligning your Salesforce configuration, website
-                strategy and income generation so that data, reporting,
-                communication and workflows support your real organisational
-                goals.
-              </p>
+              <div class="problem-tile-solution">
+                <i class="fas fa-arrow-right"></i> We bring systems and strategy
+                together
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Our commitment -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Our commitment to you</h2>
-          <p class="section-intro">
-            We do not measure success by how many features we deliver or how
-            quickly we close a project. We measure it by whether your team feels
-            genuinely supported &ndash; and whether the solution makes your
-            working life easier, not harder.
-          </p>
-
-          <div class="three-grid">
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-ear-listen"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                We listen first
-              </h3>
-              <p>
-                Before a single field is configured or a line of code is
-                written, we sit with your team and listen. We ask about
-                frustrations, workarounds and the things that keep you up at
-                night. The best solutions start with understanding, not
-                assumptions.
-              </p>
-            </div>
-
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-shield-alt"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                We are honest
-              </h3>
-              <p>
-                If something is not achievable within your budget, timeline or
-                licence, we will tell you &ndash; clearly and kindly. We would
-                rather have a difficult conversation early than deliver
-                something that does not work. Trust is built through honesty,
-                not through telling people what they want to hear.
-              </p>
-            </div>
-
-            <div class="card">
-              <h3>
-                <i
-                  class="fas fa-heart"
-                  style="color: #0891b2; margin-right: 0.5rem"
-                ></i>
-                We care about outcomes
-              </h3>
-              <p>
-                A project is not finished when the system goes live. It is
-                finished when your team is confident, your data is clean and
-                your stakeholders can see the difference. We stay until that
-                happens, because anything less would not sit right with us.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Values -->
-      <section class="section alt">
-        <div class="container">
-          <h2 class="section-title">Our values</h2>
-          <p class="section-intro">
-            These are not words on a wall. They are the principles that shape
-            every conversation, every decision and every line of work we
-            deliver.
-          </p>
-          <div class="values-grid">
-            <div class="value">
-              <i
-                class="fas fa-balance-scale"
-                style="
-                  font-size: 1.5rem;
-                  color: #0891b2;
-                  margin-bottom: 0.75rem;
-                "
-              ></i>
-              <h3>Integrity</h3>
-              <p>
-                Honest advice, even when it is not what you want to hear.
-                Transparency on what is achievable, at what cost and in what
-                timeframe informs how every engagement is scoped, priced and
-                delivered. No overselling, no hidden costs.
-              </p>
-            </div>
-
-            <div class="value">
-              <i
-                class="fas fa-people-arrows"
-                style="
-                  font-size: 1.5rem;
-                  color: #0891b2;
-                  margin-bottom: 0.75rem;
-                "
-              ></i>
-              <h3>Equity</h3>
-              <p>
-                A commitment to supporting organisations working with
-                underserved communities and addressing systemic barriers is
-                built into our practice. Accessibility, inclusive design and
-                equitable service delivery inform everything we build.
-              </p>
-            </div>
-
-            <div class="value">
-              <i
-                class="fas fa-award"
-                style="
-                  font-size: 1.5rem;
-                  color: #0891b2;
-                  margin-bottom: 0.75rem;
-                "
-              ></i>
-              <h3>Excellence</h3>
-              <p>
-                High standards in solution design, code quality, data
-                governance, writing and delivery mean careful, sustainable
-                solutions rather than quick fixes. Every system, website and
-                strategy is built to last.
-              </p>
-            </div>
-
-            <div class="value">
-              <i
-                class="fas fa-handshake"
-                style="
-                  font-size: 1.5rem;
-                  color: #0891b2;
-                  margin-bottom: 0.75rem;
-                "
-              ></i>
-              <h3>Collaboration</h3>
-              <p>
-                Working alongside client teams, transferring skills and building
-                internal capacity instead of creating dependency. Your team
-                should be able to maintain and develop solutions long after the
-                engagement ends.
-              </p>
-            </div>
-
-            <div class="value">
-              <i
-                class="fas fa-book-reader"
-                style="
-                  font-size: 1.5rem;
-                  color: #0891b2;
-                  margin-bottom: 0.75rem;
-                "
-              ></i>
-              <h3>Learning</h3>
-              <p>
-                Continuous learning in technology, fundraising practice, digital
-                strategy and policy ensures clients benefit from current best
-                practice. The sector evolves rapidly &ndash; we stay current so
-                you do not have to.
-              </p>
-            </div>
-
-            <div class="value">
-              <i
-                class="fas fa-chart-line"
-                style="
-                  font-size: 1.5rem;
-                  color: #0891b2;
-                  margin-bottom: 0.75rem;
-                "
-              ></i>
-              <h3>Impact</h3>
-              <p>
-                Every project is measured not just by technical delivery but by
-                real organisational outcomes: increased efficiency, improved
-                fundraising results, enhanced visibility, stronger stakeholder
-                engagement and measurable return on investment.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Stats -->
-      <section class="section">
-        <div class="container">
-          <h2 class="section-title">Experience in numbers</h2>
-          <p class="section-intro">
-            Versed Global brings together years of hands-on experience in
-            Salesforce, web design and fundraising across multiple sectors and
-            organisational contexts.
-          </p>
-          <div class="stats-section">
-            <div class="stats-grid">
-              <div class="stat-item">
-                <div class="stat-number">
-                  <span class="counter" data-target="7">0</span>+
+      <!-- ============================================================
+           SERVICES + VALUES — DARK DUAL PANEL
+           ============================================================ -->
+      <section class="services-values-section">
+        <div class="sv-grid-bg"></div>
+        <div class="sv-inner">
+          <div class="sv-layout">
+            <!-- LEFT: What we do -->
+            <div>
+              <p class="sv-section-kicker">What we do</p>
+              <h2 class="sv-section-title">
+                Four interconnected service areas
+              </h2>
+              <div class="services-list">
+                <div class="service-row">
+                  <div class="service-row-icon">
+                    <i class="fas fa-cloud"></i>
+                  </div>
+                  <div class="service-row-content">
+                    <div class="service-row-title">Salesforce CRM</div>
+                    <p class="service-row-desc">
+                      Design, implementation, optimisation and ongoing support —
+                      configured specifically for charities, social enterprises,
+                      CSR teams and public-sector programmes.
+                    </p>
+                  </div>
                 </div>
-                <div class="stat-label">Organisations Supported</div>
-                <div class="stat-description">
-                  Charities, corporates &amp; public sector
+                <div class="service-row">
+                  <div class="service-row-icon">
+                    <i class="fas fa-paint-brush"></i>
+                  </div>
+                  <div class="service-row-content">
+                    <div class="service-row-title">Professional Web Design</div>
+                    <p class="service-row-desc">
+                      Strategic websites built with responsive design,
+                      accessibility, SEO best practice and clear calls to action
+                      that convert visitors into supporters or customers.
+                    </p>
+                  </div>
+                </div>
+                <div class="service-row">
+                  <div class="service-row-icon">
+                    <i class="fas fa-hand-holding-usd"></i>
+                  </div>
+                  <div class="service-row-content">
+                    <div class="service-row-title">
+                      Trust &amp; Foundation Fundraising
+                    </div>
+                    <p class="service-row-desc">
+                      Strategy, prospect research, grant writing, application
+                      management and funder stewardship — grounded in data and
+                      aligned with your organisational capacity.
+                    </p>
+                  </div>
+                </div>
+                <div class="service-row">
+                  <div class="service-row-icon">
+                    <i class="fas fa-link"></i>
+                  </div>
+                  <div class="service-row-content">
+                    <div class="service-row-title">Integrated Solutions</div>
+                    <p class="service-row-desc">
+                      Aligning your Salesforce config, website strategy and
+                      income generation so data, reporting and workflows support
+                      your real organisational goals as one.
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div class="stat-item">
-                <div class="stat-number">
-                  <span class="counter" data-target="12">0</span>+
+            </div>
+
+            <!-- RIGHT: Values -->
+            <div>
+              <p class="sv-section-kicker">Our values</p>
+              <h2 class="sv-section-title">
+                Principles that shape every project
+              </h2>
+              <div class="values-compact-grid">
+                <div class="value-compact">
+                  <div class="value-compact-icon">
+                    <i class="fas fa-balance-scale"></i>
+                  </div>
+                  <h4>Integrity</h4>
+                  <p>
+                    Honest advice on what's achievable, at what cost. No
+                    overselling, no hidden costs.
+                  </p>
                 </div>
-                <div class="stat-label">Projects Delivered</div>
-                <div class="stat-description">
-                  CRM, websites &amp; fundraising
+                <div class="value-compact">
+                  <div class="value-compact-icon">
+                    <i class="fas fa-people-arrows"></i>
+                  </div>
+                  <h4>Equity</h4>
+                  <p>
+                    Supporting underserved communities with accessible,
+                    inclusive design built in.
+                  </p>
+                </div>
+                <div class="value-compact">
+                  <div class="value-compact-icon">
+                    <i class="fas fa-award"></i>
+                  </div>
+                  <h4>Excellence</h4>
+                  <p>
+                    High standards in design, data governance, writing and
+                    delivery every time.
+                  </p>
+                </div>
+                <div class="value-compact">
+                  <div class="value-compact-icon">
+                    <i class="fas fa-handshake"></i>
+                  </div>
+                  <h4>Collaboration</h4>
+                  <p>
+                    Transferring skills so your team can maintain solutions long
+                    after we leave.
+                  </p>
+                </div>
+                <div class="value-compact">
+                  <div class="value-compact-icon">
+                    <i class="fas fa-book-reader"></i>
+                  </div>
+                  <h4>Learning</h4>
+                  <p>
+                    Continuously current in technology, fundraising and policy
+                    so you don't have to be.
+                  </p>
+                </div>
+                <div class="value-compact">
+                  <div class="value-compact-icon">
+                    <i class="fas fa-chart-line"></i>
+                  </div>
+                  <h4>Impact</h4>
+                  <p>
+                    Measured by real outcomes: efficiency, fundraising results,
+                    visibility and ROI.
+                  </p>
                 </div>
               </div>
-              <div class="stat-item">
-                <div class="stat-number">
-                  &pound;<span class="counter" data-target="1">0</span>M+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           COMMITMENT + STATS — COMBINED
+           ============================================================ -->
+      <section class="commitment-stats-section">
+        <div class="cs-inner">
+          <div class="cs-header">
+            <!-- LEFT: Our commitment -->
+            <div>
+              <p class="cs-left-kicker">Our commitment to you</p>
+              <h2 class="cs-left-title">
+                We measure success by your team feeling genuinely supported
+              </h2>
+              <div class="commitment-items">
+                <div class="commitment-item">
+                  <div class="commitment-item-icon">
+                    <i class="fas fa-ear-listen"></i>
+                  </div>
+                  <div>
+                    <div class="commitment-item-title">We listen first</div>
+                    <p class="commitment-item-text">
+                      Before a single field is configured, we sit with your team
+                      and listen — about frustrations, workarounds and what
+                      keeps you up at night. The best solutions start with
+                      understanding.
+                    </p>
+                  </div>
                 </div>
-                <div class="stat-label">Funding Supported</div>
-                <div class="stat-description">
-                  Through improved systems &amp; strategies
+                <div class="commitment-item">
+                  <div class="commitment-item-icon">
+                    <i class="fas fa-shield-alt"></i>
+                  </div>
+                  <div>
+                    <div class="commitment-item-title">We are honest</div>
+                    <p class="commitment-item-text">
+                      If something isn't achievable within your budget or
+                      timeline, we will tell you — clearly and kindly. Trust is
+                      built through honesty, not through telling people what
+                      they want to hear.
+                    </p>
+                  </div>
+                </div>
+                <div class="commitment-item">
+                  <div class="commitment-item-icon">
+                    <i class="fas fa-heart"></i>
+                  </div>
+                  <div>
+                    <div class="commitment-item-title">
+                      We care about outcomes
+                    </div>
+                    <p class="commitment-item-text">
+                      A project isn't finished when the system goes live. It's
+                      finished when your team is confident, your data is clean
+                      and your stakeholders can see the difference.
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div class="stat-item">
-                <div class="stat-number">
-                  <span class="counter" data-target="99">0</span>%
+            </div>
+
+            <!-- RIGHT: Stats panel -->
+            <div class="stats-panel">
+              <div class="stats-panel-title">Experience in numbers</div>
+              <div class="stats-panel-grid">
+                <div class="stat-panel-item">
+                  <div class="stat-panel-number">
+                    <span class="counter" data-target="7">0</span>+
+                  </div>
+                  <div class="stat-panel-label">Organisations</div>
+                  <div class="stat-panel-desc">
+                    Charities, corporates &amp; public sector
+                  </div>
                 </div>
-                <div class="stat-label">Client Satisfaction</div>
-                <div class="stat-description">Based on ongoing feedback</div>
+                <div class="stat-panel-item">
+                  <div class="stat-panel-number">
+                    <span class="counter" data-target="12">0</span>+
+                  </div>
+                  <div class="stat-panel-label">Projects Delivered</div>
+                  <div class="stat-panel-desc">
+                    CRM, websites &amp; fundraising
+                  </div>
+                </div>
+                <div class="stat-panel-item">
+                  <div class="stat-panel-number">
+                    £<span class="counter" data-target="1">0</span>M+
+                  </div>
+                  <div class="stat-panel-label">Funding Supported</div>
+                  <div class="stat-panel-desc">
+                    Through improved systems &amp; strategies
+                  </div>
+                </div>
+                <div class="stat-panel-item">
+                  <div class="stat-panel-number">
+                    <span class="counter" data-target="99">0</span>%
+                  </div>
+                  <div class="stat-panel-label">Client Satisfaction</div>
+                  <div class="stat-panel-desc">Based on ongoing feedback</div>
+                </div>
               </div>
             </div>
           </div>
@@ -831,7 +1355,6 @@
           const target = parseInt(counter.getAttribute("data-target"));
           const duration = 2000;
           const increment = target / (duration / 30);
-
           let current = 0;
           const updateCounter = () => {
             current += increment;
@@ -842,27 +1365,24 @@
               counter.textContent = target;
             }
           };
-
           updateCounter();
         });
       }
 
-      // Trigger animation when stats section comes into view
-      const statsSection = document.querySelector(".stats-section");
-
-      if (statsSection) {
+      // Trigger animation when stats panel comes into view
+      const statsPanel = document.querySelector(".stats-panel");
+      if (statsPanel) {
         const observer = new IntersectionObserver(
           (entries) => {
             if (entries[0].isIntersecting && !isAnimated) {
               isAnimated = true;
               animateCounters();
-              observer.unobserve(statsSection);
+              observer.unobserve(statsPanel);
             }
           },
-          { threshold: 0.5 },
+          { threshold: 0.4 },
         );
-
-        observer.observe(statsSection);
+        observer.observe(statsPanel);
       }
     </script>
   </body>
