@@ -5,36 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Salesforce Services | Versed Global</title>
 
-    <!-- FAVICON -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- ALGOLIA SITE VERIFICATION -->
     <meta name="algolia-site-verification" content="1E71BF4B63127FEC" />
-
     <meta
       name="description"
       content="Versed Global designs, integrates, implements and optimises Salesforce-based CRM systems for charities, corporates and public-sector organisations, with a focus on impact, governance and fundraising alignment."
     />
 
     <link rel="stylesheet" href="styles.css" />
-
-    <!-- Google Fonts for professional typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Font Awesome for icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
-    <!-- Organization / Logo Schema -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -47,18 +39,1368 @@
           "https://www.linkedin.com/company/versed-global",
           "https://www.instagram.com/versedglobal",
           "https://www.facebook.com/share/14U4YEg25nN/?mibextid=wwXIfr"
-        ],
-        "contactPoint": [
-          {
-            "@type": "ContactPoint",
-            "telephone": "+44 7554 623171",
-            "contactType": "customer service",
-            "areaServed": "GB",
-            "availableLanguage": ["en"]
-          }
         ]
       }
     </script>
+
+    <style>
+      /* ============================================================
+         SERVICES PAGE — FULL CUSTOM STYLES
+         ============================================================ */
+
+      /* ── HERO ── */
+      .sf-hero {
+        position: relative;
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e293b 50%,
+          #0c4a6e 100%
+        );
+        overflow: hidden;
+        padding: 5rem 0 4rem;
+      }
+      .sf-hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(8, 145, 178, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 145, 178, 0.06) 1px, transparent 1px);
+        background-size: 52px 52px;
+        pointer-events: none;
+      }
+      .sf-hero-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(72px);
+        pointer-events: none;
+      }
+      .sf-hero-orb-1 {
+        width: 400px;
+        height: 400px;
+        background: rgba(8, 145, 178, 0.16);
+        top: -12%;
+        right: -6%;
+        animation: sfFloat 9s ease-in-out infinite;
+      }
+      .sf-hero-orb-2 {
+        width: 260px;
+        height: 260px;
+        background: rgba(234, 88, 12, 0.09);
+        bottom: -8%;
+        left: 3%;
+        animation: sfFloat 12s ease-in-out infinite reverse;
+      }
+      .sf-hero-orb-3 {
+        width: 190px;
+        height: 190px;
+        background: rgba(34, 211, 238, 0.08);
+        top: 45%;
+        right: 40%;
+        animation: sfFloat 14s ease-in-out infinite;
+      }
+      @keyframes sfFloat {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-20px) scale(1.03);
+        }
+      }
+
+      .sf-hero-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: 3.5rem;
+        align-items: center;
+      }
+
+      /* Left */
+      .sf-hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(8, 145, 178, 0.18);
+        border: 1px solid rgba(8, 145, 178, 0.32);
+        color: #67e8f9;
+        padding: 0.38rem 1rem;
+        border-radius: 999px;
+        font-size: 0.77rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+      }
+      .sf-hero-pulse {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #22d3ee;
+        animation: sfPulse 2s ease-in-out infinite;
+      }
+      @keyframes sfPulse {
+        0%,
+        100% {
+          opacity: 1;
+          box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.45);
+        }
+        50% {
+          opacity: 0.65;
+          box-shadow: 0 0 0 7px rgba(34, 211, 238, 0);
+        }
+      }
+
+      .sf-hero-title {
+        font-size: clamp(1.9rem, 3.8vw, 2.9rem);
+        font-weight: 700;
+        color: #f0f9ff;
+        line-height: 1.18;
+        letter-spacing: -0.025em;
+        margin-bottom: 1.1rem;
+      }
+      .sf-hero-title .ht-teal {
+        color: #22d3ee;
+      }
+      .sf-hero-title .ht-warm {
+        color: #fb923c;
+      }
+
+      .sf-hero-sub {
+        font-size: 0.98rem;
+        color: #94a3b8;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        max-width: 510px;
+      }
+
+      .sf-hero-btns {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 2.25rem;
+      }
+      .sf-hero-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, #0891b2, #06b6d4);
+        color: #fff;
+        border-radius: 10px;
+        font-size: 0.92rem;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 4px 18px rgba(8, 145, 178, 0.4);
+        transition: all 0.25s ease;
+      }
+      .sf-hero-btn-primary:hover {
+        background: linear-gradient(135deg, #06b6d4, #22d3ee);
+        box-shadow: 0 8px 28px rgba(8, 145, 178, 0.5);
+        transform: translateY(-2px);
+      }
+      .sf-hero-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: transparent;
+        color: #67e8f9;
+        border: 1px solid rgba(8, 145, 178, 0.42);
+        border-radius: 10px;
+        font-size: 0.92rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.25s ease;
+      }
+      .sf-hero-btn-secondary:hover {
+        background: rgba(8, 145, 178, 0.15);
+        border-color: #22d3ee;
+        transform: translateY(-2px);
+      }
+
+      /* Hero stat bar */
+      .sf-hero-stats {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        border: 1px solid rgba(8, 145, 178, 0.2);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(8px);
+        overflow: hidden;
+        max-width: 430px;
+      }
+      .sf-stat {
+        flex: 1;
+        text-align: center;
+        padding: 0.85rem 0.5rem;
+      }
+      .sf-stat-val {
+        display: block;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #22d3ee;
+        line-height: 1;
+      }
+      .sf-stat-lbl {
+        display: block;
+        font-size: 0.68rem;
+        color: #64748b;
+        margin-top: 0.25rem;
+        white-space: nowrap;
+      }
+      .sf-stat-div {
+        width: 1px;
+        height: 36px;
+        background: rgba(8, 145, 178, 0.2);
+        flex-shrink: 0;
+      }
+
+      /* Right — SF orbit diagram */
+      .sf-hero-right {
+        position: relative;
+      }
+
+      .sf-orbit-wrap {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1;
+        max-width: 380px;
+        margin: 0 auto;
+      }
+
+      /* Central hub */
+      .sf-orbit-hub {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0891b2, #0c4a6e);
+        border: 2px solid rgba(34, 211, 238, 0.4);
+        box-shadow:
+          0 0 0 12px rgba(8, 145, 178, 0.1),
+          0 0 40px rgba(8, 145, 178, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+        gap: 2px;
+      }
+      .sf-orbit-hub i {
+        font-size: 1.4rem;
+        color: #fff;
+      }
+      .sf-orbit-hub span {
+        font-size: 0.62rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 0.05em;
+      }
+
+      /* Orbit rings */
+      .sf-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        border: 1px solid rgba(8, 145, 178, 0.15);
+        transform: translate(-50%, -50%);
+      }
+      .sf-ring-1 {
+        width: 160px;
+        height: 160px;
+        animation: sfRingRotate 18s linear infinite;
+      }
+      .sf-ring-2 {
+        width: 260px;
+        height: 260px;
+        animation: sfRingRotate 28s linear infinite reverse;
+      }
+      .sf-ring-3 {
+        width: 360px;
+        height: 360px;
+        border-style: dashed;
+        animation: sfRingRotate 40s linear infinite;
+      }
+      @keyframes sfRingRotate {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      /* Orbit nodes */
+      .sf-node {
+        position: absolute;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        border: 1px solid rgba(8, 145, 178, 0.35);
+        background: rgba(15, 23, 42, 0.9);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+        z-index: 4;
+        cursor: default;
+        transition:
+          box-shadow 0.25s,
+          border-color 0.25s,
+          transform 0.25s;
+      }
+      .sf-node:hover {
+        border-color: #22d3ee;
+        box-shadow: 0 0 18px rgba(34, 211, 238, 0.3);
+        transform: scale(1.1);
+      }
+      .sf-node i {
+        font-size: 1rem;
+      }
+      .sf-node span {
+        font-size: 0.5rem;
+        font-weight: 600;
+        color: #94a3b8;
+        text-align: center;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+
+      /* Ring 1 nodes — 160px radius = 80px from centre */
+      .sf-node-r1-1 {
+        top: calc(50% - 26px - 80px);
+        left: calc(50% - 26px);
+      }
+      .sf-node-r1-2 {
+        top: calc(50% - 26px + 80px);
+        left: calc(50% - 26px);
+      }
+
+      /* Ring 2 nodes — 130px from centre */
+      .sf-node-r2-1 {
+        top: calc(50% - 26px - 91.9px);
+        left: calc(50% - 26px + 91.9px);
+      }
+      .sf-node-r2-2 {
+        top: calc(50% - 26px + 91.9px);
+        left: calc(50% - 26px - 91.9px);
+      }
+      .sf-node-r2-3 {
+        top: calc(50% - 26px);
+        left: calc(50% - 26px - 130px);
+      }
+
+      /* Ring 3 nodes — 180px from centre */
+      .sf-node-r3-1 {
+        top: calc(50% - 26px - 127.3px);
+        left: calc(50% - 26px - 127.3px);
+      }
+      .sf-node-r3-2 {
+        top: calc(50% - 26px + 155.8px);
+        left: calc(50% - 26px + 90px);
+      }
+
+      /* Tooltip */
+      .sf-node-tip {
+        position: absolute;
+        bottom: calc(100% + 6px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: #0c4a6e;
+        color: #e0f2fe;
+        font-size: 0.65rem;
+        font-weight: 600;
+        padding: 0.2rem 0.5rem;
+        border-radius: 5px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .sf-node:hover .sf-node-tip {
+        opacity: 1;
+      }
+
+      /* Floating badges on hero right */
+      .sf-hero-badge {
+        position: absolute;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(15, 23, 42, 0.92);
+        border: 1px solid rgba(8, 145, 178, 0.3);
+        color: #e2e8f0;
+        padding: 0.38rem 0.8rem;
+        border-radius: 8px;
+        font-size: 0.73rem;
+        font-weight: 600;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+        animation: sfBadge 4s ease-in-out infinite;
+      }
+      .sf-hero-badge i {
+        color: #22d3ee;
+        font-size: 0.8rem;
+      }
+      .sf-badge-1 {
+        top: 0.5rem;
+        right: 0;
+        animation-delay: 0s;
+      }
+      .sf-badge-2 {
+        bottom: 3.5rem;
+        left: -1rem;
+        animation-delay: 2s;
+      }
+      @keyframes sfBadge {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+
+      /* ── CORE SERVICES – numbered card grid ── */
+      .svc-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        margin-top: 2rem;
+      }
+      .svc-card {
+        position: relative;
+        overflow: hidden;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        padding: 2rem 1.75rem 1.75rem;
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s,
+          transform 0.25s;
+      }
+      .svc-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #0891b2, #22d3ee);
+        opacity: 0;
+        transition: opacity 0.25s;
+      }
+      .svc-card:hover {
+        border-color: #0891b2;
+        box-shadow: 0 10px 32px rgba(8, 145, 178, 0.12);
+        transform: translateY(-5px);
+      }
+      .svc-card:hover::after {
+        opacity: 1;
+      }
+
+      .svc-card-num {
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: #0891b2;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+        opacity: 0.6;
+      }
+      .svc-card-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(
+          135deg,
+          rgba(8, 145, 178, 0.1),
+          rgba(34, 211, 238, 0.06)
+        );
+        border: 1px solid rgba(8, 145, 178, 0.18);
+        border-radius: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0891b2;
+        font-size: 1.25rem;
+        margin-bottom: 1.1rem;
+        transition:
+          background 0.25s,
+          color 0.25s,
+          border-color 0.25s;
+      }
+      .svc-card:hover .svc-card-icon {
+        background: linear-gradient(135deg, #0891b2, #06b6d4);
+        color: #fff;
+        border-color: transparent;
+      }
+      .svc-card-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #0c4a6e;
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+      }
+      .svc-card-preview {
+        font-size: 0.88rem;
+        color: #475569;
+        line-height: 1.7;
+        margin-bottom: 0.75rem;
+      }
+      .svc-card-full {
+        font-size: 0.86rem;
+        color: #475569;
+        line-height: 1.7;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition:
+          max-height 0.4s ease,
+          opacity 0.3s ease,
+          margin 0.3s ease;
+        margin-top: 0;
+      }
+      .svc-card.expanded .svc-card-full {
+        max-height: 300px;
+        opacity: 1;
+        margin-top: 0.5rem;
+      }
+      .svc-card.expanded .svc-card-preview {
+        display: none;
+      }
+
+      .svc-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #0891b2;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        margin-top: 0.75rem;
+        transition: gap 0.2s;
+      }
+      .svc-toggle:hover {
+        gap: 0.65rem;
+      }
+      .svc-toggle i {
+        font-size: 0.75rem;
+        transition: transform 0.25s;
+      }
+      .svc-card.expanded .svc-toggle i {
+        transform: rotate(180deg);
+      }
+
+      /* ── DATA PIPELINE — dark visualiser ── */
+      .pipeline-section {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        padding: 4rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .pipeline-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(8, 145, 178, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(8, 145, 178, 0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+        pointer-events: none;
+      }
+      .pipeline-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .pipeline-header {
+        margin-bottom: 2.5rem;
+      }
+      .pipeline-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(8, 145, 178, 0.18);
+        border: 1px solid rgba(8, 145, 178, 0.3);
+        color: #67e8f9;
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 1rem;
+      }
+      .pipeline-title {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        color: #f0f9ff;
+        line-height: 1.2;
+        margin-bottom: 0.75rem;
+      }
+      .pipeline-sub {
+        font-size: 0.95rem;
+        color: #64748b;
+        line-height: 1.75;
+        max-width: 600px;
+      }
+
+      .pipeline-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+      }
+
+      /* Flow steps */
+      .pipeline-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .pipeline-step {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 0 1rem;
+        position: relative;
+      }
+      .pipeline-step:not(:last-child) .ps-left::after {
+        content: "";
+        position: absolute;
+        left: 21px;
+        top: 44px;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          rgba(8, 145, 178, 0.6),
+          rgba(8, 145, 178, 0.05)
+        );
+      }
+      .ps-left {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .ps-dot {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #0891b2, #0e7490);
+        border: 2px solid rgba(34, 211, 238, 0.35);
+        box-shadow: 0 0 16px rgba(8, 145, 178, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1rem;
+        z-index: 1;
+        flex-shrink: 0;
+      }
+      .ps-right {
+        padding-bottom: 1.75rem;
+      }
+      .ps-label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: #22d3ee;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.25rem;
+      }
+      .ps-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #e2e8f0;
+        margin-bottom: 0.35rem;
+      }
+      .ps-body {
+        font-size: 0.82rem;
+        color: #64748b;
+        line-height: 1.65;
+        margin: 0;
+      }
+
+      /* Metrics panel */
+      .pipeline-metrics {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(8, 145, 178, 0.2);
+        border-radius: 20px;
+        padding: 1.75rem;
+        backdrop-filter: blur(8px);
+      }
+      .pm-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(8, 145, 178, 0.15);
+      }
+      .pm-header i {
+        color: #22d3ee;
+      }
+      .pm-header span {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .pm-status {
+        margin-left: auto;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #22d3ee;
+        background: rgba(34, 211, 238, 0.1);
+        border: 1px solid rgba(34, 211, 238, 0.25);
+        padding: 0.15rem 0.6rem;
+        border-radius: 999px;
+      }
+
+      .pm-bar-row {
+        margin-bottom: 1.1rem;
+      }
+      .pm-bar-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 0.4rem;
+      }
+      .pm-bar-label {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #94a3b8;
+      }
+      .pm-bar-val {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #22d3ee;
+      }
+      .pm-bar-track {
+        height: 6px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .pm-bar-fill {
+        height: 100%;
+        border-radius: 999px;
+        animation: pmBarGrow 1.2s ease-out forwards;
+      }
+      @keyframes pmBarGrow {
+        from {
+          width: 0;
+        }
+      }
+      .pm-bar-fill.teal {
+        background: linear-gradient(90deg, #0891b2, #22d3ee);
+      }
+      .pm-bar-fill.orange {
+        background: linear-gradient(90deg, #ea580c, #fb923c);
+      }
+      .pm-bar-fill.green {
+        background: linear-gradient(90deg, #059669, #34d399);
+      }
+      .pm-bar-fill.purple {
+        background: linear-gradient(90deg, #7c3aed, #a78bfa);
+      }
+
+      .pm-checklist {
+        margin-top: 1.25rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(8, 145, 178, 0.12);
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+      .pm-check {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-size: 0.8rem;
+        color: #94a3b8;
+      }
+      .pm-check i {
+        color: #22d3ee;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+      }
+
+      /* ── SECTORS – horizontal tab cards ── */
+      .sector-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        margin-top: 2rem;
+      }
+      .sector-tab {
+        position: relative;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        padding: 2rem 1.75rem;
+        overflow: hidden;
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s,
+          transform 0.25s;
+      }
+      .sector-tab:hover {
+        border-color: #0891b2;
+        box-shadow: 0 10px 32px rgba(8, 145, 178, 0.1);
+        transform: translateY(-4px);
+      }
+
+      .sector-tab-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+      }
+      .sector-tab-icon.charity {
+        background: rgba(8, 145, 178, 0.1);
+        color: #0891b2;
+      }
+      .sector-tab-icon.corporate {
+        background: rgba(234, 88, 12, 0.1);
+        color: #ea580c;
+      }
+      .sector-tab-icon.public {
+        background: rgba(109, 40, 217, 0.1);
+        color: #7c3aed;
+      }
+
+      .sector-tab-kicker {
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+      }
+      .sector-tab-kicker.charity {
+        color: #0891b2;
+      }
+      .sector-tab-kicker.corporate {
+        color: #ea580c;
+      }
+      .sector-tab-kicker.public {
+        color: #7c3aed;
+      }
+
+      .sector-tab-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #0c4a6e;
+        margin-bottom: 0.75rem;
+        line-height: 1.3;
+      }
+      .sector-tab-text {
+        font-size: 0.85rem;
+        color: #475569;
+        line-height: 1.7;
+        margin-bottom: 1.1rem;
+      }
+
+      .sector-tab-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .sector-tag {
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 0.2rem 0.6rem;
+        border-radius: 999px;
+        background: #f1f5f9;
+        color: #475569;
+        border: 1px solid #e2e8f0;
+      }
+
+      /* ── APPROACH – compact numbered timeline ── */
+      .approach-track {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        margin-top: 2rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 8px 28px rgba(14, 116, 144, 0.07);
+      }
+      .approach-col {
+        padding: 2rem 1.75rem;
+        position: relative;
+        border-right: 1px solid #e2e8f0;
+        transition: background 0.25s;
+      }
+      .approach-col:last-child {
+        border-right: none;
+      }
+      .approach-col:hover {
+        background: #f8fafc;
+      }
+
+      .approach-step-num {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: rgba(8, 145, 178, 0.12);
+        line-height: 1;
+        margin-bottom: 1rem;
+        letter-spacing: -0.04em;
+        transition: color 0.25s;
+      }
+      .approach-col:hover .approach-step-num {
+        color: rgba(8, 145, 178, 0.22);
+      }
+
+      .approach-step-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 11px;
+        background: linear-gradient(
+          135deg,
+          rgba(8, 145, 178, 0.1),
+          rgba(34, 211, 238, 0.06)
+        );
+        border: 1px solid rgba(8, 145, 178, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0891b2;
+        font-size: 1.05rem;
+        margin-bottom: 1rem;
+        transition:
+          background 0.25s,
+          color 0.25s;
+      }
+      .approach-col:hover .approach-step-icon {
+        background: linear-gradient(135deg, #0891b2, #22d3ee);
+        color: #fff;
+        border-color: transparent;
+      }
+      .approach-step-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #0c4a6e;
+        margin-bottom: 0.6rem;
+      }
+      .approach-step-text {
+        font-size: 0.85rem;
+        color: #475569;
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      /* ── CLIENT PORTAL ── */
+      .portal-section {
+        padding: 0 0 2rem;
+      }
+      .portal-cta-wrapper {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e293b 40%,
+          #0c4a6e 100%
+        );
+        border-radius: 24px;
+        padding: 3.5rem;
+        overflow: hidden;
+        box-shadow:
+          0 24px 60px rgba(15, 23, 42, 0.3),
+          0 0 0 1px rgba(8, 145, 178, 0.15);
+      }
+      .portal-bg-grid {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        opacity: 0.06;
+        pointer-events: none;
+      }
+      .portal-grid-line {
+        border-right: 1px solid #22d3ee;
+        height: 100%;
+      }
+      .portal-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        pointer-events: none;
+      }
+      .portal-orb-1 {
+        width: 300px;
+        height: 300px;
+        background: rgba(8, 145, 178, 0.2);
+        top: -15%;
+        right: -5%;
+        animation: portalFloat 8s ease-in-out infinite;
+      }
+      .portal-orb-2 {
+        width: 200px;
+        height: 200px;
+        background: rgba(6, 182, 212, 0.15);
+        bottom: -10%;
+        left: 10%;
+        animation: portalFloat 10s ease-in-out infinite reverse;
+      }
+      .portal-orb-3 {
+        width: 150px;
+        height: 150px;
+        background: rgba(34, 211, 238, 0.12);
+        top: 30%;
+        right: 35%;
+        animation: portalFloat 12s ease-in-out infinite;
+      }
+      @keyframes portalFloat {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-20px) scale(1.05);
+        }
+      }
+
+      .portal-cta-content {
+        position: relative;
+        z-index: 2;
+      }
+      .portal-cta-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 1rem;
+        background: rgba(8, 145, 178, 0.2);
+        border: 1px solid rgba(8, 145, 178, 0.35);
+        border-radius: 999px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #67e8f9;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.02em;
+      }
+      .portal-badge-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #22d3ee;
+        animation: portalPulse 2s ease-in-out infinite;
+      }
+      @keyframes portalPulse {
+        0%,
+        100% {
+          opacity: 1;
+          box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.4);
+        }
+        50% {
+          opacity: 0.7;
+          box-shadow: 0 0 0 6px rgba(34, 211, 238, 0);
+        }
+      }
+      .portal-cta-heading {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 700;
+        color: #f0f9ff;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+      }
+      .portal-cta-text {
+        font-size: 0.95rem;
+        color: #94a3b8;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        max-width: 500px;
+      }
+      .portal-feat-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        margin-bottom: 1.75rem;
+      }
+      .portal-feat {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.65rem;
+        font-size: 0.88rem;
+        color: #cbd5e1;
+      }
+      .portal-feat i {
+        color: #22d3ee;
+        flex-shrink: 0;
+        margin-top: 0.15rem;
+      }
+      .portal-feat-text strong {
+        color: #e2e8f0;
+      }
+      .portal-feat-text span {
+        color: #64748b;
+      }
+      .portal-cta-btns {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .portal-btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, #0891b2, #06b6d4);
+        color: #fff;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 4px 18px rgba(8, 145, 178, 0.4);
+        transition: all 0.25s ease;
+      }
+      .portal-btn-primary:hover {
+        background: linear-gradient(135deg, #06b6d4, #22d3ee);
+        box-shadow: 0 8px 28px rgba(8, 145, 178, 0.5);
+        transform: translateY(-2px);
+      }
+      .portal-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: transparent;
+        color: #67e8f9;
+        border: 1px solid rgba(8, 145, 178, 0.45);
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.25s ease;
+      }
+      .portal-btn-secondary:hover {
+        background: rgba(8, 145, 178, 0.15);
+        border-color: #22d3ee;
+        transform: translateY(-2px);
+      }
+
+      /* Portal status mockup */
+      .portal-cta-visual {
+        position: relative;
+        z-index: 2;
+      }
+      .portal-status-card {
+        background: #1e293b;
+        border-radius: 16px;
+        border: 1px solid rgba(8, 145, 178, 0.25);
+        overflow: hidden;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+        transform: perspective(800px) rotateY(-3deg) rotateX(2deg);
+        transition: transform 0.5s ease;
+      }
+      .portal-status-card:hover {
+        transform: perspective(800px) rotateY(0) rotateX(0);
+      }
+      .psc-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.65rem 1rem;
+        background: rgba(15, 23, 42, 0.8);
+        border-bottom: 1px solid rgba(8, 145, 178, 0.15);
+      }
+      .psc-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .psc-title {
+        margin-left: 0.75rem;
+        font-size: 0.78rem;
+        color: #94a3b8;
+        font-weight: 600;
+      }
+      .psc-body {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .psc-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.6rem 0.75rem;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(148, 163, 184, 0.08);
+      }
+      .psc-row-label {
+        font-size: 0.78rem;
+        color: #94a3b8;
+        font-weight: 600;
+      }
+      .psc-badge {
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 0.2rem 0.65rem;
+        border-radius: 999px;
+      }
+      .psc-badge.done {
+        background: rgba(5, 150, 105, 0.2);
+        color: #34d399;
+        border: 1px solid rgba(52, 211, 153, 0.3);
+      }
+      .psc-badge.active {
+        background: rgba(8, 145, 178, 0.2);
+        color: #67e8f9;
+        border: 1px solid rgba(8, 145, 178, 0.35);
+      }
+      .psc-badge.pending {
+        background: rgba(148, 163, 184, 0.1);
+        color: #64748b;
+        border: 1px solid rgba(148, 163, 184, 0.15);
+      }
+
+      /* ── IMAGES ROW ── */
+      .sf-images-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        margin-top: 2.5rem;
+      }
+      .sf-img-card {
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+      }
+      .sf-img-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+      .sf-img-card:hover img {
+        transform: scale(1.04);
+      }
+      .sf-img-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+        color: #e2e8f0;
+        font-size: 0.8rem;
+        font-weight: 600;
+        padding: 1rem 1rem 0.75rem;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1100px) {
+        .svc-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .approach-track {
+          grid-template-columns: 1fr;
+        }
+        .approach-col {
+          border-right: none;
+          border-bottom: 1px solid #e2e8f0;
+        }
+        .approach-col:last-child {
+          border-bottom: none;
+        }
+      }
+      @media (max-width: 960px) {
+        .sf-hero-inner {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+        .sf-orbit-wrap {
+          max-width: 300px;
+        }
+        .pipeline-wrap {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .sector-tabs {
+          grid-template-columns: 1fr;
+        }
+        .portal-cta-wrapper {
+          grid-template-columns: 1fr;
+          padding: 2.5rem 2rem;
+          gap: 2.5rem;
+        }
+        .portal-status-card {
+          transform: none;
+          max-width: 420px;
+          margin: 0 auto;
+        }
+        .portal-status-card:hover {
+          transform: none;
+        }
+        .sf-images-row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 768px) {
+        .svc-grid {
+          grid-template-columns: 1fr;
+        }
+        .sector-tabs {
+          grid-template-columns: 1fr;
+        }
+        .sf-images-row {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        .sf-hero-stats {
+          flex-direction: column;
+          max-width: 100%;
+        }
+        .sf-stat-div {
+          width: 80%;
+          height: 1px;
+          margin: 0 auto;
+        }
+        .sf-hero-badge {
+          display: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Header -->
@@ -77,7 +1419,6 @@
             >Salesforce CRM, Web Design &amp; Fundraising</span
           >
         </div>
-
         <button
           class="mobile-menu"
           id="mobileMenuToggle"
@@ -85,7 +1426,6 @@
         >
           &#9776;
         </button>
-
         <nav class="main-nav">
           <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
@@ -102,532 +1442,461 @@
       </div>
     </header>
 
-    <!-- MAIN APP SHELL -->
-    <main id="app">
-      <!-- Page Hero -->
-      <section class="section alt">
-        <div class="container">
-          <h1 class="section-title">
-            Salesforce services for mission-driven, corporate and public-sector
-            teams
-          </h1>
-          <p class="section-intro">
-            Versed Global designs, integrates, implements and manages
-            Salesforce-based CRM systems for charities, corporates and
-            public-sector bodies. The focus is on clean architecture, practical
-            automation and reporting that supports fundraising, stakeholder
-            management and service delivery &ndash; not just a technically
-            impressive system.
-          </p>
+    <main>
+      <!-- ============================================================
+           HERO – DARK ANIMATED WITH ORBIT DIAGRAM
+           ============================================================ -->
+      <section class="sf-hero" aria-label="Salesforce Services Hero">
+        <div class="sf-hero-grid"></div>
+        <div class="sf-hero-orb sf-hero-orb-1"></div>
+        <div class="sf-hero-orb sf-hero-orb-2"></div>
+        <div class="sf-hero-orb sf-hero-orb-3"></div>
+
+        <div class="sf-hero-inner">
+          <!-- LEFT -->
+          <div>
+            <div class="sf-hero-eyebrow">
+              <span class="sf-hero-pulse"></span>
+              Salesforce CRM Consultancy
+            </div>
+
+            <h1 class="sf-hero-title">
+              CRM systems that<br />
+              <span class="ht-teal">power</span> your<br />
+              <span class="ht-warm">mission</span>
+            </h1>
+
+            <p class="sf-hero-sub">
+              Versed Global designs, builds and manages Salesforce systems for
+              charities, corporates and public-sector bodies — focused on clean
+              architecture, practical automation and reporting that genuinely
+              supports your work.
+            </p>
+
+            <div class="sf-hero-btns">
+              <a href="contact.html" class="sf-hero-btn-primary">
+                <i class="fas fa-calendar-check"></i> Book a conversation
+              </a>
+              <a href="#sf-approach" class="sf-hero-btn-secondary">
+                <i class="fas fa-layer-group"></i> Our approach
+              </a>
+            </div>
+
+            <div class="sf-hero-stats">
+              <div class="sf-stat">
+                <span class="sf-stat-val">7+</span>
+                <span class="sf-stat-lbl">Years Salesforce</span>
+              </div>
+              <div class="sf-stat-div"></div>
+              <div class="sf-stat">
+                <span class="sf-stat-val">NPSP</span>
+                <span class="sf-stat-lbl">Specialists</span>
+              </div>
+              <div class="sf-stat-div"></div>
+              <div class="sf-stat">
+                <span class="sf-stat-val">3</span>
+                <span class="sf-stat-lbl">Sectors Served</span>
+              </div>
+              <div class="sf-stat-div"></div>
+              <div class="sf-stat">
+                <span class="sf-stat-val">UK</span>
+                <span class="sf-stat-lbl">Remote-first</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT — orbit diagram -->
+          <div class="sf-hero-right">
+            <div class="sf-hero-badge sf-badge-1">
+              <i class="fas fa-shield-alt"></i> Salesforce Certified
+            </div>
+            <div class="sf-hero-badge sf-badge-2">
+              <i class="fas fa-bolt"></i> Flow Automation Expert
+            </div>
+
+            <div class="sf-orbit-wrap" aria-hidden="true">
+              <!-- Rings -->
+              <div class="sf-ring sf-ring-1"></div>
+              <div class="sf-ring sf-ring-2"></div>
+              <div class="sf-ring sf-ring-3"></div>
+
+              <!-- Central hub -->
+              <div class="sf-orbit-hub">
+                <i class="fas fa-cloud"></i>
+                <span>Salesforce</span>
+              </div>
+
+              <!-- Ring 1 nodes -->
+              <div class="sf-node sf-node-r1-1" style="color: #22d3ee">
+                <i class="fas fa-database"></i>
+                <span>Objects</span>
+                <div class="sf-node-tip">Custom Objects &amp; Fields</div>
+              </div>
+              <div class="sf-node sf-node-r1-2" style="color: #34d399">
+                <i class="fas fa-bolt"></i>
+                <span>Flows</span>
+                <div class="sf-node-tip">Automation &amp; Workflow</div>
+              </div>
+
+              <!-- Ring 2 nodes -->
+              <div class="sf-node sf-node-r2-1" style="color: #fb923c">
+                <i class="fas fa-chart-bar"></i>
+                <span>Reports</span>
+                <div class="sf-node-tip">Dashboards &amp; Reporting</div>
+              </div>
+              <div class="sf-node sf-node-r2-2" style="color: #a78bfa">
+                <i class="fas fa-users"></i>
+                <span>NPSP</span>
+                <div class="sf-node-tip">Nonprofit Success Pack</div>
+              </div>
+              <div class="sf-node sf-node-r2-3" style="color: #67e8f9">
+                <i class="fas fa-lock"></i>
+                <span>Security</span>
+                <div class="sf-node-tip">Profiles &amp; Permissions</div>
+              </div>
+
+              <!-- Ring 3 nodes -->
+              <div class="sf-node sf-node-r3-1" style="color: #f472b6">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Data</span>
+                <div class="sf-node-tip">Migration &amp; Quality</div>
+              </div>
+              <div class="sf-node sf-node-r3-2" style="color: #fbbf24">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Training</span>
+                <div class="sf-node-tip">User Training &amp; Handover</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- Core Service Areas -->
-      <section class="section service-ecosystem">
+      <!-- ============================================================
+           CORE SERVICE AREAS – numbered expandable cards
+           ============================================================ -->
+      <section class="section">
         <div class="container">
           <h2 class="section-title">Core Salesforce service areas</h2>
-          <div class="service-grid">
-            <div class="service-card">
-              <div class="service-icon">&#128269;</div>
-              <h3>Discovery &amp; solution design</h3>
-              <p class="service-card-preview">
+          <p class="section-intro">
+            Every engagement is scoped around your actual needs — not a fixed
+            package. These are the core areas we work across, often in
+            combination.
+          </p>
+
+          <div class="svc-grid">
+            <div class="svc-card">
+              <div class="svc-card-num">01</div>
+              <div class="svc-card-icon"><i class="fas fa-search"></i></div>
+              <div class="svc-card-title">Discovery &amp; Solution Design</div>
+              <p class="svc-card-preview">
                 Structured discovery to understand your programmes, fundraising,
-                reporting and governance requirements...
+                reporting and governance requirements — translating them into a
+                Salesforce design that supports your strategy.
               </p>
-              <p class="service-card-full">
+              <p class="svc-card-full">
                 Structured discovery to understand your programmes, fundraising,
                 reporting and governance requirements. This includes mapping
                 existing processes, clarifying user journeys and translating
                 them into a Salesforce design that supports your strategy rather
-                than forcing you to work around the system.
+                than forcing you to work around the system. Delivered through
+                workshops, interviews and documentation reviews.
               </p>
-              <button class="read-more-btn" onclick="toggleServiceCard(this)">
-                Read More
+              <button
+                class="svc-toggle"
+                onclick="toggleSvc(this)"
+                aria-expanded="false"
+              >
+                Read more <i class="fas fa-chevron-down"></i>
               </button>
             </div>
 
-            <div class="service-card">
-              <div class="service-icon">&#9881;&#65039;</div>
-              <h3>Salesforce build &amp; configuration</h3>
-              <p class="service-card-preview">
-                Configuration of Salesforce (including Nonprofit Success Pack
-                where appropriate) to match your data model and workflows...
+            <div class="svc-card">
+              <div class="svc-card-num">02</div>
+              <div class="svc-card-icon"><i class="fas fa-cogs"></i></div>
+              <div class="svc-card-title">Build &amp; Configuration</div>
+              <p class="svc-card-preview">
+                Configuration of Salesforce — including NPSP — to match your
+                data model: custom objects, fields, page layouts, record types,
+                validation rules and security settings.
               </p>
-              <p class="service-card-full">
+              <p class="svc-card-full">
                 Configuration of Salesforce (including Nonprofit Success Pack
                 where appropriate) to match your data model and workflows:
                 custom objects and fields, record types, page layouts,
                 validation rules, security and sharing, profiles and permission
-                sets &ndash; aligned with best practice for charities,
-                corporates and public-sector institutions.
+                sets — aligned with best practice for charities, corporates and
+                public-sector institutions. Clean, documented builds designed
+                for your admins to maintain.
               </p>
-              <button class="read-more-btn" onclick="toggleServiceCard(this)">
-                Read More
+              <button
+                class="svc-toggle"
+                onclick="toggleSvc(this)"
+                aria-expanded="false"
+              >
+                Read more <i class="fas fa-chevron-down"></i>
               </button>
             </div>
 
-            <div class="service-card">
-              <div class="service-icon">&#9889;</div>
-              <h3>Automation &amp; workflow</h3>
-              <p class="service-card-preview">
-                Design and implementation of Flows and other automation to
-                reduce manual admin...
+            <div class="svc-card">
+              <div class="svc-card-num">03</div>
+              <div class="svc-card-icon"><i class="fas fa-bolt"></i></div>
+              <div class="svc-card-title">Automation &amp; Workflow</div>
+              <p class="svc-card-preview">
+                Design and build of Flows and other automation to reduce manual
+                admin — reminders, approvals, grant cycles and stewardship
+                workflows that keep work moving.
               </p>
-              <p class="service-card-full">
+              <p class="svc-card-full">
                 Design and implementation of Flows and other automation to
                 reduce manual admin: automated tasks and reminders, email
                 notifications, approvals, service pipelines, grant cycles and
                 stewardship workflows that keep work moving without
-                over-complicating the build.
+                over-complicating the build. Every automation is documented and
+                designed to be understandable by your internal team.
               </p>
-              <button class="read-more-btn" onclick="toggleServiceCard(this)">
-                Read More
+              <button
+                class="svc-toggle"
+                onclick="toggleSvc(this)"
+                aria-expanded="false"
+              >
+                Read more <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+
+            <div class="svc-card">
+              <div class="svc-card-num">04</div>
+              <div class="svc-card-icon"><i class="fas fa-database"></i></div>
+              <div class="svc-card-title">Data Migration &amp; Quality</div>
+              <p class="svc-card-preview">
+                Support cleaning and migrating data from spreadsheets or legacy
+                systems — clear templates, deduplication rules and practical
+                guidance for long-term data hygiene.
+              </p>
+              <p class="svc-card-full">
+                Support with cleaning and migrating data from spreadsheets or
+                legacy systems into Salesforce, designing imports that preserve
+                history while improving quality. This includes clear templates,
+                deduplication rules and practical guidance so your team can
+                maintain good data habits long-term. Pre-migration assessment
+                and post-migration validation included.
+              </p>
+              <button
+                class="svc-toggle"
+                onclick="toggleSvc(this)"
+                aria-expanded="false"
+              >
+                Read more <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+
+            <div class="svc-card">
+              <div class="svc-card-num">05</div>
+              <div class="svc-card-icon"><i class="fas fa-chart-line"></i></div>
+              <div class="svc-card-title">Reporting &amp; Dashboards</div>
+              <p class="svc-card-preview">
+                Tailored reports and dashboards for leadership, fundraising
+                teams and boards — income by source, pipeline health, service
+                volumes and funder-specific metrics.
+              </p>
+              <p class="svc-card-full">
+                Tailored reports and dashboards for leadership, fundraising,
+                service teams and boards: income by source, pipeline health,
+                service volumes, outcomes and funder-specific metrics that
+                matter to trustees, senior management and grant-makers. Built to
+                be readable and maintainable by non-technical staff without
+                external support.
+              </p>
+              <button
+                class="svc-toggle"
+                onclick="toggleSvc(this)"
+                aria-expanded="false"
+              >
+                Read more <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+
+            <div class="svc-card">
+              <div class="svc-card-num">06</div>
+              <div class="svc-card-icon"><i class="fas fa-tools"></i></div>
+              <div class="svc-card-title">Support &amp; Optimisation</div>
+              <p class="svc-card-preview">
+                Light-touch ongoing support and iterative improvements — small
+                enhancements, new automations, reporting tweaks and periodic
+                reviews to ensure continued value.
+              </p>
+              <p class="svc-card-full">
+                Light-touch, ongoing support and iterative improvements so your
+                CRM evolves with your organisation. This can include small
+                enhancements, new automations, reporting tweaks and periodic
+                reviews to ensure your Salesforce investment continues to
+                deliver value. Available as a retainer or on a
+                project-by-project basis — no need for a heavyweight support
+                contract.
+              </p>
+              <button
+                class="svc-toggle"
+                onclick="toggleSvc(this)"
+                aria-expanded="false"
+              >
+                Read more <i class="fas fa-chevron-down"></i>
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Featured: Data & Reporting -->
-      <section class="section">
-        <div class="container">
-          <div class="featured-section">
-            <div class="featured-content">
-              <h2>Data, reporting and ongoing improvement</h2>
-              <p>
-                Strong data management and clear reporting are the backbone of a
-                CRM that delivers real value. We design data architectures,
-                migration processes and dashboards that turn Salesforce data
-                into actionable insights for leadership, fundraising teams and
-                boards &ndash; and we stay engaged to ensure your system evolves
-                with your organisation.
-              </p>
+      <!-- ============================================================
+           DATA PIPELINE – dark section with metrics
+           ============================================================ -->
+      <section class="pipeline-section" aria-label="Data and Reporting">
+        <div class="pipeline-inner">
+          <div class="pipeline-header">
+            <div class="pipeline-eyebrow">
+              <i class="fas fa-stream"></i> Data &amp; Reporting
             </div>
+            <h2 class="pipeline-title">
+              Data, reporting and ongoing improvement
+            </h2>
+            <p class="pipeline-sub">
+              Strong data management and clear reporting are the backbone of a
+              CRM that delivers real value. We design data architectures,
+              migration processes and dashboards that turn Salesforce data into
+              actionable insights.
+            </p>
           </div>
 
-          <div class="data-section">
-            <div class="data-content">
-              <div class="data-item">
-                <h4>Data migration &amp; quality</h4>
-                <p>
-                  Support with cleaning and migrating data from spreadsheets or
-                  legacy systems into Salesforce, designing imports that
-                  preserve history while improving quality. This includes clear
-                  templates, deduplication rules and practical guidance so your
-                  team can maintain good data habits long-term.
-                </p>
+          <div class="pipeline-wrap">
+            <!-- Steps -->
+            <div class="pipeline-steps">
+              <div class="pipeline-step">
+                <div class="ps-left">
+                  <div class="ps-dot"><i class="fas fa-file-import"></i></div>
+                </div>
+                <div class="ps-right">
+                  <div class="ps-label">Stage 1</div>
+                  <div class="ps-title">Assess &amp; Extract</div>
+                  <p class="ps-body">
+                    Audit your existing data sources — spreadsheets, legacy
+                    CRMs, manual records. Identify gaps, duplicates and quality
+                    issues before any migration begins.
+                  </p>
+                </div>
               </div>
-              <div class="data-item">
-                <h4>Reporting &amp; dashboards</h4>
-                <p>
-                  Tailored reports and dashboards for leadership, fundraising,
-                  service teams and boards: income by source, pipeline health,
-                  service volumes, outcomes and funder-specific metrics that
-                  matter to trustees, senior management and grant-makers.
-                </p>
+              <div class="pipeline-step">
+                <div class="ps-left">
+                  <div class="ps-dot"><i class="fas fa-broom"></i></div>
+                </div>
+                <div class="ps-right">
+                  <div class="ps-label">Stage 2</div>
+                  <div class="ps-title">Clean &amp; Structure</div>
+                  <p class="ps-body">
+                    Apply deduplication rules, validation templates and field
+                    mapping. Data is shaped into the correct Salesforce
+                    structure before a single record is imported.
+                  </p>
+                </div>
               </div>
-              <div class="data-item">
-                <h4>Support &amp; optimisation</h4>
-                <p>
-                  Light-touch, ongoing support and iterative improvements so
-                  your CRM evolves with your organisation. This can include
-                  small enhancements, new automations, reporting tweaks and
-                  periodic reviews to ensure your Salesforce investment
-                  continues to deliver value.
-                </p>
+              <div class="pipeline-step">
+                <div class="ps-left">
+                  <div class="ps-dot"><i class="fas fa-upload"></i></div>
+                </div>
+                <div class="ps-right">
+                  <div class="ps-label">Stage 3</div>
+                  <div class="ps-title">Migrate &amp; Validate</div>
+                  <p class="ps-body">
+                    Staged import into Salesforce with post-migration validation
+                    checks. Every record is verified before go-live — history
+                    preserved, quality improved.
+                  </p>
+                </div>
+              </div>
+              <div class="pipeline-step">
+                <div class="ps-left">
+                  <div class="ps-dot"><i class="fas fa-chart-pie"></i></div>
+                </div>
+                <div class="ps-right">
+                  <div class="ps-label">Stage 4</div>
+                  <div class="ps-title">Report &amp; Improve</div>
+                  <p class="ps-body">
+                    Custom dashboards and reports built for your leadership,
+                    fundraising and board — plus ongoing reviews to keep data
+                    quality high as your organisation grows.
+                  </p>
+                </div>
               </div>
             </div>
-            <div class="data-visual">
-              <!-- Data Flow SVG Diagram -->
-              <svg
-                viewBox="0 0 380 320"
-                xmlns="http://www.w3.org/2000/svg"
-                style="max-width: 100%; height: auto"
-              >
-                <text
-                  x="190"
-                  y="22"
-                  text-anchor="middle"
-                  font-size="15"
-                  font-weight="bold"
-                  fill="#0c4a6e"
-                >
-                  Data Flow &amp; Quality
-                </text>
 
-                <!-- Source Data Box -->
-                <rect
-                  x="20"
-                  y="45"
-                  width="95"
-                  height="60"
-                  fill="#ecfeff"
-                  stroke="#0891b2"
-                  stroke-width="2"
-                  rx="8"
-                />
-                <text
-                  x="67.5"
-                  y="70"
-                  text-anchor="middle"
-                  font-size="11"
-                  font-weight="bold"
-                  fill="#0c4a6e"
-                >
-                  Legacy Data
-                </text>
-                <text
-                  x="67.5"
-                  y="85"
-                  text-anchor="middle"
-                  font-size="10"
-                  fill="#475569"
-                >
-                  Spreadsheets
-                </text>
-                <text
-                  x="67.5"
-                  y="98"
-                  text-anchor="middle"
-                  font-size="10"
-                  fill="#475569"
-                >
-                  Old Systems
-                </text>
+            <!-- Metrics panel -->
+            <div class="pipeline-metrics">
+              <div class="pm-header">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>System Health Metrics</span>
+                <span class="pm-status">● Live</span>
+              </div>
 
-                <!-- Arrow 1 -->
-                <path
-                  d="M 115 75 L 145 75"
-                  stroke="#0891b2"
-                  stroke-width="2"
-                  fill="none"
-                  marker-end="url(#arrowhead)"
-                />
-                <text
-                  x="130"
-                  y="68"
-                  text-anchor="middle"
-                  font-size="9"
-                  fill="#0891b2"
-                  font-weight="bold"
-                >
-                  Clean
-                </text>
+              <div class="pm-bar-row">
+                <div class="pm-bar-meta">
+                  <span class="pm-bar-label">Data Completeness</span>
+                  <span class="pm-bar-val">94%</span>
+                </div>
+                <div class="pm-bar-track">
+                  <div class="pm-bar-fill teal" style="width: 94%"></div>
+                </div>
+              </div>
+              <div class="pm-bar-row">
+                <div class="pm-bar-meta">
+                  <span class="pm-bar-label">Duplicate Records</span>
+                  <span class="pm-bar-val">1.2%</span>
+                </div>
+                <div class="pm-bar-track">
+                  <div class="pm-bar-fill orange" style="width: 8%"></div>
+                </div>
+              </div>
+              <div class="pm-bar-row">
+                <div class="pm-bar-meta">
+                  <span class="pm-bar-label">Automation Coverage</span>
+                  <span class="pm-bar-val">82%</span>
+                </div>
+                <div class="pm-bar-track">
+                  <div class="pm-bar-fill green" style="width: 82%"></div>
+                </div>
+              </div>
+              <div class="pm-bar-row">
+                <div class="pm-bar-meta">
+                  <span class="pm-bar-label">Report Adoption</span>
+                  <span class="pm-bar-val">78%</span>
+                </div>
+                <div class="pm-bar-track">
+                  <div class="pm-bar-fill purple" style="width: 78%"></div>
+                </div>
+              </div>
 
-                <!-- Processing Box -->
-                <rect
-                  x="145"
-                  y="45"
-                  width="95"
-                  height="60"
-                  fill="#cffafe"
-                  stroke="#06b6d4"
-                  stroke-width="2"
-                  rx="8"
-                />
-                <text
-                  x="192.5"
-                  y="70"
-                  text-anchor="middle"
-                  font-size="11"
-                  font-weight="bold"
-                  fill="#0c4a6e"
-                >
-                  Processing
-                </text>
-                <text
-                  x="192.5"
-                  y="85"
-                  text-anchor="middle"
-                  font-size="10"
-                  fill="#475569"
-                >
-                  Deduplication
-                </text>
-                <text
-                  x="192.5"
-                  y="98"
-                  text-anchor="middle"
-                  font-size="10"
-                  fill="#475569"
-                >
-                  Validation
-                </text>
-
-                <!-- Arrow 2 -->
-                <path
-                  d="M 240 75 L 270 75"
-                  stroke="#06b6d4"
-                  stroke-width="2"
-                  fill="none"
-                  marker-end="url(#arrowhead2)"
-                />
-                <text
-                  x="255"
-                  y="68"
-                  text-anchor="middle"
-                  font-size="9"
-                  fill="#06b6d4"
-                  font-weight="bold"
-                >
-                  Import
-                </text>
-
-                <!-- Salesforce Box -->
-                <rect
-                  x="270"
-                  y="45"
-                  width="90"
-                  height="60"
-                  fill="#a5f3fc"
-                  stroke="#22d3ee"
-                  stroke-width="2"
-                  rx="8"
-                />
-                <text
-                  x="315"
-                  y="70"
-                  text-anchor="middle"
-                  font-size="11"
-                  font-weight="bold"
-                  fill="#0c4a6e"
-                >
-                  Salesforce
-                </text>
-                <text
-                  x="315"
-                  y="85"
-                  text-anchor="middle"
-                  font-size="10"
-                  fill="#475569"
-                >
-                  Quality
-                </text>
-                <text
-                  x="315"
-                  y="98"
-                  text-anchor="middle"
-                  font-size="10"
-                  fill="#475569"
-                >
-                  Data
-                </text>
-
-                <!-- Arrow 3 Down -->
-                <path
-                  d="M 315 105 L 315 135"
-                  stroke="#22d3ee"
-                  stroke-width="2"
-                  fill="none"
-                  marker-end="url(#arrowhead3)"
-                />
-
-                <!-- Reporting Box -->
-                <rect
-                  x="255"
-                  y="140"
-                  width="110"
-                  height="60"
-                  fill="#ecfeff"
-                  stroke="#0891b2"
-                  stroke-width="2"
-                  rx="8"
-                />
-                <text
-                  x="310"
-                  y="163"
-                  text-anchor="middle"
-                  font-size="11"
-                  font-weight="bold"
-                  fill="#0c4a6e"
-                >
-                  Reporting
-                </text>
-                <text
-                  x="310"
-                  y="178"
-                  text-anchor="middle"
-                  font-size="10"
-                  fill="#475569"
-                >
-                  Dashboards
-                </text>
-                <text
-                  x="310"
-                  y="191"
-                  text-anchor="middle"
-                  font-size="10"
-                  fill="#475569"
-                >
-                  Insights
-                </text>
-
-                <!-- Arrow 4 Left -->
-                <path
-                  d="M 255 170 L 220 170"
-                  stroke="#0891b2"
-                  stroke-width="2"
-                  fill="none"
-                  marker-end="url(#arrowhead4)"
-                />
-
-                <!-- Support Box -->
-                <rect
-                  x="105"
-                  y="140"
-                  width="115"
-                  height="60"
-                  fill="#f0fdfa"
-                  stroke="#0e7490"
-                  stroke-width="2"
-                  rx="8"
-                />
-                <text
-                  x="162.5"
-                  y="163"
-                  text-anchor="middle"
-                  font-size="11"
-                  font-weight="bold"
-                  fill="#0c4a6e"
-                >
-                  Support
-                </text>
-                <text
-                  x="162.5"
-                  y="178"
-                  text-anchor="middle"
-                  font-size="10"
-                  fill="#475569"
-                >
-                  Optimization
-                </text>
-                <text
-                  x="162.5"
-                  y="191"
-                  text-anchor="middle"
-                  font-size="10"
-                  fill="#475569"
-                >
-                  Evolution
-                </text>
-
-                <!-- Arrow 5 Up -->
-                <path
-                  d="M 162.5 140 L 162.5 110"
-                  stroke="#0e7490"
-                  stroke-width="2"
-                  fill="none"
-                  marker-end="url(#arrowhead5)"
-                />
-
-                <!-- Bottom metrics -->
-                <rect
-                  x="20"
-                  y="230"
-                  width="340"
-                  height="70"
-                  fill="#f8fafc"
-                  stroke="#cbd5e1"
-                  stroke-width="1"
-                  rx="8"
-                />
-                <text
-                  x="35"
-                  y="255"
-                  font-size="11"
-                  font-weight="bold"
-                  fill="#0c4a6e"
-                >
-                  &#10003; Data Integrity
-                </text>
-                <text
-                  x="200"
-                  y="255"
-                  font-size="11"
-                  font-weight="bold"
-                  fill="#0c4a6e"
-                >
-                  &#10003; Automated Validation
-                </text>
-                <text
-                  x="35"
-                  y="280"
-                  font-size="11"
-                  font-weight="bold"
-                  fill="#0c4a6e"
-                >
-                  &#10003; Continuous Improvement
-                </text>
-                <text
-                  x="200"
-                  y="280"
-                  font-size="11"
-                  font-weight="bold"
-                  fill="#0c4a6e"
-                >
-                  &#10003; Actionable Insights
-                </text>
-
-                <!-- Arrow markers -->
-                <defs>
-                  <marker
-                    id="arrowhead"
-                    markerWidth="10"
-                    markerHeight="10"
-                    refX="9"
-                    refY="3"
-                    orient="auto"
-                  >
-                    <polygon points="0 0, 10 3, 0 6" fill="#0891b2" />
-                  </marker>
-                  <marker
-                    id="arrowhead2"
-                    markerWidth="10"
-                    markerHeight="10"
-                    refX="9"
-                    refY="3"
-                    orient="auto"
-                  >
-                    <polygon points="0 0, 10 3, 0 6" fill="#06b6d4" />
-                  </marker>
-                  <marker
-                    id="arrowhead3"
-                    markerWidth="10"
-                    markerHeight="10"
-                    refX="9"
-                    refY="3"
-                    orient="auto"
-                  >
-                    <polygon points="0 0, 10 3, 0 6" fill="#22d3ee" />
-                  </marker>
-                  <marker
-                    id="arrowhead4"
-                    markerWidth="10"
-                    markerHeight="10"
-                    refX="9"
-                    refY="3"
-                    orient="auto"
-                  >
-                    <polygon points="0 0, 10 3, 0 6" fill="#0891b2" />
-                  </marker>
-                  <marker
-                    id="arrowhead5"
-                    markerWidth="10"
-                    markerHeight="10"
-                    refX="9"
-                    refY="3"
-                    orient="auto"
-                  >
-                    <polygon points="0 0, 10 3, 0 6" fill="#0e7490" />
-                  </marker>
-                </defs>
-              </svg>
+              <div class="pm-checklist">
+                <div class="pm-check">
+                  <i class="fas fa-check-circle"></i> Data integrity validated
+                  post-migration
+                </div>
+                <div class="pm-check">
+                  <i class="fas fa-check-circle"></i> Automated validation rules
+                  active
+                </div>
+                <div class="pm-check">
+                  <i class="fas fa-check-circle"></i> Continuous improvement
+                  reviews scheduled
+                </div>
+                <div class="pm-check">
+                  <i class="fas fa-check-circle"></i> Actionable insights
+                  available to leadership
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Sectors -->
+      <!-- ============================================================
+           SECTORS – icon tab cards
+           ============================================================ -->
       <section class="section alt">
         <div class="container">
           <h2 class="section-title">Built for your context</h2>
@@ -635,243 +1904,287 @@
             Every sector has unique requirements. We configure Salesforce to
             support your specific governance, compliance and operational needs.
           </p>
-          <div class="sector-grid">
-            <div class="sector-card charity">
-              <h3>Charities &amp; social enterprises</h3>
-              <p>
+
+          <div class="sector-tabs">
+            <div class="sector-tab">
+              <div class="sector-tab-icon charity">
+                <i class="fas fa-heart"></i>
+              </div>
+              <div class="sector-tab-kicker charity">Sector 01</div>
+              <div class="sector-tab-title">
+                Charities &amp; Social Enterprises
+              </div>
+              <p class="sector-tab-text">
                 Systems configured to support service delivery, volunteer
                 management, grant reporting, trust and foundation funding,
-                individual giving and major donor work &ndash; with governance
-                and safeguarding considerations built in from the start.
+                individual giving and major donor work — with governance and
+                safeguarding built in from the start.
               </p>
+              <div class="sector-tab-tags">
+                <span class="sector-tag">NPSP</span>
+                <span class="sector-tag">Grant Management</span>
+                <span class="sector-tag">Volunteer Tracking</span>
+                <span class="sector-tag">Fundraising Pipelines</span>
+              </div>
             </div>
-            <div class="sector-card corporate">
-              <h3>Corporate organisations &amp; CSR teams</h3>
-              <p>
+
+            <div class="sector-tab">
+              <div class="sector-tab-icon corporate">
+                <i class="fas fa-briefcase"></i>
+              </div>
+              <div class="sector-tab-kicker corporate">Sector 02</div>
+              <div class="sector-tab-title">
+                Corporate Organisations &amp; CSR
+              </div>
+              <p class="sector-tab-text">
                 Salesforce builds for stakeholder management, CSR and ESG
-                programmes, partnerships and employee engagement, with reporting
-                that supports internal governance and external impact
+                programmes, partnerships and employee engagement — with
+                reporting that supports internal governance and external impact
                 communication.
               </p>
+              <div class="sector-tab-tags">
+                <span class="sector-tag">CSR Reporting</span>
+                <span class="sector-tag">ESG Metrics</span>
+                <span class="sector-tag">Stakeholder CRM</span>
+                <span class="sector-tag">Impact Dashboards</span>
+              </div>
             </div>
-            <div class="sector-card public">
-              <h3>Public-sector programmes</h3>
-              <p>
+
+            <div class="sector-tab">
+              <div class="sector-tab-icon public">
+                <i class="fas fa-landmark"></i>
+              </div>
+              <div class="sector-tab-kicker public">Sector 03</div>
+              <div class="sector-tab-title">Public-Sector Programmes</div>
+              <p class="sector-tab-text">
                 Secure, structured Salesforce environments for managing
-                programmes, grants and citizen or stakeholder engagement,
+                programmes, grants and citizen or stakeholder engagement —
                 aligned with public-sector expectations around data management
                 and accountability.
               </p>
+              <div class="sector-tab-tags">
+                <span class="sector-tag">Programme Management</span>
+                <span class="sector-tag">Citizen Engagement</span>
+                <span class="sector-tag">Data Governance</span>
+                <span class="sector-tag">Secure Access</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Approach / Process -->
-      <section class="section approach-section">
+      <!-- ============================================================
+           APPROACH – compact 3-column card
+           ============================================================ -->
+      <section class="section" id="sf-approach">
         <div class="container">
           <h2 class="section-title">Approach to Salesforce projects</h2>
           <p class="section-intro">
-            Versed Global works in partnership with your team, combining
+            Versed Global works in partnership with your team — combining
             consultancy and hands-on build. The aim is not to drop in a complex
             system and leave, but to embed something your staff can understand,
             own and develop.
           </p>
-          <div class="process-timeline">
-            <div class="process-step">
-              <div class="step-number">1</div>
-              <h3>Collaborative design</h3>
-              <p>
-                Workshops and regular check-ins with key users to validate the
-                design and test assumptions before major build decisions are
-                made, ensuring alignment with your fundraising and programme
-                needs.
+
+          <div class="approach-track">
+            <div class="approach-col">
+              <div class="approach-step-num">01</div>
+              <div class="approach-step-icon"><i class="fas fa-users"></i></div>
+              <div class="approach-step-title">Collaborative Design</div>
+              <p class="approach-step-text">
+                Workshops and regular check-ins with key users validate design
+                decisions before major build choices are made — ensuring
+                alignment with your fundraising and programme needs from day
+                one.
               </p>
             </div>
-            <div class="process-step">
-              <div class="step-number">2</div>
-              <h3>Transparent delivery</h3>
-              <p>
+            <div class="approach-col">
+              <div class="approach-step-num">02</div>
+              <div class="approach-step-icon">
+                <i class="fas fa-clipboard-list"></i>
+              </div>
+              <div class="approach-step-title">Transparent Delivery</div>
+              <p class="approach-step-text">
                 Clear documentation, configuration logs and admin-friendly
                 naming conventions so your internal team can understand what has
-                been built and why decisions were made.
+                been built and why every decision was made — no black boxes.
               </p>
             </div>
-            <div class="process-step">
-              <div class="step-number">3</div>
-              <h3>Skills transfer</h3>
-              <p>
-                Training and handover designed to grow your internal capacity
-                &ndash; from &ldquo;super user&rdquo; training through to
-                admin-level guidance &ndash; so you are not dependent on
-                external support for basic changes.
+            <div class="approach-col">
+              <div class="approach-step-num">03</div>
+              <div class="approach-step-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="approach-step-title">Skills Transfer</div>
+              <p class="approach-step-text">
+                Training and handover designed to grow your internal capacity —
+                from super-user training through to admin-level guidance — so
+                you are not dependent on external support for basic changes.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Client Portal Preview Section -->
-      <section class="section alt portal-preview-section">
+      <!-- ============================================================
+           CLIENT PORTAL
+           ============================================================ -->
+      <section class="section alt portal-section">
         <div class="container">
-          <h2 class="section-title">
-            Track your Salesforce project in real time
-          </h2>
-          <p class="section-intro">
-            Transparency is central to how we work. As a Versed Global client,
-            you now have direct access to a secure online portal where you can
-            monitor the progress of your Salesforce implementation at any time.
-          </p>
+          <div class="portal-cta-wrapper">
+            <div class="portal-bg-grid" aria-hidden="true">
+              <div class="portal-grid-line"></div>
+              <div class="portal-grid-line"></div>
+              <div class="portal-grid-line"></div>
+              <div class="portal-grid-line"></div>
+              <div class="portal-grid-line"></div>
+              <div class="portal-grid-line"></div>
+            </div>
+            <div class="portal-orb portal-orb-1" aria-hidden="true"></div>
+            <div class="portal-orb portal-orb-2" aria-hidden="true"></div>
+            <div class="portal-orb portal-orb-3" aria-hidden="true"></div>
 
-          <div class="portal-preview-grid">
-            <div class="portal-preview-content">
-              <h3>Your project dashboard, one click away</h3>
-              <p>
-                Navigate to the <strong>Client</strong> tab on this website and
-                log in using the contact email address you registered with
-                Versed Global Ltd. Once authenticated, you will see a
-                personalised dashboard showing the current status of every phase
-                of your Salesforce project &ndash; from discovery and
-                configuration through to testing, training and go-live.
+            <div class="portal-cta-content">
+              <div class="portal-cta-badge">
+                <span class="portal-badge-dot"></span>
+                <span>Client Portal &mdash; Live</span>
+              </div>
+              <h2 class="portal-cta-heading">
+                Track your Salesforce project in real time
+              </h2>
+              <p class="portal-cta-text">
+                Transparency is central to how we work. As a Versed Global
+                client, you have direct access to a secure portal to monitor
+                every phase of your implementation.
               </p>
-              <ul class="portal-feature-list">
-                <li>
+              <div class="portal-feat-list">
+                <div class="portal-feat">
                   <i class="fas fa-check-circle"></i>
-                  <span
-                    ><strong>Live project status</strong> &ndash; see which
-                    phases are complete, in progress or upcoming at a
-                    glance.</span
-                  >
-                </li>
-                <li>
+                  <div class="portal-feat-text">
+                    <strong>Live project status</strong> —
+                    <span
+                      >see which phases are complete, in progress or upcoming at
+                      a glance.</span
+                    >
+                  </div>
+                </div>
+                <div class="portal-feat">
                   <i class="fas fa-check-circle"></i>
-                  <span
-                    ><strong>Milestone tracking</strong> &ndash; follow key
-                    deliverables, sign-off dates and next steps without waiting
-                    for an email update.</span
-                  >
-                </li>
-                <li>
+                  <div class="portal-feat-text">
+                    <strong>Milestone tracking</strong> —
+                    <span
+                      >follow key deliverables, sign-off dates and next steps
+                      without waiting for email updates.</span
+                    >
+                  </div>
+                </div>
+                <div class="portal-feat">
                   <i class="fas fa-check-circle"></i>
-                  <span
-                    ><strong>Secure, role-based access</strong> &ndash; only
-                    authorised contacts on your account can view project
-                    details, ensuring data privacy and governance.</span
-                  >
-                </li>
-                <li>
+                  <div class="portal-feat-text">
+                    <strong>Secure, role-based access</strong> —
+                    <span
+                      >only authorised contacts on your account can view project
+                      details.</span
+                    >
+                  </div>
+                </div>
+                <div class="portal-feat">
                   <i class="fas fa-check-circle"></i>
-                  <span
-                    ><strong>Document &amp; resource hub</strong> &ndash; access
-                    shared project documents, training materials and
-                    configuration notes in one place.</span
-                  >
-                </li>
-              </ul>
-              <div style="margin-top: 1.5rem">
-                <a href="clients.html" class="btn btn-primary">
-                  <i class="fas fa-sign-in-alt"></i> Go to Client Portal
-                </a>
+                  <div class="portal-feat-text">
+                    <strong>Document &amp; resource hub</strong> —
+                    <span
+                      >shared project documents, training materials and
+                      configuration notes in one place.</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="portal-cta-btns">
+                <a href="clients.html" class="portal-btn-primary"
+                  ><i class="fas fa-sign-in-alt"></i> Go to Client Portal</a
+                >
+                <a href="contact.html" class="portal-btn-secondary"
+                  ><i class="fas fa-calendar-check"></i> Book a call</a
+                >
               </div>
             </div>
-            <div class="portal-preview-visual">
-              <!-- Portal Mockup -->
-              <div class="portal-mockup">
-                <div class="portal-mockup-header">
-                  <i class="fas fa-cloud"></i>
-                  <span>Versed Global &ndash; Client Portal</span>
+
+            <!-- Status mockup -->
+            <div class="portal-cta-visual" aria-hidden="true">
+              <div class="portal-status-card">
+                <div class="psc-bar">
+                  <span class="psc-dot" style="background: #ff5f57"></span>
+                  <span class="psc-dot" style="background: #ffbd2e"></span>
+                  <span class="psc-dot" style="background: #28c840"></span>
+                  <span class="psc-title">Salesforce NPSP Implementation</span>
                 </div>
-                <div class="portal-mockup-body">
-                  <div class="portal-mockup-row">
-                    <span class="portal-mockup-label">Project</span>
-                    <span class="portal-mockup-value"
-                      >Salesforce NPSP Implementation</span
+                <div class="psc-body">
+                  <div class="psc-row">
+                    <span class="psc-row-label">Discovery &amp; Design</span>
+                    <span class="psc-badge done"
+                      ><i class="fas fa-check"></i> Complete</span
                     >
                   </div>
-                  <div class="portal-mockup-row">
-                    <span class="portal-mockup-label"
-                      >Discovery &amp; Design</span
-                    >
-                    <span class="portal-mockup-badge green">Complete</span>
-                  </div>
-                  <div class="portal-mockup-row">
-                    <span class="portal-mockup-label"
-                      >Build &amp; Configuration</span
-                    >
-                    <span class="portal-mockup-badge green">Complete</span>
-                  </div>
-                  <div class="portal-mockup-row">
-                    <span class="portal-mockup-label">Data Migration</span>
-                    <span class="portal-mockup-badge amber">In Progress</span>
-                  </div>
-                  <div class="portal-mockup-row">
-                    <span class="portal-mockup-label">Testing &amp; UAT</span>
-                    <span
-                      class="portal-mockup-badge"
-                      style="background: #f1f5f9; color: #64748b"
-                      >Upcoming</span
+                  <div class="psc-row">
+                    <span class="psc-row-label">Build &amp; Configuration</span>
+                    <span class="psc-badge done"
+                      ><i class="fas fa-check"></i> Complete</span
                     >
                   </div>
-                  <div class="portal-mockup-row">
-                    <span class="portal-mockup-label"
-                      >Training &amp; Go-Live</span
+                  <div class="psc-row">
+                    <span class="psc-row-label">Data Migration</span>
+                    <span class="psc-badge active"
+                      ><i class="fas fa-spinner fa-pulse"></i> In Progress</span
                     >
-                    <span
-                      class="portal-mockup-badge"
-                      style="background: #f1f5f9; color: #64748b"
-                      >Upcoming</span
-                    >
+                  </div>
+                  <div class="psc-row">
+                    <span class="psc-row-label">Testing &amp; UAT</span>
+                    <span class="psc-badge pending">Upcoming</span>
+                  </div>
+                  <div class="psc-row">
+                    <span class="psc-row-label">Training &amp; Go-Live</span>
+                    <span class="psc-badge pending">Upcoming</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Illustrative Images Row -->
-          <div class="portal-images-row">
-            <div class="portal-img-card">
+          <!-- Images row -->
+          <div class="sf-images-row">
+            <div class="sf-img-card">
               <img
-                src="images/portal-salesforce-dashboard.jpg"
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=280&fit=crop"
                 alt="Salesforce dashboard showing project analytics and KPIs"
-                onerror="
-                  this.src =
-                    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=280&fit=crop';
-                  this.onerror = null;
-                "
+                loading="lazy"
               />
-              <div class="img-caption">
+              <div class="sf-img-caption">
                 Salesforce Dashboard &amp; Analytics
               </div>
             </div>
-            <div class="portal-img-card">
+            <div class="sf-img-card">
               <img
-                src="images/portal-team-collaboration.jpg"
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=280&fit=crop"
                 alt="Team collaborating on a Salesforce CRM project"
-                onerror="
-                  this.src =
-                    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=280&fit=crop';
-                  this.onerror = null;
-                "
+                loading="lazy"
               />
-              <div class="img-caption">Collaborative Project Delivery</div>
+              <div class="sf-img-caption">Collaborative Project Delivery</div>
             </div>
-            <div class="portal-img-card">
+            <div class="sf-img-card">
               <img
-                src="images/portal-data-security.jpg"
+                src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&h=280&fit=crop"
                 alt="Secure data environment with role-based access controls"
-                onerror="
-                  this.src =
-                    'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=400&h=280&fit=crop';
-                  this.onerror = null;
-                "
+                loading="lazy"
               />
-              <div class="img-caption">Secure, Role-Based Access</div>
+              <div class="sf-img-caption">Secure, Role-Based Access</div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- CTA -->
+      <!-- ============================================================
+           CTA
+           ============================================================ -->
       <section class="section">
         <div class="container" style="text-align: center">
           <h2 class="section-title">Discuss your Salesforce plans</h2>
@@ -881,9 +2194,10 @@
             implementation, Versed Global can help you create a system that
             genuinely supports your work and funding model.
           </p>
-          <a href="contact.html" class="btn btn-primary"
-            >Book a free initial conversation</a
-          >
+          <a href="contact.html" class="btn btn-primary">
+            <i class="fas fa-calendar-check"></i> Book a free initial
+            conversation
+          </a>
         </div>
       </section>
     </main>
@@ -892,7 +2206,6 @@
     <footer>
       <div class="footer-container">
         <div class="footer-content">
-          <!-- About Section -->
           <div class="footer-section">
             <div class="footer-logo">
               <img src="images/versed-global-logo.png" alt="Versed Global" />
@@ -909,31 +2222,27 @@
                 title="LinkedIn"
                 rel="noopener noreferrer"
                 target="_blank"
-              >
-                <i class="fab fa-linkedin-in"></i>
-              </a>
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
               <a
                 href="https://www.instagram.com/versedglobal"
                 class="social-link instagram"
                 title="Instagram"
                 rel="noopener noreferrer"
                 target="_blank"
-              >
-                <i class="fab fa-instagram"></i>
-              </a>
+                ><i class="fab fa-instagram"></i
+              ></a>
               <a
                 href="https://www.facebook.com/share/14U4YEg25nN/?mibextid=wwXIfr"
                 class="social-link facebook"
                 title="Facebook"
                 rel="noopener noreferrer"
                 target="_blank"
-              >
-                <i class="fab fa-facebook-f"></i>
-              </a>
+                ><i class="fab fa-facebook-f"></i
+              ></a>
             </div>
           </div>
 
-          <!-- Contact Section -->
           <div class="footer-section">
             <h4>Contact</h4>
             <div class="footer-contact">
@@ -946,15 +2255,14 @@
               <div>
                 <strong style="color: #f0f9ff">Email</strong>
                 <p style="margin: 0.5rem 0 0">
-                  <a href="mailto:info@versedglobal.com">
-                    info@versedglobal.com
-                  </a>
+                  <a href="mailto:info@versedglobal.com"
+                    >info@versedglobal.com</a
+                  >
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- Address Section -->
           <div class="footer-section">
             <h4>Office Address</h4>
             <div class="footer-address">
@@ -973,7 +2281,6 @@
             </div>
           </div>
 
-          <!-- Review & Links Section -->
           <div class="footer-section">
             <h4>Leave a Review</h4>
             <p>Help us improve by sharing your experience on Trustpilot.</p>
@@ -981,10 +2288,8 @@
               href="mailto:versedglobal.com+1dd03088a8@invite.trustpilot.com"
               class="trustpilot-link"
             >
-              <i class="fas fa-star"></i>
-              Review on Trustpilot
+              <i class="fas fa-star"></i> Review on Trustpilot
             </a>
-
             <h4 style="margin-top: 2rem">Quick Links</h4>
             <div style="display: flex; flex-direction: column; gap: 0.75rem">
               <a href="services.html">Salesforce Services</a>
@@ -995,7 +2300,6 @@
           </div>
         </div>
 
-        <!-- Footer Divider -->
         <div class="footer-divider">
           <div class="footer-bottom">
             <div>
@@ -1013,67 +2317,100 @@
 
     <script src="script.js"></script>
     <script>
-      // Set current year
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Mobile menu toggle
+      // Mobile menu
       const mobileMenuToggle = document.getElementById("mobileMenuToggle");
       const navLinks = document.getElementById("navLinks");
-
       if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener("click", () => {
+        const toggleMenu = () => {
+          const isOpen = navLinks.classList.contains("active");
           navLinks.classList.toggle("active");
-          mobileMenuToggle.textContent = navLinks.classList.contains("active")
-            ? "\u2715"
-            : "\u2630";
+          mobileMenuToggle.setAttribute("aria-expanded", String(!isOpen));
+          mobileMenuToggle.textContent = isOpen ? "\u2630" : "\u2715";
+        };
+        mobileMenuToggle.addEventListener(
+          "touchstart",
+          (e) => {
+            e.preventDefault();
+            toggleMenu();
+          },
+          { passive: false },
+        );
+        mobileMenuToggle.addEventListener("click", (e) => {
+          e.preventDefault();
+          toggleMenu();
+        });
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+            mobileMenuToggle.textContent = "\u2630";
+          });
+        });
+        document.addEventListener("click", (e) => {
+          if (
+            navLinks.classList.contains("active") &&
+            !navLinks.contains(e.target) &&
+            !mobileMenuToggle.contains(e.target)
+          ) {
+            navLinks.classList.remove("active");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+            mobileMenuToggle.textContent = "\u2630";
+          }
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && navLinks.classList.contains("active")) {
+            navLinks.classList.remove("active");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+            mobileMenuToggle.textContent = "\u2630";
+          }
+        });
+        window.addEventListener("resize", () => {
+          if (
+            window.innerWidth >= 768 &&
+            navLinks.classList.contains("active")
+          ) {
+            navLinks.classList.remove("active");
+            mobileMenuToggle.setAttribute("aria-expanded", "false");
+            mobileMenuToggle.textContent = "\u2630";
+          }
         });
       }
 
-      // Close mobile menu when link is clicked
-      const navItems = navLinks.querySelectorAll("a");
-      navItems.forEach((item) => {
-        item.addEventListener("click", () => {
-          navLinks.classList.remove("active");
-          mobileMenuToggle.textContent = "\u2630";
-        });
-      });
-
-      // Close menu on escape key
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && navLinks.classList.contains("active")) {
-          navLinks.classList.remove("active");
-          mobileMenuToggle.textContent = "\u2630";
-        }
-      });
-
-      // Close menu when clicking outside
-      document.addEventListener("click", (e) => {
-        if (
-          navLinks.classList.contains("active") &&
-          !navLinks.contains(e.target) &&
-          !mobileMenuToggle.contains(e.target)
-        ) {
-          navLinks.classList.remove("active");
-          mobileMenuToggle.textContent = "\u2630";
-        }
-      });
-
-      // Browser History Navigation
-      window.addEventListener("popstate", () => {
-        if (navLinks.classList.contains("active")) {
-          navLinks.classList.remove("active");
-          mobileMenuToggle.textContent = "\u2630";
-        }
-      });
-
-      // Toggle Service Card - Read More/Less
-      function toggleServiceCard(button) {
-        const card = button.closest(".service-card");
-        card.classList.toggle("expanded");
-        button.textContent = card.classList.contains("expanded")
-          ? "Read Less"
-          : "Read More";
+      // Service card expand/collapse
+      function toggleSvc(btn) {
+        const card = btn.closest(".svc-card");
+        const isExpanded = card.classList.contains("expanded");
+        card.classList.toggle("expanded", !isExpanded);
+        btn.setAttribute("aria-expanded", String(!isExpanded));
+        btn.querySelector("span") ||
+          (btn.childNodes[0].textContent = isExpanded
+            ? "Read more "
+            : "Read less ");
+        // Update text node
+        btn.childNodes[0].textContent = isExpanded
+          ? "Read more "
+          : "Read less ";
       }
+
+      // Animate metric bars when section scrolls into view
+      const metricBars = document.querySelectorAll(".pm-bar-fill");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = "running";
+            }
+          });
+        },
+        { threshold: 0.3 },
+      );
+
+      metricBars.forEach((bar) => {
+        bar.style.animationPlayState = "paused";
+        observer.observe(bar);
+      });
     </script>
   </body>
 </html>
