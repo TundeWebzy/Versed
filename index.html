@@ -7,48 +7,36 @@
       Versed Global | Salesforce CRM, Web Design &amp; Fundraising Strategy
     </title>
 
-    <!-- FAVICON -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- ALGOLIA SITE VERIFICATION -->
     <meta name="algolia-site-verification" content="1E71BF4B63127FEC" />
-
     <meta
       name="description"
       content="Versed Global designs, integrates and manages Salesforce CRM systems, creates professional websites, and delivers high-impact trust and foundation fundraising support for charities, corporates and public-sector organisations."
     />
-
-    <!-- SITEMAP REFERENCE -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Google Fonts for professional typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Font Awesome for icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       crossorigin="anonymous"
     />
 
-    <!-- TrustBox script -->
     <script
       type="text/javascript"
       src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
       async
     ></script>
-    <!-- End TrustBox script -->
 
-    <!-- Organization / Logo Schema -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -73,6 +61,160 @@
         ]
       }
     </script>
+
+    <style>
+      /* ============================================================
+         COMPACT FAQ â€“ INLINE PILL GRID
+         ============================================================ */
+
+      .faq-compact-section {
+        padding: 2rem 0 1.75rem;
+      }
+
+      .faq-compact-header {
+        display: flex;
+        align-items: baseline;
+        gap: 1.25rem;
+        margin-bottom: 1.25rem;
+        flex-wrap: wrap;
+      }
+      .faq-compact-header .section-title {
+        margin-bottom: 0;
+      }
+      .faq-compact-header .faq-compact-sub {
+        font-size: 0.88rem;
+        color: #64748b;
+        margin: 0;
+      }
+
+      /* 3-column pill grid */
+      .faq-pill-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+      }
+
+      .faq-pill {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        overflow: hidden;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .faq-pill:hover {
+        border-color: #0891b2;
+        box-shadow: 0 2px 10px rgba(8, 145, 178, 0.08);
+      }
+      .faq-pill.open {
+        border-color: #0891b2;
+        background: #fff;
+        box-shadow: 0 2px 14px rgba(8, 145, 178, 0.1);
+      }
+
+      .faq-pill-q {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0.65rem 0.85rem;
+        cursor: pointer;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .faq-pill-q span {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #0c4a6e;
+        line-height: 1.35;
+      }
+      .faq-pill-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: rgba(8, 145, 178, 0.1);
+        color: #0891b2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        flex-shrink: 0;
+        transition:
+          background 0.2s ease,
+          transform 0.25s ease;
+      }
+      .faq-pill.open .faq-pill-icon {
+        background: #0891b2;
+        color: #fff;
+        transform: rotate(45deg);
+      }
+
+      .faq-pill-a {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.3s ease,
+          padding 0.2s ease;
+        padding: 0 0.85rem;
+      }
+      .faq-pill.open .faq-pill-a {
+        max-height: 200px;
+        padding: 0 0.85rem 0.75rem;
+      }
+      .faq-pill-a p {
+        font-size: 0.8rem;
+        color: #475569;
+        line-height: 1.6;
+        margin: 0;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 0.6rem;
+      }
+
+      /* contact nudge strip */
+      .faq-nudge {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+        padding: 0.65rem 1rem;
+        background: rgba(8, 145, 178, 0.05);
+        border: 1px solid rgba(8, 145, 178, 0.18);
+        border-radius: 10px;
+        font-size: 0.82rem;
+        color: #0891b2;
+        font-weight: 500;
+      }
+      .faq-nudge i {
+        color: #ea580c;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+      }
+      .faq-nudge a {
+        color: #0891b2;
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .faq-nudge a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 900px) {
+        .faq-pill-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 560px) {
+        .faq-pill-grid {
+          grid-template-columns: 1fr;
+        }
+        .faq-compact-header {
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Header -->
@@ -118,278 +260,240 @@
     </header>
 
     <main>
-      <!-- Hero Section -->
-      <section class="hero-shell">
-        <div class="hero-bg-image">
-          <img
-            src="images/hero-consulting.jpg"
-            alt=""
-            onerror="this.style.display = 'none'"
-          />
-        </div>
-        <div class="hero-orbit"></div>
-        <div class="hero-orbit hero-orbit-secondary"></div>
+      <!-- ============================================================
+           HERO V2 â€“ ANIMATED SPLIT HERO
+           ============================================================ -->
+      <section class="hero-v2" aria-label="Hero">
+        <!-- background layers -->
+        <div class="hero-v2-grid"></div>
+        <div class="hero-v2-orb hero-v2-orb-1"></div>
+        <div class="hero-v2-orb hero-v2-orb-2"></div>
+        <div class="hero-v2-orb hero-v2-orb-3"></div>
 
-        <div class="hero-inner-flex">
-          <div>
-            <p class="hero-eyebrow">
-              Salesforce &middot; Web Design &middot; Fundraising
-            </p>
-            <h1 class="hero-title">
-              CRM design, web design and fundraising<br />that moves your
-              mission forward
+        <!-- floating data nodes -->
+        <div class="hero-v2-nodes" id="heroNodes"></div>
+
+        <!-- main grid -->
+        <div class="hero-v2-inner">
+          <!-- LEFT: headline + CTA (slides from left) -->
+          <div class="hero-v2-left">
+            <div class="hero-v2-eyebrow">
+              <span class="dot"></span>
+              CRM &middot; Web Design &middot; Fundraising
+            </div>
+
+            <h1 class="hero-v2-title">
+              Systems that<br />
+              <span class="accent-teal">power</span> your<br />
+              <span class="accent-warm">mission</span>
             </h1>
-            <p class="hero-kicker">
-              Versed Global brings together Salesforce CRM expertise,
-              professional web design for businesses, and trust and foundation
-              fundraising so that your systems, online presence, income and
-              governance work as one.
+
+            <p class="hero-v2-sub">
+              Salesforce CRM, professional web design and trust fundraising â€”
+              aligned and built around how your organisation actually works.
             </p>
-            <div class="hero-buttons">
-              <a href="contact.html" class="btn btn-primary"
-                >Book a conversation</a
-              >
-              <a href="services.html" class="btn btn-secondary"
-                >Explore services</a
-              >
+
+            <div class="hero-v2-buttons">
+              <a href="contact.html" class="btn-primary">
+                <i class="fas fa-calendar-check"></i>
+                Book a conversation
+              </a>
+              <a href="services.html" class="btn-secondary">
+                <i class="fas fa-arrow-right"></i>
+                Explore services
+              </a>
             </div>
 
-            <div class="hero-quick-tags">
-              <span>Charities</span>
-              <span>Businesses</span>
-              <span>Corporate CSR</span>
-              <span>Public Sector</span>
+            <div class="hero-v2-stats">
+              <div class="hero-v2-stat">
+                <span class="hero-v2-stat-val">7<span>+</span></span>
+                <span class="hero-v2-stat-lbl">Years Salesforce</span>
+              </div>
+              <div class="hero-v2-stat-sep"></div>
+              <div class="hero-v2-stat">
+                <span class="hero-v2-stat-val">Â£1<span>M+</span></span>
+                <span class="hero-v2-stat-lbl">Funding Supported</span>
+              </div>
+              <div class="hero-v2-stat-sep"></div>
+              <div class="hero-v2-stat">
+                <span class="hero-v2-stat-val">UK<span>ðŸ‡¬ðŸ‡§</span></span>
+                <span class="hero-v2-stat-lbl">Remote-first</span>
+              </div>
             </div>
           </div>
 
-          <div class="hero-metrics">
-            <div>
-              <p class="hero-metric-label">CRM Experience</p>
-              <p class="hero-metric-value">7+ years</p>
-              <p class="hero-metric-note">Salesforce implementations</p>
+          <!-- RIGHT: dashboard card (slides from right) -->
+          <div class="hero-v2-right">
+            <div class="hero-db-card">
+              <div class="hero-db-topbar">
+                <div class="hero-db-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <span class="hero-db-title"
+                  >Versed Global â€” Live Dashboard</span
+                >
+                <span class="hero-db-status">Active</span>
+              </div>
+
+              <div class="hero-db-body">
+                <div class="hero-db-row">
+                  <div class="hero-db-icon teal">
+                    <i class="fas fa-database"></i>
+                  </div>
+                  <span class="hero-db-row-label">Salesforce CRM</span>
+                  <div class="hero-db-bar-wrap">
+                    <div class="hero-db-bar teal" style="--w: 82%"></div>
+                  </div>
+                  <span class="hero-db-pct">82%</span>
+                </div>
+
+                <div class="hero-db-row">
+                  <div class="hero-db-icon warm">
+                    <i class="fas fa-globe"></i>
+                  </div>
+                  <span class="hero-db-row-label">Web Design</span>
+                  <div class="hero-db-bar-wrap">
+                    <div class="hero-db-bar warm" style="--w: 67%"></div>
+                  </div>
+                  <span class="hero-db-pct">67%</span>
+                </div>
+
+                <div class="hero-db-row">
+                  <div class="hero-db-icon green">
+                    <i class="fas fa-hand-holding-heart"></i>
+                  </div>
+                  <span class="hero-db-row-label">Fundraising Pipeline</span>
+                  <div class="hero-db-bar-wrap">
+                    <div class="hero-db-bar green" style="--w: 94%"></div>
+                  </div>
+                  <span class="hero-db-pct">94%</span>
+                </div>
+
+                <div class="hero-db-row">
+                  <div class="hero-db-icon purple">
+                    <i class="fas fa-graduation-cap"></i>
+                  </div>
+                  <span class="hero-db-row-label">Training &amp; Support</span>
+                  <div class="hero-db-bar-wrap">
+                    <div class="hero-db-bar purple" style="--w: 55%"></div>
+                  </div>
+                  <span class="hero-db-pct">55%</span>
+                </div>
+              </div>
             </div>
-            <div>
-              <p class="hero-metric-label">Funding Supported</p>
-              <p class="hero-metric-value">&pound;1M+</p>
-              <p class="hero-metric-note">Through better systems</p>
-            </div>
-            <div>
-              <p class="hero-metric-label">UK-based</p>
-              <p class="hero-metric-value">Remote-first</p>
-              <p class="hero-metric-note">With on-site options</p>
+
+            <div class="hero-v2-tags">
+              <span class="hero-v2-tag">Charities</span>
+              <span class="hero-v2-tag">Businesses</span>
+              <span class="hero-v2-tag">Corporate CSR</span>
+              <span class="hero-v2-tag">Public Sector</span>
+              <span class="hero-v2-tag">NPSP</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Strategy Strip -->
-      <section class="hero-strategy-strip">
-        <div class="hero-strategy-inner">
-          <div class="hero-strategy-copy">
-            <p>
-              <strong
-                >Systems, digital presence, income and governance &ndash;
-                aligned.</strong
-              >
-              Versed Global works with charities, businesses, corporates and
-              public-sector teams that need Salesforce, web design and
-              fundraising support to pull in the same direction.
-            </p>
-            <p>
-              That means CRM configurations designed around your actual
-              workflows, professional websites that showcase your work
-              effectively, trust and foundation fundraising grounded in
-              realistic pipelines, and reporting that answers the questions
-              funders and boards actually ask.
+      <!-- ============================================================
+           COMBINED: WHAT WE DO + WHO WE WORK WITH
+           ============================================================ -->
+      <section class="combined-section">
+        <div class="combined-inner">
+          <div class="combined-header">
+            <div class="combined-header-left">
+              <p class="combined-kicker">Our services &amp; sectors</p>
+              <h2 class="combined-title">What we do &amp; who we serve</h2>
+            </div>
+            <p class="combined-sub">
+              Five integrated capabilities, deployed across mission-driven
+              organisations, businesses and public-sector teams.
             </p>
           </div>
-          <div class="hero-strategy-pills">
-            <div class="hero-strategy-pill">
-              <strong>Systems</strong>
-              Salesforce objects, fields and automation built around how your
-              organisation actually operates.
+
+          <!-- 5 capability tiles -->
+          <div class="capability-tiles">
+            <div class="cap-tile">
+              <div class="cap-tile-num">01</div>
+              <div class="cap-tile-icon"><i class="fas fa-database"></i></div>
+              <div class="cap-tile-title">
+                Salesforce CRM Design &amp; Build
+              </div>
+              <p class="cap-tile-text">
+                Objects, fields and automation built around your actual
+                workflows â€” not generic templates.
+              </p>
             </div>
-            <div class="hero-strategy-pill">
-              <strong>Web Design</strong>
-              Professional, accessible websites designed to communicate your
-              mission, services and impact.
+            <div class="cap-tile">
+              <div class="cap-tile-num">02</div>
+              <div class="cap-tile-icon">
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <div class="cap-tile-title">Professional Web Design</div>
+              <p class="cap-tile-text">
+                Responsive, accessible websites that communicate your brand and
+                convert visitors into clients.
+              </p>
             </div>
-            <div class="hero-strategy-pill">
-              <strong>Income</strong>
-              Trust and foundation fundraising grounded in research, realistic
-              pipelines and strong governance.
+            <div class="cap-tile">
+              <div class="cap-tile-num">03</div>
+              <div class="cap-tile-icon"><i class="fas fa-seedling"></i></div>
+              <div class="cap-tile-title">
+                Trust &amp; Foundation Fundraising
+              </div>
+              <p class="cap-tile-text">
+                Realistic pipelines, evidence-rich bids and clear governance for
+                institutional funders.
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- What We Do -->
-      <section class="section flow-section">
-        <div class="container">
-          <h2 class="section-title">What Versed Global does</h2>
-          <p class="section-intro">
-            Versed Global closes the gap between robust systems, effective
-            digital presence and sustainable income by aligning Salesforce CRM
-            and web design with real-world fundraising, programme and reporting
-            needs.
-          </p>
-
-          <div class="capability-rail">
-            <div class="capability-track">
-              <div class="capability-pill">
-                <div class="capability-label">Capability 1</div>
-                <div class="capability-title">
-                  Salesforce CRM design &amp; build
-                </div>
-                <p class="capability-text">
-                  Analysis, architecture and configuration of Salesforce so that
-                  objects, fields and automation match how your organisation
-                  actually operates.
-                </p>
-                <p class="capability-subtext">
-                  Includes requirements gathering, NPSP or core configuration,
-                  data migration planning and role-specific training plans.
-                </p>
+            <div class="cap-tile">
+              <div class="cap-tile-num">04</div>
+              <div class="cap-tile-icon">
+                <i class="fas fa-project-diagram"></i>
               </div>
-
-              <div class="capability-pill">
-                <div class="capability-label">Capability 2</div>
-                <div class="capability-title">
-                  Professional web design for businesses
-                </div>
-                <p class="capability-text">
-                  Custom website design and development that communicates your
-                  brand, services and impact with clarity and professionalism.
-                </p>
-                <p class="capability-subtext">
-                  Responsive, accessible websites built with modern standards
-                  &ndash; from landing pages to full business sites, designed to
-                  convert visitors into clients or supporters.
-                </p>
+              <div class="cap-tile-title">Integrated Digital Systems</div>
+              <p class="cap-tile-text">
+                Joining Salesforce with websites, finance and delivery so income
+                and reporting share one data source.
+              </p>
+            </div>
+            <div class="cap-tile">
+              <div class="cap-tile-num">05</div>
+              <div class="cap-tile-icon">
+                <i class="fas fa-chalkboard-teacher"></i>
               </div>
-
-              <div class="capability-pill">
-                <div class="capability-label">Capability 3</div>
-                <div class="capability-title">
-                  Trust &amp; foundation fundraising
-                </div>
-                <p class="capability-text">
-                  Strategy, pipeline creation, bid development and reporting for
-                  trusts, foundations and institutional funders.
-                </p>
-                <p class="capability-subtext">
-                  Emphasis on realistic pipelines, evidence-rich cases for
-                  support and clear governance around decision-making.
-                </p>
+              <div class="cap-tile-title">
+                Ongoing Optimisation &amp; Training
               </div>
-
-              <div class="capability-pill">
-                <div class="capability-label">Capability 4</div>
-                <div class="capability-title">
-                  Integrated systems &amp; digital support
-                </div>
-                <p class="capability-text">
-                  Joining up Salesforce with websites, fundraising, delivery and
-                  finance processes, so that income, outcomes and reporting draw
-                  on the same underlying data.
-                </p>
-                <p class="capability-subtext">
-                  Mapping journeys from enquiry to reporting, identifying where
-                  data is duplicated, missed or under-used across digital
-                  touchpoints.
-                </p>
-              </div>
-
-              <div class="capability-pill">
-                <div class="capability-label">Capability 5</div>
-                <div class="capability-title">
-                  Ongoing optimisation &amp; training
-                </div>
-                <p class="capability-text">
-                  Light-touch support, refinements and team training so that
-                  your system and website keep pace with changing programmes and
-                  staffing.
-                </p>
-                <p class="capability-subtext">
-                  Includes periodic health checks, mini projects and targeted
-                  sessions for new starters or new features.
-                </p>
-              </div>
+              <p class="cap-tile-text">
+                Health checks, mini projects and role-specific sessions so your
+                team stays confident and capable.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Who We Work With -->
-      <section class="section flow-section alt">
-        <div class="container">
-          <h2 class="section-title">Who we work with</h2>
-          <p class="section-intro">
-            Versed Global works with mission-driven organisations, businesses,
-            corporates and public-sector teams that need Salesforce, web design
-            and fundraising support to pull in the same direction.
-          </p>
-
-          <div class="sector-rail">
-            <div class="sector-track">
-              <div class="sector-pill">
-                <div class="sector-title">
-                  Charities &amp; social enterprises
-                </div>
-                <p class="sector-text">
-                  Organisations that rely on trusts, foundations and
-                  institutional funders and need joined-up CRM, web presence and
-                  fundraising support that respects limited internal capacity.
-                </p>
-              </div>
-
-              <div class="sector-pill">
-                <div class="sector-title">Businesses &amp; consultancies</div>
-                <p class="sector-text">
-                  Professional service firms, consultancies and businesses that
-                  need modern, credible websites and CRM systems to support
-                  client acquisition, stakeholder engagement and business
-                  development.
-                </p>
-              </div>
-
-              <div class="sector-pill">
-                <div class="sector-title">Corporate organisations</div>
-                <p class="sector-text">
-                  Corporate teams using Salesforce for stakeholder management,
-                  CSR, ESG reporting and partnerships, who need clear,
-                  repeatable processes and visibility across regions or teams.
-                </p>
-              </div>
-
-              <div class="sector-pill">
-                <div class="sector-title">Public-sector institutions</div>
-                <p class="sector-text">
-                  Government and public-sector bodies requiring secure,
-                  well-designed Salesforce systems and websites for programmes,
-                  grants and stakeholder engagement, with strong governance and
-                  audit trails.
-                </p>
-              </div>
-
-              <div class="sector-pill">
-                <div class="sector-title">Education &amp; training bodies</div>
-                <p class="sector-text">
-                  Colleges, training providers and educational institutions that
-                  need to track learners, partners and funders across systems
-                  and digital channels.
-                </p>
-              </div>
-
-              <div class="sector-pill">
-                <div class="sector-title">Collaborative initiatives</div>
-                <p class="sector-text">
-                  Partnerships and consortia where multiple organisations,
-                  funders and delivery partners need a shared picture of
-                  activity, outcomes and learning across digital platforms.
-                </p>
-              </div>
-            </div>
+          <!-- sector chips -->
+          <div class="sector-chips-row">
+            <span class="sector-chips-label">We work with</span>
+            <span class="sector-chip"
+              ><i class="fas fa-heart"></i> Charities &amp; Social
+              Enterprises</span
+            >
+            <span class="sector-chip"
+              ><i class="fas fa-briefcase"></i> Businesses &amp;
+              Consultancies</span
+            >
+            <span class="sector-chip"
+              ><i class="fas fa-building"></i> Corporate Organisations</span
+            >
+            <span class="sector-chip"
+              ><i class="fas fa-landmark"></i> Public Sector</span
+            >
+            <span class="sector-chip"
+              ><i class="fas fa-graduation-cap"></i> Education &amp;
+              Training</span
+            >
+            <span class="sector-chip"
+              ><i class="fas fa-handshake"></i> Collaborative Initiatives</span
+            >
           </div>
         </div>
       </section>
@@ -490,7 +594,6 @@
                       your teams' language, not abstract system labels.
                     </p>
                   </div>
-
                   <div>
                     <div class="why-pill-item-label">Web Design</div>
                     <div class="why-pill-item-title">
@@ -499,10 +602,9 @@
                     <p class="why-pill-item-text">
                       Professional, accessible sites that communicate your
                       mission and convert visitors &ndash; built with modern
-                      standards and designed to grow with your organisation.
+                      standards.
                     </p>
                   </div>
-
                   <div>
                     <div class="why-pill-item-label">Fundraising</div>
                     <div class="why-pill-item-title">
@@ -513,7 +615,6 @@
                       flow so everyone can see what is due, when and why.
                     </p>
                   </div>
-
                   <div>
                     <div class="why-pill-item-label">People</div>
                     <div class="why-pill-item-title">
@@ -521,8 +622,8 @@
                     </div>
                     <p class="why-pill-item-text">
                       Training and materials are written in plain language so
-                      staff can use Salesforce, your website and fundraising
-                      tools with confidence.
+                      staff can use Salesforce and fundraising tools with
+                      confidence.
                     </p>
                   </div>
                 </div>
@@ -532,7 +633,7 @@
         </div>
       </section>
 
-      <!-- What We Deliver – Visual Showcase -->
+      <!-- What We Deliver â€“ Visual Showcase -->
       <section class="section alt">
         <div class="container">
           <h2 class="section-title">What we deliver</h2>
@@ -645,7 +746,6 @@
                 not just internal metrics.
               </p>
             </div>
-
             <div class="value">
               <i class="fas fa-balance-scale" aria-hidden="true"></i>
               <h3>Integrity</h3>
@@ -654,7 +754,6 @@
                 privacy and governance shape how every engagement is delivered.
               </p>
             </div>
-
             <div class="value">
               <i class="fas fa-people-arrows" aria-hidden="true"></i>
               <h3>Equity</h3>
@@ -664,7 +763,6 @@
                 built into our practice.
               </p>
             </div>
-
             <div class="value">
               <i class="fas fa-award" aria-hidden="true"></i>
               <h3>Excellence</h3>
@@ -674,7 +772,6 @@
                 fixes.
               </p>
             </div>
-
             <div class="value">
               <i class="fas fa-handshake" aria-hidden="true"></i>
               <h3>Collaboration</h3>
@@ -683,7 +780,6 @@
                 internal capacity instead of creating dependency.
               </p>
             </div>
-
             <div class="value">
               <i class="fas fa-book-reader" aria-hidden="true"></i>
               <h3>Learning</h3>
@@ -696,159 +792,169 @@
         </div>
       </section>
 
-      <!-- FAQ -->
-      <section class="section alt">
+      <!-- ============================================================
+           FAQ â€“ COMPACT PILL GRID
+           ============================================================ -->
+      <section class="section alt faq-compact-section">
         <div class="container">
-          <h2 class="section-title">Frequently asked questions</h2>
-          <p class="section-intro">
-            Find answers to common questions about our services, process and
-            support.
-          </p>
-          <div class="faq-section">
-            <div class="faq-item">
+          <div class="faq-compact-header">
+            <h2 class="section-title">Frequently asked questions</h2>
+            <p class="faq-compact-sub">
+              Click any question to expand the answer.
+            </p>
+          </div>
+
+          <div class="faq-pill-grid" role="list">
+            <div class="faq-pill" role="listitem">
               <div
-                class="faq-question"
+                class="faq-pill-q"
                 role="button"
                 tabindex="0"
                 aria-expanded="false"
               >
                 <span>What is included in a Salesforce implementation?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  Our Salesforce implementations include comprehensive needs
-                  analysis, system design, data migration, configuration, user
-                  training and ongoing support. We tailor the scope to match
-                  your organisation's specific requirements and budget.
+                  Our implementations include needs analysis, system design,
+                  data migration, configuration, user training and ongoing
+                  support â€” all scoped to your requirements and budget.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-pill" role="listitem">
               <div
-                class="faq-question"
+                class="faq-pill-q"
                 role="button"
                 tabindex="0"
                 aria-expanded="false"
               >
                 <span>Do you design websites for businesses?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  Yes, Versed Global provides professional web design services
-                  for businesses, charities and public-sector organisations. We
-                  create responsive, accessible websites that effectively
-                  communicate your services, values and impact &ndash; from
-                  single landing pages to complete business websites.
+                  Yes â€” for businesses, charities and public-sector
+                  organisations. From single landing pages to complete business
+                  websites, all responsive and accessible.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-pill" role="listitem">
               <div
-                class="faq-question"
+                class="faq-pill-q"
                 role="button"
                 tabindex="0"
                 aria-expanded="false"
               >
                 <span>Can you support fundraising strategy and delivery?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  Yes. We help design fundraising strategies, build realistic
-                  prospect pipelines, support bid writing and establish
-                  governance so that funding plans are practical and
-                  deliverable, not just aspirational targets.
+                  Yes. We design strategies, build prospect pipelines, support
+                  bid writing and establish governance so funding plans are
+                  practical and deliverable.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-pill" role="listitem">
               <div
-                class="faq-question"
+                class="faq-pill-q"
                 role="button"
                 tabindex="0"
                 aria-expanded="false"
               >
                 <span>Who do you typically work with?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  We work with charities, social enterprises, businesses,
-                  corporates and public-sector teams that need Salesforce, web
-                  design and fundraising support to move in the same direction,
-                  rather than working in silos.
+                  Charities, social enterprises, businesses, corporates and
+                  public-sector teams that need Salesforce, web design and
+                  fundraising to move in the same direction.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-pill" role="listitem">
               <div
-                class="faq-question"
+                class="faq-pill-q"
                 role="button"
                 tabindex="0"
                 aria-expanded="false"
               >
                 <span>How long does a typical Salesforce project take?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  Project timelines vary depending on complexity and scope. A
-                  basic implementation typically takes 8&ndash;12 weeks, while
-                  more complex integrations may take 12&ndash;20 weeks. We'll
-                  provide a detailed timeline during the scoping phase.
+                  A basic implementation typically takes 8&ndash;12 weeks; more
+                  complex integrations 12&ndash;20 weeks. A detailed timeline is
+                  provided during scoping.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-pill" role="listitem">
               <div
-                class="faq-question"
+                class="faq-pill-q"
                 role="button"
                 tabindex="0"
                 aria-expanded="false"
               >
                 <span>Do you work with the Nonprofit Success Pack (NPSP)?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  Yes, we specialise in NPSP configuration for charities and
-                  nonprofits. We have extensive experience with accounts,
-                  contacts, donations, relationships and all NPSP functionality
-                  tailored to nonprofit fundraising requirements.
+                  Yes, we specialise in NPSP configuration â€” accounts, contacts,
+                  donations, relationships and all functionality tailored to
+                  nonprofit fundraising.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-pill" role="listitem">
               <div
-                class="faq-question"
+                class="faq-pill-q"
                 role="button"
                 tabindex="0"
                 aria-expanded="false"
               >
                 <span>What support do you provide after implementation?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  We offer comprehensive post-launch support including user
-                  training, system optimisation, troubleshooting, and strategic
-                  advice. Support packages can be customised as ongoing
-                  retainers or project-based.
+                  Comprehensive post-launch support: user training, system
+                  optimisation, troubleshooting and strategic advice â€” available
+                  as retainers or project-based packages.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-pill" role="listitem">
               <div
-                class="faq-question"
+                class="faq-pill-q"
                 role="button"
                 tabindex="0"
                 aria-expanded="false"
@@ -856,42 +962,53 @@
                 <span
                   >How can fundraising strategy integrate with Salesforce?</span
                 >
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
-                  We design your CRM to support your fundraising workflows, from
+                  We design your CRM to support fundraising workflows â€” from
                   prospect research and pipeline management to grant tracking
-                  and reporting. This alignment ensures your system enables, not
-                  hinders, your fundraising programme.
+                  and reporting â€” so the system enables rather than hinders.
                 </p>
               </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-pill" role="listitem">
               <div
-                class="faq-question"
+                class="faq-pill-q"
                 role="button"
                 tabindex="0"
                 aria-expanded="false"
               >
                 <span>Can you help migrate data from our current system?</span>
-                <div class="faq-toggle">+</div>
+                <div class="faq-pill-icon" aria-hidden="true">
+                  <i class="fas fa-plus"></i>
+                </div>
               </div>
-              <div class="faq-answer">
+              <div class="faq-pill-a" aria-hidden="true">
                 <p>
                   Yes. We handle data assessment, cleansing, mapping and
-                  migration from existing systems. We ensure data integrity
-                  throughout the process and validate all migrated records
-                  before go-live.
+                  migration from existing systems, validating all records before
+                  go-live.
                 </p>
               </div>
             </div>
           </div>
+          <!-- /.faq-pill-grid -->
+
+          <div class="faq-nudge">
+            <i class="fas fa-comment-dots"></i>
+            <span
+              >Still have a question? <a href="contact.html">Get in touch</a> â€”
+              we're happy to help.</span
+            >
+          </div>
         </div>
       </section>
 
-      <!-- Redesigned CTA Section -->
+      <!-- CTA -->
       <section class="section alt">
         <div class="container cta-grid">
           <div class="cta-content">
@@ -900,9 +1017,9 @@
             </h2>
             <p class="section-intro">
               Versed Global is a UK-registered consultancy delivering
-              project-based and ongoing Salesforce, web design and
-              fundraisingsupport for mission-driven organisations, businesses,
-              corporates and public-sector teams.
+              project-based and ongoing Salesforce, web design and fundraising
+              support for mission-driven organisations, businesses, corporates
+              and public-sector teams.
             </p>
             <div class="cta-actions">
               <a href="contact.html" class="btn btn-primary"
@@ -921,7 +1038,6 @@
     <footer>
       <div class="footer-container">
         <div class="footer-content">
-          <!-- About Section -->
           <div class="footer-section">
             <div class="footer-logo">
               <img src="images/versed-global-logo.png" alt="Versed Global" />
@@ -966,28 +1082,24 @@
             </div>
           </div>
 
-          <!-- Contact Section -->
           <div class="footer-section">
             <h4>Contact</h4>
             <div class="footer-contact">
               <div>
                 <strong>Phone</strong>
-                <p>
-                  <a href="tel:+447554623171">07554 623171</a>
-                </p>
+                <p><a href="tel:+447554623171">07554 623171</a></p>
               </div>
               <div>
                 <strong>Email</strong>
                 <p>
-                  <a href="mailto:info@versedglobal.com">
-                    info@versedglobal.com
-                  </a>
+                  <a href="mailto:info@versedglobal.com"
+                    >info@versedglobal.com</a
+                  >
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- Address Section -->
           <div class="footer-section">
             <h4>Office Address</h4>
             <address class="footer-address">
@@ -1002,7 +1114,6 @@
             </div>
           </div>
 
-          <!-- Review & Links Section -->
           <div class="footer-section">
             <h4>Leave a Review</h4>
             <p>Help us improve by sharing your experience on Trustpilot.</p>
@@ -1013,8 +1124,6 @@
               <i class="fas fa-star"></i>
               Review on Trustpilot
             </a>
-
-            <!-- TrustBox widget - Review Collector -->
             <div class="footer-trustpilot-widget">
               <div
                 class="trustpilot-widget"
@@ -1033,7 +1142,6 @@
                 >
               </div>
             </div>
-            <!-- End TrustBox widget -->
 
             <h4 class="mt-2">Quick Links</h4>
             <nav class="footer-quick-links" aria-label="Footer quick links">
@@ -1046,7 +1154,6 @@
           </div>
         </div>
 
-        <!-- Footer Divider -->
         <div class="footer-divider">
           <div class="footer-bottom">
             <div>
@@ -1062,28 +1169,41 @@
       </div>
     </footer>
 
-    <!-- External Script First -->
     <script src="script.js"></script>
 
-    <!-- Enhanced Mobile Menu + Supporting Code -->
     <script>
-      // Set current year in footer
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Enhanced Mobile Navigation
+      // Floating data nodes in hero
+      (function spawnNodes() {
+        const container = document.getElementById("heroNodes");
+        if (!container) return;
+        const colors = ["#0891b2", "#22d3ee", "#ea580c", "#fb923c", "#4ade80"];
+        for (let i = 0; i < 18; i++) {
+          const n = document.createElement("div");
+          n.className = "hero-node";
+          n.style.left = Math.random() * 100 + "%";
+          n.style.bottom = "-10px";
+          n.style.animationDuration = 12 + Math.random() * 18 + "s";
+          n.style.animationDelay = Math.random() * 16 + "s";
+          n.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+          n.style.boxShadow = "0 0 10px " + n.style.background;
+          container.appendChild(n);
+        }
+      })();
+
+      // Mobile Navigation
       (function initMobileMenu() {
         const mobileMenuToggle = document.getElementById("mobileMenuToggle");
         const navLinks = document.getElementById("navLinks");
-
         if (!mobileMenuToggle || !navLinks) return;
-
         const toggleMenu = () => {
           const isOpen = navLinks.classList.contains("active");
           navLinks.classList.toggle("active");
           mobileMenuToggle.setAttribute("aria-expanded", String(!isOpen));
           mobileMenuToggle.textContent = isOpen ? "\u2630" : "\u2715";
         };
-
         mobileMenuToggle.addEventListener(
           "touchstart",
           (e) => {
@@ -1092,12 +1212,10 @@
           },
           { passive: false },
         );
-
         mobileMenuToggle.addEventListener("click", (e) => {
           e.preventDefault();
           toggleMenu();
         });
-
         navLinks.querySelectorAll("a").forEach((link) => {
           link.addEventListener("click", () => {
             navLinks.classList.remove("active");
@@ -1105,7 +1223,6 @@
             mobileMenuToggle.textContent = "\u2630";
           });
         });
-
         document.addEventListener("click", (e) => {
           if (
             navLinks.classList.contains("active") &&
@@ -1117,7 +1234,6 @@
             mobileMenuToggle.textContent = "\u2630";
           }
         });
-
         document.addEventListener("keydown", (e) => {
           if (e.key === "Escape" && navLinks.classList.contains("active")) {
             navLinks.classList.remove("active");
@@ -1125,7 +1241,6 @@
             mobileMenuToggle.textContent = "\u2630";
           }
         });
-
         window.addEventListener("resize", () => {
           if (
             window.innerWidth >= 768 &&
@@ -1138,7 +1253,7 @@
         });
       })();
 
-      // Update active nav link based on current page
+      // Active nav link
       (function updateActiveNav() {
         const currentPage = window.location.pathname;
         document.querySelectorAll(".nav-links a").forEach((link) => {
@@ -1156,41 +1271,38 @@
         });
       })();
 
-      // FAQ toggle functionality
-      document.querySelectorAll(".faq-question").forEach((question) => {
-        question.addEventListener("click", function () {
-          const faqItem = this.parentElement;
-          const isActive = faqItem.classList.contains("active");
-          const toggle = this.querySelector(".faq-toggle");
+      // Compact FAQ pill toggle
+      document.querySelectorAll(".faq-pill-q").forEach((btn) => {
+        const toggle = () => {
+          const pill = btn.closest(".faq-pill");
+          const answer = pill.querySelector(".faq-pill-a");
+          const isOpen = pill.classList.contains("open");
 
-          // Close all other FAQ items
-          document.querySelectorAll(".faq-item").forEach((item) => {
-            if (item !== faqItem) {
-              item.classList.remove("active");
-              const itemToggle = item.querySelector(".faq-toggle");
-              if (itemToggle) itemToggle.textContent = "+";
-              const itemQuestion = item.querySelector(".faq-question");
-              if (itemQuestion)
-                itemQuestion.setAttribute("aria-expanded", "false");
+          // close all others
+          document.querySelectorAll(".faq-pill.open").forEach((p) => {
+            if (p !== pill) {
+              p.classList.remove("open");
+              p.querySelector(".faq-pill-q").setAttribute(
+                "aria-expanded",
+                "false",
+              );
+              p.querySelector(".faq-pill-a").setAttribute(
+                "aria-hidden",
+                "true",
+              );
             }
           });
 
-          // Toggle the clicked FAQ item
-          if (!isActive) {
-            faqItem.classList.add("active");
-            if (toggle) toggle.textContent = "\u2212";
-            this.setAttribute("aria-expanded", "true");
-          } else {
-            faqItem.classList.remove("active");
-            if (toggle) toggle.textContent = "+";
-            this.setAttribute("aria-expanded", "false");
-          }
-        });
+          pill.classList.toggle("open", !isOpen);
+          btn.setAttribute("aria-expanded", String(!isOpen));
+          answer.setAttribute("aria-hidden", String(isOpen));
+        };
 
-        question.addEventListener("keypress", function (e) {
+        btn.addEventListener("click", toggle);
+        btn.addEventListener("keydown", (e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            this.click();
+            toggle();
           }
         });
       });
