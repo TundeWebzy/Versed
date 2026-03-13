@@ -1670,6 +1670,1295 @@ function initFAQAccordion() {
   });
 }
 
+// ========== 35. CURSOR GLOW EFFECT ==========
+// Renders a radial glow that follows the mouse cursor.
+// Activate on any element by adding the attribute: data-cursor-glow
+// Optional: data-cursor-glow-color="#0891b2"  data-cursor-glow-size="300"
+// Or enable site-wide by calling initCursorGlow() with no arguments.
+function initCursorGlow(options = {}) {
+  // Skip on touch-only devices
+  const isTouch = "ontouchstart" in window && navigator.maxTouchPoints > 0;
+  if (isTouch) return;
+  if (prefersReducedMotion()) return;
+
+  const {
+    selector = "[data-cursor-glow], body",
+    color = null, // falls back to element's data-cursor-glow-color or default
+    size = null, // falls back to data-cursor-glow-size or 280
+    opacity = 0.18,
+    zIndex = 0,
+    blend = "normal",
+  } = options;
+
+  // Inject shared styles once
+  if (!qs("#vg-cursor-glow-styles")) {
+    const style = document.createElement("style");
+    style.id = "vg-cursor-glow-styles";
+    style.textContent = `
+      .vg-cursor-glow-host { position: relative; overflow: hidden; }
+      .vg-cursor-glow-orb {
+        pointer-events: none;
+        position: absolute;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s ease, width 0.15s ease, height 0.15s ease;
+        will-change: transform, opacity;
+        mix-blend-mode: normal;
+        z-index: 0;
+        opacity: 0;
+      }
+      .vg-cursor-glow-orb.visible { opacity: 1; }
+    `;
+    document.head.appendChild(style);
+  }
+
+  const targets = qsa(selector);
+  // If selector matched nothing meaningful, try body
+  const els = targets.length ? targets : [document.body];
+
+  els.forEach((el) => {
+    if (el.dataset.cursorGlowInit === "true") return;
+    el.dataset.cursorGlowInit = "true";
+
+    const glowColor = color || el.dataset.cursorGlowColor || "#0891b2";
+    const glowSize = parseInt(size || el.dataset.cursorGlowSize || "280", 10);
+
+    // Make sure the host is positioned
+    const pos = getComputedStyle(el).position;
+    if (pos === "static") el.style.position = "relative";
+    el.classList.add("vg-cursor-glow-host");
+
+    const orb = document.createElement("div");
+    orb.className = "vg-cursor-glow-orb";
+    orb.style.cssText = `
+      width: ${glowSize}px;
+      height: ${glowSize}px;
+      background: radial-gradient(circle, ${glowColor} 0%, transparent 70%);
+      opacity: 0;
+      mix-blend-mode: ${blend};
+      z-index: ${zIndex};
+    `;
+    el.appendChild(orb);
+
+    const onMove = throttle((e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      orb.style.left = `${x}px`;
+      orb.style.top = `${y}px`;
+      orb.style.opacity = String(opacity);
+      orb.classList.add("visible");
+    }, 16);
+
+    const onLeave = () => {
+      orb.style.opacity = "0";
+      orb.classList.remove("visible");
+    };
+
+    el.addEventListener("mousemove", onMove, { passive: true });
+    el.addEventListener("mouseleave", onLeave, { passive: true });
+  });
+}
+
+// ========== 36. TEXT SCRAMBLE EFFECT ==========
+// Animates text with a randomised character scramble before revealing final text.
+// Usage (HTML): <span data-scramble>Your Text Here</span>
+// Options via data attributes:
+//   data-scramble-chars  — custom character pool (default: alphanumeric + symbols)
+//   data-scramble-speed  — frame interval in ms (default: 40)
+//   data-scramble-cycles — scramble iterations per character (default: 8)
+// Or call: scrambleText(element, "New text", { speed, cycles, chars })
+class TextScrambler {
+  constructor(el, options = {}) {
+    this.el = el;
+    this.chars =
+      options.chars ||
+      el.dataset.scrambleChars ||
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*<>[]{}";
+    this.speed = parseInt(
+      options.speed || el.dataset.scrambleSpeed || "40",
+      10,
+    );
+    this.cycles = parseInt(
+      options.cycles || el.dataset.scrambleCycles || "8",
+      10,
+    );
+    this._raf = null;
+  }
+
+  scramble(newText) {
+    const finalText = newText !== undefined ? newText : this.el.textContent;
+    const length = finalText.length;
+    let frame = 0;
+    // How many total frames until each position resolves
+    const resolveAt = Array.from({ length }, (_, i) =>
+      Math.floor((i / length) * length * this.cycles + this.cycles),
+    );
+    const totalFrames = resolveAt[length - 1] + 1;
+
+    if (this._raf) clearInterval(this._raf);
+
+    this._raf = setInterval(() => {
+      let output = "";
+      for (let i = 0; i < length; i++) {
+        if (frame >= resolveAt[i]) {
+          output += finalText[i];
+        } else {
+          output += this.chars[Math.floor(Math.random() * this.chars.length)];
+        }
+      }
+      this.el.textContent = output;
+      frame++;
+      if (frame > totalFrames) {
+        clearInterval(this._raf);
+        this.el.textContent = finalText;
+      }
+    }, this.speed);
+  }
+
+  cancel() {
+    if (this._raf) clearInterval(this._raf);
+  }
+}
+
+// Global helper
+window.scrambleText = (el, text, opts = {}) => {
+  const s = new TextScrambler(el, opts);
+  s.scramble(text);
+  return s;
+};
+
+function initTextScramble() {
+  const els = qsa("[data-scramble]");
+  if (!els.length) return;
+  if (prefersReducedMotion()) return;
+
+  if (typeof IntersectionObserver !== "undefined") {
+    const io = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const scrambler = new TextScrambler(el);
+          scrambler.scramble();
+          obs.unobserve(el);
+        });
+      },
+      { threshold: 0.4 },
+    );
+    els.forEach((el) => io.observe(el));
+  } else {
+    els.forEach((el) => new TextScrambler(el).scramble());
+  }
+}
+
+// ========== 37. KEYBOARD NAVIGATION HELPER ==========
+// Shows a subtle on-screen guide when a user navigates by keyboard (Tab key).
+// The guide lists common shortcuts and highlights focusable elements.
+// It auto-hides after 6 s of no keyboard activity, or on mouse use.
+// Respects prefers-reduced-motion; skips on touch-only devices.
+function initKeyboardNavHelper() {
+  if (prefersReducedMotion()) return;
+
+  let isKeyboardUser = false;
+  let helpVisible = false;
+  let hideTimeout = null;
+
+  // ---- Inject styles ----
+  const style = document.createElement("style");
+  style.textContent = `
+    #vg-kb-helper {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      background: rgba(15, 23, 42, 0.95);
+      color: #e2e8f0;
+      border: 1px solid rgba(8, 145, 178, 0.4);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      z-index: 9999;
+      max-width: 280px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+      backdrop-filter: blur(8px);
+    }
+    #vg-kb-helper.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    #vg-kb-helper h4 {
+      margin: 0 0 8px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #0891b2;
+      font-weight: 700;
+    }
+    #vg-kb-helper table { border-collapse: collapse; width: 100%; }
+    #vg-kb-helper td { padding: 2px 6px 2px 0; vertical-align: top; }
+    #vg-kb-helper td:first-child { white-space: nowrap; }
+    #vg-kb-helper kbd {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-size: 0.75rem;
+      font-family: monospace;
+      color: #f1f5f9;
+    }
+    #vg-kb-helper .kb-close {
+      display: block;
+      margin-top: 10px;
+      text-align: right;
+      font-size: 0.7rem;
+      color: #64748b;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+    #vg-kb-helper .kb-close:hover { color: #94a3b8; }
+
+    /* Highlight ring on focused elements when keyboard-navigating */
+    body.vg-keyboard-nav :focus:not([data-no-focus-ring]) {
+      outline: 2px solid #0891b2 !important;
+      outline-offset: 3px !important;
+      box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.2) !important;
+      border-radius: 4px;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // ---- Build panel ----
+  const panel = document.createElement("div");
+  panel.id = "vg-kb-helper";
+  panel.setAttribute("role", "complementary");
+  panel.setAttribute("aria-label", "Keyboard navigation shortcuts");
+  panel.innerHTML = `
+    <h4>⌨️ Keyboard Shortcuts</h4>
+    <table>
+      <tr><td><kbd>Tab</kbd></td><td>Next focusable element</td></tr>
+      <tr><td><kbd>Shift+Tab</kbd></td><td>Previous element</td></tr>
+      <tr><td><kbd>Enter</kbd> / <kbd>Space</kbd></td><td>Activate button / link</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Close menu / modal</td></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Scroll page</td></tr>
+      <tr><td><kbd>/</kbd></td><td>Focus search (if present)</td></tr>
+    </table>
+    <span class="kb-close" tabindex="0" role="button" aria-label="Dismiss keyboard helper">Dismiss</span>
+  `;
+  document.body.appendChild(panel);
+
+  const closeBtn = qs(".kb-close", panel);
+
+  const showPanel = () => {
+    if (helpVisible) return;
+    helpVisible = true;
+    panel.classList.add("visible");
+    resetHideTimer();
+  };
+
+  const hidePanel = () => {
+    helpVisible = false;
+    panel.classList.remove("visible");
+    if (hideTimeout) clearTimeout(hideTimeout);
+  };
+
+  const resetHideTimer = () => {
+    if (hideTimeout) clearTimeout(hideTimeout);
+    hideTimeout = setTimeout(hidePanel, 6000);
+  };
+
+  // Show on first Tab keypress
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Tab") {
+      if (!isKeyboardUser) {
+        isKeyboardUser = true;
+        document.body.classList.add("vg-keyboard-nav");
+        showPanel();
+      } else {
+        resetHideTimer();
+      }
+    }
+    // "/" shortcut: focus first search input
+    if (
+      e.key === "/" &&
+      !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)
+    ) {
+      const searchInput = qs(
+        'input[type="search"], input[name="search"], input[placeholder*="earch" i]',
+      );
+      if (searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+      }
+    }
+  });
+
+  // Hide on mouse activity
+  document.addEventListener("mousedown", () => {
+    if (isKeyboardUser) {
+      isKeyboardUser = false;
+      document.body.classList.remove("vg-keyboard-nav");
+      hidePanel();
+    }
+  });
+
+  closeBtn.addEventListener("click", hidePanel);
+  closeBtn.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      hidePanel();
+    }
+  });
+}
+
+// ========== 38. TYPEWRITER EFFECT ==========
+// Animates text character-by-character, with optional multi-phrase looping.
+//
+// HTML usage:
+//   Single phrase  : <span data-typewriter="Hello World"></span>
+//   Multi-phrase   : <span data-typewriter='["Phrase one","Phrase two","Phrase three"]'></span>
+//
+// Optional data attributes:
+//   data-typewriter-speed   — ms per character typed   (default: 60)
+//   data-typewriter-delete  — ms per character deleted (default: 35)
+//   data-typewriter-pause   — ms to pause after typing (default: 1800)
+//   data-typewriter-cursor  — cursor character          (default: "|")
+//   data-typewriter-loop    — "false" to disable loop  (default: true)
+//
+// Or call: typewriterEffect(element, phrases, options)
+class Typewriter {
+  constructor(el, phrases, options = {}) {
+    this.el = el;
+    this.phrases = Array.isArray(phrases) ? phrases : [phrases];
+    this.speed = parseInt(
+      options.speed || el.dataset.typewriterSpeed || "60",
+      10,
+    );
+    this.delSpeed = parseInt(
+      options.delete || el.dataset.typewriterDelete || "35",
+      10,
+    );
+    this.pause = parseInt(
+      options.pause || el.dataset.typewriterPause || "1800",
+      10,
+    );
+    this.cursor =
+      options.cursor !== undefined
+        ? options.cursor
+        : el.dataset.typewriterCursor !== undefined
+          ? el.dataset.typewriterCursor
+          : "|";
+    this.loop =
+      (options.loop !== undefined
+        ? options.loop
+        : el.dataset.typewriterLoop) !== "false";
+
+    this.phraseIndex = 0;
+    this.charIndex = 0;
+    this.isDeleting = false;
+    this._timeout = null;
+    this._running = false;
+
+    // Wrap in a span so cursor sits outside typed text
+    this.el.innerHTML = "";
+    this.textNode = document.createElement("span");
+    this.cursorNode = document.createElement("span");
+    this.cursorNode.className = "tw-cursor";
+    this.cursorNode.setAttribute("aria-hidden", "true");
+    this.cursorNode.textContent = this.cursor;
+    this.el.appendChild(this.textNode);
+    this.el.appendChild(this.cursorNode);
+
+    // Inject cursor blink style once
+    if (!qs("#vg-typewriter-styles")) {
+      const s = document.createElement("style");
+      s.id = "vg-typewriter-styles";
+      s.textContent = `
+        .tw-cursor {
+          display: inline-block;
+          margin-left: 1px;
+          animation: tw-blink 0.75s step-end infinite;
+          color: inherit;
+          opacity: 0.9;
+        }
+        @keyframes tw-blink {
+          0%, 100% { opacity: 1; }
+          50%       { opacity: 0; }
+        }
+        .tw-cursor.tw-done { animation: none; opacity: 0; }
+      `;
+      document.head.appendChild(s);
+    }
+  }
+
+  start() {
+    if (this._running) return;
+    this._running = true;
+    this._tick();
+  }
+
+  stop() {
+    this._running = false;
+    if (this._timeout) clearTimeout(this._timeout);
+    this.cursorNode.classList.add("tw-done");
+  }
+
+  _tick() {
+    if (!this._running) return;
+
+    const phrase = this.phrases[this.phraseIndex];
+
+    if (this.isDeleting) {
+      // Remove one character
+      this.charIndex = Math.max(0, this.charIndex - 1);
+      this.textNode.textContent = phrase.slice(0, this.charIndex);
+
+      if (this.charIndex === 0) {
+        this.isDeleting = false;
+        this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
+        // If looping is off and we've cycled back, stop
+        if (!this.loop && this.phraseIndex === 0) {
+          this.stop();
+          return;
+        }
+        this._timeout = setTimeout(() => this._tick(), 400);
+      } else {
+        this._timeout = setTimeout(() => this._tick(), this.delSpeed);
+      }
+    } else {
+      // Add one character
+      this.charIndex = Math.min(phrase.length, this.charIndex + 1);
+      this.textNode.textContent = phrase.slice(0, this.charIndex);
+
+      if (this.charIndex === phrase.length) {
+        // Finished typing this phrase
+        if (this.phrases.length === 1 && !this.loop) {
+          // Single phrase, no loop — done
+          this.stop();
+          return;
+        }
+        this.isDeleting = true;
+        this._timeout = setTimeout(() => this._tick(), this.pause);
+      } else {
+        this._timeout = setTimeout(() => this._tick(), this.speed);
+      }
+    }
+  }
+}
+
+// Global helper
+window.typewriterEffect = (el, phrases, opts = {}) => {
+  const tw = new Typewriter(el, phrases, opts);
+  tw.start();
+  return tw;
+};
+
+function initTypewriterEffects() {
+  const els = qsa("[data-typewriter]");
+  if (!els.length) return;
+  if (prefersReducedMotion()) {
+    // Just show the first phrase statically
+    els.forEach((el) => {
+      const raw = el.dataset.typewriter;
+      try {
+        const parsed = JSON.parse(raw);
+        el.textContent = Array.isArray(parsed) ? parsed[0] : raw;
+      } catch {
+        el.textContent = raw;
+      }
+    });
+    return;
+  }
+
+  const startTypewriter = (el) => {
+    const raw = el.dataset.typewriter;
+    let phrases;
+    try {
+      const parsed = JSON.parse(raw);
+      phrases = Array.isArray(parsed) ? parsed : [String(parsed)];
+    } catch {
+      phrases = [raw];
+    }
+    const tw = new Typewriter(el, phrases);
+    tw.start();
+  };
+
+  if (typeof IntersectionObserver !== "undefined") {
+    const io = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          startTypewriter(entry.target);
+          obs.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.3 },
+    );
+    els.forEach((el) => io.observe(el));
+  } else {
+    els.forEach(startTypewriter);
+  }
+}
+
+// ========== 39. CUSTOM CURSOR (BRANDED RING + DOT) ==========
+// Replaces the native cursor with a bold branded ring that smoothly follows
+// the pointer, plus a sharp centre dot that snaps instantly.
+//
+// Brand colours used: #0891b2 (primary), #0e7490 (dark), #67e8f9 (light accent)
+//
+// States:
+//   Default  — visible ring (3px border, 42px) + solid dot (7px)
+//   Hover    — ring fills with a semi-transparent brand wash & scales up
+//   Click    — both elements compress & the dot flashes white
+//   Text     — ring morphs into a slim I-beam indicator
+//   Hidden   — fades out when cursor leaves the viewport
+//   Touch    — entire feature disabled, native cursor restored
+//   Motion   — disabled when prefers-reduced-motion is set
+function initCustomCursor(options = {}) {
+  const isTouch = "ontouchstart" in window && navigator.maxTouchPoints > 0;
+  if (isTouch) return;
+  if (prefersReducedMotion()) return;
+
+  // ---- Brand palette ----
+  const BRAND = options.brandColor || "#0891b2";
+  const BRAND_DARK = options.brandDark || "#0e7490";
+  const BRAND_LIGHT = options.brandLight || "#67e8f9";
+
+  // ---- Config ----
+  const cfg = {
+    dotSize: options.dotSize || 7,
+    ringSize: options.ringSize || 42,
+    ringBorder: options.ringBorder || 3,
+    lerp: options.lerp || 0.14,
+    hoverScale: options.hoverScale || 1.7,
+    clickScale: options.clickScale || 0.72,
+  };
+
+  // ---- Remove any previous instance ----
+  const prevStyle = qs("#vg-custom-cursor-styles");
+  const prevDot = qs("#vg-cursor-dot");
+  const prevRing = qs("#vg-cursor-ring");
+  if (prevStyle) prevStyle.remove();
+  if (prevDot) prevDot.remove();
+  if (prevRing) prevRing.remove();
+
+  // ---- Inject styles ----
+  const style = document.createElement("style");
+  style.id = "vg-custom-cursor-styles";
+  style.textContent = `
+    /* ── Hide native cursor everywhere ── */
+    html.vg-custom-cursor,
+    html.vg-custom-cursor * { cursor: none !important; }
+
+    /* ── Shared base ── */
+    #vg-cursor-dot,
+    #vg-cursor-ring {
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      border-radius: 50%;
+      z-index: 999999;
+      will-change: transform;
+      /* start hidden until first mousemove */
+      opacity: 0;
+    }
+
+    /* ── Centre dot — snaps instantly, no transition ── */
+    #vg-cursor-dot {
+      width: ${cfg.dotSize}px;
+      height: ${cfg.dotSize}px;
+      background: ${BRAND};
+      box-shadow:
+        0 0 0 2px rgba(8,145,178,0.25),
+        0 0 10px rgba(8,145,178,0.55);
+      transition: opacity 0.25s ease,
+                  background 0.15s ease,
+                  box-shadow 0.15s ease;
+    }
+
+    /* ── Outer ring — lerp-smoothed, CSS handles size/color changes ── */
+    #vg-cursor-ring {
+      width: ${cfg.ringSize}px;
+      height: ${cfg.ringSize}px;
+      border: ${cfg.ringBorder}px solid ${BRAND};
+      background: transparent;
+      box-shadow:
+        0 0 0 1px rgba(8,145,178,0.12),
+        inset 0 0 0 1px rgba(8,145,178,0.08),
+        0 0 18px rgba(8,145,178,0.22);
+      transition:
+        opacity        0.3s  ease,
+        width          0.22s cubic-bezier(0.34,1.56,0.64,1),
+        height         0.22s cubic-bezier(0.34,1.56,0.64,1),
+        background     0.2s  ease,
+        border-color   0.2s  ease,
+        box-shadow     0.2s  ease,
+        border-radius  0.2s  ease;
+    }
+
+    /* ── Visible state (set after first mousemove) ── */
+    #vg-cursor-dot.is-visible  { opacity: 1; }
+    #vg-cursor-ring.is-visible { opacity: 1; }
+
+    /* ── Hover over interactive elements ── */
+    #vg-cursor-ring.is-hovering {
+      width:      ${cfg.ringSize * cfg.hoverScale}px;
+      height:     ${cfg.ringSize * cfg.hoverScale}px;
+      background: rgba(8,145,178,0.10);
+      border-color: ${BRAND_LIGHT};
+      box-shadow:
+        0 0 0 1px rgba(103,232,249,0.2),
+        0 0 28px rgba(8,145,178,0.35),
+        inset 0 0 16px rgba(8,145,178,0.08);
+    }
+    #vg-cursor-dot.is-hovering {
+      background: ${BRAND_LIGHT};
+      box-shadow:
+        0 0 0 3px rgba(103,232,249,0.3),
+        0 0 14px rgba(103,232,249,0.6);
+    }
+
+    /* ── Click feedback ── */
+    #vg-cursor-dot.is-clicking {
+      background: #ffffff;
+      box-shadow:
+        0 0 0 3px rgba(8,145,178,0.5),
+        0 0 20px rgba(8,145,178,0.8);
+      transition: background 0.08s ease, box-shadow 0.08s ease;
+    }
+    #vg-cursor-ring.is-clicking {
+      width:      ${Math.round(cfg.ringSize * cfg.clickScale)}px;
+      height:     ${Math.round(cfg.ringSize * cfg.clickScale)}px;
+      border-color: #ffffff;
+      background: rgba(8,145,178,0.18);
+      transition:
+        width          0.1s  ease,
+        height         0.1s  ease,
+        background     0.1s  ease,
+        border-color   0.1s  ease;
+    }
+
+    /* ── Text-cursor context — ring becomes a thin vertical bar ── */
+    #vg-cursor-ring.is-text {
+      width: 3px;
+      height: ${cfg.ringSize + 8}px;
+      border-radius: 2px;
+      border-color: ${BRAND};
+      background: rgba(8,145,178,0.15);
+    }
+    #vg-cursor-dot.is-text { opacity: 0; }
+
+    /* ── Hidden when leaving viewport ── */
+    #vg-cursor-dot.is-hidden,
+    #vg-cursor-ring.is-hidden {
+      opacity: 0 !important;
+      transition: opacity 0.2s ease !important;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // ---- Create elements ----
+  const dot = document.createElement("div");
+  dot.id = "vg-cursor-dot";
+  document.body.appendChild(dot);
+
+  const ring = document.createElement("div");
+  ring.id = "vg-cursor-ring";
+  document.body.appendChild(ring);
+
+  document.documentElement.classList.add("vg-custom-cursor");
+
+  // ---- State ----
+  let mouseX = -200,
+    mouseY = -200;
+  let ringX = -200,
+    ringY = -200;
+  let hasEntered = false;
+
+  // Selectors that trigger the hover state
+  const HOVER_SEL =
+    'a, button, [role="button"], label, select, ' +
+    'input[type="submit"], input[type="button"], ' +
+    'input[type="checkbox"], input[type="radio"], ' +
+    ".read-more-btn, .filter-btn, .expand-toggle, " +
+    ".nav-links a, .btn, [data-cursor-hover]";
+
+  // Selectors that trigger the text state
+  const TEXT_SEL =
+    "p, h1, h2, h3, h4, h5, h6, li, span, td, th, " +
+    'input[type="text"], input[type="email"], input[type="tel"], ' +
+    'input[type="search"], textarea, [contenteditable]';
+
+  // ---- rAF loop — only ring lerps, dot is set directly in mousemove ----
+  const animate = () => {
+    ringX += (mouseX - ringX) * cfg.lerp;
+    ringY += (mouseY - ringY) * cfg.lerp;
+    // Use translate3d for GPU compositing
+    dot.style.transform = `translate3d(${mouseX}px,${mouseY}px,0) translate(-50%,-50%)`;
+    ring.style.transform = `translate3d(${ringX}px,${ringY}px,0) translate(-50%,-50%)`;
+    requestAnimationFrame(animate);
+  };
+  requestAnimationFrame(animate);
+
+  // ---- Mouse move ----
+  document.addEventListener(
+    "mousemove",
+    (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!hasEntered) {
+        // Snap ring to cursor on first appearance so it doesn't fly in from 0,0
+        ringX = mouseX;
+        ringY = mouseY;
+        hasEntered = true;
+        dot.classList.add("is-visible");
+        ring.classList.add("is-visible");
+      }
+      dot.classList.remove("is-hidden");
+      ring.classList.remove("is-hidden");
+    },
+    { passive: true },
+  );
+
+  // ---- Hover over interactive elements ----
+  document.addEventListener(
+    "mouseover",
+    (e) => {
+      const el = e.target;
+      if (el.closest(HOVER_SEL)) {
+        ring.classList.add("is-hovering");
+        dot.classList.add("is-hovering");
+        ring.classList.remove("is-text");
+        dot.classList.remove("is-text");
+      } else if (el.closest(TEXT_SEL)) {
+        ring.classList.add("is-text");
+        dot.classList.add("is-text");
+        ring.classList.remove("is-hovering");
+        dot.classList.remove("is-hovering");
+      }
+    },
+    { passive: true },
+  );
+
+  document.addEventListener(
+    "mouseout",
+    (e) => {
+      const el = e.target;
+      if (el.closest(HOVER_SEL)) {
+        ring.classList.remove("is-hovering");
+        dot.classList.remove("is-hovering");
+      } else if (el.closest(TEXT_SEL)) {
+        ring.classList.remove("is-text");
+        dot.classList.remove("is-text");
+      }
+    },
+    { passive: true },
+  );
+
+  // ---- Click feedback ----
+  document.addEventListener(
+    "mousedown",
+    () => {
+      dot.classList.add("is-clicking");
+      ring.classList.add("is-clicking");
+    },
+    { passive: true },
+  );
+
+  document.addEventListener(
+    "mouseup",
+    () => {
+      dot.classList.remove("is-clicking");
+      ring.classList.remove("is-clicking");
+    },
+    { passive: true },
+  );
+
+  // ---- Leave / enter viewport ----
+  document.addEventListener(
+    "mouseleave",
+    () => {
+      dot.classList.add("is-hidden");
+      ring.classList.add("is-hidden");
+    },
+    { passive: true },
+  );
+
+  document.addEventListener(
+    "mouseenter",
+    () => {
+      dot.classList.remove("is-hidden");
+      ring.classList.remove("is-hidden");
+    },
+    { passive: true },
+  );
+}
+
+// ========== 40. MAGNETIC BUTTON EFFECT ==========
+// Buttons with [data-magnetic] gently attract the cursor toward their centre.
+// Optional: data-magnetic-strength="0.35"  (0–1, default 0.3)
+// Touch and reduced-motion safe.
+function initMagneticButtons() {
+  const isTouch = "ontouchstart" in window && navigator.maxTouchPoints > 0;
+  if (isTouch || prefersReducedMotion()) return;
+
+  const magneticEls = qsa("[data-magnetic]");
+  if (!magneticEls.length) return;
+
+  magneticEls.forEach((el) => {
+    const strength = parseFloat(el.dataset.magneticStrength || "0.3");
+
+    el.addEventListener("mousemove", (e) => {
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) * strength;
+      const dy = (e.clientY - cy) * strength;
+      el.style.transform = `translate(${dx}px, ${dy}px)`;
+      el.style.transition = "transform 0.1s ease";
+    });
+
+    el.addEventListener("mouseleave", () => {
+      el.style.transform = "translate(0, 0)";
+      el.style.transition = "transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)";
+    });
+  });
+}
+
+// ========== 41. AMBIENT PARTICLE BACKGROUND ==========
+// Renders a subtle canvas-based particle field behind elements tagged
+// with [data-particles].  Particles drift slowly and connect with
+// faint lines when nearby — giving a live, tech-network feel.
+//
+// HTML: <div data-particles data-particle-color="#0891b2" data-particle-count="60"></div>
+//
+// Options via data attributes:
+//   data-particle-color   — hex/rgb colour  (default: #0891b2)
+//   data-particle-count   — number of dots  (default: 50)
+//   data-particle-speed   — drift speed     (default: 0.4)
+//   data-particle-radius  — dot radius px   (default: 2)
+//   data-particle-connect — max connect dist (default: 120)
+function initParticleBackgrounds() {
+  const isTouch = "ontouchstart" in window && navigator.maxTouchPoints > 0;
+  if (prefersReducedMotion()) return;
+
+  const hosts = qsa("[data-particles]");
+  if (!hosts.length) return;
+
+  hosts.forEach((host) => {
+    // Setup host
+    const pos = getComputedStyle(host).position;
+    if (pos === "static") host.style.position = "relative";
+    host.style.overflow = "hidden";
+
+    const canvas = document.createElement("canvas");
+    canvas.setAttribute("aria-hidden", "true");
+    Object.assign(canvas.style, {
+      position: "absolute",
+      top: "0",
+      left: "0",
+      width: "100%",
+      height: "100%",
+      pointerEvents: "none",
+      zIndex: "0",
+    });
+    host.insertBefore(canvas, host.firstChild);
+
+    const ctx = canvas.getContext("2d");
+    const color = host.dataset.particleColor || "#0891b2";
+    const count = parseInt(host.dataset.particleCount || "50", 10);
+    const speed = parseFloat(host.dataset.particleSpeed || "0.4");
+    const radius = parseFloat(host.dataset.particleRadius || "2");
+    const connectDist = parseInt(host.dataset.particleConnect || "120", 10);
+
+    // Parse color to rgba
+    const hexToRgb = (hex) => {
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      return { r, g, b };
+    };
+    const rgb = color.startsWith("#")
+      ? hexToRgb(color)
+      : { r: 8, g: 145, b: 178 };
+
+    let W = 0,
+      H = 0;
+    let particles = [];
+    let rafId = null;
+
+    const resize = () => {
+      W = canvas.width = host.offsetWidth;
+      H = canvas.height = host.offsetHeight;
+    };
+
+    const createParticles = () => {
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * speed,
+        vy: (Math.random() - 0.5) * speed,
+        a: Math.random() * 0.5 + 0.3,
+      }));
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H);
+
+      // Update + draw dots
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${p.a})`;
+        ctx.fill();
+      });
+
+      // Draw connecting lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < connectDist) {
+            const alpha = (1 - dist / connectDist) * 0.25;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      rafId = requestAnimationFrame(draw);
+    };
+
+    // Pause when off-screen for performance
+    if (typeof IntersectionObserver !== "undefined") {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (!rafId) {
+                resize();
+                if (!particles.length) createParticles();
+                draw();
+              }
+            } else {
+              if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+              }
+            }
+          });
+        },
+        { threshold: 0.01 },
+      );
+      io.observe(host);
+    } else {
+      resize();
+      createParticles();
+      draw();
+    }
+
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        resize();
+        createParticles();
+      }, 300),
+    );
+  });
+}
+
+// ========== 42. SCROLL PROGRESS BAR ==========
+// A thin branded progress bar at the very top of the viewport that fills
+// as the user scrolls from top to bottom of the page.
+// Enable by calling initScrollProgressBar() or adding data-scroll-progress
+// to any element (uses that element's scroll container instead of window).
+function initScrollProgressBar() {
+  if (typeof window === "undefined") return;
+
+  // Inject styles once
+  if (!qs("#vg-scroll-progress-styles")) {
+    const style = document.createElement("style");
+    style.id = "vg-scroll-progress-styles";
+    style.textContent = `
+      #vg-scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 0%;
+        background: linear-gradient(90deg, #0891b2, #67e8f9, #0e7490);
+        background-size: 200% 100%;
+        z-index: 99999;
+        pointer-events: none;
+        transition: width 0.05s linear;
+        animation: vg-progress-shimmer 2.5s linear infinite;
+      }
+      @keyframes vg-progress-shimmer {
+        0%   { background-position: 200% center; }
+        100% { background-position: -200% center; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  const bar = document.createElement("div");
+  bar.id = "vg-scroll-progress";
+  bar.setAttribute("role", "progressbar");
+  bar.setAttribute("aria-label", "Page scroll progress");
+  bar.setAttribute("aria-valuemin", "0");
+  bar.setAttribute("aria-valuemax", "100");
+  document.body.appendChild(bar);
+
+  const update = throttle(() => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    const pct =
+      docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+    bar.style.width = `${pct}%`;
+    bar.setAttribute("aria-valuenow", Math.round(pct));
+  }, 16);
+
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+}
+
+// ========== 43. REVEAL ANIMATIONS (SCROLL-TRIGGERED) ==========
+// Elements tagged with [data-reveal] or common section/card classes fade
+// and slide into view as they enter the viewport.
+//
+// HTML: <div data-reveal>...</div>
+// Optional modifiers:
+//   data-reveal="left"   — slides from left
+//   data-reveal="right"  — slides from right
+//   data-reveal="up"     — slides from below (default)
+//   data-reveal="down"   — slides from above
+//   data-reveal="scale"  — scales up from 90%
+//   data-reveal-delay="200"  — delay in ms before animation starts
+//   data-reveal-duration="600" — duration in ms
+function initRevealAnimations() {
+  if (prefersReducedMotion()) {
+    // Make all revealed elements visible immediately
+    qsa("[data-reveal]").forEach((el) => (el.style.opacity = "1"));
+    return;
+  }
+  if (typeof IntersectionObserver === "undefined") return;
+
+  // Inject styles once
+  if (!qs("#vg-reveal-styles")) {
+    const style = document.createElement("style");
+    style.id = "vg-reveal-styles";
+    style.textContent = `
+      [data-reveal] {
+        opacity: 0;
+        transition-property: opacity, transform;
+        transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+      [data-reveal="up"],
+      [data-reveal=""] ,
+      [data-reveal]:not([data-reveal="left"]):not([data-reveal="right"]):not([data-reveal="down"]):not([data-reveal="scale"]) {
+        transform: translateY(30px);
+      }
+      [data-reveal="down"]  { transform: translateY(-30px); }
+      [data-reveal="left"]  { transform: translateX(-40px); }
+      [data-reveal="right"] { transform: translateX(40px); }
+      [data-reveal="scale"] { transform: scale(0.9); }
+      [data-reveal].is-revealed {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  const els = qsa("[data-reveal]");
+  if (!els.length) return;
+
+  const io = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const delay = parseInt(el.dataset.revealDelay || "0", 10);
+        const duration = parseInt(el.dataset.revealDuration || "700", 10);
+        el.style.transitionDuration = `${duration}ms`;
+        el.style.transitionDelay = `${delay}ms`;
+        // Force reflow
+        void el.offsetHeight;
+        el.classList.add("is-revealed");
+        obs.unobserve(el);
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+  );
+
+  els.forEach((el) => io.observe(el));
+}
+
+// ========== 44. SCROLL INDICATOR (HERO SECTION) ==========
+// Adds an animated scroll-down indicator chevron to any element tagged with
+// [data-scroll-indicator] or .hero-scroll-indicator.
+// Automatically hides when the user scrolls past 200px.
+function initScrollIndicator() {
+  const hosts = qsa("[data-scroll-indicator], .hero-scroll-indicator");
+  if (!hosts.length) return;
+  if (prefersReducedMotion()) return;
+
+  if (!qs("#vg-scroll-indicator-styles")) {
+    const style = document.createElement("style");
+    style.id = "vg-scroll-indicator-styles";
+    style.textContent = `
+      .vg-scroll-chevron {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        opacity: 0.7;
+        cursor: pointer;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+      }
+      .vg-scroll-chevron:hover { opacity: 1; transform: translateY(4px); }
+      .vg-scroll-chevron svg {
+        animation: vg-bounce 1.8s ease-in-out infinite;
+      }
+      @keyframes vg-bounce {
+        0%, 100% { transform: translateY(0); }
+        50%       { transform: translateY(8px); }
+      }
+      .vg-scroll-chevron.hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(10px);
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  hosts.forEach((host) => {
+    // Don't double-init
+    if (host.dataset.scrollIndicatorInit) return;
+    host.dataset.scrollIndicatorInit = "true";
+
+    const chevron = document.createElement("span");
+    chevron.className = "vg-scroll-chevron";
+    chevron.setAttribute("aria-label", "Scroll down");
+    chevron.setAttribute("role", "button");
+    chevron.setAttribute("tabindex", "0");
+    chevron.innerHTML = `
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5"
+           stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    `;
+    host.appendChild(chevron);
+
+    chevron.addEventListener("click", () => {
+      window.scrollBy({ top: window.innerHeight * 0.8, behavior: "smooth" });
+    });
+    chevron.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        window.scrollBy({ top: window.innerHeight * 0.8, behavior: "smooth" });
+      }
+    });
+
+    window.addEventListener(
+      "scroll",
+      throttle(() => {
+        chevron.classList.toggle("hidden", window.scrollY > 200);
+      }, 100),
+      { passive: true },
+    );
+  });
+}
+
+// ========== 45. HORIZONTAL RAIL DRAG-SCROLL ==========
+// Makes any element with [data-drag-scroll] or .drag-scroll horizontally
+// draggable via mouse drag. Works alongside touch-scroll (no conflict).
+// Velocity-based momentum on release for a polished feel.
+function initRailDragScroll() {
+  const rails = qsa("[data-drag-scroll], .drag-scroll");
+  if (!rails.length) return;
+  const isTouch = "ontouchstart" in window && navigator.maxTouchPoints > 0;
+  if (isTouch) return; // native touch handles this
+
+  rails.forEach((rail) => {
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let lastX = 0;
+    let velocity = 0;
+    let momentumId = null;
+
+    rail.style.userSelect = "none";
+    rail.style.cursor = "grab";
+
+    rail.addEventListener("mousedown", (e) => {
+      isDown = true;
+      startX = e.pageX - rail.offsetLeft;
+      scrollLeft = rail.scrollLeft;
+      lastX = e.pageX;
+      velocity = 0;
+      rail.style.cursor = "grabbing";
+      if (momentumId) cancelAnimationFrame(momentumId);
+    });
+
+    document.addEventListener("mouseup", () => {
+      if (!isDown) return;
+      isDown = false;
+      rail.style.cursor = "grab";
+      // Momentum
+      const applyMomentum = () => {
+        velocity *= 0.93;
+        if (Math.abs(velocity) > 0.5) {
+          rail.scrollLeft -= velocity;
+          momentumId = requestAnimationFrame(applyMomentum);
+        }
+      };
+      applyMomentum();
+    });
+
+    rail.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      velocity = e.pageX - lastX;
+      lastX = e.pageX;
+      const x = e.pageX - rail.offsetLeft;
+      const walk = (x - startX) * 1.2;
+      rail.scrollLeft = scrollLeft - walk;
+    });
+
+    rail.addEventListener("mouseleave", () => {
+      if (isDown) {
+        isDown = false;
+        rail.style.cursor = "grab";
+      }
+    });
+  });
+}
+
 // ========== INIT ALL ==========
 document.addEventListener("DOMContentLoaded", () => {
   initDeviceDetection();
@@ -1704,6 +2993,18 @@ document.addEventListener("DOMContentLoaded", () => {
   initTouchCardInteractions();
   initRailDragScroll();
   initPrintHandler();
+
+  // ---- ORIGINAL ENHANCED FEATURES ----
+  initCursorGlow();
+  initTextScramble();
+  initKeyboardNavHelper();
+  initTypewriterEffects();
+  initCustomCursor();
+
+  // ---- NEW TECH FEATURES ----
+  initMagneticButtons();
+  initParticleBackgrounds();
+  initScrollProgressBar();
 
   if (!prefersReducedMotion()) {
     initPageFade();
