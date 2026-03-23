@@ -1063,43 +1063,212 @@
     </style>
   </head>
   <body>
-    <!-- Header -->
+    <div id="scroll-progress"></div>
+
     <header class="header-bar">
-      <div class="header-inner">
-        <div class="logo-area">
-          <a href="index.html" class="logo-link">
-            <img
-              src="images/versed-global-logo.png"
-              alt="Versed Global"
-              class="logo-image"
-            />
-            <span class="logo-text">Versed Global</span>
-          </a>
-          <span class="tagline"
-            >Salesforce CRM, Web Design &amp; Fundraising</span
+      <!-- Top Info Bar -->
+      <div class="header-topbar">
+        <div class="header-topbar-inner">
+          <div class="header-topbar-left">
+            <a href="tel:+447554623171" class="topbar-contact-link">
+              <i class="fas fa-phone"></i>
+              <span>07554 623171</span>
+            </a>
+            <a href="mailto:info@versedglobal.com" class="topbar-contact-link">
+              <i class="fas fa-envelope"></i>
+              <span>info@versedglobal.com</span>
+            </a>
+          </div>
+          <div class="header-topbar-right">
+            <a
+              href="https://linkedin.com/company/versed-global"
+              class="topbar-social"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/versedglobal"
+              class="topbar-social"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="https://www.facebook.com/share/14U4YEg25fN/?mibextid=wwXIfr"
+              class="topbar-social"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Navigation Bar -->
+      <div class="header-mainbar">
+        <!-- Logo row: logo LEFT, hamburger RIGHT — always one clean line -->
+        <div class="header-inner">
+          <div class="logo-area">
+            <a href="index.html" class="logo-link">
+              <img
+                src="images/versed-global-logo.png"
+                alt="Versed Global"
+                class="logo-image"
+              />
+              <span class="logo-text">Versed Global</span>
+            </a>
+            <span class="tagline"
+              >Salesforce CRM, Web Design &amp; Fundraising</span
+            >
+          </div>
+
+          <button
+            class="mobile-menu"
+            id="mobileMenuToggle"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            aria-controls="primary-navigation"
           >
+            <span class="hamburger-icon"><span></span></span>
+          </button>
         </div>
 
-        <button
-          class="mobile-menu"
-          id="mobileMenuToggle"
-          aria-label="Toggle navigation"
-          aria-expanded="false"
-        >
-          &#9776;
-        </button>
-
+        <!-- Nav panel: sits BELOW the logo row on mobile, inline on desktop -->
         <nav class="main-nav" aria-label="Primary navigation">
-          <div class="nav-links" id="navLinks">
-            <a href="index.html" class="active">Home</a>
-            <a href="services.html">Salesforce</a>
-            <a href="website.html">Web Design</a>
-            <a href="fundraising.html">Fundraising</a>
-            <a href="training.html">Training</a>
-            <a href="clients.html">Clients</a>
-            <a href="news.html">News</a>
-            <a href="about.html">About</a>
-            <a href="contact.html" class="nav-cta">Contact</a>
+          <div class="nav-links" id="primary-navigation">
+            <!-- Home -->
+            <div class="nav-item">
+              <a href="index.html" class="nav-link active">Home</a>
+            </div>
+
+            <!-- Services dropdown -->
+            <div class="nav-item has-dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-trigger"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Services <i class="fas fa-chevron-down nav-chevron"></i>
+              </a>
+              <div class="nav-dropdown" role="menu">
+                <a href="services.html" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-item-icon"
+                    ><i class="fas fa-cloud"></i
+                  ></span>
+                  <span class="dropdown-item-text">
+                    <strong>Salesforce CRM</strong>
+                    <small>Implementation &amp; customisation</small>
+                  </span>
+                </a>
+                <a href="website.html" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-item-icon"
+                    ><i class="fas fa-laptop-code"></i
+                  ></span>
+                  <span class="dropdown-item-text">
+                    <strong>Web Design</strong>
+                    <small>Professional websites &amp; portals</small>
+                  </span>
+                </a>
+                <a
+                  href="fundraising.html"
+                  class="dropdown-item"
+                  role="menuitem"
+                >
+                  <span class="dropdown-item-icon"
+                    ><i class="fas fa-hand-holding-heart"></i
+                  ></span>
+                  <span class="dropdown-item-text">
+                    <strong>Fundraising</strong>
+                    <small>Trust &amp; foundation strategy</small>
+                  </span>
+                </a>
+                <a href="training.html" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-item-icon"
+                    ><i class="fas fa-graduation-cap"></i
+                  ></span>
+                  <span class="dropdown-item-text">
+                    <strong>Training &amp; Support</strong>
+                    <small>Salesforce training &amp; admin</small>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Company dropdown -->
+            <div class="nav-item has-dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-trigger"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Company <i class="fas fa-chevron-down nav-chevron"></i>
+              </a>
+              <div class="nav-dropdown" role="menu">
+                <a href="about.html" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-item-icon"
+                    ><i class="fas fa-users"></i
+                  ></span>
+                  <span class="dropdown-item-text">
+                    <strong>About Us</strong>
+                    <small>Our story &amp; mission</small>
+                  </span>
+                </a>
+                <a href="news.html" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-item-icon"
+                    ><i class="fas fa-newspaper"></i
+                  ></span>
+                  <span class="dropdown-item-text">
+                    <strong>News &amp; Insights</strong>
+                    <small>Latest updates &amp; articles</small>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Resources dropdown -->
+            <div class="nav-item has-dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-trigger"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Resources <i class="fas fa-chevron-down nav-chevron"></i>
+              </a>
+              <div class="nav-dropdown" role="menu">
+                <a href="clients.html" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-item-icon"
+                    ><i class="fas fa-briefcase"></i
+                  ></span>
+                  <span class="dropdown-item-text">
+                    <strong>Our Clients</strong>
+                    <small>Case studies &amp; testimonials</small>
+                  </span>
+                </a>
+                <a href="contact.html" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-item-icon"
+                    ><i class="fas fa-comments"></i
+                  ></span>
+                  <span class="dropdown-item-text">
+                    <strong>Get in Touch</strong>
+                    <small>Book a free consultation</small>
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="nav-item">
+              <a href="contact.html" class="nav-link nav-cta">
+                <i class="fas fa-calendar-check"></i> Contact
+              </a>
+            </div>
           </div>
         </nav>
       </div>
@@ -1992,92 +2161,116 @@
     </main>
 
     <!-- Footer -->
-    <footer>
-      <div class="footer-container">
-        <div class="footer-content">
-          <div class="footer-section">
+
+    <footer class="site-footer">
+      <!-- Top section with columns -->
+      <div class="footer-top">
+        <div class="footer-top-inner">
+          <!-- Col 1: Brand -->
+          <div class="footer-col footer-col-brand">
             <div class="footer-logo">
               <img src="images/versed-global-logo.png" alt="Versed Global" />
               <span>Versed Global</span>
             </div>
-            <p class="mb-2">
-              Salesforce CRM implementation, professional web design, and
-              digital governance solutions for charities, businesses, corporates
-              and public-sector organisations.
+            <p class="footer-tagline">
+              Salesforce CRM, professional web design, and digital governance
+              solutions for charities, businesses, and public-sector
+              organisations.
             </p>
-            <div class="social-links">
+            <div class="footer-social">
               <a
                 href="https://linkedin.com/company/versed-global"
-                class="social-link linkedin"
-                title="LinkedIn"
-                rel="noopener noreferrer"
                 target="_blank"
-                aria-label="Visit our LinkedIn page"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
                 ><i class="fab fa-linkedin-in"></i
               ></a>
               <a
                 href="https://www.instagram.com/versedglobal"
-                class="social-link instagram"
-                title="Instagram"
-                rel="noopener noreferrer"
                 target="_blank"
-                aria-label="Visit our Instagram page"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
                 ><i class="fab fa-instagram"></i
               ></a>
               <a
-                href="https://www.facebook.com/share/14U4YEg25nN/?mibextid=wwXIfr"
-                class="social-link facebook"
-                title="Facebook"
-                rel="noopener noreferrer"
+                href="https://www.facebook.com/share/14U4YEg25fN/?mibextid=wwXIfr"
                 target="_blank"
-                aria-label="Visit our Facebook page"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
                 ><i class="fab fa-facebook-f"></i
               ></a>
             </div>
-          </div>
-
-          <div class="footer-section">
-            <h4>Contact</h4>
-            <div class="footer-contact">
-              <div>
-                <strong>Phone</strong>
-                <p><a href="tel:+447554623171">07554 623171</a></p>
-              </div>
-              <div>
-                <strong>Email</strong>
-                <p>
-                  <a href="mailto:info@versedglobal.com"
-                    >info@versedglobal.com</a
-                  >
-                </p>
-              </div>
+            <div class="footer-contact-quick">
+              <a href="tel:+447554623171"
+                ><i class="fas fa-phone"></i> 07554 623171</a
+              >
+              <a href="mailto:info@versedglobal.com"
+                ><i class="fas fa-envelope"></i>
+                <span
+                  class="__cf_email__"
+                  data-cfemail="3e575058517e485b4c4d5b5a5952515c5f52105d5153"
+                  >info@versedglobal.com</span
+                ></a
+              >
             </div>
           </div>
 
-          <div class="footer-section">
-            <h4>Office Address</h4>
-            <address class="footer-address">
-              <p>29 Crown Way</p>
-              <p>Burgess Hill</p>
-              <p>RH15 8SX</p>
-              <p class="mt-2">England and Wales</p>
-            </address>
-            <div class="company-info mt-2">
-              <p><strong>Registered Company Number:</strong> 16933204</p>
-              <p>VAT Registered | Registered in England and Wales</p>
-            </div>
+          <!-- Col 2: Services -->
+          <div class="footer-col">
+            <h4 class="footer-col-heading">Services</h4>
+            <ul class="footer-links">
+              <li><a href="services.html">Salesforce CRM</a></li>
+              <li><a href="website.html">Web Design</a></li>
+              <li><a href="fundraising.html">Fundraising Support</a></li>
+              <li><a href="training.html">Training &amp; Support</a></li>
+            </ul>
           </div>
 
-          <div class="footer-section">
-            <h4>Leave a Review</h4>
-            <p>Help us improve by sharing your experience on Trustpilot.</p>
+          <!-- Col 3: Company -->
+          <div class="footer-col">
+            <h4 class="footer-col-heading">Company</h4>
+            <ul class="footer-links">
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="clients.html">Our Clients</a></li>
+              <li><a href="news.html">News &amp; Insights</a></li>
+              <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Contact Info -->
+          <div class="footer-col">
+            <h4 class="footer-col-heading">Contact</h4>
+            <ul class="footer-links footer-contact-list">
+              <li>
+                <i class="fas fa-phone"></i
+                ><a href="tel:+447554623171">07554 623171</a>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i
+                ><a href="mailto:info@versedglobal.com"
+                  >info@versedglobal.com</a
+                >
+              </li>
+              <li>
+                <i class="fas fa-map-marker-alt"></i
+                ><span>29 Crown Way, Burgess Hill, RH15 8SX</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 5: Reviews -->
+          <div class="footer-col">
+            <h4 class="footer-col-heading">Reviews</h4>
+            <p class="footer-review-text">
+              Help us improve by sharing your experience on Trustpilot.
+            </p>
             <a
-              href="mailto:versedglobal.com+1dd03088a8@invite.trustpilot.com"
-              class="trustpilot-link"
+              href="/cdn-cgi/l/email-protection#ef998a9d9c8a8b8883808d8e83c18c8082c4de8b8bdfdcdfd7d78ed7af868199869b8ac19b9d9a9c9b9f8683809bc18c8082"
+              class="footer-trustpilot-btn"
             >
               <i class="fas fa-star"></i> Review on Trustpilot
             </a>
-            <div class="footer-trustpilot-widget">
+            <div class="footer-trustpilot-widget" style="margin-top: 1rem">
               <div
                 class="trustpilot-widget"
                 data-locale="en-US"
@@ -2095,33 +2288,45 @@
                 >
               </div>
             </div>
-
-            <h4 class="mt-2">Quick Links</h4>
-            <nav class="footer-quick-links" aria-label="Footer quick links">
-              <a href="services.html">Salesforce Services</a>
-              <a href="website.html">Web Design</a>
-              <a href="fundraising.html">Fundraising Support</a>
-              <a href="training.html">Training &amp; Support</a>
-              <a href="about.html">About Us</a>
-            </nav>
           </div>
         </div>
+      </div>
 
-        <div class="footer-divider">
-          <div class="footer-bottom">
-            <div>
-              &copy; <span id="year"></span> Versed Global Ltd. All rights
-              reserved.
-            </div>
-            <div>
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms &amp; Conditions</a>
-            </div>
+      <!-- Bottom bar -->
+      <div class="footer-bottom-bar">
+        <div class="footer-bottom-inner">
+          <div class="footer-legal">
+            <span
+              >Company No: 16933204 &nbsp;|&nbsp; VAT Registered &nbsp;|&nbsp;
+              Registered in England and Wales</span
+            >
+          </div>
+          <div class="footer-copyright">
+            &copy; <span id="year"></span> Versed Global Ltd. All rights
+            reserved.
+          </div>
+          <div class="footer-policies">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms &amp; Conditions</a>
+            <a
+              href="https://www.versedglobal.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Created by Versed Global Ltd</a
+            >
           </div>
         </div>
       </div>
     </footer>
 
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
     <script src="script.js"></script>
 
     <script>
@@ -2224,7 +2429,6 @@
       document.querySelectorAll(".faq-pill-q").forEach((btn) => {
         const toggle = () => {
           const pill = btn.closest(".faq-pill");
-          const answer = pill.querySelector(".faq-pill-a");
           const isOpen = pill.classList.contains("open");
           document.querySelectorAll(".faq-pill.open").forEach((p) => {
             if (p !== pill) {
@@ -2241,7 +2445,9 @@
           });
           pill.classList.toggle("open", !isOpen);
           btn.setAttribute("aria-expanded", String(!isOpen));
-          answer.setAttribute("aria-hidden", String(isOpen));
+          pill
+            .querySelector(".faq-pill-a")
+            .setAttribute("aria-hidden", String(isOpen));
         };
         btn.addEventListener("click", toggle);
         btn.addEventListener("keydown", (e) => {
