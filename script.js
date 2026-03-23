@@ -1,11 +1,12 @@
 /* ===============================
    V E R S E D   G L O B A L
-   PREMIUM Advanced Site Script.js (2026)
-   Enhanced Multi-Page Navigation
-   Full Responsive Support
-   Premium Performance Optimized
-   Advanced Form Validation
-   FAQ Accordion Fixes and Enhancements
+   PREMIUM Site Script.js — Version 8.0 (2026)
+   Performance-Refactored Build
+   - Removed: custom cursor, cursor glow, particle backgrounds,
+     magnetic buttons, text scramble, typewriter, keyboard nav
+     helper, page transitions, premium loader
+   - Added: initCaseTileFilter (clients.html Recent Engagements)
+   - All essential UI, form, nav, and widget functions retained
    =============================== */
 
 // ---------- 0. UTILITIES ----------
@@ -484,39 +485,6 @@ function initPremiumTooltips() {
   });
 }
 
-// ========== 7. PREMIUM LOADING ANIMATION ==========
-function initPremiumLoader() {
-  const loader = document.createElement("div");
-  loader.className = "premium-loader";
-  loader.innerHTML = `
-    <div class="loader-content">
-      <div class="loader-spinner"></div>
-      <div class="loader-text">Loading...</div>
-    </div>
-  `;
-  Object.assign(loader.style, {
-    position: "fixed",
-    top: "0",
-    left: "0",
-    width: "100%",
-    height: "100%",
-    background: "rgba(255, 255, 255, 0.98)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: "10000",
-    opacity: "1",
-    transition: "opacity 0.4s ease",
-  });
-  document.body.appendChild(loader);
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      loader.style.opacity = "0";
-      setTimeout(() => loader.remove(), 400);
-    }, 500);
-  });
-}
-
 // ========== 8. PREMIUM MODAL SYSTEM ==========
 class PremiumModal {
   constructor() {
@@ -666,7 +634,7 @@ class NotificationCenter {
 // Initialize notification center
 const notifications = new NotificationCenter();
 
-// ---------- 10. MOBILE NAVIGATION WITH HAMBURGER MENU (ENHANCED & FIXED) ----------
+// ---------- 10. MOBILE NAVIGATION WITH HAMBURGER MENU ----------
 function initMobileNav() {
   if (window.disableScriptJsMobileNav === true) return;
   const mobileMenuToggle = qs(".mobile-menu") || qs("#mobileMenuToggle");
@@ -683,7 +651,6 @@ function initMobileNav() {
     mobileMenuToggle.classList.remove("active", "open");
     document.body.classList.remove("no-scroll");
     mobileMenuToggle.setAttribute("aria-expanded", "false");
-    mobileMenuToggle.innerHTML = "&#9776;";
     isMenuOpen = false;
   };
 
@@ -692,7 +659,6 @@ function initMobileNav() {
     mobileMenuToggle.classList.add("active", "open");
     document.body.classList.add("no-scroll");
     mobileMenuToggle.setAttribute("aria-expanded", "true");
-    mobileMenuToggle.innerHTML = "&times;";
     isMenuOpen = true;
   };
 
@@ -746,58 +712,29 @@ function initMobileNav() {
   window.addEventListener(
     "resize",
     throttle(() => {
-      if (window.innerWidth >= 768 && isMenuOpen) {
+      if (window.innerWidth >= 641 && isMenuOpen) {
         closeNav();
       }
     }, 150),
   );
   window.addEventListener("orientationchange", () => {
     setTimeout(() => {
-      if (window.innerWidth >= 768 && isMenuOpen) {
+      if (window.innerWidth >= 641 && isMenuOpen) {
         closeNav();
       }
     }, 250);
   });
 }
 
-// ---------- 11. SMOOTH PAGE TRANSITIONS ----------
-function initPageTransitions() {
-  const enableTransitions = !prefersReducedMotion();
-  qsa("a[href]").forEach((link) => {
-    const target = link.getAttribute("href");
-    if (!target || target.startsWith("#") || target.startsWith("mailto"))
-      return;
-    if (link.target === "_blank" || link.hasAttribute("download")) return;
-
-    const isInternal =
-      !target.startsWith("http://") &&
-      !target.startsWith("https://") &&
-      !target.startsWith("tel:");
-
-    if (!isInternal) return;
-
-    link.addEventListener("click", (e) => {
-      if (!enableTransitions) return;
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      e.preventDefault();
-      document.body.classList.add("page-exit");
-      setTimeout(() => {
-        window.location.href = target;
-      }, 200);
-    });
-  });
-}
-
-// ---------- 12. PAGE LOAD FADE-IN ==========
+// ---------- 12. PAGE LOAD FADE-IN ----------
 function initPageFade() {
   const style = document.createElement("style");
   style.textContent = `
     body { opacity: 0; transition: opacity .6s ease-in-out; }
     body.page-loaded { opacity: 1; }
-    body.page-exit { opacity: 0; transition: opacity .25s ease-in; }
-    .no-scroll { overflow: hidden; position: fixed; width: 100%; }
+    .no-scroll { overflow: hidden; }
 
-    /* Form validation styles (not in styles.css) */
+    /* Form validation styles */
     .field-error {
       border-color: #ef4444 !important;
       animation: shake 0.3s ease;
@@ -836,7 +773,7 @@ function initPageFade() {
       to { transform: rotate(360deg); }
     }
 
-    /* Tooltip styles (not in styles.css) */
+    /* Tooltip styles */
     .premium-tooltip {
       position: fixed;
       background: rgba(0, 0, 0, 0.9);
@@ -858,7 +795,7 @@ function initPageFade() {
     .premium-tooltip.bottom { transform: translateY(5px); }
     .premium-tooltip.bottom.visible { transform: translateY(0); }
 
-    /* Notification styles (not in styles.css) */
+    /* Notification styles */
     .premium-notification {
       display: flex;
       align-items: flex-start;
@@ -930,7 +867,7 @@ function initPageFade() {
       color: #1e293b;
     }
 
-    /* Modal styles (not in styles.css) */
+    /* Modal styles */
     .premium-modal-overlay {
       position: fixed;
       top: 0; left: 0;
@@ -940,7 +877,7 @@ function initPageFade() {
       display: flex;
       align-items: center;
       justify-content: center;
-      zIndex: 10000;
+      z-index: 10000;
       opacity: 0;
       transition: opacity 0.3s ease;
       padding: 20px;
@@ -984,7 +921,7 @@ function initPageFade() {
     }
     body.modal-open { overflow: hidden; }
 
-    /* Loader styles (not in styles.css) */
+    /* Loader styles */
     .loader-content { text-align: center; }
     .loader-spinner {
       width: 60px; height: 60px;
@@ -1045,7 +982,6 @@ function initEscClose() {
       if (toggle) {
         toggle.classList.remove("active", "open");
         toggle.setAttribute("aria-expanded", "false");
-        toggle.innerHTML = "&#9776;";
         toggle.focus();
       }
     }
@@ -1136,7 +1072,7 @@ function initScrollSpy() {
   sections.forEach((sec) => observer.observe(sec));
 }
 
-// ---------- 18. LAZY-LOAD IMAGES (with IntersectionObserver) ----------
+// ---------- 18. LAZY-LOAD IMAGES ----------
 function initLazyImages() {
   const imgs = qsa("img[data-src]");
   if (!imgs.length) return;
@@ -1192,7 +1128,7 @@ function initResponsiveHelpers() {
         if (toggle) {
           toggle.classList.remove("active", "open");
           toggle.setAttribute("aria-expanded", "false");
-          toggle.innerHTML = "&#9776;";
+          // Do NOT overwrite innerHTML — CSS hamburger-icon spans handle the visual
         }
       }
       document.body.classList.toggle("is-small-device", width < 480);
@@ -1216,7 +1152,7 @@ function initViewportHeightFix() {
   });
 }
 
-// ---------- 21. SERVICE CARD READ MORE (DELEGATED + GLOBAL FALLBACK) ----------
+// ---------- 21. SERVICE CARD READ MORE ----------
 function initServiceCards() {
   document.addEventListener("click", (e) => {
     const btn = e.target.closest(".read-more-btn");
@@ -1314,6 +1250,35 @@ function initWebsiteFilter() {
           setTimeout(() => {
             card.style.display = "none";
           }, 300);
+        }
+      });
+    });
+  });
+}
+
+// ---------- 23b. CLIENTS PAGE CASE TILE FILTER (Recent Engagements) ----------
+function initCaseTileFilter() {
+  const filterBtns = qsa(".case-filter-btn");
+  const caseTiles = qsa(".case-tile");
+  if (!filterBtns.length || !caseTiles.length) return;
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = btn.getAttribute("data-filter");
+
+      // Update active state
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      // Show/hide tiles
+      caseTiles.forEach((tile) => {
+        const category = tile.getAttribute("data-category");
+        if (filter === "all" || category === filter) {
+          tile.classList.remove("hidden");
+          tile.style.display = "";
+        } else {
+          tile.classList.add("hidden");
+          tile.style.display = "none";
         }
       });
     });
@@ -1460,7 +1425,7 @@ function initPrintHandler() {
   });
 }
 
-// ---------- 30. HERO STAT COUNTER ANIMATION (Website Page) ----------
+// ---------- 30. HERO STAT COUNTER ANIMATION ----------
 function initHeroStatCounters() {
   const statValues = qsa(".hero-stat-value");
   if (!statValues.length) return;
@@ -1594,13 +1559,12 @@ function initPortalMockupAnimation() {
       },
       { threshold: 0.3 },
     );
-
     const mockup = qs(".portal-mockup");
     if (mockup) observer.observe(mockup);
   }
 }
 
-// ---------- 34. FAQ ACCORDION (Show/Hide Answers) ----------
+// ---------- 34. FAQ ACCORDION ----------
 function initFAQAccordion() {
   const faqItems = qsa(".faq-item");
   if (!faqItems.length) return;
@@ -1609,7 +1573,6 @@ function initFAQAccordion() {
     const question = qs(".faq-question", item);
     if (!question) return;
 
-    // Set ARIA attributes and toggle button role
     const answer = qs(".faq-answer", item);
     if (answer) {
       const answerId =
@@ -1626,7 +1589,6 @@ function initFAQAccordion() {
 
     const toggleIcon = qs(".faq-toggle", item);
     if (toggleIcon) {
-      // Initialize icon for collapsed items
       if (!item.classList.contains("active")) {
         toggleIcon.textContent = "+";
       } else {
@@ -1637,12 +1599,10 @@ function initFAQAccordion() {
     const toggleItem = () => {
       const isActive = item.classList.contains("active");
       if (isActive) {
-        // Collapse this item
         item.classList.remove("active");
         question.setAttribute("aria-expanded", "false");
         if (toggleIcon) toggleIcon.textContent = "+";
       } else {
-        // Collapse any other open item (accordion behavior)
         faqItems.forEach((other) => {
           if (other !== item && other.classList.contains("active")) {
             other.classList.remove("active");
@@ -1653,7 +1613,6 @@ function initFAQAccordion() {
             if (otherToggle) otherToggle.textContent = "+";
           }
         });
-        // Expand this item
         item.classList.add("active");
         question.setAttribute("aria-expanded", "true");
         if (toggleIcon) toggleIcon.textContent = "-";
@@ -1670,1028 +1629,10 @@ function initFAQAccordion() {
   });
 }
 
-// ========== 35. CURSOR GLOW EFFECT ==========
-// Renders a radial glow that follows the mouse cursor.
-// Activate on any element by adding the attribute: data-cursor-glow
-// Optional: data-cursor-glow-color="#0891b2"  data-cursor-glow-size="300"
-// Or enable site-wide by calling initCursorGlow() with no arguments.
-function initCursorGlow(options = {}) {
-  // Skip on touch-only devices
-  const isTouch = "ontouchstart" in window && navigator.maxTouchPoints > 0;
-  if (isTouch) return;
-  if (prefersReducedMotion()) return;
-
-  const {
-    selector = "[data-cursor-glow], body",
-    color = null, // falls back to element's data-cursor-glow-color or default
-    size = null, // falls back to data-cursor-glow-size or 280
-    opacity = 0.18,
-    zIndex = 0,
-    blend = "normal",
-  } = options;
-
-  // Inject shared styles once
-  if (!qs("#vg-cursor-glow-styles")) {
-    const style = document.createElement("style");
-    style.id = "vg-cursor-glow-styles";
-    style.textContent = `
-      .vg-cursor-glow-host { position: relative; overflow: hidden; }
-      .vg-cursor-glow-orb {
-        pointer-events: none;
-        position: absolute;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        transition: opacity 0.3s ease, width 0.15s ease, height 0.15s ease;
-        will-change: transform, opacity;
-        mix-blend-mode: normal;
-        z-index: 0;
-        opacity: 0;
-      }
-      .vg-cursor-glow-orb.visible { opacity: 1; }
-    `;
-    document.head.appendChild(style);
-  }
-
-  const targets = qsa(selector);
-  // If selector matched nothing meaningful, try body
-  const els = targets.length ? targets : [document.body];
-
-  els.forEach((el) => {
-    if (el.dataset.cursorGlowInit === "true") return;
-    el.dataset.cursorGlowInit = "true";
-
-    const glowColor = color || el.dataset.cursorGlowColor || "#0891b2";
-    const glowSize = parseInt(size || el.dataset.cursorGlowSize || "280", 10);
-
-    // Make sure the host is positioned
-    const pos = getComputedStyle(el).position;
-    if (pos === "static") el.style.position = "relative";
-    el.classList.add("vg-cursor-glow-host");
-
-    const orb = document.createElement("div");
-    orb.className = "vg-cursor-glow-orb";
-    orb.style.cssText = `
-      width: ${glowSize}px;
-      height: ${glowSize}px;
-      background: radial-gradient(circle, ${glowColor} 0%, transparent 70%);
-      opacity: 0;
-      mix-blend-mode: ${blend};
-      z-index: ${zIndex};
-    `;
-    el.appendChild(orb);
-
-    const onMove = throttle((e) => {
-      const rect = el.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      orb.style.left = `${x}px`;
-      orb.style.top = `${y}px`;
-      orb.style.opacity = String(opacity);
-      orb.classList.add("visible");
-    }, 16);
-
-    const onLeave = () => {
-      orb.style.opacity = "0";
-      orb.classList.remove("visible");
-    };
-
-    el.addEventListener("mousemove", onMove, { passive: true });
-    el.addEventListener("mouseleave", onLeave, { passive: true });
-  });
-}
-
-// ========== 36. TEXT SCRAMBLE EFFECT ==========
-// Animates text with a randomised character scramble before revealing final text.
-// Usage (HTML): <span data-scramble>Your Text Here</span>
-// Options via data attributes:
-//   data-scramble-chars  — custom character pool (default: alphanumeric + symbols)
-//   data-scramble-speed  — frame interval in ms (default: 40)
-//   data-scramble-cycles — scramble iterations per character (default: 8)
-// Or call: scrambleText(element, "New text", { speed, cycles, chars })
-class TextScrambler {
-  constructor(el, options = {}) {
-    this.el = el;
-    this.chars =
-      options.chars ||
-      el.dataset.scrambleChars ||
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*<>[]{}";
-    this.speed = parseInt(
-      options.speed || el.dataset.scrambleSpeed || "40",
-      10,
-    );
-    this.cycles = parseInt(
-      options.cycles || el.dataset.scrambleCycles || "8",
-      10,
-    );
-    this._raf = null;
-  }
-
-  scramble(newText) {
-    const finalText = newText !== undefined ? newText : this.el.textContent;
-    const length = finalText.length;
-    let frame = 0;
-    // How many total frames until each position resolves
-    const resolveAt = Array.from({ length }, (_, i) =>
-      Math.floor((i / length) * length * this.cycles + this.cycles),
-    );
-    const totalFrames = resolveAt[length - 1] + 1;
-
-    if (this._raf) clearInterval(this._raf);
-
-    this._raf = setInterval(() => {
-      let output = "";
-      for (let i = 0; i < length; i++) {
-        if (frame >= resolveAt[i]) {
-          output += finalText[i];
-        } else {
-          output += this.chars[Math.floor(Math.random() * this.chars.length)];
-        }
-      }
-      this.el.textContent = output;
-      frame++;
-      if (frame > totalFrames) {
-        clearInterval(this._raf);
-        this.el.textContent = finalText;
-      }
-    }, this.speed);
-  }
-
-  cancel() {
-    if (this._raf) clearInterval(this._raf);
-  }
-}
-
-// Global helper
-window.scrambleText = (el, text, opts = {}) => {
-  const s = new TextScrambler(el, opts);
-  s.scramble(text);
-  return s;
-};
-
-function initTextScramble() {
-  const els = qsa("[data-scramble]");
-  if (!els.length) return;
-  if (prefersReducedMotion()) return;
-
-  if (typeof IntersectionObserver !== "undefined") {
-    const io = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target;
-          const scrambler = new TextScrambler(el);
-          scrambler.scramble();
-          obs.unobserve(el);
-        });
-      },
-      { threshold: 0.4 },
-    );
-    els.forEach((el) => io.observe(el));
-  } else {
-    els.forEach((el) => new TextScrambler(el).scramble());
-  }
-}
-
-// ========== 37. KEYBOARD NAVIGATION HELPER ==========
-// Shows a subtle on-screen guide when a user navigates by keyboard (Tab key).
-// The guide lists common shortcuts and highlights focusable elements.
-// It auto-hides after 6 s of no keyboard activity, or on mouse use.
-// Respects prefers-reduced-motion; skips on touch-only devices.
-function initKeyboardNavHelper() {
-  if (prefersReducedMotion()) return;
-
-  let isKeyboardUser = false;
-  let helpVisible = false;
-  let hideTimeout = null;
-
-  // ---- Inject styles ----
-  const style = document.createElement("style");
-  style.textContent = `
-    #vg-kb-helper {
-      position: fixed;
-      bottom: 24px;
-      left: 24px;
-      background: rgba(15, 23, 42, 0.95);
-      color: #e2e8f0;
-      border: 1px solid rgba(8, 145, 178, 0.4);
-      border-radius: 12px;
-      padding: 14px 18px;
-      font-size: 0.8125rem;
-      line-height: 1.6;
-      z-index: 9999;
-      max-width: 280px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      pointer-events: none;
-      backdrop-filter: blur(8px);
-    }
-    #vg-kb-helper.visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-    #vg-kb-helper h4 {
-      margin: 0 0 8px;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #0891b2;
-      font-weight: 700;
-    }
-    #vg-kb-helper table { border-collapse: collapse; width: 100%; }
-    #vg-kb-helper td { padding: 2px 6px 2px 0; vertical-align: top; }
-    #vg-kb-helper td:first-child { white-space: nowrap; }
-    #vg-kb-helper kbd {
-      display: inline-block;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 4px;
-      padding: 1px 5px;
-      font-size: 0.75rem;
-      font-family: monospace;
-      color: #f1f5f9;
-    }
-    #vg-kb-helper .kb-close {
-      display: block;
-      margin-top: 10px;
-      text-align: right;
-      font-size: 0.7rem;
-      color: #64748b;
-      cursor: pointer;
-      pointer-events: auto;
-    }
-    #vg-kb-helper .kb-close:hover { color: #94a3b8; }
-
-    /* Highlight ring on focused elements when keyboard-navigating */
-    body.vg-keyboard-nav :focus:not([data-no-focus-ring]) {
-      outline: 2px solid #0891b2 !important;
-      outline-offset: 3px !important;
-      box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.2) !important;
-      border-radius: 4px;
-    }
-  `;
-  document.head.appendChild(style);
-
-  // ---- Build panel ----
-  const panel = document.createElement("div");
-  panel.id = "vg-kb-helper";
-  panel.setAttribute("role", "complementary");
-  panel.setAttribute("aria-label", "Keyboard navigation shortcuts");
-  panel.innerHTML = `
-    <h4>⌨️ Keyboard Shortcuts</h4>
-    <table>
-      <tr><td><kbd>Tab</kbd></td><td>Next focusable element</td></tr>
-      <tr><td><kbd>Shift+Tab</kbd></td><td>Previous element</td></tr>
-      <tr><td><kbd>Enter</kbd> / <kbd>Space</kbd></td><td>Activate button / link</td></tr>
-      <tr><td><kbd>Esc</kbd></td><td>Close menu / modal</td></tr>
-      <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Scroll page</td></tr>
-      <tr><td><kbd>/</kbd></td><td>Focus search (if present)</td></tr>
-    </table>
-    <span class="kb-close" tabindex="0" role="button" aria-label="Dismiss keyboard helper">Dismiss</span>
-  `;
-  document.body.appendChild(panel);
-
-  const closeBtn = qs(".kb-close", panel);
-
-  const showPanel = () => {
-    if (helpVisible) return;
-    helpVisible = true;
-    panel.classList.add("visible");
-    resetHideTimer();
-  };
-
-  const hidePanel = () => {
-    helpVisible = false;
-    panel.classList.remove("visible");
-    if (hideTimeout) clearTimeout(hideTimeout);
-  };
-
-  const resetHideTimer = () => {
-    if (hideTimeout) clearTimeout(hideTimeout);
-    hideTimeout = setTimeout(hidePanel, 6000);
-  };
-
-  // Show on first Tab keypress
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Tab") {
-      if (!isKeyboardUser) {
-        isKeyboardUser = true;
-        document.body.classList.add("vg-keyboard-nav");
-        showPanel();
-      } else {
-        resetHideTimer();
-      }
-    }
-    // "/" shortcut: focus first search input
-    if (
-      e.key === "/" &&
-      !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)
-    ) {
-      const searchInput = qs(
-        'input[type="search"], input[name="search"], input[placeholder*="earch" i]',
-      );
-      if (searchInput) {
-        e.preventDefault();
-        searchInput.focus();
-      }
-    }
-  });
-
-  // Hide on mouse activity
-  document.addEventListener("mousedown", () => {
-    if (isKeyboardUser) {
-      isKeyboardUser = false;
-      document.body.classList.remove("vg-keyboard-nav");
-      hidePanel();
-    }
-  });
-
-  closeBtn.addEventListener("click", hidePanel);
-  closeBtn.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      hidePanel();
-    }
-  });
-}
-
-// ========== 38. TYPEWRITER EFFECT ==========
-// Animates text character-by-character, with optional multi-phrase looping.
-//
-// HTML usage:
-//   Single phrase  : <span data-typewriter="Hello World"></span>
-//   Multi-phrase   : <span data-typewriter='["Phrase one","Phrase two","Phrase three"]'></span>
-//
-// Optional data attributes:
-//   data-typewriter-speed   — ms per character typed   (default: 60)
-//   data-typewriter-delete  — ms per character deleted (default: 35)
-//   data-typewriter-pause   — ms to pause after typing (default: 1800)
-//   data-typewriter-cursor  — cursor character          (default: "|")
-//   data-typewriter-loop    — "false" to disable loop  (default: true)
-//
-// Or call: typewriterEffect(element, phrases, options)
-class Typewriter {
-  constructor(el, phrases, options = {}) {
-    this.el = el;
-    this.phrases = Array.isArray(phrases) ? phrases : [phrases];
-    this.speed = parseInt(
-      options.speed || el.dataset.typewriterSpeed || "60",
-      10,
-    );
-    this.delSpeed = parseInt(
-      options.delete || el.dataset.typewriterDelete || "35",
-      10,
-    );
-    this.pause = parseInt(
-      options.pause || el.dataset.typewriterPause || "1800",
-      10,
-    );
-    this.cursor =
-      options.cursor !== undefined
-        ? options.cursor
-        : el.dataset.typewriterCursor !== undefined
-          ? el.dataset.typewriterCursor
-          : "|";
-    this.loop =
-      (options.loop !== undefined
-        ? options.loop
-        : el.dataset.typewriterLoop) !== "false";
-
-    this.phraseIndex = 0;
-    this.charIndex = 0;
-    this.isDeleting = false;
-    this._timeout = null;
-    this._running = false;
-
-    // Wrap in a span so cursor sits outside typed text
-    this.el.innerHTML = "";
-    this.textNode = document.createElement("span");
-    this.cursorNode = document.createElement("span");
-    this.cursorNode.className = "tw-cursor";
-    this.cursorNode.setAttribute("aria-hidden", "true");
-    this.cursorNode.textContent = this.cursor;
-    this.el.appendChild(this.textNode);
-    this.el.appendChild(this.cursorNode);
-
-    // Inject cursor blink style once
-    if (!qs("#vg-typewriter-styles")) {
-      const s = document.createElement("style");
-      s.id = "vg-typewriter-styles";
-      s.textContent = `
-        .tw-cursor {
-          display: inline-block;
-          margin-left: 1px;
-          animation: tw-blink 0.75s step-end infinite;
-          color: inherit;
-          opacity: 0.9;
-        }
-        @keyframes tw-blink {
-          0%, 100% { opacity: 1; }
-          50%       { opacity: 0; }
-        }
-        .tw-cursor.tw-done { animation: none; opacity: 0; }
-      `;
-      document.head.appendChild(s);
-    }
-  }
-
-  start() {
-    if (this._running) return;
-    this._running = true;
-    this._tick();
-  }
-
-  stop() {
-    this._running = false;
-    if (this._timeout) clearTimeout(this._timeout);
-    this.cursorNode.classList.add("tw-done");
-  }
-
-  _tick() {
-    if (!this._running) return;
-
-    const phrase = this.phrases[this.phraseIndex];
-
-    if (this.isDeleting) {
-      // Remove one character
-      this.charIndex = Math.max(0, this.charIndex - 1);
-      this.textNode.textContent = phrase.slice(0, this.charIndex);
-
-      if (this.charIndex === 0) {
-        this.isDeleting = false;
-        this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length;
-        // If looping is off and we've cycled back, stop
-        if (!this.loop && this.phraseIndex === 0) {
-          this.stop();
-          return;
-        }
-        this._timeout = setTimeout(() => this._tick(), 400);
-      } else {
-        this._timeout = setTimeout(() => this._tick(), this.delSpeed);
-      }
-    } else {
-      // Add one character
-      this.charIndex = Math.min(phrase.length, this.charIndex + 1);
-      this.textNode.textContent = phrase.slice(0, this.charIndex);
-
-      if (this.charIndex === phrase.length) {
-        // Finished typing this phrase
-        if (this.phrases.length === 1 && !this.loop) {
-          // Single phrase, no loop — done
-          this.stop();
-          return;
-        }
-        this.isDeleting = true;
-        this._timeout = setTimeout(() => this._tick(), this.pause);
-      } else {
-        this._timeout = setTimeout(() => this._tick(), this.speed);
-      }
-    }
-  }
-}
-
-// Global helper
-window.typewriterEffect = (el, phrases, opts = {}) => {
-  const tw = new Typewriter(el, phrases, opts);
-  tw.start();
-  return tw;
-};
-
-function initTypewriterEffects() {
-  const els = qsa("[data-typewriter]");
-  if (!els.length) return;
-  if (prefersReducedMotion()) {
-    // Just show the first phrase statically
-    els.forEach((el) => {
-      const raw = el.dataset.typewriter;
-      try {
-        const parsed = JSON.parse(raw);
-        el.textContent = Array.isArray(parsed) ? parsed[0] : raw;
-      } catch {
-        el.textContent = raw;
-      }
-    });
-    return;
-  }
-
-  const startTypewriter = (el) => {
-    const raw = el.dataset.typewriter;
-    let phrases;
-    try {
-      const parsed = JSON.parse(raw);
-      phrases = Array.isArray(parsed) ? parsed : [String(parsed)];
-    } catch {
-      phrases = [raw];
-    }
-    const tw = new Typewriter(el, phrases);
-    tw.start();
-  };
-
-  if (typeof IntersectionObserver !== "undefined") {
-    const io = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          startTypewriter(entry.target);
-          obs.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.3 },
-    );
-    els.forEach((el) => io.observe(el));
-  } else {
-    els.forEach(startTypewriter);
-  }
-}
-
-// ========== 39. CUSTOM CURSOR (BRANDED RING + DOT) ==========
-// Replaces the native cursor with a bold branded ring that smoothly follows
-// the pointer, plus a sharp centre dot that snaps instantly.
-//
-// Brand colours used: #0891b2 (primary), #0e7490 (dark), #67e8f9 (light accent)
-//
-// States:
-//   Default  — visible ring (3px border, 42px) + solid dot (7px)
-//   Hover    — ring fills with a semi-transparent brand wash & scales up
-//   Click    — both elements compress & the dot flashes white
-//   Text     — ring morphs into a slim I-beam indicator
-//   Hidden   — fades out when cursor leaves the viewport
-//   Touch    — entire feature disabled, native cursor restored
-//   Motion   — disabled when prefers-reduced-motion is set
-function initCustomCursor(options = {}) {
-  const isTouch = "ontouchstart" in window && navigator.maxTouchPoints > 0;
-  if (isTouch) return;
-  if (prefersReducedMotion()) return;
-
-  // ---- Brand palette ----
-  const BRAND = options.brandColor || "#0891b2";
-  const BRAND_DARK = options.brandDark || "#0e7490";
-  const BRAND_LIGHT = options.brandLight || "#67e8f9";
-
-  // ---- Config ----
-  const cfg = {
-    dotSize: options.dotSize || 7,
-    ringSize: options.ringSize || 42,
-    ringBorder: options.ringBorder || 3,
-    lerp: options.lerp || 0.14,
-    hoverScale: options.hoverScale || 1.7,
-    clickScale: options.clickScale || 0.72,
-  };
-
-  // ---- Remove any previous instance ----
-  const prevStyle = qs("#vg-custom-cursor-styles");
-  const prevDot = qs("#vg-cursor-dot");
-  const prevRing = qs("#vg-cursor-ring");
-  if (prevStyle) prevStyle.remove();
-  if (prevDot) prevDot.remove();
-  if (prevRing) prevRing.remove();
-
-  // ---- Inject styles ----
-  const style = document.createElement("style");
-  style.id = "vg-custom-cursor-styles";
-  style.textContent = `
-    /* ── Hide native cursor everywhere ── */
-    html.vg-custom-cursor,
-    html.vg-custom-cursor * { cursor: none !important; }
-
-    /* ── Shared base ── */
-    #vg-cursor-dot,
-    #vg-cursor-ring {
-      position: fixed;
-      top: 0; left: 0;
-      pointer-events: none;
-      border-radius: 50%;
-      z-index: 999999;
-      will-change: transform;
-      /* start hidden until first mousemove */
-      opacity: 0;
-    }
-
-    /* ── Centre dot — snaps instantly, no transition ── */
-    #vg-cursor-dot {
-      width: ${cfg.dotSize}px;
-      height: ${cfg.dotSize}px;
-      background: ${BRAND};
-      box-shadow:
-        0 0 0 2px rgba(8,145,178,0.25),
-        0 0 10px rgba(8,145,178,0.55);
-      transition: opacity 0.25s ease,
-                  background 0.15s ease,
-                  box-shadow 0.15s ease;
-    }
-
-    /* ── Outer ring — lerp-smoothed, CSS handles size/color changes ── */
-    #vg-cursor-ring {
-      width: ${cfg.ringSize}px;
-      height: ${cfg.ringSize}px;
-      border: ${cfg.ringBorder}px solid ${BRAND};
-      background: transparent;
-      box-shadow:
-        0 0 0 1px rgba(8,145,178,0.12),
-        inset 0 0 0 1px rgba(8,145,178,0.08),
-        0 0 18px rgba(8,145,178,0.22);
-      transition:
-        opacity        0.3s  ease,
-        width          0.22s cubic-bezier(0.34,1.56,0.64,1),
-        height         0.22s cubic-bezier(0.34,1.56,0.64,1),
-        background     0.2s  ease,
-        border-color   0.2s  ease,
-        box-shadow     0.2s  ease,
-        border-radius  0.2s  ease;
-    }
-
-    /* ── Visible state (set after first mousemove) ── */
-    #vg-cursor-dot.is-visible  { opacity: 1; }
-    #vg-cursor-ring.is-visible { opacity: 1; }
-
-    /* ── Hover over interactive elements ── */
-    #vg-cursor-ring.is-hovering {
-      width:      ${cfg.ringSize * cfg.hoverScale}px;
-      height:     ${cfg.ringSize * cfg.hoverScale}px;
-      background: rgba(8,145,178,0.10);
-      border-color: ${BRAND_LIGHT};
-      box-shadow:
-        0 0 0 1px rgba(103,232,249,0.2),
-        0 0 28px rgba(8,145,178,0.35),
-        inset 0 0 16px rgba(8,145,178,0.08);
-    }
-    #vg-cursor-dot.is-hovering {
-      background: ${BRAND_LIGHT};
-      box-shadow:
-        0 0 0 3px rgba(103,232,249,0.3),
-        0 0 14px rgba(103,232,249,0.6);
-    }
-
-    /* ── Click feedback ── */
-    #vg-cursor-dot.is-clicking {
-      background: #ffffff;
-      box-shadow:
-        0 0 0 3px rgba(8,145,178,0.5),
-        0 0 20px rgba(8,145,178,0.8);
-      transition: background 0.08s ease, box-shadow 0.08s ease;
-    }
-    #vg-cursor-ring.is-clicking {
-      width:      ${Math.round(cfg.ringSize * cfg.clickScale)}px;
-      height:     ${Math.round(cfg.ringSize * cfg.clickScale)}px;
-      border-color: #ffffff;
-      background: rgba(8,145,178,0.18);
-      transition:
-        width          0.1s  ease,
-        height         0.1s  ease,
-        background     0.1s  ease,
-        border-color   0.1s  ease;
-    }
-
-    /* ── Text-cursor context — ring becomes a thin vertical bar ── */
-    #vg-cursor-ring.is-text {
-      width: 3px;
-      height: ${cfg.ringSize + 8}px;
-      border-radius: 2px;
-      border-color: ${BRAND};
-      background: rgba(8,145,178,0.15);
-    }
-    #vg-cursor-dot.is-text { opacity: 0; }
-
-    /* ── Hidden when leaving viewport ── */
-    #vg-cursor-dot.is-hidden,
-    #vg-cursor-ring.is-hidden {
-      opacity: 0 !important;
-      transition: opacity 0.2s ease !important;
-    }
-  `;
-  document.head.appendChild(style);
-
-  // ---- Create elements ----
-  const dot = document.createElement("div");
-  dot.id = "vg-cursor-dot";
-  document.body.appendChild(dot);
-
-  const ring = document.createElement("div");
-  ring.id = "vg-cursor-ring";
-  document.body.appendChild(ring);
-
-  document.documentElement.classList.add("vg-custom-cursor");
-
-  // ---- State ----
-  let mouseX = -200,
-    mouseY = -200;
-  let ringX = -200,
-    ringY = -200;
-  let hasEntered = false;
-
-  // Selectors that trigger the hover state
-  const HOVER_SEL =
-    'a, button, [role="button"], label, select, ' +
-    'input[type="submit"], input[type="button"], ' +
-    'input[type="checkbox"], input[type="radio"], ' +
-    ".read-more-btn, .filter-btn, .expand-toggle, " +
-    ".nav-links a, .btn, [data-cursor-hover]";
-
-  // Selectors that trigger the text state
-  const TEXT_SEL =
-    "p, h1, h2, h3, h4, h5, h6, li, span, td, th, " +
-    'input[type="text"], input[type="email"], input[type="tel"], ' +
-    'input[type="search"], textarea, [contenteditable]';
-
-  // ---- rAF loop — only ring lerps, dot is set directly in mousemove ----
-  const animate = () => {
-    ringX += (mouseX - ringX) * cfg.lerp;
-    ringY += (mouseY - ringY) * cfg.lerp;
-    // Use translate3d for GPU compositing
-    dot.style.transform = `translate3d(${mouseX}px,${mouseY}px,0) translate(-50%,-50%)`;
-    ring.style.transform = `translate3d(${ringX}px,${ringY}px,0) translate(-50%,-50%)`;
-    requestAnimationFrame(animate);
-  };
-  requestAnimationFrame(animate);
-
-  // ---- Mouse move ----
-  document.addEventListener(
-    "mousemove",
-    (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (!hasEntered) {
-        // Snap ring to cursor on first appearance so it doesn't fly in from 0,0
-        ringX = mouseX;
-        ringY = mouseY;
-        hasEntered = true;
-        dot.classList.add("is-visible");
-        ring.classList.add("is-visible");
-      }
-      dot.classList.remove("is-hidden");
-      ring.classList.remove("is-hidden");
-    },
-    { passive: true },
-  );
-
-  // ---- Hover over interactive elements ----
-  document.addEventListener(
-    "mouseover",
-    (e) => {
-      const el = e.target;
-      if (el.closest(HOVER_SEL)) {
-        ring.classList.add("is-hovering");
-        dot.classList.add("is-hovering");
-        ring.classList.remove("is-text");
-        dot.classList.remove("is-text");
-      } else if (el.closest(TEXT_SEL)) {
-        ring.classList.add("is-text");
-        dot.classList.add("is-text");
-        ring.classList.remove("is-hovering");
-        dot.classList.remove("is-hovering");
-      }
-    },
-    { passive: true },
-  );
-
-  document.addEventListener(
-    "mouseout",
-    (e) => {
-      const el = e.target;
-      if (el.closest(HOVER_SEL)) {
-        ring.classList.remove("is-hovering");
-        dot.classList.remove("is-hovering");
-      } else if (el.closest(TEXT_SEL)) {
-        ring.classList.remove("is-text");
-        dot.classList.remove("is-text");
-      }
-    },
-    { passive: true },
-  );
-
-  // ---- Click feedback ----
-  document.addEventListener(
-    "mousedown",
-    () => {
-      dot.classList.add("is-clicking");
-      ring.classList.add("is-clicking");
-    },
-    { passive: true },
-  );
-
-  document.addEventListener(
-    "mouseup",
-    () => {
-      dot.classList.remove("is-clicking");
-      ring.classList.remove("is-clicking");
-    },
-    { passive: true },
-  );
-
-  // ---- Leave / enter viewport ----
-  document.addEventListener(
-    "mouseleave",
-    () => {
-      dot.classList.add("is-hidden");
-      ring.classList.add("is-hidden");
-    },
-    { passive: true },
-  );
-
-  document.addEventListener(
-    "mouseenter",
-    () => {
-      dot.classList.remove("is-hidden");
-      ring.classList.remove("is-hidden");
-    },
-    { passive: true },
-  );
-}
-
-// ========== 40. MAGNETIC BUTTON EFFECT ==========
-// Buttons with [data-magnetic] gently attract the cursor toward their centre.
-// Optional: data-magnetic-strength="0.35"  (0–1, default 0.3)
-// Touch and reduced-motion safe.
-function initMagneticButtons() {
-  const isTouch = "ontouchstart" in window && navigator.maxTouchPoints > 0;
-  if (isTouch || prefersReducedMotion()) return;
-
-  const magneticEls = qsa("[data-magnetic]");
-  if (!magneticEls.length) return;
-
-  magneticEls.forEach((el) => {
-    const strength = parseFloat(el.dataset.magneticStrength || "0.3");
-
-    el.addEventListener("mousemove", (e) => {
-      const rect = el.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = (e.clientX - cx) * strength;
-      const dy = (e.clientY - cy) * strength;
-      el.style.transform = `translate(${dx}px, ${dy}px)`;
-      el.style.transition = "transform 0.1s ease";
-    });
-
-    el.addEventListener("mouseleave", () => {
-      el.style.transform = "translate(0, 0)";
-      el.style.transition = "transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)";
-    });
-  });
-}
-
-// ========== 41. AMBIENT PARTICLE BACKGROUND ==========
-// Renders a subtle canvas-based particle field behind elements tagged
-// with [data-particles].  Particles drift slowly and connect with
-// faint lines when nearby — giving a live, tech-network feel.
-//
-// HTML: <div data-particles data-particle-color="#0891b2" data-particle-count="60"></div>
-//
-// Options via data attributes:
-//   data-particle-color   — hex/rgb colour  (default: #0891b2)
-//   data-particle-count   — number of dots  (default: 50)
-//   data-particle-speed   — drift speed     (default: 0.4)
-//   data-particle-radius  — dot radius px   (default: 2)
-//   data-particle-connect — max connect dist (default: 120)
-function initParticleBackgrounds() {
-  const isTouch = "ontouchstart" in window && navigator.maxTouchPoints > 0;
-  if (prefersReducedMotion()) return;
-
-  const hosts = qsa("[data-particles]");
-  if (!hosts.length) return;
-
-  hosts.forEach((host) => {
-    // Setup host
-    const pos = getComputedStyle(host).position;
-    if (pos === "static") host.style.position = "relative";
-    host.style.overflow = "hidden";
-
-    const canvas = document.createElement("canvas");
-    canvas.setAttribute("aria-hidden", "true");
-    Object.assign(canvas.style, {
-      position: "absolute",
-      top: "0",
-      left: "0",
-      width: "100%",
-      height: "100%",
-      pointerEvents: "none",
-      zIndex: "0",
-    });
-    host.insertBefore(canvas, host.firstChild);
-
-    const ctx = canvas.getContext("2d");
-    const color = host.dataset.particleColor || "#0891b2";
-    const count = parseInt(host.dataset.particleCount || "50", 10);
-    const speed = parseFloat(host.dataset.particleSpeed || "0.4");
-    const radius = parseFloat(host.dataset.particleRadius || "2");
-    const connectDist = parseInt(host.dataset.particleConnect || "120", 10);
-
-    // Parse color to rgba
-    const hexToRgb = (hex) => {
-      const r = parseInt(hex.slice(1, 3), 16);
-      const g = parseInt(hex.slice(3, 5), 16);
-      const b = parseInt(hex.slice(5, 7), 16);
-      return { r, g, b };
-    };
-    const rgb = color.startsWith("#")
-      ? hexToRgb(color)
-      : { r: 8, g: 145, b: 178 };
-
-    let W = 0,
-      H = 0;
-    let particles = [];
-    let rafId = null;
-
-    const resize = () => {
-      W = canvas.width = host.offsetWidth;
-      H = canvas.height = host.offsetHeight;
-    };
-
-    const createParticles = () => {
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        vx: (Math.random() - 0.5) * speed,
-        vy: (Math.random() - 0.5) * speed,
-        a: Math.random() * 0.5 + 0.3,
-      }));
-    };
-
-    const draw = () => {
-      ctx.clearRect(0, 0, W, H);
-
-      // Update + draw dots
-      particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > W) p.vx *= -1;
-        if (p.y < 0 || p.y > H) p.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${p.a})`;
-        ctx.fill();
-      });
-
-      // Draw connecting lines
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < connectDist) {
-            const alpha = (1 - dist / connectDist) * 0.25;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${alpha})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-      }
-
-      rafId = requestAnimationFrame(draw);
-    };
-
-    // Pause when off-screen for performance
-    if (typeof IntersectionObserver !== "undefined") {
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              if (!rafId) {
-                resize();
-                if (!particles.length) createParticles();
-                draw();
-              }
-            } else {
-              if (rafId) {
-                cancelAnimationFrame(rafId);
-                rafId = null;
-              }
-            }
-          });
-        },
-        { threshold: 0.01 },
-      );
-      io.observe(host);
-    } else {
-      resize();
-      createParticles();
-      draw();
-    }
-
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        resize();
-        createParticles();
-      }, 300),
-    );
-  });
-}
-
 // ========== 42. SCROLL PROGRESS BAR ==========
-// A thin branded progress bar at the very top of the viewport that fills
-// as the user scrolls from top to bottom of the page.
-// Enable by calling initScrollProgressBar() or adding data-scroll-progress
-// to any element (uses that element's scroll container instead of window).
 function initScrollProgressBar() {
   if (typeof window === "undefined") return;
 
-  // Inject styles once
   if (!qs("#vg-scroll-progress-styles")) {
     const style = document.createElement("style");
     style.id = "vg-scroll-progress-styles";
@@ -2741,27 +1682,13 @@ function initScrollProgressBar() {
 }
 
 // ========== 43. REVEAL ANIMATIONS (SCROLL-TRIGGERED) ==========
-// Elements tagged with [data-reveal] or common section/card classes fade
-// and slide into view as they enter the viewport.
-//
-// HTML: <div data-reveal>...</div>
-// Optional modifiers:
-//   data-reveal="left"   — slides from left
-//   data-reveal="right"  — slides from right
-//   data-reveal="up"     — slides from below (default)
-//   data-reveal="down"   — slides from above
-//   data-reveal="scale"  — scales up from 90%
-//   data-reveal-delay="200"  — delay in ms before animation starts
-//   data-reveal-duration="600" — duration in ms
 function initRevealAnimations() {
   if (prefersReducedMotion()) {
-    // Make all revealed elements visible immediately
     qsa("[data-reveal]").forEach((el) => (el.style.opacity = "1"));
     return;
   }
   if (typeof IntersectionObserver === "undefined") return;
 
-  // Inject styles once
   if (!qs("#vg-reveal-styles")) {
     const style = document.createElement("style");
     style.id = "vg-reveal-styles";
@@ -2801,7 +1728,6 @@ function initRevealAnimations() {
         const duration = parseInt(el.dataset.revealDuration || "700", 10);
         el.style.transitionDuration = `${duration}ms`;
         el.style.transitionDelay = `${delay}ms`;
-        // Force reflow
         void el.offsetHeight;
         el.classList.add("is-revealed");
         obs.unobserve(el);
@@ -2814,9 +1740,6 @@ function initRevealAnimations() {
 }
 
 // ========== 44. SCROLL INDICATOR (HERO SECTION) ==========
-// Adds an animated scroll-down indicator chevron to any element tagged with
-// [data-scroll-indicator] or .hero-scroll-indicator.
-// Automatically hides when the user scrolls past 200px.
 function initScrollIndicator() {
   const hosts = qsa("[data-scroll-indicator], .hero-scroll-indicator");
   if (!hosts.length) return;
@@ -2855,7 +1778,6 @@ function initScrollIndicator() {
   }
 
   hosts.forEach((host) => {
-    // Don't double-init
     if (host.dataset.scrollIndicatorInit) return;
     host.dataset.scrollIndicatorInit = "true";
 
@@ -2895,14 +1817,11 @@ function initScrollIndicator() {
 }
 
 // ========== 45. HORIZONTAL RAIL DRAG-SCROLL ==========
-// Makes any element with [data-drag-scroll] or .drag-scroll horizontally
-// draggable via mouse drag. Works alongside touch-scroll (no conflict).
-// Velocity-based momentum on release for a polished feel.
 function initRailDragScroll() {
   const rails = qsa("[data-drag-scroll], .drag-scroll");
   if (!rails.length) return;
   const isTouch = "ontouchstart" in window && navigator.maxTouchPoints > 0;
-  if (isTouch) return; // native touch handles this
+  if (isTouch) return;
 
   rails.forEach((rail) => {
     let isDown = false;
@@ -2929,7 +1848,6 @@ function initRailDragScroll() {
       if (!isDown) return;
       isDown = false;
       rail.style.cursor = "grab";
-      // Momentum
       const applyMomentum = () => {
         velocity *= 0.93;
         if (Math.abs(velocity) > 0.5) {
@@ -2959,6 +1877,484 @@ function initRailDragScroll() {
   });
 }
 
+// ========== 46. DROPDOWN NAVIGATION ==========
+function initDropdownNav() {
+  const navItems = qsa(".nav-item.has-dropdown");
+  if (!navItems.length) return;
+  const isMobile = () => window.innerWidth <= 640;
+
+  navItems.forEach((item) => {
+    const trigger = qs(".dropdown-trigger", item);
+    const dropdown = qs(".nav-dropdown", item);
+    const chevron = qs(".nav-chevron", item);
+    if (!trigger || !dropdown) return;
+
+    let closeTimeout = null;
+
+    // Desktop: hover-based
+    item.addEventListener("mouseenter", () => {
+      if (isMobile()) return;
+      if (closeTimeout) clearTimeout(closeTimeout);
+      qsa(".nav-item.has-dropdown").forEach((other) => {
+        if (other !== item) {
+          other.classList.remove("dropdown-open");
+          const otherChev = qs(".nav-chevron", other);
+          if (otherChev) otherChev.style.transform = "rotate(0deg)";
+        }
+      });
+      item.classList.add("dropdown-open");
+      if (chevron) chevron.style.transform = "rotate(180deg)";
+    });
+
+    item.addEventListener("mouseleave", () => {
+      if (isMobile()) return;
+      closeTimeout = setTimeout(() => {
+        item.classList.remove("dropdown-open");
+        if (chevron) chevron.style.transform = "rotate(0deg)";
+      }, 200);
+    });
+
+    // Mobile: accordion-style click toggle
+    trigger.addEventListener("click", (e) => {
+      if (!isMobile()) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const isOpen = item.classList.contains("dropdown-open");
+
+      qsa(".nav-item.has-dropdown").forEach((other) => {
+        if (other !== item) {
+          other.classList.remove("dropdown-open");
+          const otherDd = qs(".nav-dropdown", other);
+          const otherChev = qs(".nav-chevron", other);
+          if (otherDd) otherDd.style.maxHeight = "0";
+          if (otherChev) otherChev.style.transform = "rotate(0deg)";
+        }
+      });
+
+      if (isOpen) {
+        item.classList.remove("dropdown-open");
+        dropdown.style.maxHeight = "0";
+        if (chevron) chevron.style.transform = "rotate(0deg)";
+      } else {
+        item.classList.add("dropdown-open");
+        dropdown.style.maxHeight = dropdown.scrollHeight + "px";
+        if (chevron) chevron.style.transform = "rotate(180deg)";
+      }
+    });
+
+    // Keyboard accessibility
+    trigger.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        trigger.click();
+      }
+      if (e.key === "Escape") {
+        item.classList.remove("dropdown-open");
+        dropdown.style.maxHeight = "0";
+        if (chevron) chevron.style.transform = "rotate(0deg)";
+        trigger.focus();
+      }
+    });
+  });
+
+  // Close all dropdowns on outside click
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".nav-item.has-dropdown")) {
+      qsa(".nav-item.has-dropdown").forEach((item) => {
+        item.classList.remove("dropdown-open");
+        const dd = qs(".nav-dropdown", item);
+        const chev = qs(".nav-chevron", item);
+        if (dd) dd.style.maxHeight = "0";
+        if (chev) chev.style.transform = "rotate(0deg)";
+      });
+    }
+  });
+
+  // Reset dropdowns on resize crossing breakpoint
+  window.addEventListener(
+    "resize",
+    throttle(() => {
+      qsa(".nav-item.has-dropdown").forEach((item) => {
+        const dd = qs(".nav-dropdown", item);
+        if (!isMobile()) {
+          if (dd) dd.style.maxHeight = "";
+          item.classList.remove("dropdown-open");
+          const chev = qs(".nav-chevron", item);
+          if (chev) chev.style.transform = "";
+        }
+      });
+    }, 200),
+  );
+}
+
+// ========== 47. WEBZY AI CHAT WIDGET ==========
+function initWebzy() {
+  const knowledgeBase = {
+    salesforce: {
+      keywords: ["salesforce", "crm", "sfdc", "sales cloud", "service cloud"],
+      response:
+        "Versed Global is a certified Salesforce consulting partner. We offer full CRM implementation, customisation, integration, and managed services across Sales Cloud, Service Cloud, Marketing Cloud, and Experience Cloud. Our certified consultants help organisations maximise their Salesforce ROI with tailored solutions.",
+    },
+    web: {
+      keywords: [
+        "website",
+        "web design",
+        "web development",
+        "wordpress",
+        "ecommerce",
+        "online store",
+        "site",
+      ],
+      response:
+        "We build premium, conversion-optimised websites using modern frameworks and CMS platforms. Our web development services include custom design, WordPress/Shopify builds, progressive web apps, SEO optimisation, and ongoing maintenance. Every site is mobile-responsive and performance-tuned.",
+    },
+    fundraising: {
+      keywords: [
+        "fundraising",
+        "donation",
+        "charity",
+        "nonprofit",
+        "ngo",
+        "grants",
+        "donor",
+      ],
+      response:
+        "Our fundraising technology solutions help nonprofits and charities maximise donor engagement and revenue. We implement donation platforms, peer-to-peer fundraising tools, grant management systems, and integrate with CRMs like Salesforce Nonprofit Cloud for end-to-end donor lifecycle management.",
+    },
+    training: {
+      keywords: [
+        "training",
+        "course",
+        "learning",
+        "certification",
+        "workshop",
+        "upskill",
+      ],
+      response:
+        "Versed Global offers professional training programmes in Salesforce administration, digital marketing, web development, and data analytics. Our courses are delivered by certified instructors and include hands-on labs, real-world projects, and certification preparation support.",
+    },
+    contact: {
+      keywords: [
+        "contact",
+        "email",
+        "phone",
+        "call",
+        "reach",
+        "address",
+        "location",
+        "office",
+      ],
+      response:
+        "You can reach Versed Global at:\n\nEmail: info@versedglobal.com\nPhone: 07554 623171\nAddress: 29 Crown Way, Burgess Hill, RH15 8SX\n\nOr visit our Contact page to send us a message directly. We typically respond within one working day.",
+    },
+    about: {
+      keywords: [
+        "about",
+        "who",
+        "company",
+        "team",
+        "history",
+        "founded",
+        "mission",
+      ],
+      response:
+        "Versed Global is a UK-based digital consultancy specialising in Salesforce solutions, web development, fundraising technology, and professional training. We partner with organisations across the public, private, and nonprofit sectors to deliver transformative digital solutions that drive measurable results.",
+    },
+    pricing: {
+      keywords: [
+        "price",
+        "pricing",
+        "cost",
+        "quote",
+        "budget",
+        "fee",
+        "rate",
+        "how much",
+      ],
+      response:
+        "Our pricing is tailored to each project's scope and complexity. We offer flexible engagement models including fixed-price projects, time & materials, and retainer packages. Contact us for a free consultation and personalised quote \u2014 we'll work within your budget to deliver maximum value.",
+    },
+    greeting: {
+      keywords: [
+        "hello",
+        "hi",
+        "hey",
+        "good morning",
+        "good afternoon",
+        "good evening",
+        "howdy",
+        "greetings",
+      ],
+      response:
+        "Hello! Welcome to Versed Global. I'm Webzy, your AI assistant. I can help you learn about our services including Salesforce consulting, web development, fundraising technology, and training programmes. What would you like to know?",
+    },
+  };
+
+  function getResponse(message) {
+    const lower = message.toLowerCase().trim();
+    for (const category of Object.values(knowledgeBase)) {
+      for (const keyword of category.keywords) {
+        if (lower.includes(keyword)) {
+          return category.response;
+        }
+      }
+    }
+    return "Thanks for your message! I'm not sure about that specific topic, but I can help with information about our Salesforce consulting, web development, fundraising technology, and training services. You can also visit our Contact page or call us at 07554 623171 for personalised assistance.";
+  }
+
+  const widget = document.createElement("div");
+  widget.id = "webzy-widget";
+  widget.innerHTML = `
+    <button class="webzy-trigger" aria-label="Open Webzy AI Chat" title="Chat with Webzy AI">
+      <svg class="webzy-icon-chat" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+      <svg class="webzy-icon-close" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+      <span class="webzy-badge" style="display:none;">1</span>
+    </button>
+    <div class="webzy-chat-window" aria-hidden="true">
+      <div class="webzy-chat-header">
+        <div class="webzy-chat-header-info">
+          <div class="webzy-avatar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="webzy-chat-title">Webzy AI</div>
+            <div class="webzy-chat-status"><span class="webzy-status-dot"></span> Online</div>
+          </div>
+        </div>
+        <button class="webzy-chat-close" aria-label="Close chat">&times;</button>
+      </div>
+      <div class="webzy-chat-body">
+        <div class="webzy-message webzy-message-bot">
+          <div class="webzy-message-content">
+            Hi there! I'm <strong>Webzy</strong>, your AI assistant from Versed Global. How can I help you today?
+          </div>
+        </div>
+      </div>
+      <div class="webzy-quick-actions">
+        <button class="webzy-quick-btn" data-message="Tell me about Salesforce services">Salesforce</button>
+        <button class="webzy-quick-btn" data-message="Tell me about web development">Web Dev</button>
+        <button class="webzy-quick-btn" data-message="Tell me about fundraising technology">Fundraising</button>
+        <button class="webzy-quick-btn" data-message="How can I contact you?">Contact</button>
+      </div>
+      <div class="webzy-chat-input-area">
+        <input type="text" class="webzy-chat-input" placeholder="Type your message..." aria-label="Type your message" maxlength="500">
+        <button class="webzy-send-btn" aria-label="Send message">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(widget);
+
+  const trigger = qs(".webzy-trigger", widget);
+  const chatWindow = qs(".webzy-chat-window", widget);
+  const closeBtn = qs(".webzy-chat-close", widget);
+  const chatBody = qs(".webzy-chat-body", widget);
+  const chatInput = qs(".webzy-chat-input", widget);
+  const sendBtn = qs(".webzy-send-btn", widget);
+  const iconChat = qs(".webzy-icon-chat", widget);
+  const iconClose = qs(".webzy-icon-close", widget);
+  const badge = qs(".webzy-badge", widget);
+  const quickBtns = qsa(".webzy-quick-btn", widget);
+  let isOpen = false;
+
+  setTimeout(() => {
+    if (!isOpen) {
+      badge.style.display = "flex";
+    }
+  }, 5000);
+
+  function toggleChat() {
+    isOpen = !isOpen;
+    chatWindow.classList.toggle("webzy-open", isOpen);
+    chatWindow.setAttribute("aria-hidden", !isOpen);
+    iconChat.style.display = isOpen ? "none" : "block";
+    iconClose.style.display = isOpen ? "block" : "none";
+    trigger.classList.toggle("webzy-active", isOpen);
+    badge.style.display = "none";
+    if (isOpen) {
+      setTimeout(() => chatInput.focus(), 300);
+    }
+  }
+
+  function addMessage(text, isBot) {
+    const msgDiv = document.createElement("div");
+    msgDiv.className =
+      "webzy-message " + (isBot ? "webzy-message-bot" : "webzy-message-user");
+    const contentDiv = document.createElement("div");
+    contentDiv.className = "webzy-message-content";
+    contentDiv.textContent = text;
+    if (isBot) {
+      contentDiv.innerHTML = text.replace(/\n/g, "<br>");
+    }
+    msgDiv.appendChild(contentDiv);
+    chatBody.appendChild(msgDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function showTypingIndicator() {
+    const typing = document.createElement("div");
+    typing.className = "webzy-message webzy-message-bot webzy-typing";
+    typing.innerHTML =
+      '<div class="webzy-message-content"><span class="webzy-typing-dots"><span></span><span></span><span></span></span></div>';
+    chatBody.appendChild(typing);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    return typing;
+  }
+
+  function sendMessage(text) {
+    if (!text || !text.trim()) return;
+    addMessage(text.trim(), false);
+    chatInput.value = "";
+
+    const typingEl = showTypingIndicator();
+    setTimeout(
+      () => {
+        typingEl.remove();
+        const response = getResponse(text);
+        addMessage(response, true);
+      },
+      800 + Math.random() * 700,
+    );
+  }
+
+  trigger.addEventListener("click", toggleChat);
+  closeBtn.addEventListener("click", toggleChat);
+
+  sendBtn.addEventListener("click", () => {
+    sendMessage(chatInput.value);
+  });
+
+  chatInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage(chatInput.value);
+    }
+  });
+
+  quickBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const msg = btn.getAttribute("data-message");
+      sendMessage(msg);
+    });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isOpen) {
+      toggleChat();
+    }
+  });
+}
+
+// ========== 48. COOKIE CONSENT POPUP ==========
+function initCookieConsent() {
+  let consent = null;
+  try {
+    consent = localStorage.getItem("vg_cookie_consent");
+  } catch (e) {}
+  if (consent === "accepted" || consent === "declined") return;
+
+  const banner = document.createElement("div");
+  banner.id = "cookieConsent";
+  banner.setAttribute("role", "dialog");
+  banner.setAttribute("aria-label", "Cookie consent");
+  banner.innerHTML = `
+    <div class="cookie-consent-inner">
+      <div class="cookie-consent-left">
+        <div class="cookie-consent-icon">
+          <i class="fas fa-cookie-bite"></i>
+        </div>
+        <div class="cookie-consent-text">
+          <strong style="color:#f0f9ff;display:block;margin-bottom:0.2rem;font-size:0.88rem;">We use cookies</strong>
+          <p style="margin:0;font-size:0.82rem;line-height:1.5;color:#94a3b8;">We use cookies to enhance your browsing experience and analyse site traffic. By accepting, you help us improve our services.</p>
+        </div>
+      </div>
+      <div class="cookie-consent-actions">
+        <button class="cookie-btn cookie-btn-manage" aria-label="Manage cookie preferences">Manage</button>
+        <button class="cookie-btn cookie-btn-decline" aria-label="Decline cookies">Decline</button>
+        <button class="cookie-btn cookie-btn-accept" aria-label="Accept all cookies">Accept All</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(banner);
+
+  setTimeout(() => {
+    banner.classList.add("show");
+  }, 1500);
+
+  const acceptBtn = qs(".cookie-btn-accept", banner);
+  const declineBtn = qs(".cookie-btn-decline", banner);
+  const manageBtn = qs(".cookie-btn-manage", banner);
+
+  function closeBanner(value) {
+    try {
+      localStorage.setItem("vg_cookie_consent", value);
+    } catch (e) {}
+    banner.classList.remove("show");
+    setTimeout(() => banner.remove(), 400);
+  }
+
+  acceptBtn.addEventListener("click", () => closeBanner("accepted"));
+  declineBtn.addEventListener("click", () => closeBanner("declined"));
+  manageBtn.addEventListener("click", () => {
+    closeBanner("declined");
+    if (typeof notifications !== "undefined") {
+      notifications.info(
+        "Cookie preferences saved. You can update your preferences in our Privacy Policy page.",
+        5000,
+      );
+    }
+  });
+}
+
+// ========== 48b. CONTACT FORM HANDLER ==========
+function initContactForm() {
+  const form = document.querySelector(
+    '.contact-form, #contactForm, form[data-form="contact"]',
+  );
+  if (!form) return;
+
+  const inputs = form.querySelectorAll("input, textarea, select");
+  const submitBtn = form.querySelector('[type="submit"]');
+
+  inputs.forEach((input) => {
+    input.addEventListener("blur", () => {
+      if (input.required && !input.value.trim()) {
+        input.classList.add("input-error");
+      } else {
+        input.classList.remove("input-error");
+      }
+    });
+    input.addEventListener("input", () => {
+      if (input.value.trim()) input.classList.remove("input-error");
+    });
+  });
+
+  form.addEventListener("submit", (e) => {
+    let valid = true;
+    inputs.forEach((input) => {
+      if (input.required && !input.value.trim()) {
+        input.classList.add("input-error");
+        valid = false;
+      }
+    });
+    if (!valid) {
+      e.preventDefault();
+      const firstError = form.querySelector(".input-error");
+      if (firstError) firstError.focus();
+    }
+  });
+}
+
 // ========== INIT ALL ==========
 document.addEventListener("DOMContentLoaded", () => {
   initDeviceDetection();
@@ -2971,10 +2367,10 @@ document.addEventListener("DOMContentLoaded", () => {
   initServiceCards();
   initExpandToggles();
   initWebsiteFilter();
+  initCaseTileFilter();
   initFAQAccordion();
   initRevealAnimations();
   initScrollIndicator();
-  initPageTransitions();
   initBackToTop();
   initParallaxEffect();
   initHeroStatCounters();
@@ -2993,18 +2389,10 @@ document.addEventListener("DOMContentLoaded", () => {
   initTouchCardInteractions();
   initRailDragScroll();
   initPrintHandler();
-
-  // ---- ORIGINAL ENHANCED FEATURES ----
-  initCursorGlow();
-  initTextScramble();
-  initKeyboardNavHelper();
-  initTypewriterEffects();
-  initCustomCursor();
-
-  // ---- NEW TECH FEATURES ----
-  initMagneticButtons();
-  initParticleBackgrounds();
   initScrollProgressBar();
+  initDropdownNav();
+  initWebzy();
+  initCookieConsent();
 
   if (!prefersReducedMotion()) {
     initPageFade();
@@ -3013,10 +2401,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setActiveNavigation();
   }
 
-  // Set active navigation on load (again after any changes)
   setTimeout(setActiveNavigation, 100);
 
-  // Check for form submission success query
   if (window.location.search.includes("submitted")) {
     notifications.success(
       "Thank you! Your message has been sent successfully. We'll respond within one working day.",
@@ -3030,4 +2416,4 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("popstate", setActiveNavigation);
 window.addEventListener("hashchange", setActiveNavigation);
 
-/* End of enhanced script.js code */
+/* End of script.js — Version 8.0 (Performance Refactored) */
